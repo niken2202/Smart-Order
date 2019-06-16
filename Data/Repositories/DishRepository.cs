@@ -3,11 +3,11 @@ using Model.Models;
 
 namespace Data.Repositories
 {
-    public interface IDishRepository : IRepository<DishCategory>
+    public interface IDishRepository : IRepository<Dish>
     {
     }
 
-    public class DishRepository : RepositoryBase<DishCategory>, IDishCategoryRepository
+    public class DishRepository : RepositoryBase<Dish>, IDishRepository
     {
         public DishRepository(IDbFactory dbFactory) : base(dbFactory)
         {

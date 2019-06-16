@@ -10,7 +10,7 @@ namespace Service
         void Save();
     }
 
-    public class ErrorService
+    public class ErrorService :IErrorService
     {
         private IErrorRepository _errorRepository;
         private IUnitOfWork _unitOfWork;

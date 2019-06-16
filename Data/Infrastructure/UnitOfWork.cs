@@ -2,8 +2,9 @@
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private SmartOrderContext dbContext;
         private readonly IDbFactory dbFactory;
+        private SmartOrderContext dbContext;
+
 
         public UnitOfWork(IDbFactory dbFactory)
         {
