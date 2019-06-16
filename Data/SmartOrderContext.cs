@@ -1,0 +1,33 @@
+﻿using Model.Models;
+using System.Data.Entity;
+
+namespace Data
+{
+    public class SmartOrderContext : DbContext
+    {
+        public SmartOrderContext() : base("SmartOrderConnection")
+        {
+            this.Configuration.LazyLoadingEnabled = false;
+        }
+
+        public DbSet<Bill> Bills { set; get; }
+        public DbSet<Combo> Combos { set; get; }
+        public DbSet<Dish> Dishes { set; get; }
+        public DbSet<DishBillMapping> DishBillMappings { set; get; }
+        public DbSet<DishCategory> DishCategories { set; get; }
+        public DbSet<DishMaterialMapping> DishMaterialMappings { set; get; }
+        public DbSet<Error> Errors { set; get; }
+        public DbSet<Material> Materials { set; get; }
+        public DbSet<Table> Tables { set; get; }
+        public DbSet<History> History { set; get; }
+        public DbSet<DishComboMapping> DishComboMapping { set; get; }
+
+        public static SmartOrderContext Create()
+        {
+            return new SmartOrderContext();
+        }
+        protected override void OnModelCreating(DbModelBuilder builder)
+        {
+        }
+    }
+}
