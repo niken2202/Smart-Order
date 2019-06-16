@@ -3,9 +3,11 @@ using Service;
 using SmartOrder.Infrastructure;
 using System.Net;
 using System.Net.Http;
+using System.Web.Mvc;
 
 namespace SmartOrder.api
 {
+    [RoutePrefix("api/bill")]
     public class BillController : ApiControllerBase
     {
         private IBillService billService;
@@ -21,7 +23,7 @@ namespace SmartOrder.api
             {
                 HttpResponseMessage response = null;
 
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
@@ -30,6 +32,25 @@ namespace SmartOrder.api
                     var result = billService.Add(bill);
                     billService.SaveChanges();
                     response = request.CreateResponse(HttpStatusCode.Created, result);
+                }
+                return response;
+            });
+        }
+        [Route("getall")]
+        public HttpResponseMessage Get(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listBill = billService.GetAll();
+                    response = request.CreateResponse(HttpStatusCode.OK, listBill);
                 }
                 return response;
             });

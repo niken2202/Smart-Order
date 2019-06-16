@@ -21,6 +21,7 @@ namespace Data
         public DbSet<Table> Tables { set; get; }
         public DbSet<History> History { set; get; }
         public DbSet<DishComboMapping> DishComboMapping { set; get; }
+        public DbSet<BillDetail> BillDetail { set; get; }
 
         public static SmartOrderContext Create()
         {

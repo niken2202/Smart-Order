@@ -23,14 +23,13 @@ namespace Model.Models
         [MaxLength]
         public string Content { get; set; }
         public int TableID { get; set; }
-
         public DateTime CreatedDate { get; set; }
 
         public string CreatedBy { set; get; }
         public int? Discount { set; get; }
         public bool Status { get; set; }
 
-        public virtual IEnumerable<DishBillMapping> DishBillMappings { set; get; }
+        public virtual IEnumerable<BillDetail> BillDetail { set; get; }
 
     }
 }

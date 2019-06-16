@@ -36,12 +36,12 @@ namespace SmartOrder.App_Start
             builder.RegisterType<SmartOrderContext>().AsSelf().InstancePerRequest();
 
             // Repositories
-            builder.RegisterAssemblyTypes(typeof(DishRepository).Assembly)
+            builder.RegisterAssemblyTypes(typeof(BillRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))
                 .AsImplementedInterfaces().InstancePerRequest();
 
             // Services
-            builder.RegisterAssemblyTypes(typeof(DishService).Assembly)
+            builder.RegisterAssemblyTypes(typeof(BillService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();
 

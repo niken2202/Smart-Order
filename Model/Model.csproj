@@ -51,6 +51,7 @@
     <Compile Include="Abstract\Auditable.cs" />
     <Compile Include="Abstract\IAuditable.cs" />
     <Compile Include="Models\Bill.cs" />
+    <Compile Include="Models\BillDetail.cs" />
     <Compile Include="Models\Combo.cs" />
     <Compile Include="Models\Dish.cs" />
     <Compile Include="Models\DishBillMapping.cs" />
