@@ -16,13 +16,15 @@ namespace SmartOrder.api
         {
             this.dishService = dishService;
         }
+
+        [Route("add")]
         public HttpResponseMessage Post(HttpRequestMessage request, Dish dish)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
 
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
@@ -35,6 +37,8 @@ namespace SmartOrder.api
                 return response;
             });
         }
+        
+        
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
@@ -42,7 +46,7 @@ namespace SmartOrder.api
             {
                 HttpResponseMessage response = null;
 
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
@@ -54,14 +58,32 @@ namespace SmartOrder.api
                 return response;
             });
         }
+        [Route("getbycombo")]
+        public HttpResponseMessage GetByCombo(HttpRequestMessage request, int comboId, int page, int pageSize, int totalRow)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
 
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listDish = dishService.GetAllByComboId(comboId, page, pageSize, out totalRow);
+                    response = request.CreateResponse(HttpStatusCode.OK, listDish);
+                }
+                return response;
+            });
+        }
         public HttpResponseMessage Put(HttpRequestMessage request, Dish dish)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
 
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }
@@ -80,7 +102,7 @@ namespace SmartOrder.api
             {
                 HttpResponseMessage response = null;
 
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                 }

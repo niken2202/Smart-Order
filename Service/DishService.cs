@@ -10,10 +10,11 @@ namespace Service
         Dish Add(Dish dish);
         IEnumerable<Dish> GetAll();
         Dish GetById(int id);
+        
         Dish GetByName(string name);
         void Update(Dish dish);
         Dish Delete(int id);
-        IEnumerable<Dish> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
+        IEnumerable<Dish> GetAllByComboId(int comboId, int page, int pageSize, out int totalRow);
         void SaveChanges();
     }
 
@@ -42,14 +43,14 @@ namespace Service
             return dishRepository.GetAll();
         }
 
-        public IEnumerable<Dish> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
+        public IEnumerable<Dish> GetAllByComboId(int comboId, int page, int pageSize, out int totalRow)
         {
-            throw new System.NotImplementedException();
+            return dishRepository.GetDishByCombo(comboId, page, pageSize,out totalRow);
         }
 
         public Dish GetById(int id)
         {
-            throw new System.NotImplementedException();
+          return dishRepository.GetSingleById(id);
         }
 
         public Dish GetByName(string name)

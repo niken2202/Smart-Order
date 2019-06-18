@@ -43,9 +43,15 @@
   <ItemGroup>
     <Compile Include="BillDetailService.cs" />
     <Compile Include="BillService.cs" />
+    <Compile Include="ComboService.cs" />
+    <Compile Include="DishCategoryService.cs" />
+    <Compile Include="DishComboMappingService.cs" />
     <Compile Include="DishService.cs" />
     <Compile Include="ErrorService.cs" />
+    <Compile Include="HistoryService.cs" />
+    <Compile Include="MaterialService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

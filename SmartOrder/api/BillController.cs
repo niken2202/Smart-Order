@@ -17,6 +17,7 @@ namespace SmartOrder.api
             this.billService = billService;
         }
 
+        [Route("add")]
         public HttpResponseMessage Create(HttpRequestMessage request, Bill bill)
         {
             return CreateHttpResponse(request, () =>
@@ -36,6 +37,7 @@ namespace SmartOrder.api
                 return response;
             });
         }
+
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
@@ -51,6 +53,26 @@ namespace SmartOrder.api
                 {
                     var listBill = billService.GetAll();
                     response = request.CreateResponse(HttpStatusCode.OK, listBill);
+                }
+                return response;
+            });
+        }
+
+        [Route("getbyid")]
+        public HttpResponseMessage Get(HttpRequestMessage request,int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var bill = billService.GetById(id);
+                    response = request.CreateResponse(HttpStatusCode.OK, bill);
                 }
                 return response;
             });

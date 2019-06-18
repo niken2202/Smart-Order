@@ -48,7 +48,7 @@ namespace Service
 
         public Bill GetById(int id)
         {
-            throw new NotImplementedException();
+            return billRepository.GetSingleById(id);
         }
 
         public void SaveChanges()

@@ -1,4 +1,5 @@
-﻿using Service;
+﻿using Model.Models;
+using Service;
 using SmartOrder.Infrastructure;
 using System.Net;
 using System.Net.Http;
@@ -30,6 +31,27 @@ namespace SmartOrder.api
                 {
                     var listDishOfBill = billDetailService.GetByBillId(billId);
                     response = request.CreateResponse(HttpStatusCode.OK, listDishOfBill);
+                }
+                return response;
+            });
+        }
+
+        [Route("add")]
+        public HttpResponseMessage Create(HttpRequestMessage request, BillDetail billdetail)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var result = billDetailService.Add(billdetail);
+                    billDetailService.SaveChanges();
+                    response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;
             });

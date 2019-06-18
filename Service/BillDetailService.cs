@@ -8,6 +8,7 @@ namespace Service
     public interface IBillDetailService
     {
         IEnumerable<BillDetail> GetByBillId(int id);
+        BillDetail Add(BillDetail billDetail);
         void SaveChanges();
     }
     public class BillDetailService : IBillDetailService
@@ -19,6 +20,11 @@ namespace Service
         {
             this.billDetailRepository = billDetailRepository;
             this.unitOfWork = unitOfWork;
+        }
+
+        public BillDetail Add(BillDetail billDetail)
+        {
+           return billDetailRepository.Add(billDetail);
         }
 
         public IEnumerable<BillDetail> GetByBillId(int id)
