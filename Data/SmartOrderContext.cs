@@ -1,9 +1,10 @@
-﻿using Model.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Model.Models;
 using System.Data.Entity;
 
 namespace Data
 {
-    public class SmartOrderContext : DbContext
+    public class SmartOrderContext : IdentityDbContext<ApplicationUser>
     {
         public SmartOrderContext() : base("SmartOrderConnection")
         {

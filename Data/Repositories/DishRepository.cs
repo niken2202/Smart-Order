@@ -20,7 +20,8 @@ namespace Data.Repositories
             var query = from d in DbContext.Dishes
                         join dc in DbContext.DishComboMapping on d.ID equals dc.DishID
                         join c in DbContext.Combos on dc.ComboID equals c.ID
-                        where c.ID == comboId orderby c.ID
+                        where c.ID == comboId
+                        orderby c.ID
                         select d;
 
             totalRow = query.Count();
