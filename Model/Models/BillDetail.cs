@@ -8,6 +8,8 @@ namespace Model.Models
     {
         private decimal total;
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
         public int BillID { get; set; }
 
         [Required]

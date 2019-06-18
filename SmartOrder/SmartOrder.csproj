@@ -184,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="api\BillController.cs" />
+    <Compile Include="api\BillDetailController.cs" />
     <Compile Include="api\DishController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
