@@ -183,6 +183,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="api\AccountController.cs" />
     <Compile Include="api\BillController.cs" />
     <Compile Include="api\BillDetailController.cs" />
     <Compile Include="api\DishController.cs" />
@@ -193,9 +194,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

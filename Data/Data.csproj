@@ -85,6 +85,14 @@
     <Compile Include="Migrations\201906180716007_changeBillDetail.Designer.cs">
       <DependentUpon>201906180716007_changeBillDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906191247270_InitIdentity.cs" />
+    <Compile Include="Migrations\201906191247270_InitIdentity.Designer.cs">
+      <DependentUpon>201906191247270_InitIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906191331407_changekey.cs" />
+    <Compile Include="Migrations\201906191331407_changekey.Designer.cs">
+      <DependentUpon>201906191331407_changekey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BillDetailRepository.cs" />
@@ -129,6 +137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906180716007_changeBillDetail.resx">
       <DependentUpon>201906180716007_changeBillDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906191247270_InitIdentity.resx">
+      <DependentUpon>201906191247270_InitIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906191331407_changekey.resx">
+      <DependentUpon>201906191331407_changekey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
