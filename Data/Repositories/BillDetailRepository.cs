@@ -7,6 +7,7 @@ namespace Data.Repositories
     public interface IBillDetailRepository : IRepository<BillDetail>
     {
         IEnumerable<BillDetail> GetByBillID(int id);
+      
     }
 
     public class BillDetailRepository : RepositoryBase<BillDetail>, IBillDetailRepository
@@ -22,5 +23,6 @@ namespace Data.Repositories
                                 select dish  ;
             return listDishOfBill;
         }
+        
     }
 }

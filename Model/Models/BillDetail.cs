@@ -22,19 +22,6 @@ namespace Model.Models
         [Required]
         public int Amount { get; set; }
 
-        public decimal Total
-        {
-            get
-            {
-                return total;
-            }
-            set
-            {
-                total = Price * Amount;
-            }
-        }
-
-
         [MaxLength]
         public string Description { get; set; }
 

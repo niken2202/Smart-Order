@@ -61,37 +61,17 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201906151605358_Initial-DB.cs" />
-    <Compile Include="Migrations\201906151605358_Initial-DB.Designer.cs">
-      <DependentUpon>201906151605358_Initial-DB.cs</DependentUpon>
+    <Compile Include="Migrations\201906231412490_initial.cs" />
+    <Compile Include="Migrations\201906231412490_initial.Designer.cs">
+      <DependentUpon>201906231412490_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906151616409_editdatbase.cs" />
-    <Compile Include="Migrations\201906151616409_editdatbase.Designer.cs">
-      <DependentUpon>201906151616409_editdatbase.cs</DependentUpon>
+    <Compile Include="Migrations\201906251506198_deleteTotal.cs" />
+    <Compile Include="Migrations\201906251506198_deleteTotal.Designer.cs">
+      <DependentUpon>201906251506198_deleteTotal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906151701571_Edit-Bill.cs" />
-    <Compile Include="Migrations\201906151701571_Edit-Bill.Designer.cs">
-      <DependentUpon>201906151701571_Edit-Bill.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906161125499_Add-BillDetail.cs" />
-    <Compile Include="Migrations\201906161125499_Add-BillDetail.Designer.cs">
-      <DependentUpon>201906161125499_Add-BillDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906161134526_Update-BillDetail.cs" />
-    <Compile Include="Migrations\201906161134526_Update-BillDetail.Designer.cs">
-      <DependentUpon>201906161134526_Update-BillDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906180716007_changeBillDetail.cs" />
-    <Compile Include="Migrations\201906180716007_changeBillDetail.Designer.cs">
-      <DependentUpon>201906180716007_changeBillDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906191247270_InitIdentity.cs" />
-    <Compile Include="Migrations\201906191247270_InitIdentity.Designer.cs">
-      <DependentUpon>201906191247270_InitIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906191331407_changekey.cs" />
-    <Compile Include="Migrations\201906191331407_changekey.Designer.cs">
-      <DependentUpon>201906191331407_changekey.cs</DependentUpon>
+    <Compile Include="Migrations\201906251520073_revenueStatitis.cs" />
+    <Compile Include="Migrations\201906251520073_revenueStatitis.Designer.cs">
+      <DependentUpon>201906251520073_revenueStatitis.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,35 +94,24 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{D6AE735B-7F3A-4D46-AA8D-705D07A5D0AC}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{B1C0CC3B-1D9D-4423-88B7-A0EE92454A2E}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906151605358_Initial-DB.resx">
-      <DependentUpon>201906151605358_Initial-DB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906231412490_initial.resx">
+      <DependentUpon>201906231412490_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906151616409_editdatbase.resx">
-      <DependentUpon>201906151616409_editdatbase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906251506198_deleteTotal.resx">
+      <DependentUpon>201906251506198_deleteTotal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906151701571_Edit-Bill.resx">
-      <DependentUpon>201906151701571_Edit-Bill.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906161125499_Add-BillDetail.resx">
-      <DependentUpon>201906161125499_Add-BillDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906161134526_Update-BillDetail.resx">
-      <DependentUpon>201906161134526_Update-BillDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906180716007_changeBillDetail.resx">
-      <DependentUpon>201906180716007_changeBillDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906191247270_InitIdentity.resx">
-      <DependentUpon>201906191247270_InitIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906191331407_changekey.resx">
-      <DependentUpon>201906191331407_changekey.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906251520073_revenueStatitis.resx">
+      <DependentUpon>201906251520073_revenueStatitis.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
-﻿using Data.Infrastructure;
+﻿using Common.ViewModels;
+using Data.Infrastructure;
 using Data.Repositories;
 using Model.Models;
 using System;

@@ -1,8 +1,5 @@
 namespace Data.Migrations
 {
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Model.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -17,31 +14,10 @@ namespace Data.Migrations
 
         protected override void Seed(Data.SmartOrderContext context)
         {
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new SmartOrderContext()));
+            //  This method will be called after migrating to the latest version.
 
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new SmartOrderContext()));
-
-            var user = new ApplicationUser()
-            {
-                UserName = "admin",
-                Email = "thangjs2202@gmail.com",
-                EmailConfirmed = true,
-                BirthDay = DateTime.Now,
-                FullName = "Le Trong Thang"
-
-            };
-
-            manager.Create(user, "123654$");
-
-            if (!roleManager.Roles.Any())
-            {
-                roleManager.Create(new IdentityRole { Name = "Admin" });
-                roleManager.Create(new IdentityRole { Name = "User" });
-            }
-
-            var adminUser = manager.FindByEmail("thangjs2202@gmail.com");
-
-            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data.
         }
     }
 }

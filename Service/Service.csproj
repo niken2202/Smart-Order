@@ -51,9 +51,14 @@
     <Compile Include="HistoryService.cs" />
     <Compile Include="MaterialService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticService.cs" />
     <Compile Include="TableService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{D6AE735B-7F3A-4D46-AA8D-705D07A5D0AC}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{be78de5f-6c56-472f-a588-e15e882e9b33}</Project>
       <Name>Data</Name>
