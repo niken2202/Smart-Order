@@ -69,9 +69,9 @@
     <Compile Include="Migrations\201906251506198_deleteTotal.Designer.cs">
       <DependentUpon>201906251506198_deleteTotal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906251520073_revenueStatitis.cs" />
-    <Compile Include="Migrations\201906251520073_revenueStatitis.Designer.cs">
-      <DependentUpon>201906251520073_revenueStatitis.cs</DependentUpon>
+    <Compile Include="Migrations\201906260822032_revenuestatistic.cs" />
+    <Compile Include="Migrations\201906260822032_revenuestatistic.Designer.cs">
+      <DependentUpon>201906260822032_revenuestatistic.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,8 +110,8 @@
     <EmbeddedResource Include="Migrations\201906251506198_deleteTotal.resx">
       <DependentUpon>201906251506198_deleteTotal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906251520073_revenueStatitis.resx">
-      <DependentUpon>201906251520073_revenueStatitis.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906260822032_revenuestatistic.resx">
+      <DependentUpon>201906260822032_revenuestatistic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

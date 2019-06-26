@@ -2,8 +2,8 @@ namespace Data.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-
-    public partial class revenueStatitis : DbMigration
+    
+    public partial class revenuestatistic : DbMigration
     {
         public override void Up()
         {
@@ -15,16 +15,16 @@ namespace Data.Migrations
 
                 },
                 @"
-                select b.CreatedDate as Date, sum(bd.Price*bd.Amount) as BillTotal
+                select b.CreatedDate as Date, sum(bd.Price*bd.Amount) as Revenue
                 from Bill b 
                 inner join BillDetails bd on b.ID = bd.BillID
                 where b.CreatedDate >=@fromDate and b.CreatedDate <=@toDate
-                group by b.CreatedDate"); ;
+                group by b.CreatedDate");
         }
-
+        
         public override void Down()
         {
-            DropStoredProcedure("dbo.GetRevenueStatistic");
+            DropStoredProcedure("GetRevenueStatistic");
         }
     }
 }
