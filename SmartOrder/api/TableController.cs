@@ -1,24 +1,26 @@
 ﻿using Model.Models;
 using Service;
 using SmartOrder.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/dish")]
-    public class DishController : ApiControllerBase
+    [RoutePrefix("api/table")]
+    public class TableController : ApiControllerBase
     {
-        private IDishService dishService;
-
-        public DishController(IErrorService errorService, IDishService dishService) : base(errorService)
+        ITableService tableService;
+        public TableController(IErrorService errorService, ITableService tableService) : base(errorService)
         {
-            this.dishService = dishService;
+            this.tableService = tableService;
         }
 
         [Route("add")]
-        public HttpResponseMessage Post(HttpRequestMessage request, Dish dish)
+        public HttpResponseMessage Create(HttpRequestMessage request, Table table)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -30,15 +32,34 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var result = dishService.Add(dish);
-                    dishService.SaveChanges();
+                    var result = tableService.Add(table);
+                    tableService.SaveChanges();
                     response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;
             });
         }
-        
-        
+
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage request, Table table)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    tableService.Update(table);
+                    response = request.CreateResponse(HttpStatusCode.OK);
+                }
+                return response;
+            });
+        }
+
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
@@ -52,53 +73,12 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var listDish = dishService.GetAll();
-                    response = request.CreateResponse(HttpStatusCode.OK, listDish);
+                    var listTable = tableService.GetAll();
+                    response = request.CreateResponse(HttpStatusCode.OK, listTable);
                 }
                 return response;
             });
         }
-
-        [Route("getbycombo")]
-        public HttpResponseMessage GetByCombo(HttpRequestMessage request, int comboId, int page, int pageSize, int totalRow)
-        {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-
-                if (!ModelState.IsValid)
-                {
-                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var listDish = dishService.GetAllByComboId(comboId, page, pageSize, out totalRow);
-                    response = request.CreateResponse(HttpStatusCode.OK, listDish);
-                }
-                return response;
-            });
-        }
-
-        [Route("update")]
-        public HttpResponseMessage Put(HttpRequestMessage request, Dish dish)
-        {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-
-                if (!ModelState.IsValid)
-                {
-                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    dishService.Update(dish);
-                    response = request.CreateResponse(HttpStatusCode.OK);
-                }
-                return response;
-            });
-        }
-
         [Route("delete")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
@@ -112,14 +92,12 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    Dish dish = dishService.Delete(id);
-                    dishService.SaveChanges();
-                    response = request.CreateResponse(HttpStatusCode.OK, dish);
+                    Table table = tableService.Delete(id);
+                    tableService.SaveChanges();
+                    response = request.CreateResponse(HttpStatusCode.OK, table);
                 }
                 return response;
             });
         }
     }
-
-    
 }

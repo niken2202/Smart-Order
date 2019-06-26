@@ -1,24 +1,27 @@
 ﻿using Model.Models;
 using Service;
 using SmartOrder.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/dish")]
-    public class DishController : ApiControllerBase
+    [RoutePrefix("api/combo")]
+    public class ComboController : ApiControllerBase
     {
-        private IDishService dishService;
+        IComboService comboService;
 
-        public DishController(IErrorService errorService, IDishService dishService) : base(errorService)
+        public ComboController(IErrorService errorService, IComboService comboService) : base(errorService)
         {
-            this.dishService = dishService;
+            this.comboService = comboService;
         }
 
         [Route("add")]
-        public HttpResponseMessage Post(HttpRequestMessage request, Dish dish)
+        public HttpResponseMessage Post(HttpRequestMessage request, Combo combo)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -30,15 +33,15 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var result = dishService.Add(dish);
-                    dishService.SaveChanges();
+                    var result = comboService.Add(combo);
+                    comboService.SaveChanges();
                     response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;
             });
         }
-        
-        
+
+
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
@@ -52,35 +55,16 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var listDish = dishService.GetAll();
+                    var listDish = comboService.GetAll();
                     response = request.CreateResponse(HttpStatusCode.OK, listDish);
                 }
                 return response;
             });
         }
 
-        [Route("getbycombo")]
-        public HttpResponseMessage GetByCombo(HttpRequestMessage request, int comboId, int page, int pageSize, int totalRow)
-        {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-
-                if (!ModelState.IsValid)
-                {
-                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var listDish = dishService.GetAllByComboId(comboId, page, pageSize, out totalRow);
-                    response = request.CreateResponse(HttpStatusCode.OK, listDish);
-                }
-                return response;
-            });
-        }
-
+        
         [Route("update")]
-        public HttpResponseMessage Put(HttpRequestMessage request, Dish dish)
+        public HttpResponseMessage Put(HttpRequestMessage request, Combo combo)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -92,7 +76,7 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    dishService.Update(dish);
+                    comboService.Update(combo);
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
                 return response;
@@ -112,14 +96,12 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    Dish dish = dishService.Delete(id);
-                    dishService.SaveChanges();
-                    response = request.CreateResponse(HttpStatusCode.OK, dish);
+                    Combo combo = comboService.Delete(id);
+                    comboService.SaveChanges();
+                    response = request.CreateResponse(HttpStatusCode.OK, combo);
                 }
                 return response;
             });
         }
     }
-
-    
 }
