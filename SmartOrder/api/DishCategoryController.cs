@@ -7,16 +7,17 @@ using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/material")]
-    public class MaterialController : ApiControllerBase
+    [RoutePrefix("api/dishcategory")]
+    public class DishCategoryController : ApiControllerBase
     {
-        IMaterialServie materialService;
-        public MaterialController(IErrorService errorService, IMaterialServie materialService, IHistoryService historyService) : base(errorService, historyService)
+        IDishCategoryService dishService;
+        public DishCategoryController(IDishCategoryService dishService, IErrorService errorService, IHistoryService historyService) : base(errorService, historyService)
         {
-            this.materialService = materialService;
+            this.dishService = dishService;
         }
+
         [Route("add")]
-        public HttpResponseMessage Post(HttpRequestMessage request, Material material)
+        public HttpResponseMessage Post(HttpRequestMessage request, DishCategory category)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -28,9 +29,9 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var result = materialService.Add(material);
-                    materialService.SaveChanges();
-                    SaveHistory("Add new material with ID: " + result.ID);
+                    var result = dishService.Add(category);
+                    dishService.SaveChanges();
+                    SaveHistory("Add Dish Category has ID " + category.ID);
                     response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;
@@ -51,15 +52,15 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var listDish = materialService.GetAll();
-                    response = request.CreateResponse(HttpStatusCode.OK, listDish);
+                    var listDishCaterory = dishService.GetAll();
+                    response = request.CreateResponse(HttpStatusCode.OK, listDishCaterory);
                 }
                 return response;
             });
         }
 
         [Route("update")]
-        public HttpResponseMessage Put(HttpRequestMessage request, Material material)
+        public HttpResponseMessage Put(HttpRequestMessage request, DishCategory dishCategory)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -71,9 +72,8 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    materialService.Update(material);
-                    SaveHistory("Update material with ID: " + material.ID);
-
+                    dishService.Update(dishCategory);
+                    SaveHistory("Update Dish Category has ID " + dishCategory.ID);
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
                 return response;
@@ -93,13 +93,13 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    Material material = materialService.Delete(id);
-                    materialService.SaveChanges();
-                    SaveHistory("Delete material with ID: " + material.ID);
-                    response = request.CreateResponse(HttpStatusCode.OK, material);
+                    DishCategory dishcategory = dishService.Delete(id);
+                    dishService.SaveChanges();
+                    SaveHistory("Delete Dish Category has ID " + id);
+                    response = request.CreateResponse(HttpStatusCode.OK, dishcategory);
                 }
-                return response; 
-                
+                return response;
+
             });
         }
     }

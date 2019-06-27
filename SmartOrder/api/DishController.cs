@@ -12,7 +12,7 @@ namespace SmartOrder.api
     {
         private IDishService dishService;
 
-        public DishController(IErrorService errorService, IDishService dishService) : base(errorService)
+        public DishController(IErrorService errorService, IDishService dishService, IHistoryService historyService) : base(errorService, historyService)
         {
             this.dishService = dishService;
         }
@@ -32,6 +32,7 @@ namespace SmartOrder.api
                 {
                     var result = dishService.Add(dish);
                     dishService.SaveChanges();
+                    SaveHistory("Add new Dish with ID: " + result.ID);
                     response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;
@@ -93,6 +94,8 @@ namespace SmartOrder.api
                 else
                 {
                     dishService.Update(dish);
+                    SaveHistory("Add new Dish with ID: " + dish.ID);
+
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
                 return response;
@@ -114,6 +117,7 @@ namespace SmartOrder.api
                 {
                     Dish dish = dishService.Delete(id);
                     dishService.SaveChanges();
+                    SaveHistory("Add new Dish with ID: " + dish.ID);
                     response = request.CreateResponse(HttpStatusCode.OK, dish);
                 }
                 return response;

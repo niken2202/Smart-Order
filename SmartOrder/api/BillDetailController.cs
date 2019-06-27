@@ -12,7 +12,7 @@ namespace SmartOrder.api
     {
         private IBillDetailService billDetailService;
 
-        public BillDetailController(IErrorService errorService, IBillDetailService billDetailService) : base(errorService)
+        public BillDetailController(IErrorService errorService, IBillDetailService billDetailService,IHistoryService historyService) : base(errorService, historyService)
         {
             this.billDetailService = billDetailService;
         }

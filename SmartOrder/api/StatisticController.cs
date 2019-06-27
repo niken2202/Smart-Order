@@ -11,7 +11,7 @@ namespace SmartOrder.api
     public class StatisticController : ApiControllerBase
     {
        private IStatisticService statisticService;
-        public StatisticController( IErrorService errorService, IStatisticService statisticService) : base(errorService)
+        public StatisticController( IErrorService errorService, IStatisticService statisticService, IHistoryService historyService) : base(errorService, historyService)
         {
             this.statisticService = statisticService;
         }

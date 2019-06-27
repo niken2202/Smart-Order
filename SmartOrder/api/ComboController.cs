@@ -15,7 +15,7 @@ namespace SmartOrder.api
     {
         IComboService comboService;
 
-        public ComboController(IErrorService errorService, IComboService comboService) : base(errorService)
+        public ComboController(IErrorService errorService, IComboService comboService, IHistoryService historyService) : base(errorService, historyService)
         {
             this.comboService = comboService;
         }
@@ -35,6 +35,7 @@ namespace SmartOrder.api
                 {
                     var result = comboService.Add(combo);
                     comboService.SaveChanges();
+                    SaveHistory("Add Combo has ID " + combo.ID);
                     response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;
@@ -77,6 +78,7 @@ namespace SmartOrder.api
                 else
                 {
                     comboService.Update(combo);
+                    SaveHistory("Update Combo has ID " + combo.ID);
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
                 return response;
@@ -98,6 +100,7 @@ namespace SmartOrder.api
                 {
                     Combo combo = comboService.Delete(id);
                     comboService.SaveChanges();
+                    SaveHistory("Delete Combo has ID " + combo.ID);
                     response = request.CreateResponse(HttpStatusCode.OK, combo);
                 }
                 return response;

@@ -14,7 +14,7 @@ namespace SmartOrder.api
     public class TableController : ApiControllerBase
     {
         ITableService tableService;
-        public TableController(IErrorService errorService, ITableService tableService) : base(errorService)
+        public TableController(IErrorService errorService, ITableService tableService, IHistoryService historyService) : base(errorService, historyService)
         {
             this.tableService = tableService;
         }
@@ -34,6 +34,7 @@ namespace SmartOrder.api
                 {
                     var result = tableService.Add(table);
                     tableService.SaveChanges();
+                    SaveHistory("Add new table with ID: " + result.ID);
                     response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;
@@ -54,6 +55,7 @@ namespace SmartOrder.api
                 else
                 {
                     tableService.Update(table);
+                    SaveHistory("Update table with ID: " + table.ID);
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
                 return response;
@@ -94,6 +96,7 @@ namespace SmartOrder.api
                 {
                     Table table = tableService.Delete(id);
                     tableService.SaveChanges();
+                    SaveHistory("Delete table with ID: " + table.ID);
                     response = request.CreateResponse(HttpStatusCode.OK, table);
                 }
                 return response;

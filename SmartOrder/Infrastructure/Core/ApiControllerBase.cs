@@ -14,10 +14,12 @@ namespace SmartOrder.Infrastructure
     {
 
         private IErrorService _errorService;
+        private IHistoryService _historyService;
 
-        public ApiControllerBase(IErrorService errorService)
+        public ApiControllerBase(IErrorService errorService, IHistoryService _historyService)
         {
             this._errorService = errorService;
+            this._historyService = _historyService;
         }
 
         protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage requestMessage, Func<HttpResponseMessage> function)
@@ -53,6 +55,17 @@ namespace SmartOrder.Infrastructure
             return response;
         }
 
+        protected void SaveHistory(string action)
+        {
+            History his = new History
+            {
+                TaskName = action,
+                CreatedDate = DateTime.Now
+
+            };
+            _historyService.Add(his);
+            _historyService.SaveChanges();
+        }
         private void LogError(Exception ex)
         {
             try
