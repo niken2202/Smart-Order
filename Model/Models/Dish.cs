@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -31,7 +32,7 @@ namespace Model.Models
         public int CategoryID { get; set; }
 
         public int Status { get; set; }
-        public int CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         public virtual IEnumerable<DishComboMapping> DishComboMappings { set; get; }
         public virtual IEnumerable<DishBillMapping> DishBillMappings { set; get; }

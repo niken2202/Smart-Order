@@ -61,17 +61,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201906231412490_initial.cs" />
-    <Compile Include="Migrations\201906231412490_initial.Designer.cs">
-      <DependentUpon>201906231412490_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906251506198_deleteTotal.cs" />
-    <Compile Include="Migrations\201906251506198_deleteTotal.Designer.cs">
-      <DependentUpon>201906251506198_deleteTotal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906260822032_revenuestatistic.cs" />
-    <Compile Include="Migrations\201906260822032_revenuestatistic.Designer.cs">
-      <DependentUpon>201906260822032_revenuestatistic.cs</DependentUpon>
+    <Compile Include="Migrations\201907081354052_Initial.cs" />
+    <Compile Include="Migrations\201907081354052_Initial.Designer.cs">
+      <DependentUpon>201907081354052_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,14 +96,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906231412490_initial.resx">
-      <DependentUpon>201906231412490_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906251506198_deleteTotal.resx">
-      <DependentUpon>201906251506198_deleteTotal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906260822032_revenuestatistic.resx">
-      <DependentUpon>201906260822032_revenuestatistic.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907081354052_Initial.resx">
+      <DependentUpon>201907081354052_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,7 +10,6 @@ namespace Model.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
-
         public string TaskName { set; get; }
         public DateTime CreatedDate { set; get; }
     }
