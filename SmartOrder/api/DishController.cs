@@ -41,7 +41,7 @@ namespace SmartOrder.api
         
         
         [Route("getall")]
-        public HttpResponseMessage Get(HttpRequestMessage request)
+        public HttpResponseMessage Get(HttpRequestMessage request, int index, int pageSize, int totalRow)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -53,7 +53,7 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var listDish = dishService.GetAll();
+                    var listDish = dishService.GetAll(index, pageSize, out totalRow);
                     response = request.CreateResponse(HttpStatusCode.OK, listDish);
                 }
                 return response;

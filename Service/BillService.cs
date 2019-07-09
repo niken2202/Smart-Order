@@ -10,13 +10,9 @@ namespace Service
     public interface IBillService
     {
         Bill Add(Bill bill);
-
-        IEnumerable<Bill> GetAll();
-
         Bill GetById(int id);
 
-        IEnumerable<Bill> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
-
+        IEnumerable<Bill> GetAll(int pageIndex, int pageSize, out int totalRow);
         void SaveChanges();
     }
 
@@ -36,15 +32,9 @@ namespace Service
            return  billRepository.Add(bill);
         }
 
-        public IEnumerable<Bill> GetAll()
+        public IEnumerable<Bill> GetAll(int pageIndex, int pageSize, out int totalRow)
         {
-            return billRepository.GetAll();
-        }
-
-        public IEnumerable<Bill> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
-        {
-            return billRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize, new string[] { "Bill" });
-
+           return billRepository.GetAll(pageIndex, pageIndex, out totalRow);
         }
 
         public Bill GetById(int id)

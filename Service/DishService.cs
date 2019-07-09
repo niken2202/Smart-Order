@@ -8,9 +8,9 @@ namespace Service
     public interface IDishService
     {
         Dish Add(Dish dish);
-        IEnumerable<Dish> GetAll();
+        IEnumerable<Dish> GetAll(int page, int pageSize, out int totalRow);
         Dish GetById(int id);
-        
+      //  IEnumerable<Bill> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
         Dish GetByName(string name);
         void Update(Dish dish);
         Dish Delete(int id);
@@ -38,15 +38,17 @@ namespace Service
             return dishRepository.Delete(id);
         }
 
-        public IEnumerable<Dish> GetAll()
+        public IEnumerable<Dish> GetAll(int pageIndex, int pageSize, out int totalRow)
         {
-            return dishRepository.GetAll();
+            return dishRepository.GetAll(pageIndex,pageSize,out totalRow);
         }
 
         public IEnumerable<Dish> GetAllByComboId(int comboId, int page, int pageSize, out int totalRow)
         {
             return dishRepository.GetDishByCombo(comboId, page, pageSize,out totalRow);
         }
+
+  
 
         public Dish GetById(int id)
         {

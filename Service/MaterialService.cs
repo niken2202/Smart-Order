@@ -9,7 +9,7 @@ namespace Service
     {
         Material Add(Material material);
 
-        IEnumerable<Material> GetAll();
+        IEnumerable<Material> GetAll(int pageIndex, int pageSize, out int totalRow);
 
         Material GetById(int id);
 
@@ -43,9 +43,9 @@ namespace Service
             return materialRepository.Delete(id);
         }
 
-        public IEnumerable<Material> GetAll()
+        public IEnumerable<Material> GetAll(int pageIndex, int pageSize, out int totalRow)
         {
-            return materialRepository.GetAll();
+            return materialRepository.GetAll( pageIndex,  pageSize, out totalRow);
         }
 
         public Material GetById(int id)
