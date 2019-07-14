@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('smartorder.common', ['ui.router', 'ngBootbox','ngCkeditor'])
+    angular.module('SmartOrder.common', ['ui.router', 'ngAnimate'])
 })();

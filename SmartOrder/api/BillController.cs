@@ -12,7 +12,7 @@ namespace SmartOrder.api
     {
         private IBillService billService;
 
-        public BillController(IErrorService errorService, IBillService billService,IHistoryService historyService) : base(errorService,historyService)
+        public BillController(IErrorService errorService, IBillService billService, IHistoryService historyService) : base(errorService, historyService)
         {
             this.billService = billService;
         }
@@ -52,7 +52,7 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var listBill = billService.GetAll(pageIndex,  pageSize, out totalRow);
+                    var listBill = billService.GetAll(pageIndex, pageSize, out totalRow);
                     response = request.CreateResponse(HttpStatusCode.OK, listBill);
                 }
                 return response;
@@ -60,7 +60,7 @@ namespace SmartOrder.api
         }
 
         [Route("getbyid")]
-        public HttpResponseMessage Get(HttpRequestMessage request,int id)
+        public HttpResponseMessage Get(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -73,7 +73,7 @@ namespace SmartOrder.api
                 else
                 {
                     var bill = billService.GetById(id);
-                    SaveHistory("Get Bill by id"+id);
+                    SaveHistory("Get Bill by id" + id);
                     response = request.CreateResponse(HttpStatusCode.OK, bill);
                 }
                 return response;
