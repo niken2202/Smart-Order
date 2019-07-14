@@ -240,6 +240,7 @@
     <Content Include="app\components\materials\materialEditsView.html" />
     <Content Include="app\components\materials\materials.module.js" />
     <Content Include="app\shared\modules\SmartOrder.common.js" />
+    <Content Include="app\shared\services\apiService.js" />
     <Content Include="app\shared\views\baseController.js" />
     <Content Include="app\shared\views\baseView.html" />
     <Content Include="assets\css\customize.css" />
@@ -1557,7 +1558,6 @@
     <Folder Include="app\components\dish_categories\" />
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
-    <Folder Include="app\shared\services\" />
     <Folder Include="App_Data\" />
     <Folder Include="lib\%40aspnet\" />
   </ItemGroup>
