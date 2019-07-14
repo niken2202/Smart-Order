@@ -1,22 +1,12 @@
 ﻿(function (app) {
-    app.controller('loginController', ['$scope', 'loginService', '$injector', 'notificationService',
-        function ($scope, loginService, $injector, notificationService) {
+    app.controller('loginController', loginController);
 
-            $scope.loginData = {
-                userName: "",
-                password: ""
-            };
+    loginController.$inject = ['$scope','$state'];
 
-            $scope.loginSubmit = function () {
-                loginService.login($scope.loginData.userName, $scope.loginData.password).then(function (response) {
-                    if (response != null && response.error != undefined) {
-                        notificationService.displayError("Đăng nhập không đúng.");
-                    }
-                    else {
-                        var stateService = $injector.get('$state');
-                        stateService.go('home');
-                    }
-                });
-            }
-        }]);
-})(angular.module('smartorder'));
+    function loginController($scope, $state) {
+        $scope.loginSubmit = function () {
+            $state.go('home');
+        }
+       
+    }
+})(angular.module('SmartOrder'));
