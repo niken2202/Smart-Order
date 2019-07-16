@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('SmartOrder.common', ['ui.router', 'ngAnimate'])
+    angular.module('SmartOrder.common', ['ui.router'])
 })();

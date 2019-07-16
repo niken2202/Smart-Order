@@ -1,6 +1,8 @@
-﻿using Model.Models;
+﻿using AutoMapper;
+using Model.Models;
 using Service;
 using SmartOrder.Infrastructure;
+using SmartOrder.Models;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -54,7 +56,8 @@ namespace SmartOrder.api
                 else
                 {
                     var listDish = dishService.GetAll(index, pageSize, out totalRow);
-                    response = request.CreateResponse(HttpStatusCode.OK, listDish);
+                    int total = dishService.GetDishCount();
+                    response = request.CreateResponse(HttpStatusCode.OK, new { listDish, total });
                 }
                 return response;
             });
