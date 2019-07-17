@@ -8,13 +8,14 @@ namespace Service
     public interface IDishService
     {
         Dish Add(Dish dish);
-        IEnumerable<Dish> GetAll(int page, int pageSize, out int totalRow);
+        IEnumerable<object> GetAll(int page, int pageSize, out int totalRow);
         Dish GetById(int id);
       //  IEnumerable<Bill> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
         Dish GetByName(string name);
         void Update(Dish dish);
         Dish Delete(int id);
         IEnumerable<Dish> GetAllByComboId(int comboId, int page, int pageSize, out int totalRow);
+        int GetDishCount();
         void SaveChanges();
     }
 
@@ -38,26 +39,31 @@ namespace Service
             return dishRepository.Delete(id);
         }
 
-        public IEnumerable<Dish> GetAll(int pageIndex, int pageSize, out int totalRow)
+        public IEnumerable<object> GetAll(int pageIndex, int pageSize, out int totalRow)
         {
-            return dishRepository.GetAll(pageIndex,pageSize,out totalRow);
+            return dishRepository.GetAll(pageIndex, pageSize, out totalRow);
         }
 
         public IEnumerable<Dish> GetAllByComboId(int comboId, int page, int pageSize, out int totalRow)
         {
-            return dishRepository.GetDishByCombo(comboId, page, pageSize,out totalRow);
+            return dishRepository.GetDishByCombo(comboId, page, pageSize, out totalRow);
         }
 
-  
+
 
         public Dish GetById(int id)
         {
-          return dishRepository.GetSingleById(id);
+            return dishRepository.GetSingleById(id);
         }
 
         public Dish GetByName(string name)
         {
             throw new System.NotImplementedException();
+        }
+
+        public int GetDishCount()
+        {
+            return dishRepository.GetDishCount();
         }
 
         public void SaveChanges()
