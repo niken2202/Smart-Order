@@ -1,11 +1,34 @@
-﻿<div id="main-content-homeView">
-    <div class="header-title-homeView">
+﻿<div class="main-content-homeView">
+    <!--<div class="header-title-homeView">
         <h4 class="card-title customize-font-blue-color customize-font-italic">Doanh thu trong thang vua qua</h4>
-    </div>
-</div>
-<div id="history-homeView">
-    <div class="header-title-homeView">
-        <h4 class="card-title customize-font-blue-color">Lịch sử hoạt động</h4>
+    </div>-->
+
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                </div>
+                <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:200%;heiGht:200%;left:0; top:0"></div>
+                </div>
+            </div>
+            <h4 class="card-title customize-font-blue-color">Doanh thu trong tháng</h4>
+            <canvas id="canvas" height="235" width="471" class="chartjs-render-monitor" style="display: block; height: 262px; width: 524px;"></canvas>
+        </div>
     </div>
 
+</div>
+
+<div class="history-homeView">
+
+    <div class="card-body">
+        <h4 class="card-title customize-font-blue-color">Lịch sử hoạt động</h4>
+
+        <div class="block-div-history" ng-repeat="item in history;">
+            <div class="titleHistory customize-font-blue-color">{{item.Name}}</div>
+            <div class="timeHistory" style="font-size:12px">{{item.CreatedDate | date:'hh:mm - dd/MM/yyyy '}}</div>
+        </div>
+
+     </div>
 </div>

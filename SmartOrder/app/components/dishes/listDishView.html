@@ -1,10 +1,44 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>List Dishes</title>
-</head>
-<body>
-    <h1>This is list dishes</h1>
-</body>
-</html>
+﻿
+
+    <div class="main-card mb-3 card" ng-controller="listDishController as vm">
+        <div class="card-body">
+            <div></div>
+            <h4 class="card-title customize-font-blue-color">Danh sách món</h4>
+
+            <div class="table-responsive">
+                <table class="mb-0 table mb-0 table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên món</th>
+                            <th>Giá bán</th>
+                            <th>Giá nhập</th>
+                            <th>Nhóm mặt hàng </th>
+                            <th>Trạng thái</th>
+                            <th style="text-align:center">Ngày khởi tạo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr ng-repeat="item in dishes;" ng-click="vm.openDialog($event,item)">
+                            <td>{{item.ID}}</td>
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Price}}</td>
+                            <td>{{item.Amount}}</td>
+                            <td>{{item.CategoryID}}</td>
+                            <td>
+                                <span ng-class="{'avaiabe-div':item.Status===1,'not-avaiabe-div':item.Status===0}">
+                                    {{item.Status | statusFilter}}
+                                </span>
+                            </td>
+                            <td style="text-align:center">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>
+                         
+                        </tr>
+                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+

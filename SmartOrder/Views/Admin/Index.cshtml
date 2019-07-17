@@ -14,38 +14,53 @@
     <link href="~/assets/css/main.css" rel="stylesheet" />
     <link href="~/assets/css/style.css" rel="stylesheet" />
     <link href="~/assets/css/customize.css" rel="stylesheet" />
+
+    <link href="~/bower_components/ng-dialog/css/ngDialog.css" rel="stylesheet" />
+
 </head>
 <body ng-app="SmartOrder" ng-controller="rootController">
-    
-        <div ui-view></div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <div ui-view></div>
 
-        <!--Embed Angular JS-->
-        <script src="~/bower_components/angular/angular.js"></script>
-        <script src="~/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="~/bower_components/angular-aria/angular-aria.js"></script>
-        <script src="~/bower_components/angular-animate/angular-animate.js"></script>
-        <script src="~/bower_components/angular-messages/angular-messages.js"></script>
-        <script src="~/bower_components/angular-material/angular-material.js"></script>
-        <script src="~/app/shared/modules/SmartOrder.common.js"></script>
-        <script src="~/app/components/dishes/dishes.module.js"></script>
-        <script src="~/app/app.js"></script>
-        <script src="~/app/components/home/rootController.js"></script>
-        <!--dishes controller js-->
-        <script src="~/app/components/dishes/dishAddController.js"></script>
-        <script src="~/app/components/dishes/dishEditsController.js"></script>
-        <script src="~/app/components/dishes/dishListController.js"></script>
-        <script src="~/app/components/home/homeController.js"></script>
-        <!--material controller js-->
-        <script src="~/app/components/materials/materials.module.js"></script>
-        <script src="~/app/components/materials/materialAddController.js"></script>
-        <script src="~/app/components/materials/materialEditsController.js"></script>
-        <script src="~/app/components/materials/listMaterialController.js"></script>
-        <!--Login and home controller js-->
-        <script src="~/app/components/login/loginController.js"></script>
-        <script src="~/app/shared/views/baseController.js"></script>
-        <!--End-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!--Embed Angular JS-->
+    <script src="~/bower_components/angular/angular.js"></script>
+    <script src="~/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="~/app/shared/modules/SmartOrder.common.js"></script>
+    <script src="~/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="~/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="~/bower_components/angular-messages/angular-messages.js"></script>
+    <script src="~/bower_components/angular-material/angular-material.js"></script>
+    <script src="~/bower_components/ng-dialog/js/ngDialog.js"></script>
+    <!--Embed filter-->
+    <script src="~/app/shared/filters/statusFilter.js"></script>
+    <script src="~/app/components/dishes/dishes.module.js"></script>
+    <script src="~/app/app.js"></script>
+    <script src="~/app/components/home/rootController.js"></script>
+    <!--dishes controller js-->
+    <script src="~/app/components/dishes/dishAddController.js"></script>
+    <script src="~/app/components/dishes/dishEditsController.js"></script>
+    <script src="~/app/components/dishes/dishListController.js"></script>
+    <script src="~/app/components/home/homeController.js"></script>
+    <!--material controller js-->
+    <script src="~/app/components/materials/materials.module.js"></script>
+    <script src="~/app/components/materials/materialAddController.js"></script>
+    <script src="~/app/components/materials/materialEditsController.js"></script>
+    <script src="~/app/components/materials/listMaterialController.js"></script>
+    <!--restaurants controller js-->
+    <script src="~/app/components/restaurant/restaurant.module.js"></script>
+    <script src="~/app/components/restaurant/listBillController.js"></script>
+    <script src="~/app/components/restaurant/revenusController.js"></script>
+    <script src="~/app/components/restaurant/tableController.js"></script>
+    <!--Serivecs controller js-->
+    <script src="~/app/components/services/services.module.js"></script>
+    <script src="~/app/components/services/comboController.js"></script>
+    <script src="~/app/components/services/promotionController.js"></script>
+    <!--Login and home controller js-->
+    <script src="~/app/components/login/loginController.js"></script>
+    <script src="~/app/shared/views/baseController.js"></script>
+    <!--End-->
 
 </body>
 </html>

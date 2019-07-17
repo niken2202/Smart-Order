@@ -33,11 +33,10 @@
         </div>
 
         <div class="app-header__content">
-            <div class="app-header-left">
+           
+            <div class="app-header-left"></div>
 
-            </div>
-
-            <ul class="header-menu nav">
+            <ul class="header-menu nav" style="">
                 <li class="nav-item">
                     <a href="javascript:void(0);" class="nav-link" style="color:#547adc;">
                         <i class="nav-link-icon fas fa-user-circle" style="color:#547adc;"> </i>
@@ -50,12 +49,12 @@
                         Lịch Sử Hoạt Động
                     </a>
                 </li>
-                <li class="dropdown nav-item" >
+                <li class="dropdown nav-item">
                     <a href="javascript:void(0);" class="nav-link" style="color:#547adc;">
                         <i class="nav-link-icon fa fa-cog" style="color:#547adc;"></i>
                         Cài đặt
                     </a>
-                </li>
+                </li>                
             </ul>
 
             <div class="app-header-right">
@@ -63,18 +62,39 @@
                     <div class="widget-content p-0">
                         <div class="widget-content-wrapper">
                             <div class="widget-content-left">
-
-                                <div class="logout-dropdown" style="float:right;">
-                                    <!--<img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">-->
-                                    <button class="logout-dropbtn">Chử Anh &nbsp;<i class="fas fa-caret-down" style="position:center"></i></button>
-                                    <div class="logout-dropdown-content">
-                                        <a href="#" ng-click="logout()">Đăng xuất</a>
-                                        <a href="#">Đổi mật khẩu</a>
-                                        <a href="#">Lịch sử Hoạt Động</a>
+                                <div class="btn-group">
+                                    <div class="disapear">
+                                        <div class="logout-dropdown" style="float:right;">
+                                            <button class="logout-dropbtn">
+                                                <div style="float:left">
+                                                    <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
+                                                </div>
+                                                <div style="float:right; padding-top:10px; padding-left:5px;">
+                                                    <i class="fas fa-caret-down"></i>
+                                                </div>
+                                            </button>
+                                            <div class="logout-dropdown-content">
+                                                <a href="#" ng-click="logout()">Đăng xuất</a>
+                                                <a href="#">Đổi mật khẩu</a>
+                                                <a href="#">Lịch sử Hoạt Động</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
+                            <div class="widget-content-left  ml-3 header-user-info">
+                                <div class="widget-heading">
+                                    Chử Anh
+                                </div>
+                                <div class="widget-subheading">
+                                    VP People Manager
+                                </div>
+                            </div>
+
+                            <div class="widget-content-right header-user-info ml-3">
+                                
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -164,19 +184,19 @@
 
                         <ul>
                             <li>
-                                <a href="elements-dropdowns.html">
+                                <a ui-sref="list_bills">
                                     <i class="metismenu-icon">
                                     </i>Hóa đơn
                                 </a>
                             </li>
                             <li>
-                                <a href="elements-dropdowns.html">
+                                <a ui-sref="revenus">
                                     <i class="metismenu-icon">
                                     </i>Doanh Thu
                                 </a>
                             </li>
                             <li>
-                                <a href="elements-dropdowns.html">
+                                <a ui-sref="tables">
                                     <i class="metismenu-icon">
                                     </i>Quản lý bàn
                                 </a>
@@ -193,13 +213,13 @@
 
                         <ul>
                             <li>
-                                <a href="elements-dropdowns.html">
+                                <a ui-sref="combo">
                                     <i class="metismenu-icon">
-                                    </i>Combo
+                                    </i>Combo món ăn
                                 </a>
                             </li>
                             <li>
-                                <a href="elements-dropdowns.html">
+                                <a ui-sref="promotion">
                                     <i class="metismenu-icon">
                                     </i>Khuyến mãi
                                 </a>
@@ -268,8 +288,3 @@
     </div>
 </div>
 
-
-
-
-
-</div>

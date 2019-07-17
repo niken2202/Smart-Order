@@ -3,7 +3,7 @@
     function baseController() {
         angular.element(document).ready(function () {
             $.getScript('../assets/scripts/main.js', function () { });
-            console.log('x')
+            //console.log('x')
         });
 
     };

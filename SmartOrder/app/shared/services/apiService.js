@@ -14,7 +14,7 @@
                 success(result)
             },
             function(error) {
-                falie
+                failed
             }
         }
     }

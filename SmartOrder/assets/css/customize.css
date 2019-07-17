@@ -1,22 +1,20 @@
 ﻿/*Begin Customize logout button in base view page*/
+
 .logout-dropbtn {
-    background-color: #9db1e7;
-    color: white;
-    margin:7px;
-    padding-top : 10px;
-    padding-bottom : 10px;
-    padding-left : 18px;
-    padding-right:18px;
-    font-size: 16px;
+    background-color: #fafbfc;
+    color: #3f6ad8;
+    margin:0px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 5px;
     border: none;
     cursor: pointer;
-    border-radius:10px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .logout-dropdown {
     position: relative;
-    display: inline-block;
+    display: block;
 }
 
 .logout-dropdown-content {
@@ -40,7 +38,7 @@
     }
 
         .logout-dropdown-content a:hover {
-            background-color: burlywood;
+            background-color: #ccd7f5;
         }
 
 .logout-dropdown:hover .logout-dropdown-content {
@@ -48,31 +46,99 @@
 }
 
 .logout-dropdown:hover .logout-dropbtn {
-    background-color: burlywood;
+    background-color: #fafbfc;
 }
-/*End Customize logout button in base view page*/
 
-/*Begin customize HomeView*/
-.inherit-height-width{
-    height:inherit;
-    width:inherit;
+disapear {
+    padding: 0px;
+    margin: 0px;
 }
-#history-homeView {
-    width: 22%;
+
+@media screen and (max-width: 670px) {
+    div.disapear {
+        display: none;
+    }
+    div.history-homeView {
+        display: none;
+    }
+    div.main-content-homeView{
+        width:100%;
+    }
+    
+}
+
+.avaiabe-div {
+    display: block;
+    width: max-content;
+    height: auto;
+    color: white;
+    background-color: #21C62D;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+.not-avaiabe-div {
+    display: block;
+    width: max-content;
+    height: auto;
+    color: white;
+    background-color: red;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+
+}
+
+.dialog-form-div{
+    width:auto;
+    height:auto;
+    min-width:600px;
+    min-height:600px;
+}
+
+.dialogdemoThemeInheritance .container {
+    text-align: center;
+}
+
+/*End Customize logout button in base view page*/
+/*Begin customize HomeView*/
+.inherit-height-width {
     height: inherit;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: inherit;
+}
+.history-homeView {
+    width: 24%;
+    height: inherit;
+    min-height:500px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
     margin: 0px;
     display: block;
     float: right;
     background-color: white;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
+    overflow :auto;
 }
-#main-content-homeView {
-    width: 75%;
+.main-content-homeView {
+    width: 72%;
     height: auto;
     min-height: 300px;
     padding-top: 15px;
@@ -82,7 +148,7 @@
     margin: 0px;
     display: block;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    border-radius:5px;
+    border-radius: 5px;
     float: left;
     background-color: white;
 }
@@ -113,6 +179,40 @@
 }
 .customize-font-italic {
     font-style: initial;
+}
+
+
+.block-div-history{
+    display: inline-block;
+    width:100%;
+    margin :0px;
+    padding : 0px;
+    border-bottom:solid;
+    border-bottom-color: lightblue;
+}
+.titleHistory{
+    display:block;
+    width:auto;
+    height:auto;
+    float:left;
+    margin:1px;
+    padding-top:5px;
+    padding-bottom :5px;
+    padding-left:1px;
+    padding-right:1px;
+    min-width:200px;
+}
+
+.timeHistory {
+    display: block;
+    margin: 1px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 1px;
+    padding-right: 1px;
+    width: auto;
+    height: auto;
+    float: right;
 }
 
 /*End customize HomeView*/
