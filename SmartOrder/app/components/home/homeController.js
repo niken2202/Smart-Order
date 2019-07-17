@@ -1,13 +1,25 @@
 ﻿(function (app) {
     app.controller('homeController', homeController);
 
-    homeController.$inject = ['$scope', '$http'];
+    homeController.$inject = $inject = ['$scope', 'apiService'];
 
-    function homeController($scope,$http) {
+    function homeController($scope, apiService) {
 
-        $http.get('https://localhost:44366/api/dish/getall?index=1&pageSize=7&totalRow=0').then(function (response) {
-            $scope.history = response.data;
-        });
+        function getHistory() {
 
+            var config = {
+                params: {
+
+                }
+            }
+
+            apiService.get('/api/history/getall', config, function (result) {      
+                $scope.history = result.data;
+                console.log(result.data);
+            }, function () {
+                console.log('Load history failed.');
+            });
+        }
+        getHistory();
     };
 })(angular.module('SmartOrder'));

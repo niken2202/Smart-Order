@@ -14,7 +14,7 @@ namespace SmartOrder.Infrastructure
     {
 
         private IErrorService _errorService;
-        private IHistoryService _historyService;
+        public IHistoryService _historyService;
 
         public ApiControllerBase(IErrorService errorService, IHistoryService _historyService)
         {

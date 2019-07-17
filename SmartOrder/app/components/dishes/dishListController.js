@@ -4,17 +4,22 @@
     listDishController.$inject = ['$scope', '$http','ngDialog'];
 
     function listDishController($scope, $http, ngDialog) {
-        $http.get('https://localhost:44366/api/dish/getall?index=1&pageSize=10&totalRow=0').then(function (response) {
-            $scope.dishes = response.data;
-        });
 
-        $scope.getData = function (dish) {
-            if (dish != null) {
-                $scope.currentItem = dish;
-                console.log('Selected person is ' + dish.Name);
+        function getHistory() {
+            var config = {
+                params: {
+
+                }
             }
 
-        };
+            apiService.get('/api/history/getall', config, function (result) {
+                $scope.history = result.data;
+                console.log(result.data);
+            }, function () {
+                console.log('Load history failed.');
+            });
+        }
+
 
 
         var vm = this;
@@ -37,8 +42,7 @@
                 controller: 'dishEditsController',
                 controllerAs: "file",
                 closeByDocument: false, //can not close dialog by click out of dialog area
-                className: 'ngDialog',
-                closeByNavigation: true,
+                className: 'ngdialog',
                 showClose: false,
             });           
         };

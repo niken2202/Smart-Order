@@ -107,8 +107,7 @@ disapear {
 .dialog-form-div{
     width:auto;
     height:auto;
-    min-width:600px;
-    min-height:600px;
+    border:hidden;
 }
 
 .dialogdemoThemeInheritance .container {
