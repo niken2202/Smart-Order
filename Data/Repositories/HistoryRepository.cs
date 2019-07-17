@@ -11,5 +11,6 @@ namespace Data.Repositories
         public HistoryRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
+
     }
 }
