@@ -1,44 +1,54 @@
-﻿
+﻿<div class="main-card mb-3 card" ng-controller="listDishController as vm">
+    <div class="card-body">
+        <div></div>
+        <h4 class="card-title customize-font-blue-color">Danh sách món</h4>
 
-    <div class="main-card mb-3 card" ng-controller="listDishController as vm">
-        <div class="card-body">
-            <div></div>
-            <h4 class="card-title customize-font-blue-color">Danh sách món</h4>
+        <div class="search-div-nav">
+            <form class="search-wrapper active">
+                <div class="input-holder">
+                    <div class="input-holder">
+                        <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+                    </div>
+                </div>
+            </form>
+        </div>
 
-            <div class="table-responsive">
-                <table class="mb-0 table mb-0 table table-hover">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Tên món</th>
-                            <th>Giá bán</th>
-                            <th>Giá nhập</th>
-                            <th>Nhóm mặt hàng </th>
-                            <th>Trạng thái</th>
-                            <th style="text-align:center">Ngày khởi tạo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        <tr ng-repeat="item in dishes;" ng-click="vm.openDialog($event,item)">
-                            <td>{{item.ID}}</td>
-                            <td>{{item.Name}}</td>
-                            <td>{{item.Price}}</td>
-                            <td>{{item.Amount}}</td>
-                            <td>{{item.CategoryID}}</td>
-                            <td>
-                                <span ng-class="{'avaiabe-div':item.Status===1,'not-avaiabe-div':item.Status===0}">
-                                    {{item.Status | statusFilter}}
-                                </span>
-                            </td>
-                            <td style="text-align:center">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>
-                         
-                        </tr>
-                      
-                    </tbody>
-                </table>
-            </div>
+        <div class="table-responsive">
+            <table class="mb-0 table mb-0 table table-hover">
+                <thead>
+                    <tr>
+                        <th ng-click="sort('ID')">ID</th>
+                        <th ng-click="sort('Name')">Tên món</th>
+                        <th ng-click="sort('Price')">Giá bán</th>
+                        <th ng-click="sort('Amount')">Giá nhập</th>
+                        <th>Nhóm mặt hàng </th>
+                        <th>Trạng thái</th>
+                        <th ng-click="sort('CreatedDate')" style="text-align:center">Ngày khởi tạo</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr dir-paginate="item in dishes |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10" ng-click="vm.openDialog($event,item)">
+                        <td>{{item.ID}}</td>
+                        <td>{{item.Name}}</td>
+                        <td>{{item.Price}}</td>
+                        <td>{{item.Amount}}</td>
+                        <td>{{item.CategoryID}}</td>
+                        <td>
+                            <span ng-class="{'avaiabe-div':item.Status===1,'not-avaiabe-div':item.Status===0}">
+                                {{item.Status | statusFilter}}
+                            </span>
+                        </td>
+                        <td style="text-align:center">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+                <dir-pagination-controls max-size="5"
+                                         direction-links="true"
+                                         boundary-links="true">
+                </dir-pagination-controls>
+            
         </div>
     </div>
-
-
+</div>

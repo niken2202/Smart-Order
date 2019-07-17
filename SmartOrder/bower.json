@@ -8,7 +8,8 @@
 
     "bootstrap": "~4.3.1",
     "angular-material": "~1.1.19",
-    "ng-dialog": "~1.4.0"
+    "ng-dialog": "~1.4.0",
+    "angular-utils-pagination": "~0.11.1"
 
   }
 }

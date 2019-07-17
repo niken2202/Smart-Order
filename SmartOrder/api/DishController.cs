@@ -1,8 +1,6 @@
-﻿using AutoMapper;
-using Model.Models;
+﻿using Model.Models;
 using Service;
 using SmartOrder.Infrastructure;
-using SmartOrder.Models;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -40,8 +38,7 @@ namespace SmartOrder.api
                 return response;
             });
         }
-        
-        
+
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request, int index, int pageSize, int totalRow)
         {
@@ -127,6 +124,4 @@ namespace SmartOrder.api
             });
         }
     }
-
-    
 }

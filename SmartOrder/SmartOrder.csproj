@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Hubs\chathub.cs" />
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
+    <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Mappings\AutoMappingConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DishViewModel.cs" />
@@ -262,6 +263,7 @@
     <Content Include="app\shared\services\apiService.js" />
     <Content Include="app\shared\views\baseController.js" />
     <Content Include="app\shared\views\baseView.html" />
+    <Content Include="assets\css\bootstrap-theme.min.css" />
     <Content Include="assets\css\customize.css" />
     <Content Include="assets\css\main.css" />
     <Content Include="assets\css\ngDialog.css" />
@@ -791,6 +793,10 @@
     <Content Include="bower_components\angular-ui-router\release\ui-router-angularjs.js" />
     <Content Include="bower_components\angular-ui-router\release\ui-router-angularjs.min.js" />
     <Content Include="bower_components\angular-ui-router\rollup.config.js" />
+    <Content Include="bower_components\angular-utils-pagination\dirPagination.js" />
+    <Content Include="bower_components\angular-utils-pagination\dirPagination.tpl.html" />
+    <Content Include="bower_components\angular-utils-pagination\index.js" />
+    <Content Include="bower_components\angular-utils-pagination\package.js" />
     <Content Include="bower_components\angular\angular-csp.css" />
     <Content Include="bower_components\angular\angular.js" />
     <Content Include="bower_components\angular\angular.min.js" />
@@ -1592,6 +1598,10 @@
     <Content Include="bower_components\ng-dialog\package.json" />
     <Content Include="bower_components\ng-dialog\README.md" />
     <Content Include="bower_components\ng-dialog\yarn.lock" />
+    <Content Include="bower_components\angular-utils-pagination\.bower.json" />
+    <Content Include="bower_components\angular-utils-pagination\bower.json" />
+    <Content Include="bower_components\angular-utils-pagination\package.json" />
+    <Content Include="bower_components\angular-utils-pagination\README.md" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

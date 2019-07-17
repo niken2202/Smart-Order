@@ -12,10 +12,9 @@
 
                 }
             }
-
             apiService.get('/api/history/getall', config, function (result) {      
                 $scope.history = result.data;
-                console.log(result.data);
+                //console.log(result.data);
             }, function () {
                 console.log('Load history failed.');
             });
