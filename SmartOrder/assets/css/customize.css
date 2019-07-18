@@ -64,7 +64,6 @@ disapear {
     div.main-content-homeView{
         width:100%;
     }
-    
 }
 
 .avaiabe-div {
@@ -101,14 +100,8 @@ disapear {
     padding-right: 12px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
-
 }
 
-.dialog-form-div{
-    width:auto;
-    height:auto;
-    border:hidden;
-}
 
 .dialogdemoThemeInheritance .container {
     text-align: center;
@@ -156,7 +149,6 @@ disapear {
     font-weight: 100;
     color: #547adc;
     text-transform:uppercase;
-
 }
 .header-title-homeView{
     height: 50px;
@@ -179,7 +171,6 @@ disapear {
 .customize-font-italic {
     font-style: initial;
 }
-
 
 .block-div-history{
     display: inline-block;
@@ -215,12 +206,49 @@ disapear {
 }
 
 /*End customize pagination + search page*/
-
-.search-div-nav{
-    display:inline;
+.nav-table-bar-parent{
+    display:flex;
+    height:auto;
+    width:100%;
     margin:5px;
-    padding:5px;
+    padding-top:2px;
+    padding-bottom:10px;
+
 }
+
+.nav-table-bar-parent .box-1{
+    float:left;
+    width:14%;
+    margin-top:10px;
+    margin-bottom:0px;
+    margin-left:10px;
+    margin-right:0px;
+    padding-top:5px;
+
+}
+    .nav-table-bar-parent .box-2 {
+        float: left;
+        width: 65%;
+
+    }
+    .nav-table-bar-parent .box-3 {
+        margin :5px;
+        padding : 5px;
+        width: 15%;
+
+    }
+    .nav-table-bar-parent .box-4 {
+        float: right;
+        width: 5%;
+    }
+
+
+
+    .search-div-nav {
+        display: inline;
+        margin: 5px;
+        padding: 5px;
+    }
 
 .sort-icon {
     font-size: 9px;

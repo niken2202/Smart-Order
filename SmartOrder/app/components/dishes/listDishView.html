@@ -3,15 +3,38 @@
         <div></div>
         <h4 class="card-title customize-font-blue-color">Danh sách món</h4>
 
-        <div class="search-div-nav">
-            <form class="search-wrapper active">
-                <div class="input-holder">
+        <div class="nav-table-bar-parent">
+            <div class="box-1">
+                <h4 class="card-title customize-font-blue-color">THANH CÔNG CỤ</h4>
+            </div>
+            <div class="box-2">
+                <form class="search-wrapper active">
                     <div class="input-holder">
-                        <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+                        <div class="input-holder">
+                            <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
+            <div class="box-3">
+                <h4 class="card-title customize-font-blue-color" style="float:right">Thêm món </h4>
+            </div>
+            <div class="box-4">
+                <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="dishAdd()">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
         </div>
+
+        <!--<form class="search-wrapper active">
+        <div class="input-holder">
+            <div class="input-holder">
+                <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+            </div>
+        </div>
+    </form>-->
+
+
 
         <div class="table-responsive">
             <table class="mb-0 table mb-0 table table-hover">
@@ -43,12 +66,12 @@
                     </tr>
                 </tbody>
             </table>
-            
-                <dir-pagination-controls max-size="5"
-                                         direction-links="true"
-                                         boundary-links="true">
-                </dir-pagination-controls>
-            
+
+            <dir-pagination-controls max-size="5"
+                                     direction-links="true"
+                                     boundary-links="true">
+            </dir-pagination-controls>
+
         </div>
     </div>
 </div>

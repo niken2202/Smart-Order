@@ -1,58 +1,60 @@
-﻿<div class="dialog-form-div">
-    
-    <div class="main-card mb-3 card">
-        <div class="card-body">
-            <h4 class="card-title customize-font-blue-color"> Thông tin chi tiết món : {{dish.Name}}</h4>
-            <form class="">
+﻿<div class="main-card mb-3 card" style="border:hidden">
+    <div class="card-body">
+        <h4 class="card-title customize-font-blue-color"> Thông tin chi tiết món : {{dish.Name}}</h4>
+        <form class="">
+            <div class="position-relative form-group">
+                <label for="exampleEmail" class="">Tên món </label>
+                <input name="dishName" value="{{dish.Name}}" id="exampleEmail" placeholder="Nhập tên món" type="text" class="form-control">
+            </div>
+            <div class="position-relative form-group">
+                <label for="exampleEmail" class="">Giá bán</label>
+                <input name="email" value="{{dish.Price}}" id="exampleEmail" placeholder="Nhập giá bán" type="text" class="form-control">
+            </div>
+            <div class="position-relative form-group">
+                <label for="examplePassword" class="">Giá cấu thành sản phẩm</label>
+                <input name="password" value="{{dish.Amount}}" id="examplePassword" placeholder="password placeholder" type="text" class="form-control">
+            </div>
+            <div class="position-relative form-group">
+                <label for="exampleSelect" class="">Select</label><select name="select" id="exampleSelect" class="form-control">
+                    <option>Đồ tráng miện</option>
+                    <option>Món chính</option>
+                    <option>Hải sản</option>
+                    <option>Đồ uống</option>
+                </select>
+            </div>
+            <div class="position-relative form-group"><label for="exampleText" class="">Mô tả chi tiết món</label><textarea name="text" id="exampleText" class="form-control"></textarea></div>
+            <div class="position-relative form-group">
+                <label for="exampleFile" class="">Chèn ảnh</label><input name="file" id="exampleFile" type="file" class="form-control-file">
+                <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
+            </div>
 
-                <div class="position-relative form-group">
-                    <label for="exampleEmail" class="">Tên món </label>
-                    <input name="dishName" value="{{dish.Name}}" id="exampleEmail" placeholder="Nhập tên món" type="text" class="form-control">
-                </div>
-                <div class="position-relative form-group">
-                    <label for="exampleEmail" class="">Giá bán</label>
-                    <input name="email" value="{{dish.Price}}" id="exampleEmail" placeholder="Nhập giá bán" type="text" class="form-control">
-                </div>
-                <div class="position-relative form-group">
-                    <label for="examplePassword" class="">Giá cấu thành sản phẩm</label>
-                    <input name="password" value="{{dish.Amount}}" id="examplePassword" placeholder="password placeholder" type="text" class="form-control">
-                </div>
-                <div class="position-relative form-group">
-                    <label for="exampleSelect" class="">Select</label><select name="select" id="exampleSelect" class="form-control">
-                        <option>Đồ tráng miện</option>
-                        <option>Món chính</option>
-                        <option>Hải sản</option>
-                        <option>Đồ uống</option>
-                    </select>
-                </div>
-                <div class="position-relative form-group"><label for="exampleText" class="">Mô tả chi tiết món</label><textarea name="text" id="exampleText" class="form-control"></textarea></div>
-                <div class="position-relative form-group">
-                    <label for="exampleFile" class="">Chèn ảnh</label><input name="file" id="exampleFile" type="file" class="form-control-file">
-                    <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
-                </div>
+            <div class="position-relative form-group">
+                <label for="examplePassword" class="">Ngày khởi tạo món</label>
+                <label>{{dish.CreatedDate | date:'dd-MM-yyyy'}}</label>
+            </div>
 
-                <div class="position-relative form-group">
-                    <label for="examplePassword" class="">Ngày khởi tạo món</label>
-                    <label>{{dish.CreatedDate | date:'dd-MM-yyyy'}}</label>
-                </div>
-
-                <div class="position-relative form-group">
-                    <div>
-                        <div class="custom-radio custom-control">
-                            <input type="radio" id="exampleCustomRadio" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio">
-                                Có sẵn
-                            </label>
-                        </div>
-                        <div class="custom-radio custom-control">
-                            <input type="radio" id="exampleCustomRadio2" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio2">
-                                Tạm hết
-                            </label>
-                        </div>
+            <div class="position-relative form-group">
+                <div>
+                    <div class="custom-radio custom-control">
+                        <input type="radio" id="exampleCustomRadio" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio">
+                            Có sẵn
+                        </label>
+                    </div>
+                    <div class="custom-radio custom-control">
+                        <input type="radio" id="exampleCustomRadio2" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio2">
+                            Tạm hết
+                        </label>
                     </div>
                 </div>
+            </div>
 
-                <button class="mt-1 btn btn-primary">Lưu lại</button>
-            </form>
-        </div>
+            <div class="search-div-nav">
+
+            </div>
+            <div class="block-div-history">
+                <button class="mt-1 btn btn-primary" ng-click="save()">Lưu lại</button>
+                <button class="mt-1 btn btn-primary">Hủy bỏ</button>
+            </div>
+        </form>
     </div>
 </div>
