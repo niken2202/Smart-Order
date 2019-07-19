@@ -1,10 +1,74 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-    This is Add dish
-</body>
-</html>
+﻿
+
+<div class="main-card mb-3 card" style="border:hidden">
+    <div class="card-body">
+        <h4 class="card-title customize-font-blue-color"> Thêm món mới </h4>
+        <form class="" novalidate name="frmAddDish" role="form">
+
+            <div class="position-relative form-group">
+                <label for="exampleEmail" class="">Tên món </label>
+                <input name="dishName" placeholder="Nhập tên món" type="text" class="form-control" ng-model="dish.Name">
+            </div>
+
+            <div class="position-relative form-group">
+                <label for="exampleEmail" class="">Giá bán</label>
+                <input name="dishPrice" placeholder="Nhập giá bán" type="number" class="form-control" ng-model="dish.Price">
+            </div>
+
+            <div class="position-relative form-group">
+                <label for="examplePassword" class="">Giá cấu thành sản phẩm</label>
+                <input name="password" placeholder="Nhập giá cấu thành sản phẩm" type="number" class="form-control" ng-model="dish.Amount">
+            </div>
+
+            <div class="position-relative form-group">
+                <label for="exampleSelect" class="">Nhóm món ăn</label>
+                <select name="dishCategory" class="form-control" ng-model="dish.CategoryID" ng-options="option.ID as option.Name for option in DishCategory"></select>
+                <input type="hidden" name="dishCategory" ng-model="dish.CategoryID" />
+            </div>
+
+            <div class="position-relative form-group">
+                <label for="exampleText" class="">Mô tả chi tiết món</label>
+                <textarea name="dishDescription" class="form-control" ng-model="dish.Description">
+            </textarea>
+            </div>
+
+            <div class="position-relative form-group">
+                <label for="exampleFile" class="">Chèn ảnh</label><input name="file" id="exampleFile" type="file" class="form-control-file">
+                <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
+            </div>
+
+            <!--<div class="position-relative form-group">
+        <label for="examplePassword" class="">Ngày khởi tạo món</label>
+        <label>{{dish.CreatedDate | date:'dd-MM-yyyy'}}</label>
+    </div>-->
+
+            <fieldset class="position-relative row form-group">
+                <legend class="col-form-label col-sm-2">Trạng thái món</legend>
+                <div class="col-sm-10">
+                    <div class="position-relative form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" type="radio" ng-model="dish.Status" ng-value="1" />Có sẵn
+                        </label>
+                    </div>
+                    <div class="position-relative form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" ng-model="dish.Status" ng-value="0" />
+                            Tạm hết
+                        </label>
+                    </div>                    
+                </div>
+            </fieldset>
+
+
+            
+
+            <div class="search-div-nav">
+
+            </div>
+            <div class="block-div-history">
+                <button class="mt-1 btn btn-primary" ng-click="CreateDish()">Lưu lại</button>
+                <button class="mt-1 btn btn-primary" ng-click=closeThisDialog("Cancel")>Hủy bỏ</button>
+            </div>
+        </form>
+    </div>
+</div>

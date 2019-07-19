@@ -10,7 +10,7 @@
             .state('materials_add', {
                 url: "/materials_add",
                 parent:'base',
-                templateUrl: "app/components/materials/listMaterialView.html",
+                templateUrl: "app/components/materials/materialAddView.html",
                 controller: "materialAddController"
             }).state('materials_edits', {
                 url: "/materials_edits",

@@ -14,14 +14,13 @@
                 <label for="examplePassword" class="">Giá cấu thành sản phẩm</label>
                 <input name="password" value="{{dish.Amount}}" id="examplePassword" placeholder="password placeholder" type="text" class="form-control">
             </div>
+
             <div class="position-relative form-group">
-                <label for="exampleSelect" class="">Select</label><select name="select" id="exampleSelect" class="form-control">
-                    <option>Đồ tráng miện</option>
-                    <option>Món chính</option>
-                    <option>Hải sản</option>
-                    <option>Đồ uống</option>
-                </select>
+                <label for="exampleSelect" class="">Nhóm món ăn</label>
+                <select name="dishCategory" class="form-control" ng-model="dish.CategoryID" ng-options="option.ID as option.Name for option in DishCategory"></select>
+                <input type="hidden" name="dishCategory" ng-model="dish.CategoryID" />
             </div>
+
             <div class="position-relative form-group"><label for="exampleText" class="">Mô tả chi tiết món</label><textarea name="text" id="exampleText" class="form-control"></textarea></div>
             <div class="position-relative form-group">
                 <label for="exampleFile" class="">Chèn ảnh</label><input name="file" id="exampleFile" type="file" class="form-control-file">
@@ -33,27 +32,30 @@
                 <label>{{dish.CreatedDate | date:'dd-MM-yyyy'}}</label>
             </div>
 
-            <div class="position-relative form-group">
-                <div>
-                    <div class="custom-radio custom-control">
-                        <input type="radio" id="exampleCustomRadio" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio">
-                            Có sẵn
+            <fieldset class="position-relative row form-group">
+                <legend class="col-form-label col-sm-2">Trạng thái món</legend>
+                <div class="col-sm-10">
+                    <div class="position-relative form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" ng-model="dish.Status" ng-value="1" />Có sẵn
                         </label>
                     </div>
-                    <div class="custom-radio custom-control">
-                        <input type="radio" id="exampleCustomRadio2" name="customRadio" class="custom-control-input"><label class="custom-control-label" for="exampleCustomRadio2">
+                    <div class="position-relative form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" ng-model="dish.Status" ng-value="0" />
                             Tạm hết
                         </label>
                     </div>
                 </div>
-            </div>
+            </fieldset>
+
 
             <div class="search-div-nav">
 
             </div>
             <div class="block-div-history">
                 <button class="mt-1 btn btn-primary" ng-click="save()">Lưu lại</button>
-                <button class="mt-1 btn btn-primary">Hủy bỏ</button>
+                <button class="mt-1 btn btn-primary" ng-click=closeThisDialog("Cancel")>Hủy bỏ</button>
             </div>
         </form>
     </div>

@@ -1,4 +1,25 @@
-﻿
+﻿<div class="nav-table-bar-parent">
+    <div class="box-1">
+        <h4 class="card-title customize-font-blue-color">THANH CÔNG CỤ</h4>
+    </div>
+    <div class="box-2">
+        <form class="search-wrapper active">
+            <div class="input-holder">
+                <div class="input-holder">
+                    <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="box-3">
+        <h4 class="card-title customize-font-blue-color" style="float:right">Thêm món </h4>
+    </div>
+    <div class="box-4">
+        <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="materialAdd()">
+            <i class="fas fa-plus-circle"></i>
+        </button>
+    </div>
+</div>
 
 <div class="main-card mb-3 card">
     <div class="card-body">
@@ -7,15 +28,15 @@
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
                     <tr>
-                        <th>Mã code</th>
-                        <th>Tên nguyên liệu</th>
-                        <th>Giá tiền</th>
-                        <th>Số lượng</th>
-                        <th>Đơn vị</th>
+                        <th ng-click="sort('ID')">Mã code</th>
+                        <th ng-click="sort('Name')">Tên nguyên liệu</th>
+                        <th ng-click="sort('Price')">Giá tiền</th>
+                        <th ng-click="sort('Amount')">Số lượng</th>
+                        <th ng-click="sort('Unit')">Đơn vị</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="item in materials;">
+                    <tr dir-paginate="item in materials |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:5">
                         <td>{{item.ID}}</td>
                         <td>{{item.Name}}</td>
                         <td>{{item.Price}}</td>
@@ -24,6 +45,11 @@
                     </tr>
                 </tbody>
             </table>
+            <dir-pagination-controls max-size="5"
+                direction-links="true"
+                boundary-links="true">
+            </dir-pagination-controls>
+
         </div>
     </div>
 </div>

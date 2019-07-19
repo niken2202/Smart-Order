@@ -1,20 +1,21 @@
 ﻿(function (app) {
     app.controller('dishEditsController', dishEditsController);
 
-    function dishEditsController($scope) {
+    dishEditsController.$inject = ['$scope', '$state', 'ngDialog', 'apiService', 'notificationService'];
+
+    function dishEditsController($scope, $state, ngDialog, apiService, notificationService) {
         
-        var f = this;
+        //get list dish category to the select box
+        $scope.DishCategory = [];
 
-        // get the call back from the pop up
-        // This works ....
-        $scope.saveContact = function (img) {
-            alert(img.name + " is saved by $scope.")
+        function getDishCategory() {
+            apiService.get('/api/dishcategory/getall', null, function (result) {
+                $scope.DishCategory = result.data;
+            }, function () {
+                console.log('Can get lish dish category');
+            });
         }
-
-        // This one does not work!!!???
-        f.saveContact = function (img) {
-            alert(img.name + " is saved by controllerAs.")
-        }
+        getDishCategory();
 
     }
 })(angular.module('SmartOrder.dishes'));

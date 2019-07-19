@@ -261,6 +261,7 @@
     <Content Include="app\shared\filters\statusFilter.js" />
     <Content Include="app\shared\modules\SmartOrder.common.js" />
     <Content Include="app\shared\services\apiService.js" />
+    <Content Include="app\shared\services\notificationService.js" />
     <Content Include="app\shared\views\baseController.js" />
     <Content Include="app\shared\views\baseView.html" />
     <Content Include="assets\css\bootstrap-theme.min.css" />
@@ -268,6 +269,7 @@
     <Content Include="assets\css\main.css" />
     <Content Include="assets\css\ngDialog.css" />
     <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\toastr.css" />
     <Content Include="assets\fonts\fa-solid-900.svg" />
     <Content Include="assets\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="assets\images\avatars\1.jpg" />
@@ -293,6 +295,7 @@
     <Content Include="assets\scripts\javascript.js" />
     <Content Include="assets\scripts\jquery.min.js" />
     <Content Include="assets\scripts\main.js" />
+    <Content Include="assets\scripts\toastr.js" />
     <Content Include="bower_components\angular-animate\angular-animate.js" />
     <Content Include="bower_components\angular-animate\angular-animate.min.js" />
     <Content Include="bower_components\angular-animate\index.js" />
@@ -1151,6 +1154,10 @@
     <Content Include="bower_components\ng-dialog\karma.conf.js" />
     <Content Include="bower_components\ng-dialog\protractor.conf.js" />
     <Content Include="bower_components\ng-dialog\server.js" />
+    <Content Include="bower_components\toastr\toastr.css" />
+    <Content Include="bower_components\toastr\toastr.js" />
+    <Content Include="bower_components\toastr\toastr.min.css" />
+    <Content Include="bower_components\toastr\toastr.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1602,6 +1609,13 @@
     <Content Include="bower_components\angular-utils-pagination\bower.json" />
     <Content Include="bower_components\angular-utils-pagination\package.json" />
     <Content Include="bower_components\angular-utils-pagination\README.md" />
+    <Content Include="bower_components\toastr\.bower.json" />
+    <Content Include="bower_components\toastr\bower.json" />
+    <Content Include="bower_components\toastr\LICENSE" />
+    <Content Include="bower_components\toastr\README.md" />
+    <Content Include="bower_components\toastr\toastr.js.map" />
+    <Content Include="bower_components\toastr\toastr.less" />
+    <Content Include="bower_components\toastr\toastr.scss" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
