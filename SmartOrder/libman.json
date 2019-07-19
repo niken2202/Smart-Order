@@ -10,5 +10,53 @@
         "dist/browser/signalr.min.js"
       ]
     }
+  ,
+{
+  "provider": "cdnjs",
+  "library": "angular.js@1.7.8",
+  "destination": "lib/angular.js/",
+  "files": [
+    "angular.min.js",
+    "angular.js"
   ]
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "angular-ui-router@1.0.22",
+  "destination": "lib/angular-ui-router/",
+  "files": [
+    "angular-ui-router.min.js",
+    "angular-ui-router.js"
+  ]
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "ng-dialog@1.4.0",
+  "destination": "lib/ng-dialog/",
+  "files": [
+    "js/ngDialog.min.js",
+    "js/ngDialog.js"
+  ]
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "toastr.js@2.1.4",
+  "destination": "lib/toastr.js/"
+}
+,
+{
+  "provider": "cdnjs",
+  "library": "fontawesome-iconpicker@3.2.0",
+  "destination": "lib/fontawesome-iconpicker/",
+  "files": [
+    "css/fontawesome-iconpicker.css",
+    "css/fontawesome-iconpicker.min.css",
+    "js/fontawesome-iconpicker.js",
+    "js/fontawesome-iconpicker.min.js"
+  ]
+}
+]
 }

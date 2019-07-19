@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('SmartOrder.common', ['ui.router', 'ngDialog', 'ngMessages','angularUtils.directives.dirPagination'])
+    angular.module('SmartOrder.common', ['ui.router', 'ngDialog','angularUtils.directives.dirPagination'])
 })();
