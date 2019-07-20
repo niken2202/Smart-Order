@@ -25,8 +25,8 @@
                     <div class="header-left-bottom agileinfo">
 
                         <form role="form" method="post" ng-submit="loginSubmit()">
-                            <input type="text" value="User name" name="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User name';}" />
-                            <input type="password" value="Password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}" />
+                            <input type="text" value="User name" name="name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User name';}" ng-model="loginData.userName" />
+                            <input type="password" value="Password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" ng-model="loginData.password" />
                             <div class="remember">
                                 <span class="checkbox1">
                                     <label class="checkbox"><input type="checkbox" name="" checked=""><i> </i>Remember me</label>

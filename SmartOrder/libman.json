@@ -57,6 +57,16 @@
       "provider": "cdnjs",
       "library": "font-awesome@5.9.0",
       "destination": "lib/font-awesome/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "angular-local-storage@0.7.1",
+      "destination": "lib/angular-local-storage/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "angular-loading-bar@0.9.0",
+      "destination": "lib/angular-loading-bar/"
     }
   ]
 }

@@ -261,6 +261,9 @@
     <Content Include="app\shared\filters\statusFilter.js" />
     <Content Include="app\shared\modules\SmartOrder.common.js" />
     <Content Include="app\shared\services\apiService.js" />
+    <Content Include="app\shared\services\authData.js" />
+    <Content Include="app\shared\services\authenticationService.js" />
+    <Content Include="app\shared\services\loginService.js" />
     <Content Include="app\shared\services\notificationService.js" />
     <Content Include="app\shared\views\baseController.js" />
     <Content Include="app\shared\views\baseView.html" />
@@ -308,8 +311,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="lib\%40aspnet\signalr\dist\browser\signalr.js" />
-    <Content Include="lib\%40aspnet\signalr\dist\browser\signalr.min.js" />
+    <Content Include="lib\angular-loading-bar\loading-bar.css" />
+    <Content Include="lib\angular-loading-bar\loading-bar.js" />
+    <Content Include="lib\angular-loading-bar\loading-bar.min.css" />
+    <Content Include="lib\angular-loading-bar\loading-bar.min.js" />
+    <Content Include="lib\angular-local-storage\angular-local-storage.js" />
+    <Content Include="lib\angular-local-storage\angular-local-storage.min.js" />
     <Content Include="lib\angular-ui-router\angular-ui-router.js" />
     <Content Include="lib\angular-ui-router\angular-ui-router.min.js" />
     <Content Include="lib\angular.js\angular.js" />
@@ -353,8 +360,6 @@
     <Content Include="lib\jquery\jquery.min.js" />
     <Content Include="lib\ng-dialog\js\ngDialog.js" />
     <Content Include="lib\ng-dialog\js\ngDialog.min.js" />
-    <Content Include="lib\signalr\dist\browser\signalr.js" />
-    <Content Include="lib\signalr\dist\browser\signalr.min.js" />
     <Content Include="lib\toastr.js\toastr.css" />
     <Content Include="lib\toastr.js\toastr.min.css" />
     <Content Include="lib\toastr.js\toastr.min.js" />

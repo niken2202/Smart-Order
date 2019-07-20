@@ -8,6 +8,7 @@ using System.Web.Http;
 namespace SmartOrder.api
 {
     [RoutePrefix("api/dish")]
+    [Authorize]
     public class DishController : ApiControllerBase
     {
         private IDishService dishService;
