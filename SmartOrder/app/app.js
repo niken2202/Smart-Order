@@ -1,5 +1,4 @@
-﻿/// <reference path="../bower_components/angular/angular.js" />
-
+﻿
 (function () {
     angular.module('SmartOrder',
         ['SmartOrder.dishes', 'SmartOrder.materials', 'SmartOrder.restaurant','SmartOrder.services','SmartOrder.common'])

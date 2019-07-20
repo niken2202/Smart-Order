@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../bower_components/angular/angular.js" />
-
+﻿
 (function (app) {
     app.factory('apiService', apiService);
 
