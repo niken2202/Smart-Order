@@ -53,7 +53,6 @@ namespace UnitTest.ServiceTest
         public void Bill_Service_Create()
         {
             Bill bill = new Bill();
-            int id = 1;
             bill.CustomerName = "Test bill";
             bill.CreatedDate = DateTime.Now;
             bill.CreatedBy = "Test";

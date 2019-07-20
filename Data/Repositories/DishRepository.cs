@@ -6,8 +6,9 @@ namespace Data.Repositories
 {
     public interface IDishRepository : IRepository<Dish>
     {
-        IEnumerable<Dish> GetDishByCombo(int comboId, int pageIndex, int pageSize, out int totalRow);
-        IEnumerable<object> GetAll(int page, int pageSize, out int totalRow);
+        IEnumerable<Dish> GetDishByCombo(int comboId);
+        IEnumerable<Dish> GetDishByCategory(int categoryId);
+        IEnumerable<object> GetAll();
         int GetDishCount();
 
     }
@@ -19,9 +20,8 @@ namespace Data.Repositories
 
         }
 
-        public IEnumerable<object> GetAll(int pageIndex, int pageSize, out int totalRow)
+        public IEnumerable<object> GetAll()
         {
-            if (pageIndex <= 0) pageIndex = 1;
             var query = from d in DbContext.Dishes
                         join ct in DbContext.DishCategories
                         on d.CategoryID equals ct.ID
@@ -39,25 +39,26 @@ namespace Data.Repositories
                             Description= d.Description,
                             CategoryName = ct.Name
                         };
-            totalRow = query.Count();
-
-            query = query.OrderBy(i => i.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
             return query;
         }
 
-        public IEnumerable<Dish> GetDishByCombo(int comboId, int pageIndex, int pageSize, out int totalRow)
+        public IEnumerable<Dish> GetDishByCategory(int categoryId)
         {
-            if (pageIndex <= 0) pageIndex = 1;
+            var query = from d in DbContext.Dishes
+                        where d.CategoryID == categoryId
+                        select d;
+            return query;
+        }
+
+        public IEnumerable<Dish> GetDishByCombo(int comboId )
+        {
             var query = from d in DbContext.Dishes
                         join dc in DbContext.DishComboMapping on d.ID equals dc.DishID
                         join c in DbContext.Combos on dc.ComboID equals c.ID
                         where c.ID == comboId
                         orderby c.ID
                         select d;
-            totalRow = query.Count();
-
-            query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
-
+           
             return query;
         }
 

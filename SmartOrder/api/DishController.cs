@@ -40,7 +40,7 @@ namespace SmartOrder.api
         }
 
         [Route("getall")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int index, int pageSize, int totalRow)
+        public HttpResponseMessage Get(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -52,7 +52,7 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var listDish = dishService.GetAll(index, pageSize, out totalRow);
+                    var listDish = dishService.GetAll();
                     int total = dishService.GetDishCount();
                     response = request.CreateResponse(HttpStatusCode.OK, new { listDish, total });
                 }
@@ -61,7 +61,7 @@ namespace SmartOrder.api
         }
 
         [Route("getbycombo")]
-        public HttpResponseMessage GetByCombo(HttpRequestMessage request, int comboId, int page, int pageSize, int totalRow)
+        public HttpResponseMessage GetByCombo(HttpRequestMessage request, int comboId)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -73,13 +73,50 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var listDish = dishService.GetAllByComboId(comboId, page, pageSize, out totalRow);
+                    var listDish = dishService.GetAllByComboId(comboId);
                     response = request.CreateResponse(HttpStatusCode.OK, listDish);
                 }
                 return response;
             });
         }
+        [Route("getbyid")]
+        public HttpResponseMessage GetByID(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
 
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listDish = dishService.GetById(id);
+                    response = request.CreateResponse(HttpStatusCode.OK, listDish);
+                }
+                return response;
+            });
+        }
+        [Route("getbycategory")]
+        public HttpResponseMessage GetByCategory(HttpRequestMessage request, int cateId)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listDish = dishService.GetByCategogy(cateId);
+                    response = request.CreateResponse(HttpStatusCode.OK, listDish);
+                }
+                return response;
+            });
+        }
         [Route("update")]
         public HttpResponseMessage Put(HttpRequestMessage request, Dish dish)
         {

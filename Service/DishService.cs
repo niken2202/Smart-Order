@@ -8,13 +8,14 @@ namespace Service
     public interface IDishService
     {
         Dish Add(Dish dish);
-        IEnumerable<object> GetAll(int page, int pageSize, out int totalRow);
+        IEnumerable<object> GetAll();
         Dish GetById(int id);
       //  IEnumerable<Bill> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
         Dish GetByName(string name);
         void Update(Dish dish);
         Dish Delete(int id);
-        IEnumerable<Dish> GetAllByComboId(int comboId, int page, int pageSize, out int totalRow);
+        IEnumerable<Dish> GetAllByComboId(int comboId);
+        IEnumerable<Dish> GetByCategogy(int cateId);
         int GetDishCount();
         void SaveChanges();
     }
@@ -39,17 +40,20 @@ namespace Service
             return dishRepository.Delete(id);
         }
 
-        public IEnumerable<object> GetAll(int pageIndex, int pageSize, out int totalRow)
+        public IEnumerable<object> GetAll()
         {
-            return dishRepository.GetAll(pageIndex, pageSize, out totalRow);
+            return dishRepository.GetAll();
         }
 
-        public IEnumerable<Dish> GetAllByComboId(int comboId, int page, int pageSize, out int totalRow)
+        public IEnumerable<Dish> GetAllByComboId(int comboId)
         {
-            return dishRepository.GetDishByCombo(comboId, page, pageSize, out totalRow);
+            return dishRepository.GetDishByCombo(comboId);
         }
 
-
+        public IEnumerable<Dish> GetByCategogy(int cateId)
+        {
+            return dishRepository.GetDishByCategory(cateId);
+        }
 
         public Dish GetById(int id)
         {

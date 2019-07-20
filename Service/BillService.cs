@@ -11,8 +11,8 @@ namespace Service
     {
         Bill Add(Bill bill);
         Bill GetById(int id);
-
-        IEnumerable<Bill> GetAll(int pageIndex, int pageSize, out int totalRow);
+        IEnumerable<Bill> GetAll();
+       
         void SaveChanges();
     }
 
@@ -32,9 +32,9 @@ namespace Service
            return  billRepository.Add(bill);
         }
 
-        public IEnumerable<Bill> GetAll(int pageIndex, int pageSize, out int totalRow)
+        public IEnumerable<Bill> GetAll()
         {
-           return billRepository.GetAll(pageIndex, pageIndex, out totalRow);
+           return billRepository.GetAll();
         }
 
         public Bill GetById(int id)

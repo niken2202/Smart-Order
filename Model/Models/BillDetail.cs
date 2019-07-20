@@ -6,7 +6,6 @@ namespace Model.Models
     [Table("BillDetails")]
     public class BillDetail
     {
-        private decimal total;
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }

@@ -40,7 +40,7 @@ namespace SmartOrder.api
 
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, int pageIndex, int pageSize, int totalRow)
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -52,7 +52,7 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var listBill = billService.GetAll(pageIndex, pageSize, out totalRow);
+                    var listBill = billService.GetAll();
                     response = request.CreateResponse(HttpStatusCode.OK, listBill);
                 }
                 return response;

@@ -10,7 +10,7 @@ namespace Data.Repositories
     public interface IBillRepository: IRepository<Bill>{
 
         IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromdate,DateTime toDate);
-        IEnumerable<Bill> GetAll(int pageIndex, int pageSize, out int totalRow);
+        IEnumerable<Bill> GetAll();
     }
     public class BillRepository : RepositoryBase<Bill>, IBillRepository
     {
@@ -19,15 +19,11 @@ namespace Data.Repositories
 
         }
 
-        public IEnumerable<Bill> GetAll(int pageIndex, int pageSize, out int totalRow)
+        public IEnumerable<Bill> GetAll()
         {
-            if (pageIndex <= 0) pageIndex = 1;
+            
             var query = from d in DbContext.Bills
                         select d;
-            totalRow = query.Count();
-
-            query = query.OrderBy(i => i.ID).Skip((pageIndex - 1) * pageSize).Take(pageSize);
-
             return query;
         }
 
