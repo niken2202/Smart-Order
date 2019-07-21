@@ -1,10 +1,9 @@
 ﻿(function (app) {
     app.controller('listDishController', listDishController);
 
-    listDishController.$inject = ['$scope', 'ngDialog', 'apiService','notificationService'];
+    listDishController.$inject = ['$scope', 'ngDialog', 'apiService', 'notificationService'];
 
     function listDishController($scope, ngDialog, apiService, notificationService) {
-
         //get data from api
         function getDish(index, pageSize, totalRow) {
             index = index || 0;
@@ -19,21 +18,58 @@
                 }
             }
             apiService.get('/api/dish/getall', config, function (result) {
-                $scope.dishes = result.data.listDish;               
-               
+                $scope.dishes = result.data.listDish;
+                if ($scope.dishes.length === 0) {
+                    notificationService.displayWarning('Danh sách chưa có món nào !');
+                }
             }, function () {
-                
+                notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
             });
         }
         getDish();
 
+        //reload table
+        $scope.reload = function (data) {
+            getDish();
+            ngDialog.close(vm.dialogId);
+        };
+
+        //close dialog when have problem (can not get list category)
+        $scope.closeDialog = function (data) {
+            getDish();
+            ngDialog.close(vm.dialogId);
+        };
+
+        
+        //open popup to create new category
+        $scope.AddCategory = function () {
+            alertify.prompt('Thêm mới nhóm sản phẩm', 'Tên nhóm sản phẩm', ''
+                , function (evt, value) {
+                    var category = {
+                        CreatedDate: new Date,
+                        Name: value
+                    };
+                    apiService.post('/api/dishcategory/add', category,
+                        function (result) {
+                            notificationService.displaySuccess('Nhóm sản phẩm: ' + category.Name + ' đã được thêm mới.');
+                            $scope.reload();
+                        }, function (error) {
+                            notificationService.displayError('Thêm mới không thành công!');
+                        });
+
+                }
+                , function () {
+                    notificationService.displayWarning('Thông tin chưa được thêm !');
+                });
+
+        }
+
         //show the dialog ditail dish by table
         var vm = this;
         vm.openDialog = function ($event, item) {
-            var dish = item
-
+            //var dish = item
             vm.init = function () {
-                $scope.dish = dish;
+                $scope.dish = item;
             }
 
             vm.init();
@@ -47,7 +83,14 @@
                 closeByDocument: false, //can not close dialog by click out of dialog area
                 className: 'ngdialog',
                 showClose: false,
-            });
+            }).then(
+                function (value) {
+                    //save the contact form
+                },
+                function (value) {
+                    //Cancel or do nothing
+                }
+            );
         };
 
         //function sort by title tr tag
@@ -74,7 +117,30 @@
                     //Cancel or do nothing
                 }
             );
-        }
+        };
 
+        //open popup to determine before delete dish
+        $scope.dishDel = function (item) {
+            alertify.confirm('Xóa món', 'Bạn có muốn xóa món: ' + item.Name + ' ?', function () {
+                console.log(item.ID);
+                var data = {
+                    params: {
+                        ID: item.ID
+                    }
+                }
+                apiService.del('api/dish/delete', data,
+                    function (result) {                        
+                        notificationService.displaySuccess('Xóa món thành công');
+                        getDish();
+                    }, function (error) {
+                        notificationService.displayError('Đã xảy ra lỗi !');
+                        console.log(error);
+                    });
+                
+            }, function () {
+                notificationService.displayWarning('Thông tin chưa được lưu!');
+            });
+ 
+        }
     }
 })(angular.module('SmartOrder.dishes'));
