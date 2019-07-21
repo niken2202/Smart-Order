@@ -12,7 +12,7 @@
                 $scope.DishCategory = result.data;
                 if ($scope.DishCategory.length === 0) {
                     $scope.closeDialog();
-                    notificationService.displayWarning('Vui lòng thêm nhóm món ăn !');
+                    notificationService.displayWarning('Vui lòng thêm nhóm danh mục !');
                 }
             }, function () {
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
@@ -33,7 +33,7 @@
             console.log($scope.edtDish)
             apiService.put('api/dish/update', $scope.edtDish,
                 function (result) {
-                    notificationService.displaySuccess('Món ' + $scope.edtDish.Name + ' đã được cập nhật mới.');
+                    notificationService.displaySuccess($scope.edtDish.Name + ' đã được cập nhật mới! ');
                     //console.log('update success');
                     $scope.reload();
                 }, function (error) {

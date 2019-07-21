@@ -5,27 +5,27 @@
 
             <div class="position-relative form-group">
                 <label for="exampleEmail" class="">Tên món </label>
-                <input type="text" class="form-control" required name="dishName" ng-maxlength="256" ng-model="dish.Name">
+                <input type="text" class="form-control" required name="dishName" ng-maxlength="256" ng-model="dishAdd.Name">
                 <span ng-show="frmAddDish.dishName.$invalid" class="had-error">*Hãy nhập tên món</span>
                 <span ng-show="frmAddDish.dishName.$error.maxlength.invalid" class="had-error">Tên món quá dài</span>
             </div>
 
             <div class="position-relative form-group">
                 <label for="exampleEmail" class="">Giá bán</label>
-                <input required name="dishPrice" type="number" class="form-control" ng-model="dish.Price">
+                <input required name="dishPrice" type="number" class="form-control" ng-model="dishAdd.Price">
                 <span ng-show="frmAddDish.dishPrice.$invalid" class="had-error">*Phải nhập giá bán</span>
             </div>
 
             <div class="position-relative form-group">
                 <label for="examplePassword" class="">Giá cấu thành sản phẩm</label>
-                <input required name="dishAmount" type="number" class="form-control" ng-model="dish.Amount">
+                <input required name="dishAmount" type="number" class="form-control" ng-model="dishAdd.Amount">
                 <span ng-show="frmAddDish.dishAmount.$invalid" class="had-error">*Hãy nhập giá cấu thành sản phẩm</span>
             </div>
 
             <div class="position-relative form-group">
                 <label for="exampleSelect" class="">Nhóm món ăn</label>
                 <select required name="dishCategory" class="form-control"
-                        ng-model="dish.CategoryID" ng-options="option.ID as option.Name for option in DishCategory">
+                        ng-model="dishAdd.CategoryID" ng-options="option.ID as option.Name for option in DishCategory">
                     <option selected disabled value=""></option>
                 </select>
                 <span ng-show="frmAddDish.dishCategory.$error.required" class="had-error">*Vui lòng chọn nhóm món ăn</span>
@@ -33,13 +33,13 @@
 
             <div class="position-relative form-group">
                 <label for="exampleText" class="">Mô tả chi tiết món</label>
-                <textarea name="dishDescription" class="form-control" ng-model="dish.Description">
+                <textarea name="dishDescription" class="form-control" ng-model="dishAdd.Description">
             </textarea>
             </div>
 
             <div class="position-relative form-group">
                 <label for="exampleFile" class="">Chèn ảnh</label>
-                <input name="file" id="exampleFile" type="file" class="form-control-file">
+                <input name="file" id="exampleFile" type="file" class="form-control-file" ng-model="dishAdd.Image">
                 <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
             </div>
 
@@ -48,12 +48,12 @@
                 <div class="col-sm-10">
                     <div class="position-relative form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" ng-model="dish.Status" ng-value="1" />Có sẵn
+                            <input class="form-check-input" type="radio" ng-model="dishAdd.Status" ng-value="1" />Có sẵn
                         </label>
                     </div>
                     <div class="position-relative form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" ng-model="dish.Status" ng-value="0" />
+                            <input class="form-check-input" type="radio" ng-model="dishAdd.Status" ng-value="0" />
                             Tạm hết
                         </label>
                     </div>

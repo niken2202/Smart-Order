@@ -40,6 +40,30 @@
             ngDialog.close(vm.dialogId);
         };
 
+        
+        //open popup to create new category
+        $scope.AddCategory = function () {
+            alertify.prompt('Thêm mới nhóm sản phẩm', 'Tên nhóm sản phẩm', ''
+                , function (evt, value) {
+                    var category = {
+                        CreatedDate: new Date,
+                        Name: value
+                    };
+                    apiService.post('/api/dishcategory/add', category,
+                        function (result) {
+                            notificationService.displaySuccess('Nhóm sản phẩm: ' + category.Name + ' đã được thêm mới.');
+                            $scope.reload();
+                        }, function (error) {
+                            notificationService.displayError('Thêm mới không thành công!');
+                        });
+
+                }
+                , function () {
+                    notificationService.displayWarning('Thông tin chưa được thêm !');
+                });
+
+        }
+
         //show the dialog ditail dish by table
         var vm = this;
         vm.openDialog = function ($event, item) {
@@ -105,15 +129,16 @@
                     }
                 }
                 apiService.del('api/dish/delete', data,
-                    function (result) {
+                    function (result) {                        
                         notificationService.displaySuccess('Xóa món thành công');
+                        getDish();
                     }, function (error) {
-                        notificationService.displayError('Fuck off');
+                        notificationService.displayError('Đã xảy ra lỗi !');
                         console.log(error);
                     });
                 
             }, function () {
-                notificationService.displayError('Xóa món thành công');
+                notificationService.displayWarning('Thông tin chưa được lưu!');
             });
  
         }

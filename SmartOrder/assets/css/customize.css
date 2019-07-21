@@ -194,6 +194,12 @@ disapear {
     div.main-content-homeView {
         width: 100%;
     }
+    div.history-homeView {
+        display: none;
+    }
+    div.nav-table-bar-parent .box-1{
+        display:none;
+    }
 }
 
 .avaiabe-div {
@@ -244,9 +250,9 @@ disapear {
 }
 
 .history-homeView {
-    width: 24%;
-    height: inherit;
-    min-height: 500px;
+    width: 25%;
+    height: 500px;
+    /*min-height: 500px;*/
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 8px;
@@ -257,11 +263,11 @@ disapear {
     background-color: white;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .main-content-homeView {
-    width: 72%;
+    width: 70%;
     height: auto;
     min-height: 300px;
     padding-top: 15px;
@@ -354,8 +360,9 @@ disapear {
 }
 
     .nav-table-bar-parent .box-1 {
+        display:flex;
         float: left;
-        width: 14%;
+        width: 15%;
         margin-top: 10px;
         margin-bottom: 0px;
         margin-left: 10px;
@@ -365,7 +372,7 @@ disapear {
 
     .nav-table-bar-parent .box-2 {
         float: left;
-        width: 65%;
+        width: 40%;
     }
 
     .nav-table-bar-parent .box-3 {
@@ -375,6 +382,16 @@ disapear {
     }
 
     .nav-table-bar-parent .box-4 {
+        float: right;
+        width: 5%;
+    }
+    .nav-table-bar-parent .box-5 {
+        margin: 5px;
+        padding: 5px;
+        width: 20%;
+    }
+
+    .nav-table-bar-parent .box-6 {
         float: right;
         width: 5%;
     }

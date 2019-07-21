@@ -227,7 +227,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
-    <Content Include="app\components\dishes\confirmDeleteDish.html" />
     <Content Include="app\components\dishes\dishAddController.js" />
     <Content Include="app\components\dishes\dishAddView.html" />
     <Content Include="app\components\dishes\dishEditsController.js" />
