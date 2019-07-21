@@ -7,13 +7,13 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class addpromotionCodetable : IMigrationMetadata
+    public sealed partial class initital : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addpromotionCodetable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initital));
         
         string IMigrationMetadata.Id
         {
-            get { return "201907210938039_add-promotionCodetable"; }
+            get { return "201907211752128_initital"; }
         }
         
         string IMigrationMetadata.Source

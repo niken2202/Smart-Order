@@ -1,10 +1,70 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-    <h1> This is edits material</h1>
-</body>
-</html>
+﻿<div class="main-card mb-3 card" style="border:hidden">
+    <div class="card-body">
+        <h4 class="card-title customize-font-blue-color"> Thêm nguyên liệu mới </h4>
+        <form class="" novalidate name="frmEditMaterial" role="form">
+
+            <div class="position-relative form-group">
+                <label class="">Tên nguyên liệu </label>
+                <input required name="Name" maxlength="256" type="text" class="form-control" ng-model="edtMate.Name">
+                <span ng-show="frmEditMaterial.Name.$invalid" class="had-error">*Hãy nhập tên món</span>
+                <span ng-show="frmEditMaterial.Name.$error.maxlength.invalid" class="had-error">Tên nguyên liệu quá dài</span>
+            </div>
+
+            <div class="position-relative form-group">
+                <label class="">Giá tiền</label>
+                <input required name="Price" type="number" class="form-control" ng-model="edtMate.Price">
+                <span ng-show="frmEditMaterial.Price.$invalid" class="had-error">*Vui lòng nhấp giá tiền mặt hàng</span>
+            </div>
+
+            <div class="position-relative form-group">
+                <label class="">Số lượng</label>
+                <input required name="Amount" type="number" class="form-control" ng-model="edtMate.Amount">
+                <span ng-show="frmEditMaterial.Amount.$invalid" class="had-error"></span>
+            </div>
+
+            <div class="position-relative form-group">
+                <label class="">Đơn vị</label>
+                <input required name="Unit" type="text" class="form-control" ng-model="edtMate.Unit">
+                <span ng-show="frmEditMaterial.Unit.$invalid" class="had-error">*Vui lòng nhập đơn vị</span>
+            </div>
+
+            <!--<div class="position-relative form-group">
+                <label for="exampleText" class="">Mô tả chi tiết món</label>
+                <textarea name="dishDescription" class="form-control" ng-model="dish.Description">
+            </textarea>
+            </div>-->
+            <!--<fieldset class="position-relative row form-group">
+                <legend class="col-form-label col-sm-2">Trạng thái món</legend>
+                <div class="col-sm-10">
+                    <div class="position-relative form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" ng-model="material.Status" ng-value="1" />Có sẵn
+                        </label>
+                    </div>
+                    <div class="position-relative form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" ng-model="material.Status" ng-value="0" />
+                            Tạm hết
+                        </label>
+                    </div>
+                </div>
+            </fieldset>-->
+
+
+
+            <div class="nav-table-bar-parent">
+                <div class="box-1">
+                    <button type="submit" ng-disabled="frmEditMaterial.$invalid" class="mt-1 btn btn-primary" ng-click="updateMate()">Lưu lại</button>
+                    <button class="mt-1 btn btn-primary" style="margin-left:15px" ng-click=closeThisDialog(0)>Hủy bỏ</button>
+                </div>
+                <div class="box-2">
+                </div>
+                <div class="box-3">
+                </div>
+                <div class="box-4">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -4,6 +4,7 @@ namespace Data.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Model.Models;
     using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -14,7 +15,7 @@ namespace Data.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(SmartOrderContext context)
+        protected override void Seed(Data.SmartOrderContext context)
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new SmartOrderContext()));
 

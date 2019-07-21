@@ -61,13 +61,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201907201415031_Initial.cs" />
-    <Compile Include="Migrations\201907201415031_Initial.Designer.cs">
-      <DependentUpon>201907201415031_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907210938039_add-promotionCodetable.cs" />
-    <Compile Include="Migrations\201907210938039_add-promotionCodetable.Designer.cs">
-      <DependentUpon>201907210938039_add-promotionCodetable.cs</DependentUpon>
+    <Compile Include="Migrations\201907211752128_initital.cs" />
+    <Compile Include="Migrations\201907211752128_initital.Designer.cs">
+      <DependentUpon>201907211752128_initital.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,11 +97,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907201415031_Initial.resx">
-      <DependentUpon>201907201415031_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907210938039_add-promotionCodetable.resx">
-      <DependentUpon>201907210938039_add-promotionCodetable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907211752128_initital.resx">
+      <DependentUpon>201907211752128_initital.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

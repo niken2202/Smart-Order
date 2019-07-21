@@ -33,7 +33,7 @@ namespace SmartOrder.api
                 {
                     var result = dishService.Add(dish);
                     dishService.SaveChanges();
-                    SaveHistory("Add new Dish with ID: " + result.ID);
+                    SaveHistory("Thêm mới: " + result.ID);
                     response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;
@@ -133,7 +133,7 @@ namespace SmartOrder.api
                 else
                 {
                     dishService.Update(dish);
-                    SaveHistory("Add new Dish with ID: " + dish.ID);
+                    SaveHistory("Cập nhật mới: " + dish.Name);
 
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
@@ -156,7 +156,7 @@ namespace SmartOrder.api
                 {
                     Dish dish = dishService.Delete(id);
                     dishService.SaveChanges();
-                    SaveHistory("Add new Dish with ID: " + dish.ID);
+                    SaveHistory("Xóa: " + dish.Name + "khỏi danh sách");
                     response = request.CreateResponse(HttpStatusCode.OK, dish);
                 }
                 return response;

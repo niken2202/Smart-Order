@@ -5,22 +5,11 @@
 
     function listDishController($scope, ngDialog, apiService, notificationService) {
         //get data from api
-        function getDish(index, pageSize, totalRow) {
-            index = index || 0;
-            pageSize = pageSize || 300;
-            totalRow = totalRow || 0;
-
-            var config = {
-                params: {
-                    index: index,
-                    pageSize: pageSize,
-                    totalRow: totalRow,
-                }
-            }
-            apiService.get('/api/dish/getall', config, function (result) {
+        function getDish() {            
+            apiService.get('/api/dish/getall', null, function (result) {
                 $scope.dishes = result.data.listDish;
                 if ($scope.dishes.length === 0) {
-                    notificationService.displayWarning('Danh sách chưa có món nào !');
+                    notificationService.displayWarning('Danh sách trống !');
                 }
             }, function () {
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
