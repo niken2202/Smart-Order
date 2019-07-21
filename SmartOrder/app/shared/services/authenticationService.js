@@ -15,13 +15,14 @@
 
             this.removeToken = function () {
                 tokenInfo = null;
-                $window.sessionStorage["TokenInfo"] = null;
+                $window.sessionStorage.clear();
             }
 
             this.init = function () {
                 if ($window.sessionStorage["TokenInfo"]) {
                     tokenInfo = JSON.parse($window.sessionStorage["TokenInfo"]);
                 }
+              
             }
 
             this.setHeader = function () {

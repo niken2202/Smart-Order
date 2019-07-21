@@ -37,9 +37,8 @@ namespace SmartOrder.api
             });
         }
 
-
         [Route("getall")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int pageIndex, int pageSize, int totalRow)
+        public HttpResponseMessage Get(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -51,7 +50,27 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var listDish = materialService.GetAll(pageIndex,  pageSize, out totalRow);
+                    var listDish = materialService.GetAll();
+                    response = request.CreateResponse(HttpStatusCode.OK, listDish);
+                }
+                return response;
+            });
+        }
+
+        [Route("getbyid")]
+        public HttpResponseMessage Get(HttpRequestMessage request,int materialId)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listDish = materialService.GetById(materialId);
                     response = request.CreateResponse(HttpStatusCode.OK, listDish);
                 }
                 return response;

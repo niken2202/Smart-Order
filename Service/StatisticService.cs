@@ -2,9 +2,6 @@
 using Data.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service
 {
@@ -12,9 +9,10 @@ namespace Service
     {
         IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromdate, DateTime toDate);
     }
+
     public class StatisticService : IStatisticService
     {
-        IBillRepository billRepository;
+        private IBillRepository billRepository;
 
         public StatisticService(IBillRepository billRepository)
         {

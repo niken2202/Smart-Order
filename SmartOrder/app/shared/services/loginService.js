@@ -28,7 +28,7 @@
                 return deferred.promise;
             }
 
-            this.logOut = function () {
+            this.logout = function () {
                 authenticationService.removeToken();
                 authData.authenticationData.IsAuthenticated = false;
                 authData.authenticationData.userName = "";

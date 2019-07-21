@@ -16,31 +16,31 @@ namespace Data.Migrations
 
         protected override void Seed(SmartOrderContext context)
         {
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new SmartOrderContext()));
+            //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new SmartOrderContext()));
 
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new SmartOrderContext()));
+            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new SmartOrderContext()));
 
-            var user = new ApplicationUser()
-            {
-                UserName = "tedu",
-                Email = "tedu.international@gmail.com",
-                EmailConfirmed = true,
-                BirthDay = DateTime.Now,
-                FullName = "Technology Education"
+            //var user = new ApplicationUser()
+            //{
+            //    UserName = "thang",
+            //    Email = "hahaa.hahaha@gmail.com",
+            //    EmailConfirmed = true,
+            //    BirthDay = DateTime.Now,
+            //    FullName = "Le Trong Thang"
 
-            };
+            //};
 
-            manager.Create(user, "123654$");
+            //manager.Create(user, "123654$");
 
-            if (!roleManager.Roles.Any())
-            {
-                roleManager.Create(new IdentityRole { Name = "Admin" });
-                roleManager.Create(new IdentityRole { Name = "User" });
-            }
+            //if (!roleManager.Roles.Any())
+            //{
+            //    roleManager.Create(new IdentityRole { Name = "Admin" });
+            //    roleManager.Create(new IdentityRole { Name = "User" });
+            //}
 
-            var adminUser = manager.FindByEmail("tedu.international@gmail.com");
+            //var adminUser = manager.FindByEmail("hahaa.hahaha@gmail.com");
 
-            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+            //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
         }
     }
 }

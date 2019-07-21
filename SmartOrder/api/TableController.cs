@@ -81,6 +81,7 @@ namespace SmartOrder.api
                 return response;
             });
         }
+
         [Route("delete")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {

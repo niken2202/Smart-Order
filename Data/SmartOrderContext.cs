@@ -23,7 +23,7 @@ namespace Data
         public DbSet<History> History { set; get; }
         public DbSet<DishComboMapping> DishComboMapping { set; get; }
         public DbSet<BillDetail> BillDetail { set; get; }
-
+        public DbSet<PromotionCode> PromotionCode { set; get; }
         public static SmartOrderContext Create()
         {
             return new SmartOrderContext();

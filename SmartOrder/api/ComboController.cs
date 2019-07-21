@@ -42,7 +42,6 @@ namespace SmartOrder.api
             });
         }
 
-
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
@@ -62,8 +61,26 @@ namespace SmartOrder.api
                 return response;
             });
         }
+        [Route("getbyid")]
+        public HttpResponseMessage Get(HttpRequestMessage request,int comboId)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
 
-        
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var combo = comboService.GetById(comboId);
+                    response = request.CreateResponse(HttpStatusCode.OK, combo);
+                }
+                return response;
+            });
+        }
+
         [Route("update")]
         public HttpResponseMessage Put(HttpRequestMessage request, Combo combo)
         {

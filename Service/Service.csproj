@@ -50,6 +50,7 @@
     <Compile Include="ErrorService.cs" />
     <Compile Include="HistoryService.cs" />
     <Compile Include="MaterialService.cs" />
+    <Compile Include="PromotionCodeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatisticService.cs" />
     <Compile Include="TableService.cs" />

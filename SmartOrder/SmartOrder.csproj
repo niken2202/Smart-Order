@@ -201,6 +201,7 @@
     <Compile Include="api\HistoryController.cs" />
     <Compile Include="api\HomeController.cs" />
     <Compile Include="api\MaterialController.cs" />
+    <Compile Include="api\PromotionCodeController.cs" />
     <Compile Include="api\StatisticController.cs" />
     <Compile Include="api\TableController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />

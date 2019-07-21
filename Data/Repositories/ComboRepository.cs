@@ -6,7 +6,6 @@ namespace Data.Repositories
 {
     public interface IComboRepository : IRepository<Combo>
     {
-       
     }
 
     public class ComboRepository : RepositoryBase<Combo>, IComboRepository
