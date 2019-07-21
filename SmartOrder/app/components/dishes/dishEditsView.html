@@ -1,35 +1,48 @@
 ﻿<div class="main-card mb-3 card" style="border:hidden">
     <div class="card-body">
         <h4 class="card-title customize-font-blue-color"> Thông tin chi tiết món : {{dish.Name}}</h4>
-        <form class="">
+        <form novalidate name="frmEditsDish" role="form">
             <div class="position-relative form-group">
-                <label for="exampleEmail" class="">Tên món </label>
-                <input name="dishName" value="{{dish.Name}}" id="exampleEmail" placeholder="Nhập tên món" type="text" class="form-control">
+                <label class="">Tên món </label>
+                <input required name="dishName" ng-model="edtDish.Name" placeholder="Nhập tên món" type="text" class="form-control">
+                <span ng-show="frmEditsDish.dishName.$invalid" class="had-error">*Hãy nhập tên món</span>
+                <span ng-show="frmEditsDish.dishName.$error.maxlength.invalid" class="had-error">Tên món quá dài</span>
             </div>
             <div class="position-relative form-group">
                 <label for="exampleEmail" class="">Giá bán</label>
-                <input name="email" value="{{dish.Price}}" id="exampleEmail" placeholder="Nhập giá bán" type="text" class="form-control">
+                <input required name="dishPrice" ng-model="edtDish.Price" placeholder="Nhập giá bán" type="text" class="form-control">
+                <span ng-show="frmEditsDish.dishPrice.$invalid" class="had-error">*Phải nhập giá bán</span>
             </div>
             <div class="position-relative form-group">
                 <label for="examplePassword" class="">Giá cấu thành sản phẩm</label>
-                <input name="password" value="{{dish.Amount}}" id="examplePassword" placeholder="password placeholder" type="text" class="form-control">
+                <input required name="dishAmount" ng-model="edtDish.Amount" placeholder="Nhập giá cấu thành sản phẩm" type="text" class="form-control">
+                <span ng-show="frmEditsDish.dishAmount.$invalid" class="had-error">*Hãy nhập giá cấu thành sản phẩm</span>
             </div>
 
             <div class="position-relative form-group">
                 <label for="exampleSelect" class="">Nhóm món ăn</label>
-                <select name="dishCategory" class="form-control" ng-model="dish.CategoryID" ng-options="option.ID as option.Name for option in DishCategory"></select>
-                <input type="hidden" name="dishCategory" ng-model="dish.CategoryID" />
+                <select name="dishCategory" class="form-control" ng-model="edtDish.CategoryID" ng-options="option.ID as option.Name for option in DishCategory"></select>
+                <!-- <input type="hidden" name="dishCategory" ng-model="dish.CategoryID" />-->
             </div>
 
-            <div class="position-relative form-group"><label for="exampleText" class="">Mô tả chi tiết món</label><textarea name="text" id="exampleText" class="form-control"></textarea></div>
             <div class="position-relative form-group">
-                <label for="exampleFile" class="">Chèn ảnh</label><input name="file" id="exampleFile" type="file" class="form-control-file">
+                <label for="exampleText" class="">Mô tả chi tiết món</label>
+                <textarea name="description" class="form-control" ng-model="edtDish.Description"></textarea>
+            </div>
+            <div class="position-relative form-group">
+                <label for="exampleFile" class="">Chèn ảnh</label>
+                <input name="file"  type="file" class="form-control-file" ng-model="edtDish.Image">
                 <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
             </div>
 
             <div class="position-relative form-group">
-                <label for="examplePassword" class="">Ngày khởi tạo món</label>
-                <label>{{dish.CreatedDate | date:'dd-MM-yyyy'}}</label>
+                <label for="examplePassword" class="">Số lượng đã bán ra: </label>
+                <label>{{edtDish.OrderCount | orderCountFilter }}</label>
+            </div>
+
+            <div class="position-relative form-group">
+                <label for="examplePassword" class="">Ngày khởi tạo món: </label>
+                <label>{{edtDish.CreatedDate | date:'dd-MM-yyyy'}}</label>
             </div>
 
             <fieldset class="position-relative row form-group">
@@ -37,26 +50,31 @@
                 <div class="col-sm-10">
                     <div class="position-relative form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" ng-model="dish.Status" ng-value="1" />Có sẵn
+                            <input class="form-check-input" type="radio" ng-model="edtDish.Status" ng-value="1" />Có sẵn
                         </label>
                     </div>
                     <div class="position-relative form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" type="radio" ng-model="dish.Status" ng-value="0" />
+                            <input class="form-check-input" type="radio" ng-model="edtDish.Status" ng-value="0" />
                             Tạm hết
                         </label>
                     </div>
                 </div>
             </fieldset>
 
-
-            <div class="search-div-nav">
-
+            <div class="nav-table-bar-parent">
+                <div class="box-1">
+                    <button class="mt-1 btn btn-primary" ng-disabled="frmEditsDish.$invalid" ng-click="updateDish()">Lưu lại</button>
+                    <button class="mt-1 btn btn-primary" ng-click=closeThisDialog(0)>Hủy bỏ</button>
+                </div>
+                <div class="box-2">                  
+                </div>
+                <div class="box-3">                     
+                </div>
+                <div class="box-4">                   
+                </div>
             </div>
-            <div class="block-div-history">
-                <button class="mt-1 btn btn-primary" ng-click="save()">Lưu lại</button>
-                <button class="mt-1 btn btn-primary" ng-click=closeThisDialog("Cancel")>Hủy bỏ</button>
-            </div>
+
         </form>
     </div>
 </div>

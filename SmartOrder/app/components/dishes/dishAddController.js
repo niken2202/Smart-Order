@@ -12,8 +12,7 @@
         }
 
         //get list dish category to the select box
-        $scope.DishCategory = [];
-
+        $scope.DishCategory = [];        
         function getDishCategory() {
             apiService.get('/api/dishcategory/getall', null, function (result) {
                 $scope.DishCategory = result.data;
@@ -22,20 +21,16 @@
             });
         }
         getDishCategory();
-
-        //create new dish 
+ 
+        //add dish to database
         $scope.CreateDish = CreateDish;
-
         function CreateDish() {
             apiService.post('api/dish/add', $scope.dish,
                 function (result) {
-                    notificationService.displaySuccess(result.data.Name + ' đã được thêm mới.');
-                    var obj = { a: $scope.dish.Status, b: $scope.dish.CreatedDate };
-                    console.log(obj);
+                    notificationService.displaySuccess($scope.dish.Name + ' đã được thêm mới.');
+                    
                 }, function (error) {
                     notificationService.displayError('Thêm mới không thành công.');
-                    var obj = { a: $scope.dish.Status, b: $scope.dish.CreatedDate };
-                    console.log(obj);
                 });
         }
     
