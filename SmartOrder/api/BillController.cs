@@ -1,9 +1,10 @@
 ﻿using Model.Models;
 using Service;
 using SmartOrder.Infrastructure;
+using System;
 using System.Net;
 using System.Net.Http;
-using System.Web.Mvc;
+using System.Web.Http;
 
 namespace SmartOrder.api
 {
@@ -59,8 +60,9 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getbyid")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int id)
+        [HttpGet]
+        [Route("gettimerange")]
+        public HttpResponseMessage GetTimeRange(HttpRequestMessage request, DateTime fromDate, DateTime toDate)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -72,9 +74,68 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var bill = billService.GetById(id);
-                    SaveHistory("Get Bill by id" + id);
-                    response = request.CreateResponse(HttpStatusCode.OK, bill);
+                    var listBill = billService.GetTimeRange(fromDate, toDate);
+                    response = request.CreateResponse(HttpStatusCode.OK, listBill);
+                }
+                return response;
+            });
+        }
+
+        [Route("getlast7day"), HttpGet]
+        public HttpResponseMessage GetBillLast7Days(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listBill = billService.GetBillLast7Days();
+                    response = request.CreateResponse(HttpStatusCode.OK, listBill);
+                }
+                return response;
+            });
+        }
+
+        [Route("getlastmonth"), HttpGet]
+        public HttpResponseMessage GetLastMonth(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listBill = billService.GetBillLastMonth();
+                    response = request.CreateResponse(HttpStatusCode.OK, listBill);
+                }
+                return response;
+            });
+        }
+
+        [Route("gettoday"), HttpGet]
+        public HttpResponseMessage GetBillToday(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listBill = billService.GetBillToday();
+                    response = request.CreateResponse(HttpStatusCode.OK, listBill);
                 }
                 return response;
             });

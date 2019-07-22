@@ -8,7 +8,7 @@ using System.Web.Http;
 namespace SmartOrder.api
 {
     [RoutePrefix("api/dish")]
-    [Authorize]
+   
     public class DishController : ApiControllerBase
     {
         private IDishService dishService;
@@ -41,7 +41,7 @@ namespace SmartOrder.api
         }
 
         [Route("getall")]
-        public HttpResponseMessage Get(HttpRequestMessage request)
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {
