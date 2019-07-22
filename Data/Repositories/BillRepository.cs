@@ -11,6 +11,10 @@ namespace Data.Repositories
 
         IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromdate,DateTime toDate);
         IEnumerable<Bill> GetAll();
+        IEnumerable<Bill> GetTimeRange(DateTime fromDate,DateTime toDate);
+        IEnumerable<Bill> GetBillLastMonth();
+        IEnumerable<Bill> GetBillLast7Days();
+        IEnumerable<Bill> GetBillToday();
     }
     public class BillRepository : RepositoryBase<Bill>, IBillRepository
     {
@@ -37,7 +41,63 @@ namespace Data.Repositories
             return DbContext.Database.SqlQuery<RevenueStatisticViewModel>("GetRevenueStatistic @fromDate,@toDate", parameters);
         }
 
-     
+        public IEnumerable<Bill> GetTimeRange(DateTime fromDate, DateTime toDate)
+        {
+            var parameters = new object[]
+               {
+                new SqlParameter("@fromDate",fromDate),
+                new SqlParameter("@toDate",toDate),
+               };
+            return DbContext.Database.SqlQuery<Bill>("GetBillByRange @fromDate,@toDate", parameters);
+        }
+        public IEnumerable<Bill> Get(DateTime fromDate, DateTime toDate)
+        {
+            var parameters = new object[]
+               {
+                new SqlParameter("@fromDate",fromDate),
+                new SqlParameter("@toDate",toDate),
+               };
+            return DbContext.Database.SqlQuery<Bill>("GetBillByRange @fromDate,@toDate", parameters);
+        }
+
+        public IEnumerable<Bill> GetBillLastMonth()
+        {
+            DateTime toDate = DateTime.Now;
+            DateTime fromDate = toDate.AddDays(-30);
+
+            var parameters = new object[]
+              {
+                new SqlParameter("@fromDate",fromDate),
+                new SqlParameter("@toDate",toDate),
+              };
+            return DbContext.Database.SqlQuery<Bill>("GetBillByRange @fromDate,@toDate", parameters);
+        }
+
+        public IEnumerable<Bill> GetBillLast7Days()
+        {
+            DateTime toDate = DateTime.Now;
+            DateTime fromDate = toDate.AddDays(-7);
+
+            var parameters = new object[]
+              {
+                new SqlParameter("@fromDate",fromDate),
+                new SqlParameter("@toDate",toDate),
+              };
+            return DbContext.Database.SqlQuery<Bill>("GetBillByRange @fromDate,@toDate", parameters);
+        }
+
+        public IEnumerable<Bill> GetBillToday()
+        {
+            DateTime toDate = DateTime.Now;
+            DateTime fromDate = toDate.AddDays(-1);
+
+            var parameters = new object[]
+              {
+                new SqlParameter("@fromDate",fromDate),
+                new SqlParameter("@toDate",toDate),
+              };
+            return DbContext.Database.SqlQuery<Bill>("GetBillByRange @fromDate,@toDate", parameters);
+        }
     }
 
 }

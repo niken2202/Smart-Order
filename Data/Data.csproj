@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201907210938039_add-promotionCodetable.Designer.cs">
       <DependentUpon>201907210938039_add-promotionCodetable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907221427092_AddBillStoredProceduced.cs" />
+    <Compile Include="Migrations\201907221427092_AddBillStoredProceduced.Designer.cs">
+      <DependentUpon>201907221427092_AddBillStoredProceduced.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BillDetailRepository.cs" />
@@ -106,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907210938039_add-promotionCodetable.resx">
       <DependentUpon>201907210938039_add-promotionCodetable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907221427092_AddBillStoredProceduced.resx">
+      <DependentUpon>201907221427092_AddBillStoredProceduced.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
