@@ -1,10 +1,69 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-    This is list bills view
-</body>
-</html>
+﻿<div class="main-card mb-3 card" ng-controller="listBillController">
+    <div class="card-body">
+        <div></div>
+        <h4 class="card-title customize-font-blue-color">Danh sách hóa đơn</h4>
+
+        <div class="nav-table-bar-parent"> 
+            <div class="div-currentDate">
+                <div class="divUser">
+                    <label class="cornflowerblue">Xem hóa đơn trong: </label>
+                    <select name="dishCategory" class="customize-DateInput cornflowerblue"
+                            ng-model="userOption" ng-options="option.key as option.val for option in options">
+                        <option selected disabled value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="div-datePicker">
+                <div class="div1">
+                    <label class="cornflowerblue">Từ ngày: </label>
+                    <input class="customize-DateInput cornflowerblue" type="date" name="fromDate" ng-model="dateSeclect.from" />
+                    <span hidden>{{example.value | date: "yyyy-MM-dd"}}</span>
+                </div>
+                <div class="div2">
+                    <label class="cornflowerblue ">Đến: </label>
+                    <input class="customize-DateInput cornflowerblue" type="date" name="toDate" ng-model="dateSeclect.to" />
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="mb-0 table mb-0 table table-hover">
+                <thead>
+                    <tr>
+                        <th ng-click="sort('ID')">ID</th>
+                        <th>Giảm giá</th>
+                        <th>Thành tiền</th>
+                        <th>Tổng tiền</th>
+                        <th>Bàn</th>
+                        <th>Tạo bởi</th>
+                        <th>Tổng tiền</th>
+                        <th>Ngày tạo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="item in dishes |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
+                        <td ng-click="vm.openDialog($event,item)">{{item.ID}}</td>
+                        <td ng-click="vm.openDialog($event,item)">{{item.Name}}</td>
+                        <td ng-click="vm.openDialog($event,item)">{{item.Price}}</td>
+                        <td ng-click="vm.openDialog($event,item)">{{item.Amount}}</td>
+                        <td ng-click="vm.openDialog($event,item)">
+                            <span ng-class="{'avaiabe-div':item.Status===1,'not-avaiabe-div':item.Status===0}">
+                                {{item.Status | statusFilter}}
+                            </span>
+                        </td>
+                        <td ng-click="vm.openDialog($event,item)" style="width:8%; text-align:center">{{item.OrderCount | orderCountFilter}}</td>
+                        <td ng-click="vm.openDialog($event,item)" style="text-align:center">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+
+            <dir-pagination-controls max-size="5"
+                                     direction-links="true"
+                                     boundary-links="true">
+            </dir-pagination-controls>
+        </div>
+    </div>
+</div>
