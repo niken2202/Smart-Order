@@ -27,7 +27,6 @@ namespace Data.Migrations
                 EmailConfirmed = true,
                 BirthDay = DateTime.Now,
                 FullName = "Le Trong Thang"
-
             };
 
             manager.Create(user, "anhch184");

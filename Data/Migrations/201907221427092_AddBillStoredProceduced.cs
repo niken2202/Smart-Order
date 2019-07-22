@@ -15,7 +15,6 @@ namespace Data.Migrations
                 },
                 @"select * from Bill where Bill.CreatedDate>=@fromDate and Bill.CreatedDate<= @toDate"
 ); 
-
         }
         
         public override void Down()
