@@ -247,6 +247,7 @@
     <Content Include="app\components\materials\materialEditsController.js" />
     <Content Include="app\components\materials\materialEditsView.html" />
     <Content Include="app\components\materials\materials.module.js" />
+    <Content Include="app\components\restaurant\billDetailView.html" />
     <Content Include="app\components\restaurant\revenusController.js" />
     <Content Include="app\components\restaurant\tablesView.html" />
     <Content Include="app\components\restaurant\listBillController.js" />

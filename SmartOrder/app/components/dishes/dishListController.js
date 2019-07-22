@@ -94,7 +94,6 @@
                 template: '/app/components/dishes/dishAddView.html',
                 scope: $scope,
                 controller: 'dishAddController',
-                //controllerAs: "file",
                 closeByDocument: false, //can not close dialog by click out of dialog area
                 className: 'ngdialog',
                 showClose: false,
@@ -127,7 +126,7 @@
                     });
                 
             }, function () {
-                notificationService.displayWarning('Thông tin chưa được lưu!');
+                //notificationService.displayWarning('Thông tin chưa được lưu!');
             });
  
         }

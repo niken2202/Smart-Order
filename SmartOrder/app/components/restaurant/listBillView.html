@@ -1,61 +1,58 @@
 ﻿<div class="main-card mb-3 card" ng-controller="listBillController">
     <div class="card-body">
         <div></div>
-        <h4 class="card-title customize-font-blue-color">Danh sách hóa đơn</h4>
+        <h4 class="card-title customize-font-blue-color">Danh sách hóa đơn {{title}}</h4>
 
         <div class="nav-table-bar-parent"> 
             <div class="div-currentDate">
                 <div class="divUser">
                     <label class="cornflowerblue">Xem hóa đơn trong: </label>
                     <select name="dishCategory" class="customize-DateInput cornflowerblue"
+                            ng-change="selectEvent()"
                             ng-model="userOption" ng-options="option.key as option.val for option in options">
-                        <option selected disabled value=""></option>
+                        <option selected disabled value="">-- Thời gian --</option>
                     </select>
                 </div>
             </div>
             <div class="div-datePicker">
                 <div class="div1">
                     <label class="cornflowerblue">Từ ngày: </label>
-                    <input class="customize-DateInput cornflowerblue" type="date" name="fromDate" ng-model="dateSeclect.from" />
-                    <span hidden>{{example.value | date: "yyyy-MM-dd"}}</span>
+                    <input class="customize-DateInput cornflowerblue" type="date" name="fromDate" 
+                          ng-change="cusDateEvent()" ng-model="dateSeclect.from" />                    
                 </div>
                 <div class="div2">
                     <label class="cornflowerblue ">Đến: </label>
-                    <input class="customize-DateInput cornflowerblue" type="date" name="toDate" ng-model="dateSeclect.to" />
+                    <input class="customize-DateInput cornflowerblue"  type="date" name="toDate"
+                           ng-model="dateSeclect.to" ng-change="cusDateEvent()" />
                 </div>
             </div>
 
         </div>
 
-
+        <h4 class="cornflowerblue countTotolRow">Tổng số hóa đơn: {{countBill}}</h4>
         <div class="table-responsive">
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
                     <tr>
                         <th ng-click="sort('ID')">ID</th>
-                        <th>Giảm giá</th>
-                        <th>Thành tiền</th>
-                        <th>Tổng tiền</th>
+                        <th>Khách hàng</th>
                         <th>Bàn</th>
                         <th>Tạo bởi</th>
-                        <th>Tổng tiền</th>
-                        <th>Ngày tạo</th>
+                        <th>Mã giảm giá</th>
+                        <th ng-click="sort('CreatedDate')">Ngày tạo</th>
+                        <th>Nội dung</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr dir-paginate="item in dishes |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
-                        <td ng-click="vm.openDialog($event,item)">{{item.ID}}</td>
-                        <td ng-click="vm.openDialog($event,item)">{{item.Name}}</td>
-                        <td ng-click="vm.openDialog($event,item)">{{item.Price}}</td>
-                        <td ng-click="vm.openDialog($event,item)">{{item.Amount}}</td>
-                        <td ng-click="vm.openDialog($event,item)">
-                            <span ng-class="{'avaiabe-div':item.Status===1,'not-avaiabe-div':item.Status===0}">
-                                {{item.Status | statusFilter}}
-                            </span>
-                        </td>
-                        <td ng-click="vm.openDialog($event,item)" style="width:8%; text-align:center">{{item.OrderCount | orderCountFilter}}</td>
-                        <td ng-click="vm.openDialog($event,item)" style="text-align:center">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>
-                       
+                    <tr ng-click="billDetailEvent(item)"
+                        dir-paginate="item in bills |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
+                        <td >{{item.ID}}</td>
+                        <td >{{item.CustomerName}}</td>
+                        <td >{{item.TableID}}</td>
+                        <td >{{item.CreatedBy}}</td>
+                        <td >{{item.Voucher}}</td>
+                        <td  style="text-align:left">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>
+                        <td >{{item.Content}}</td>
                     </tr>
                 </tbody>
             </table>

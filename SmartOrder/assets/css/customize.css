@@ -356,7 +356,7 @@ disapear {
     width: 100%;
     margin: 5px;
     padding-top: 2px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 .div-currentDate {
     width: 50%;
@@ -377,7 +377,14 @@ disapear {
 .cornflowerblue {
     color: cornflowerblue !important;
 }
-
+.countTotolRow{
+    float:right;
+    margin:0px;
+    padding-top:0px;
+    padding-bottom:5px;
+    padding-left:0px;
+    padding-right:20px;
+}
 .customize-DateInput {
     border-radius: 10px;
     margin-top: 2px;
