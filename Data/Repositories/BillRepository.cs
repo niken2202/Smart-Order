@@ -15,6 +15,7 @@ namespace Data.Repositories
         IEnumerable<Bill> GetBillLastMonth();
         IEnumerable<Bill> GetBillLast7Days();
         IEnumerable<Bill> GetBillToday();
+        object GetBillDetail(int id);
     }
     public class BillRepository : RepositoryBase<Bill>, IBillRepository
     {
@@ -97,6 +98,33 @@ namespace Data.Repositories
                 new SqlParameter("@toDate",toDate),
               };
             return DbContext.Database.SqlQuery<Bill>("GetBillByRange @fromDate,@toDate", parameters);
+        }
+
+        public object GetBillDetail(int id)
+        {
+            Bill bill = GetSingleById(id);
+            if (bill == null) return null;
+            var query = from bd in DbContext.BillDetail where bd.BillID==id
+                            select bd;
+
+        bill.BillDetail = query.ToList();
+            var total = query.Sum(i => (i.Amount * i.Price));
+            
+            var b = new
+            {
+                bill.ID,
+                bill.TableID,
+                bill.Status,
+                bill.Voucher,
+                bill.CustomerName,
+                bill.CreatedDate,
+                bill.CreatedBy,
+                bill.Content,
+                bill.BillDetail,
+                bill.Discount,
+                Total= total
+            };
+            return b;
         }
     }
 

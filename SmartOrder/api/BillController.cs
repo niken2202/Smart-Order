@@ -140,5 +140,25 @@ namespace SmartOrder.api
                 return response;
             });
         }
+
+        [Route("getbilldetail"), HttpGet]
+        public HttpResponseMessage GetBillDetail(HttpRequestMessage request,int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var bill = billService.GetBillDetail(id);
+                    response = request.CreateResponse(HttpStatusCode.OK, bill);
+                }
+                return response;
+            });
+        }
     }
 }
