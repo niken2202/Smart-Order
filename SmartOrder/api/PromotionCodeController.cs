@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/promotioncode")]
+    [RoutePrefix("api/promotioncode"), Authorize]
     public class PromotionCodeController : ApiControllerBase
     {
         private IPromotionCodeService promotionCodeService;

@@ -8,11 +8,10 @@ using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/bill")]
+    [RoutePrefix("api/bill"), Authorize]
     public class BillController : ApiControllerBase
     {
         private IBillService billService;
-
         public BillController(IErrorService errorService, IBillService billService, IHistoryService historyService) : base(errorService, historyService)
         {
             this.billService = billService;
@@ -141,7 +140,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getbilldetail"), HttpGet]
+        [Route("getbilldetail"), HttpGet, Authorize]
         public HttpResponseMessage GetBillDetail(HttpRequestMessage request,int id)
         {
             return CreateHttpResponse(request, () =>
@@ -156,6 +155,26 @@ namespace SmartOrder.api
                 {
                     var bill = billService.GetBillDetail(id);
                     response = request.CreateResponse(HttpStatusCode.OK, bill);
+                }
+                return response;
+            });
+        }
+
+        [Route("getrevenue"), HttpGet, Authorize]
+        public HttpResponseMessage GetRevenue(HttpRequestMessage request, DateTime fromDate, DateTime toDate)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var revenue = billService.GetRevenueStatistic(fromDate, toDate);
+                    response = request.CreateResponse(HttpStatusCode.OK, revenue);
                 }
                 return response;
             });

@@ -20,7 +20,7 @@ namespace SmartOrder.api
             this.comboService = comboService;
         }
 
-        [Route("add")]
+        [Route("add"), Authorize]
         public HttpResponseMessage Post(HttpRequestMessage request, Combo combo)
         {
             return CreateHttpResponse(request, () =>
@@ -81,7 +81,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("update")]
+        [Route("update"), Authorize]
         public HttpResponseMessage Put(HttpRequestMessage request, Combo combo)
         {
             return CreateHttpResponse(request, () =>
@@ -102,7 +102,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("delete")]
+        [Route("delete"), Authorize]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>

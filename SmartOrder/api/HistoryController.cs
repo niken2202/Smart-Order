@@ -6,7 +6,7 @@ using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/history")]
+    [RoutePrefix("api/history"), Authorize]
     public class HistoryController : ApiControllerBase
     {
         public HistoryController(IErrorService errorService, IHistoryService _historyService) : base(errorService, _historyService)
