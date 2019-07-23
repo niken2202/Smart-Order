@@ -16,7 +16,7 @@ namespace SmartOrder.api
             this.dishService = dishService;
         }
 
-        [Route("add")]
+        [Route("add"), Authorize]
         public HttpResponseMessage Post(HttpRequestMessage request, DishCategory category)
         {
             return CreateHttpResponse(request, () =>
@@ -59,7 +59,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("update")]
+        [Route("update"), Authorize]
         public HttpResponseMessage Put(HttpRequestMessage request, DishCategory dishCategory)
         {
             return CreateHttpResponse(request, () =>
@@ -80,7 +80,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("delete")]
+        [Route("delete"), Authorize]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>

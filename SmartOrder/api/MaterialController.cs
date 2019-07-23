@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/material")]
+    [RoutePrefix("api/material"), Authorize]
     public class MaterialController : ApiControllerBase
     {
         IMaterialServie materialService;

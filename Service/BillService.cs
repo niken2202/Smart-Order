@@ -10,13 +10,22 @@ namespace Service
     public interface IBillService
     {
         Bill Add(Bill bill);
+
         Bill GetById(int id);
+
         IEnumerable<Bill> GetAll();
+
         IEnumerable<Bill> GetTimeRange(DateTime fromDate, DateTime toDate);
+
         IEnumerable<Bill> GetBillLastMonth();
+
         IEnumerable<Bill> GetBillLast7Days();
+
         IEnumerable<Bill> GetBillToday();
+        IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromDate, DateTime toDate);
+
         object GetBillDetail(int id);
+
         void SaveChanges();
     }
 
@@ -33,17 +42,17 @@ namespace Service
 
         public Bill Add(Bill bill)
         {
-           return  billRepository.Add(bill);
+            return billRepository.Add(bill);
         }
 
         public IEnumerable<Bill> GetAll()
         {
-           return billRepository.GetAll();
+            return billRepository.GetAll();
         }
 
         public object GetBillDetail(int id)
         {
-            return  billRepository.GetBillDetail(id);
+            return billRepository.GetBillDetail(id);
         }
 
         public IEnumerable<Bill> GetBillLast7Days()
@@ -64,6 +73,11 @@ namespace Service
         public Bill GetById(int id)
         {
             return billRepository.GetSingleById(id);
+        }
+
+        public IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromDate, DateTime toDate)
+        {
+            return billRepository.GetRevenueStatistic(fromDate, toDate);
         }
 
         public IEnumerable<Bill> GetTimeRange(DateTime fromDate, DateTime toDate)

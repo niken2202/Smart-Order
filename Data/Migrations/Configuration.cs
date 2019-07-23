@@ -7,7 +7,6 @@ namespace Data.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
     internal sealed class Configuration : DbMigrationsConfiguration<Data.SmartOrderContext>
     {
         public Configuration()
@@ -17,30 +16,31 @@ namespace Data.Migrations
 
         protected override void Seed(Data.SmartOrderContext context)
         {
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new SmartOrderContext()));
+            //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new SmartOrderContext()));
 
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new SmartOrderContext()));
+            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new SmartOrderContext()));
 
-            var user = new ApplicationUser()
-            {
-                UserName = "anhch",
-                Email = "hahaa.hahaha@gmail.com",
-                EmailConfirmed = true,
-                BirthDay = DateTime.Now,
-                FullName = "Le Trong Thang"
-            };
+            //var user = new ApplicationUser()
+            //{
+            //    UserName = "test",
+            //    Email = "hahaa.hahaha@gmail.com",
+            //    EmailConfirmed = true,
+            //    BirthDay = DateTime.Now,
+            //    FullName = "Le Trong Thang",
+                
+            //};
 
-            manager.Create(user, "anhch184");
+            //manager.Create(user, "123456");
 
-            if (!roleManager.Roles.Any())
-            {
-                roleManager.Create(new IdentityRole { Name = "Admin" });
-                roleManager.Create(new IdentityRole { Name = "User" });
-            }
+            //if (!roleManager.Roles.Any())
+            //{
+            //    roleManager.Create(new IdentityRole { Name = "Admin" });
+            //    roleManager.Create(new IdentityRole { Name = "User" });
+            //}
 
-            var adminUser = manager.FindByEmail("hahaa.hahaha@gmail.com");
+            //var adminUser = manager.FindByName("test");
 
-            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+            //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
         }
     }
 }

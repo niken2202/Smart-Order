@@ -1,9 +1,6 @@
 ﻿using Model.Models;
 using Service;
 using SmartOrder.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -13,13 +10,14 @@ namespace SmartOrder.api
     [RoutePrefix("api/table")]
     public class TableController : ApiControllerBase
     {
-        ITableService tableService;
+        private ITableService tableService;
+
         public TableController(IErrorService errorService, ITableService tableService, IHistoryService historyService) : base(errorService, historyService)
         {
             this.tableService = tableService;
         }
 
-        [Route("add")]
+        [Route("add"), Authorize]
         public HttpResponseMessage Create(HttpRequestMessage request, Table table)
         {
             return CreateHttpResponse(request, () =>
@@ -82,7 +80,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("delete")]
+        [Route("delete"), Authorize]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
