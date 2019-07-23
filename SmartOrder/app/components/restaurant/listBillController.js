@@ -26,7 +26,7 @@
         optionArr.push(op);
         op = new tmp(2, '7 ngày gần đây');
         optionArr.push(op);
-        op = new tmp(3, 'Tháng gần đây');
+        op = new tmp(3, '30 ngày gần đây');
         optionArr.push(op);
         $scope.options = optionArr;
 
@@ -42,11 +42,7 @@
             apiService.get('/api/bill/gettoday', null, function (result) {
                 $scope.bills = result.data;
                 $scope.title = "Hôm nay";
-                if ($scope.bills.length === 0) {
-                    notificationService.displayWarning('Danh sách trống !');
-                } else {
-                    $scope.countBill = $scope.bills.length;
-                }
+                    $scope.countBill = $scope.bills.length;                
             }, function () {
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
             });
@@ -56,12 +52,26 @@
         //catch event user select box change
         $scope.selectEvent = function () {
             if ($scope.userOption === 1) {
-                getListToday();
+
+                apiService.get('/api/bill/gettoday', null, function (result) {
+                    $scope.bills = result.data;
+                    $scope.title = "Hôm nay";
+                    
+                    if ($scope.bills.length === 0) {
+                        notificationService.displayWarning('Danh sách trống !');
+                    } else {
+                        $scope.countBill = $scope.bills.length;
+                    }
+                }, function () {
+                    notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
+                });
+
             } else if ($scope.userOption === 2) {
 
                 apiService.get('/api/bill/getlast7day', null, function (result) {
                     $scope.bills = result.data;
                     $scope.title = "7 ngày gần đây";
+                    console.log($scope.bills);
                     if ($scope.bills.length === 0) {
                         notificationService.displayWarning('Danh sách trống !');
                     } else {
@@ -130,7 +140,7 @@
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải dữ liệu!');
             });
 
-            var addDialog = ngDialog.openConfirm({
+            var detailDialog = ngDialog.openConfirm({
                 template: '/app/components/restaurant/billDetailView.html',
                 scope: $scope,
                 className: 'ngdialog',

@@ -31,11 +31,11 @@
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
                     <tr>
-                        <th ng-click="sort('ID')">Mã</th>
-                        <th ng-click="sort('Name')">Tên nguyên liệu</th>
-                        <th ng-click="sort('Price')">Giá tiền</th>
-                        <th ng-click="sort('Amount')">Số lượng</th>
-                        <th ng-click="sort('Unit')">Đơn vị</th>
+                        <th class="cornflowerblue" ng-click="sort('ID')">Mã</th>
+                        <th class="cornflowerblue" ng-click="sort('Name')">Tên nguyên liệu</th>
+                        <th class="cornflowerblue" ng-click="sort('Price')">Giá tiền</th>
+                        <th class="cornflowerblue" ng-click="sort('Amount')">Số lượng</th>
+                        <th class="cornflowerblue" ng-click="sort('Unit')">Đơn vị</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -55,11 +55,12 @@
                 </tbody>
             </table>
 
-            <dir-pagination-controls max-size="5"
-                                     direction-links="true"
-                                     boundary-links="true">
-            </dir-pagination-controls>
-
+            <div class="customeize-pagination">
+                <dir-pagination-controls max-size="5"
+                                         direction-links="true"
+                                         boundary-links="true">
+                </dir-pagination-controls>
+            </div>
         </div>
     </div>
 </div>

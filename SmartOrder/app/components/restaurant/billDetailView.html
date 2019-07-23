@@ -20,7 +20,7 @@
                         <td>{{item.Name}}</td>
                         <td>{{item.Amount}}</td>
                         <td>{{item.Price}}</td>
-                        <td></td>
+                        <td>{{item.Amount*item.Price}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -33,22 +33,22 @@
         <div class="div-footer-billdetail">
             <div class="div-footer-billdetail-content">
                 <div class="row1">
-                    <label class="customize-font-bold ">
+                    <label class="">
                         Tổng tiền : 253.356
                     </label>
                 </div>
                 <div class="row2">
-                    <label class="customize-font-bold ">
-                        Giảm giá : 5%
+                    <label class="">
+                        Giảm giá : {{item.Discount | percentFilter}}
                     </label>
                 </div>
                 <div class="row3">
-                    <label class="customize-font-bold ">
+                    <label class="">
                         Thanh toán : 235,000
                     </label>
                 </div>
                 <div class="row4">
-                    <label class="customize-font-bold ">
+                    <label class="">
                         Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
                     </label>
                 </div>

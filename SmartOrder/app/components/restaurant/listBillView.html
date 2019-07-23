@@ -34,33 +34,38 @@
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
                     <tr>
-                        <th ng-click="sort('ID')">ID</th>
-                        <th>Khách hàng</th>
-                        <th>Bàn</th>
-                        <th>Tạo bởi</th>
-                        <th>Mã giảm giá</th>
-                        <th ng-click="sort('CreatedDate')">Ngày tạo</th>
-                        <th>Nội dung</th>
+                        <th style="width:2%" ng-click="sort('ID')">ID</th>
+                        <th style="width:10%">Khách hàng</th>
+                        <th style="width:10%">Mã giảm giá</th>
+                        <th style="width:5%">Bàn</th>
+                        <th style="width:10%">Tạo bởi</th>
+                        <th style="width:5%">Giảm %</th>
+                        <th style="width:15%">Nội dung</th>
+                        <th style="width:10%" ng-click="sort('CreatedDate')">Ngày tạo</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-click="billDetailEvent(item)"
                         dir-paginate="item in bills |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
-                        <td >{{item.ID}}</td>
-                        <td >{{item.CustomerName}}</td>
-                        <td >{{item.TableID}}</td>
-                        <td >{{item.CreatedBy}}</td>
-                        <td >{{item.Voucher}}</td>
-                        <td  style="text-align:left">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>
-                        <td >{{item.Content}}</td>
+                        <td>{{item.ID}}</td>
+                        <td>{{item.CustomerName}}</td>
+                        <td>{{item.Voucher | voucherFilter}}</td>
+                        <td>{{item.TableID}}</td>
+                        <td>{{item.CreatedBy}}</td>
+                        <td>{{item.Discount | percentFilter}}</td>
+                        <td>{{item.Content}}</td>
+                        <td style="text-align:left">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>
                     </tr>
                 </tbody>
             </table>
 
-            <dir-pagination-controls max-size="5"
-                                     direction-links="true"
-                                     boundary-links="true">
-            </dir-pagination-controls>
+            <div class="customeize-pagination">
+                <dir-pagination-controls max-size="5"
+                                         direction-links="true"
+                                         boundary-links="true">
+                </dir-pagination-controls>
+            </div>
+
         </div>
     </div>
 </div>
