@@ -116,7 +116,7 @@
                
         //show bill details
         $scope.billDetailEvent = function (data) {
-
+            $scope.currentBill = data;
             var transfer = {
                 params: {
                     billId: data.ID,

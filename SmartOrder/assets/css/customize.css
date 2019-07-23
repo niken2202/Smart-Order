@@ -126,19 +126,58 @@
         background-color: #25B686;
         margin-left: 10px
     }
-/*Begin Customize logout button in base view page*/
 
-.logout-dropbtn {
-    background-color: #fafbfc;
-    color: #3f6ad8;
-    margin: 0px;
-    padding-top: 10px;
-    padding-bottom: 0px;
-    padding-left: 10px;
-    padding-right: 5px;
-    border: none;
-    cursor: pointer;
+/*custom view bill detail*/
+.div-footer-billdetail-content {
+    width: 25%;
+    height: auto;
+    background-color: #FFF;
+    text-align:left;
+    float:right
 }
+
+.div-footer-billdetail{
+    width:95%;
+    height:auto;
+    text-align:right;
+}
+    .div-footer-billdetail .row1 {
+        width: 100%;
+        height: 30px;
+        background-color: #FFF;
+        padding:5px;
+    }
+    .div-footer-billdetail .row2 {
+        width: 100%;
+        height: 30px;
+        background-color: #FFF;
+        padding: 5px;
+    }
+    .div-footer-billdetail .row3 {
+        width: 100%;
+        height: 30px;
+        background-color: #FFF;
+        padding: 5px;
+    }
+    .div-footer-billdetail .row4 {
+        width: 100%;
+        height: 30px;
+        background-color: #FFF;
+        padding: 5px;
+    }
+
+    /*Begin Customize logout button in base view page*/
+    .logout-dropbtn {
+        background-color: #fafbfc;
+        color: #3f6ad8;
+        margin: 0px;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        padding-left: 10px;
+        padding-right: 5px;
+        border: none;
+        cursor: pointer;
+    }
 
 .logout-dropdown {
     position: relative;
@@ -243,6 +282,7 @@ disapear {
 }
 
 /*End Customize logout button in base view page*/
+
 /*Begin customize HomeView*/
 .inherit-height-width {
     height: inherit;
@@ -276,7 +316,6 @@ disapear {
     padding-right: 20px;
     margin: 0px;
     display: block;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
     float: left;
     background-color: white;

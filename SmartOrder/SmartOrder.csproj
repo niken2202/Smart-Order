@@ -1111,6 +1111,12 @@
     <Content Include="lib\angular.js\i18n\angular-locale_zh.js" />
     <Content Include="lib\angular.js\i18n\angular-locale_zu-za.js" />
     <Content Include="lib\angular.js\i18n\angular-locale_zu.js" />
+    <Content Include="lib\Chart.js\Chart.bundle.js" />
+    <Content Include="lib\Chart.js\Chart.bundle.min.js" />
+    <Content Include="lib\Chart.js\Chart.css" />
+    <Content Include="lib\Chart.js\Chart.js" />
+    <Content Include="lib\Chart.js\Chart.min.css" />
+    <Content Include="lib\Chart.js\Chart.min.js" />
     <Content Include="lib\font-awesome\css\all.css" />
     <Content Include="lib\font-awesome\css\all.min.css" />
     <Content Include="lib\font-awesome\css\brands.css" />

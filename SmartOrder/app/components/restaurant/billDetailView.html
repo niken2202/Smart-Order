@@ -2,7 +2,7 @@
     <div class="card-body">
         <h4 class="card-title customize-font-blue-color">Chi tiết hóa đơn </h4>
 
-        
+
         <div class="table-responsive">
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
@@ -11,7 +11,7 @@
                         <th>Mặt hàng</th>
                         <th>Số lượng</th>
                         <th>Đơn giá</th>
-                        <!--<th>Thành tiền</th>-->
+                        <th>Thành tiền</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,16 +20,41 @@
                         <td>{{item.Name}}</td>
                         <td>{{item.Amount}}</td>
                         <td>{{item.Price}}</td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
-
             <dir-pagination-controls max-size="5"
                                      direction-links="true"
                                      boundary-links="true">
             </dir-pagination-controls>
-
         </div>
+
+        <div class="div-footer-billdetail">
+            <div class="div-footer-billdetail-content">
+                <div class="row1">
+                    <label class="customize-font-bold ">
+                        Tổng tiền : 253.356
+                    </label>
+                </div>
+                <div class="row2">
+                    <label class="customize-font-bold ">
+                        Giảm giá : 5%
+                    </label>
+                </div>
+                <div class="row3">
+                    <label class="customize-font-bold ">
+                        Thanh toán : 235,000
+                    </label>
+                </div>
+                <div class="row4">
+                    <label class="customize-font-bold ">
+                        Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
+                    </label>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
