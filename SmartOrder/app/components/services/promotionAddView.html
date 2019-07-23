@@ -1,0 +1,64 @@
+﻿<div class="main-card mb-3 card" style="border:hidden">
+    <div class="card-body">
+        <h4 class="card-title customize-font-blue-color"> Thêm nguyên liệu mới </h4>
+        <form class="" novalidate name="frmAddPromotion" role="form">
+
+            <div class="position-relative form-group">
+                <label class="">Tên mã giảm giá </label>
+                <input required name="Code" maxlength="256" type="text" class="form-control" ng-model="promoAdd.Code">
+                <span ng-show="frmAddPromotion.Code.$invalid" class="had-error">*Hãy nhập tên mã giảm giá</span>
+                <span ng-show="frmAddPromotion.Code.$error.maxlength.invalid" class="had-error">Tên mã giảm giá quá dài</span>
+            </div>
+
+            <div class="position-relative form-group">
+                <label class="">Hiệu lực đến</label>
+                <input required name="ExpiredDate" type="date" class="form-control" ng-model="promoAdd.ExpiredDate">
+                <span ng-show="frmAddPromotion.ExpiredDate.$invalid" class="had-error"></span>
+            </div>
+
+            <div class="position-relative form-group">
+                <label class="">Giảm giá %</label>
+                <input required name="discount" type="number" min="0" class="form-control" ng-model="promoAdd.Discount">
+                <span ng-show="frmAddPromotion.discount.$invalid" class="had-error">*Vui lòng nhập % giảm giá</span>
+            </div>
+
+            <!--<div class="position-relative form-group">
+                <label for="exampleText" class="">Mô tả chi tiết món</label>
+                <textarea name="dishDescription" class="form-control" ng-model="dish.Description">
+            </textarea>
+            </div>-->
+            <fieldset class="position-relative row form-group">
+                <legend class="col-form-label col-sm-2">Trạng thái</legend>
+                <div class="col-sm-10">
+                    <div class="position-relative form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" ng-model="promoAdd.Status" ng-value="1" />Khả dụng
+                        </label>
+                    </div>
+                    <div class="position-relative form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" ng-model="promoAdd.Status" ng-value="0" />
+                            Tạm ngừng
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+
+
+
+            <div class="nav-table-bar-parent">
+                <div class="box-2">
+                    <button type="submit" ng-disabled="frmAddPromotion.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="addPromo()">Thêm mới</button>
+                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click=closeThisDialog(0)>Hủy bỏ</button>
+                </div>
+                <div class="box-1">
+                </div>
+                <div class="box-3">
+                </div>
+                <div class="box-4">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

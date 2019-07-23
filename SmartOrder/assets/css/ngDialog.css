@@ -109,7 +109,7 @@
     padding-bottom: 1px;
     padding-left: 2px;
     padding-right: 2px;
-    border-radius:15px;
+    border-radius:10px;
 }
 
 .ngdialog.ngdialog-closing .ngdialog-content {

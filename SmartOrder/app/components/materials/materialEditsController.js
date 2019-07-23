@@ -1,9 +1,9 @@
 ﻿(function (app) {
     app.controller('materialEditsController', materialEditsController);
 
-    materialEditsController.$inject = ['$scope', '$state', 'ngDialog', 'apiService', 'notificationService', '$stateParams'];
+    materialEditsController.$inject = ['$scope', 'apiService', 'notificationService'];
 
-    function materialEditsController($scope, $state, ngDialog, apiService, notificationService, $stateParams) {
+    function materialEditsController($scope, apiService, notificationService) {
 
         var a = $scope.selectMate;
         $scope.edtMate = {
