@@ -9,7 +9,7 @@ namespace Service
     {
         Combo Add(Combo combo);
 
-        IEnumerable<Combo> GetAll();
+        IEnumerable<object> GetAll();
 
         Combo GetById(int id);
 
@@ -41,7 +41,7 @@ namespace Service
             return comboRepository.Delete(id);
         }
 
-        public IEnumerable<Combo> GetAll()
+        public IEnumerable<object> GetAll()
         {
             return comboRepository.GetAll();
         }

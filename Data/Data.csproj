@@ -77,6 +77,14 @@
     <Compile Include="Migrations\201907230736118_update-combotable.Designer.cs">
       <DependentUpon>201907230736118_update-combotable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907231538283_update_dishcombomapping.cs" />
+    <Compile Include="Migrations\201907231538283_update_dishcombomapping.Designer.cs">
+      <DependentUpon>201907231538283_update_dishcombomapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907231546494_update_dishcombomapping_v2.cs" />
+    <Compile Include="Migrations\201907231546494_update_dishcombomapping_v2.Designer.cs">
+      <DependentUpon>201907231546494_update_dishcombomapping_v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BillDetailRepository.cs" />
@@ -120,6 +128,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907230736118_update-combotable.resx">
       <DependentUpon>201907230736118_update-combotable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907231538283_update_dishcombomapping.resx">
+      <DependentUpon>201907231538283_update_dishcombomapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907231546494_update_dishcombomapping_v2.resx">
+      <DependentUpon>201907231546494_update_dishcombomapping_v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

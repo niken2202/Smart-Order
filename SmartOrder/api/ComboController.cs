@@ -1,9 +1,6 @@
 ﻿using Model.Models;
 using Service;
 using SmartOrder.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -13,7 +10,7 @@ namespace SmartOrder.api
     [RoutePrefix("api/combo")]
     public class ComboController : ApiControllerBase
     {
-        IComboService comboService;
+        private IComboService comboService;
 
         public ComboController(IErrorService errorService, IComboService comboService, IHistoryService historyService) : base(errorService, historyService)
         {
@@ -61,8 +58,9 @@ namespace SmartOrder.api
                 return response;
             });
         }
+
         [Route("getbyid")]
-        public HttpResponseMessage Get(HttpRequestMessage request,int comboId)
+        public HttpResponseMessage Get(HttpRequestMessage request, int comboId)
         {
             return CreateHttpResponse(request, () =>
             {
