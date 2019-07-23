@@ -22,6 +22,9 @@ namespace Model.Models
 
         public int Amount { get; set; }
 
+        [MaxLength(256)]
+        public string Image { get; set; }
+
         public virtual IEnumerable<DishComboMapping> DishComboMappings { set; get; }
     }
 }

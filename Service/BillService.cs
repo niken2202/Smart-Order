@@ -16,6 +16,7 @@ namespace Service
         IEnumerable<Bill> GetBillLastMonth();
         IEnumerable<Bill> GetBillLast7Days();
         IEnumerable<Bill> GetBillToday();
+        object GetBillDetail(int id);
         void SaveChanges();
     }
 
@@ -38,6 +39,11 @@ namespace Service
         public IEnumerable<Bill> GetAll()
         {
            return billRepository.GetAll();
+        }
+
+        public object GetBillDetail(int id)
+        {
+            return  billRepository.GetBillDetail(id);
         }
 
         public IEnumerable<Bill> GetBillLast7Days()
