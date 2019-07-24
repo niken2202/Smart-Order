@@ -62,9 +62,9 @@
                 $scope.title = "7 ngày gần đây";
                 console.log($scope.bills);
                 if ($scope.bills.length === 0) {
-                    notificationService.displayWarning('Danh sách trống !');
+                    //notificationService.displayWarning('Danh sách trống !');
                 } else {
-                    $scope.countBill = $scope.bills.length;
+                    
                 }
             }, function () {
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
@@ -80,12 +80,12 @@
 
                 apiService.get('/api/bill/getlast7day', null, function (result) {
                     $scope.bills = result.data;
-                    $scope.title = "7 ngày gần đây";
+                    $scope.title = "30 ngày gần đây";
                     if ($scope.bills.length === 0) {
-                        notificationService.displayWarning('Danh sách trống !');
+                        //notificationService.displayWarning('Danh sách trống !');
                     } else {
-                        notificationService.displaySuccess('Tổng cộng có: ' + $scope.bills.length + ' hóa đơn');
-                        $scope.countBill = $scope.bills.length;
+                        //notificationService.displaySuccess('Tổng cộng có: ' + $scope.bills.length + ' hóa đơn');
+                        //$scope.countBill = $scope.bills.length;
                     }
                 }, function () {
                     notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
@@ -94,12 +94,12 @@
             } else if ($scope.userOption === 3) {
                 apiService.get('/api/bill/getlastmonth', null, function (result) {
                     $scope.bills = result.data;
-                    $scope.title = "Tháng gần đây";
+                    $scope.title = "12 Tháng gần đây";
                     if ($scope.bills.length === 0) {
-                        notificationService.displayWarning('Danh sách trống !');
+                        //notificationService.displayWarning('Danh sách trống !');
                     } else {
-                        notificationService.displaySuccess('Tổng cộng có: ' + $scope.bills.length + ' hóa đơn');
-                        $scope.countBill = $scope.bills.length;
+                        //notificationService.displaySuccess('Tổng cộng có: ' + $scope.bills.length + ' hóa đơn');
+                        //$scope.countBill = $scope.bills.length;
                     }
                 }, function () {
                     notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
