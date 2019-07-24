@@ -89,6 +89,10 @@
     <Compile Include="Migrations\201907240751124_add_new_revenue_storedproceduce.Designer.cs">
       <DependentUpon>201907240751124_add_new_revenue_storedproceduce.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907241624452_rename-table-identity.cs" />
+    <Compile Include="Migrations\201907241624452_rename-table-identity.Designer.cs">
+      <DependentUpon>201907241624452_rename-table-identity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BillDetailRepository.cs" />
@@ -141,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907240751124_add_new_revenue_storedproceduce.resx">
       <DependentUpon>201907240751124_add_new_revenue_storedproceduce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907241624452_rename-table-identity.resx">
+      <DependentUpon>201907241624452_rename-table-identity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
