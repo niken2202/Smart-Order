@@ -72,7 +72,7 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    var combo = comboService.GetById(comboId);
+                    var combo = comboService.GetCombobyId(comboId);
                     response = request.CreateResponse(HttpStatusCode.OK, combo);
                 }
                 return response;

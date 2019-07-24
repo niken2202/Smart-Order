@@ -7,9 +7,9 @@ namespace Data.Repositories
 {
     public interface IComboRepository : IRepository<Combo>
     {
-        Combo GetById(int id);
+        IEnumerable<Combo> GetAll();
+        object GetComboById(int id);
 
-        IEnumerable<object> GetAll();
     }
 
     public class ComboRepository : RepositoryBase<Combo>, IComboRepository
@@ -18,48 +18,49 @@ namespace Data.Repositories
         {
         }
 
-        public IEnumerable<object> GetAll()
+        public IEnumerable<Combo> GetAll()
         {
             var listc = from c in DbContext.Combos
                         select c;
-
-            List<object> listCombo = new List<object>();
-            foreach (var combo in listc)
-            {
-                var dishes = from d in DbContext.Dishes
-                             join dc in DbContext.DishComboMapping on d.ID equals dc.ComboID
-                             where dc.ComboID == combo.ID
-                             select new
-                             {
-                                 d.ID,
-                                 d.Name,
-                                 d.Price,
-                                 d.Status,
-                                 d.Description,
-                                 d.CategoryID,
-                                 d.CreatedDate,
-                                 dc.Amount,
-                                 d.Image,
-                             };
-
-                listCombo.Add(new
-                {
-                    combo.ID,
-                    combo.Image,
-                    combo.Name,
-                    combo.Price,
-                    combo.Amount,
-                    combo.Description,
-                    combo.Status,
-                    dishes
-                });
-            }
-            return listCombo;
+            return listc;
         }
 
-        public Combo GetById(int id)
+        
+        public object GetComboById(int id)
         {
-            throw new System.NotImplementedException();
+            var combo = (from c in DbContext.Combos
+                        where c.ID == id
+                        select c).FirstOrDefault();
+
+            var dishes = from d in DbContext.Dishes
+                         join dc in DbContext.DishComboMapping on d.ID equals dc.ComboID
+                         where dc.ComboID == id
+                         select new
+                         {
+                             d.ID,
+                             d.Name,
+                             d.Price,
+                             d.Status,
+                             d.Description,
+                             d.CategoryID,
+                             d.CreatedDate,
+                             dc.Amount,
+                             d.Image,
+                         };
+            if (combo == null) return null;
+          var cc = new
+            {
+                combo.ID,
+                combo.Image,
+                combo.Name,
+                combo.Price,
+                combo.Amount,
+                combo.Description,
+                combo.Status,
+                dishes
+            };
+            return cc;
+
         }
     }
 }

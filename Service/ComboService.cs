@@ -9,7 +9,7 @@ namespace Service
     {
         Combo Add(Combo combo);
 
-        IEnumerable<object> GetAll();
+        IEnumerable<Combo> GetAll();
 
         Combo GetById(int id);
 
@@ -17,6 +17,7 @@ namespace Service
 
         void Update(Combo combo);
 
+        object GetCombobyId(int id);
         void SaveChanges();
     }
 
@@ -51,6 +52,11 @@ namespace Service
             return comboRepository.GetSingleById(id);
         }
 
+        public object GetCombobyId(int id)
+        {
+            return comboRepository.GetComboById(id);
+        }
+
         public void SaveChanges()
         {
             unitOfWork.Commit();
@@ -59,6 +65,11 @@ namespace Service
         public void Update(Combo combo)
         {
             comboRepository.Update(combo);
+        }
+
+        IEnumerable<Combo> IComboService.GetAll()
+        {
+            return comboRepository.GetAll();
         }
     }
 }
