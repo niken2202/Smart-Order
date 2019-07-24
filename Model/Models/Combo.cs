@@ -25,6 +25,9 @@ namespace Model.Models
         [MaxLength(256)]
         public string Image { get; set; }
 
+        public bool Status { get; set; }
+
         public virtual IEnumerable<DishComboMapping> DishComboMappings { set; get; }
+       
     }
 }

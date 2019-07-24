@@ -9,7 +9,8 @@ namespace Data.Repositories
 {
     public interface IBillRepository: IRepository<Bill>{
 
-        IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromdate,DateTime toDate);
+        IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromDate,DateTime toDate);
+        IEnumerable<RevenueByMonthViewModel> GetRevenueGroupByMonth(DateTime fromdate,DateTime toDate);
         IEnumerable<Bill> GetAll();
         IEnumerable<Bill> GetTimeRange(DateTime fromDate,DateTime toDate);
         IEnumerable<Bill> GetBillLastMonth();
@@ -127,7 +128,16 @@ namespace Data.Repositories
             return b;
         }
 
-        
+        public IEnumerable<RevenueByMonthViewModel> GetRevenueGroupByMonth(DateTime fromDate, DateTime toDate)
+        {
+            var parameters = new object[]
+               {
+                new SqlParameter("@fromDate",fromDate),
+                new SqlParameter("@toDate",toDate),
+               };
+            var revenue = DbContext.Database.SqlQuery<RevenueByMonthViewModel>("GetRevenueByMonth @fromDate,@toDate", parameters);
+            return revenue;
+        }
     }
 
 }

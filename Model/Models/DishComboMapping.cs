@@ -14,6 +14,8 @@ namespace Model.Models
         [Column(Order = 2)]
         public int ComboID { get; set; }
 
+        public int Amount { get; set; }
+
         [ForeignKey("DishID")]
         public virtual Dish Dish { set; get; }
 
