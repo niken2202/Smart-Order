@@ -23,6 +23,7 @@ namespace Service
 
         IEnumerable<Bill> GetBillToday();
         IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromDate, DateTime toDate);
+        IEnumerable<RevenueByMonthViewModel> GetRevenueGroupByMonth(DateTime fromDate, DateTime toDate);
 
         object GetBillDetail(int id);
 
@@ -73,6 +74,11 @@ namespace Service
         public Bill GetById(int id)
         {
             return billRepository.GetSingleById(id);
+        }
+
+        public IEnumerable<RevenueByMonthViewModel> GetRevenueGroupByMonth(DateTime fromDate, DateTime toDate)
+        {
+            return billRepository.GetRevenueGroupByMonth(fromDate, toDate);
         }
 
         public IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromDate, DateTime toDate)

@@ -160,7 +160,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getrevenue"), HttpGet, Authorize]
+        [Route("getrevenue"), HttpGet, AllowAnonymous]
         public HttpResponseMessage GetRevenue(HttpRequestMessage request, DateTime fromDate, DateTime toDate)
         {
             return CreateHttpResponse(request, () =>
@@ -174,6 +174,26 @@ namespace SmartOrder.api
                 else
                 {
                     var revenue = billService.GetRevenueStatistic(fromDate, toDate);
+                    response = request.CreateResponse(HttpStatusCode.OK, revenue);
+                }
+                return response;
+            });
+        }
+
+        [Route("getrevenuebymonth"), HttpGet, AllowAnonymous]
+        public HttpResponseMessage GetRevenueByMonth(HttpRequestMessage request, DateTime fromDate, DateTime toDate)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var revenue = billService.GetRevenueGroupByMonth(fromDate, toDate);
                     response = request.CreateResponse(HttpStatusCode.OK, revenue);
                 }
                 return response;
