@@ -1,7 +1,7 @@
 ﻿(function (app) {
     app.controller('dishAddController', dishAddController);
 
-    dishAddController.$inject = ['$scope','apiService','notificationService'];
+    dishAddController.$inject = ['$scope', 'apiService', 'notificationService'];
 
     function dishAddController($scope, apiService, notificationService) {
 
@@ -11,6 +11,10 @@
             Status: 1,
             OrderCount: 0
         }
+
+        //$scope.test = function () {
+        //    console.log('in the add controller :------' + $scope.imageName);
+        //};
 
         //get list dish category to the select box
         $scope.DishCategory = [];        

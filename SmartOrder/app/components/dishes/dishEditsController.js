@@ -26,9 +26,12 @@
             Image: a.Image, OrderCount: a.OrderCount, CategoryID: a.CategoryID, Status: a.Status, CreatedDate: a.CreatedDate
         };
 
+        $scope.slectedChange = function (evt) {
+            console.log('event' + evt);
+        }
+
         //update dish
         $scope.updateDish = updateDish;
-
         function updateDish() {
             console.log($scope.edtDish)
             apiService.put('api/dish/update', $scope.edtDish,

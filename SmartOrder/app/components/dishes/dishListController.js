@@ -9,7 +9,7 @@
             apiService.get('/api/dish/getall', null, function (result) {
                 $scope.dishes = result.data.listDish;
                 if ($scope.dishes.length === 0) {
-                    notificationService.displayWarning('Danh sách trống !');
+                    //notificationService.displayWarning('Danh sách trống !');
                 }
             }, function () {
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');

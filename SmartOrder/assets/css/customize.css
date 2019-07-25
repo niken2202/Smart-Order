@@ -8,8 +8,7 @@
 }
 
 .delete-icon {
-    color: white;
-    background-color: red;
+    background-color: #FFF;
     display: block;
     width: auto;
     height: auto;
@@ -19,8 +18,10 @@
     margin-left: 0px;
     margin-right: 5px;
     padding: 5px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+.customize-delete-icon {
+    color: red;
+    font-size: large;
 }
 
 .attention-component {
@@ -66,6 +67,14 @@
         cursor: pointer
     }
 
+    .customize-delete-icon{
+        color:red;
+        width:20px;
+        height:20px;
+    }
+    .div-text-align-center{
+        text-align:center;
+    }
         .attention-component .close path:first-child {
             fill: #fff
         }

@@ -1,10 +1,10 @@
 ﻿(function (app) {
     app.filter('avaiableFilter', function () {
         return function (input) {
-            if (input == 1) {
+            if (input == 1 || input == true) {
                 return 'Khả dụng';
             } else {
-                return 'Tạm ngưng';
+                return 'Tạm dừng';
             }
         }
     });

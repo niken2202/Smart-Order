@@ -257,6 +257,10 @@
     <Content Include="app\components\restaurant\listBillView.html" />
     <Content Include="app\components\restaurant\revenusView.html" />
     <Content Include="app\components\services\comboController.js" />
+    <Content Include="app\components\services\comboAddController.js" />
+    <Content Include="app\components\services\comboAddView.html" />
+    <Content Include="app\components\services\comboEditsController.js" />
+    <Content Include="app\components\services\comboEditsView.html" />
     <Content Include="app\components\services\promotionAddController.js" />
     <Content Include="app\components\services\promotionEditsController.js" />
     <Content Include="app\components\services\promotionAddView.html" />
@@ -272,6 +276,7 @@
     <Content Include="app\shared\filters\statusFilter.js" />
     <Content Include="app\shared\modules\SmartOrder.common.js" />
     <Content Include="app\shared\services\apiService.js" />
+    <Content Include="app\shared\services\imgUpload.js" />
     <Content Include="app\shared\services\authData.js" />
     <Content Include="app\shared\services\authenticationService.js" />
     <Content Include="app\shared\services\loginService.js" />
