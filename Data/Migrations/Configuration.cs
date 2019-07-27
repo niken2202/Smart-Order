@@ -1,11 +1,7 @@
 namespace Data.Migrations
 {
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Model.Models;
-    using System;
     using System.Data.Entity.Migrations;
-    using System.Linq;
+
     internal sealed class Configuration : DbMigrationsConfiguration<Data.SmartOrderContext>
     {
         public Configuration()
@@ -26,7 +22,7 @@ namespace Data.Migrations
             //    EmailConfirmed = true,
             //    BirthDay = DateTime.Now,
             //    FullName = "Le Trong Thang",
-                
+
             //};
 
             //manager.Create(user, "123456");

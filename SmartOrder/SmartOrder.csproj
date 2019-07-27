@@ -193,6 +193,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="api\AccountController.cs" />
+    <Compile Include="api\ApplicationRoleController.cs" />
+    <Compile Include="api\ApplicationUserController.cs" />
     <Compile Include="api\BillController.cs" />
     <Compile Include="api\BillDetailController.cs" />
     <Compile Include="api\ComboController.cs" />
@@ -1274,6 +1276,7 @@
     <Folder Include="app\shared\navigation\" />
     <Folder Include="App_Data\" />
     <Folder Include="lib\%40aspnet\signalr\dist\" />
+    <Folder Include="Views\ApplicationUser\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Model.Models;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SmartOrder.Models
@@ -13,6 +15,18 @@ namespace SmartOrder.Models
     public class ExternalLoginListViewModel
     {
         public string ReturnUrl { get; set; }
+    }
+
+    public class ApplicationUserViewModel
+    {
+        public string Id { set; get; }
+        public string FullName { set; get; }
+        public DateTime? BirthDay { set; get; }
+        public string UserName { set; get; }
+        public string PhoneNumber { set; get; }
+        public string PassWord { get; set; }
+        public string Address { get; set; }
+        public IEnumerable<string> Roles { get; set; }
     }
 
     public class SendCodeViewModel
@@ -31,6 +45,7 @@ namespace SmartOrder.Models
         [Required]
         [Display(Name = "Code")]
         public string Code { get; set; }
+
         public string ReturnUrl { get; set; }
 
         [Display(Name = "Remember this browser?")]
@@ -64,13 +79,11 @@ namespace SmartOrder.Models
 
     public class RegisterViewModel
     {
-        [Required(ErrorMessage ="Bạn cần nhập tên.")]
-      
+        [Required(ErrorMessage = "Bạn cần nhập tên.")]
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
         [Required]
-       
         [Display(Name = "Mobile phone")]
         public string MobilePhone { get; set; }
 
