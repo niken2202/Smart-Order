@@ -1,9 +1,9 @@
 ﻿(function (app) {
     app.controller('dishAddController', dishAddController);
 
-    dishAddController.$inject = ['$scope', 'apiService', 'notificationService'];
+    dishAddController.$inject = ['$scope', 'apiService', 'notificationService','$rootScope'];
 
-    function dishAddController($scope, apiService, notificationService) {
+    function dishAddController($scope, apiService, notificationService, $rootScope) {
 
         //dish binding in dialog add dish
         $scope.dishAdd = {
@@ -15,6 +15,12 @@
         //$scope.test = function () {
         //    console.log('in the add controller :------' + $scope.imageName);
         //};
+        $scope.imageName = "" ;
+
+        $scope.test = function () {
+            console.log('scope image: ' + $rootScope.anhch);
+        }
+       
 
         //get list dish category to the select box
         $scope.DishCategory = [];        

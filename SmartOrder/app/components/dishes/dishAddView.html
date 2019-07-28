@@ -43,7 +43,7 @@
                 <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
 
                 <div class="input-group">
-                    <input id="image" class="hidden" type="file" img-upload ng-model="imageName" name="imageName">
+                    <input id="image" class="hidden" type="file" img-upload ng-model="imageName" onchange="angular.element(this).scope().test(this)" name="imageName">
                     <img ng-src="{{image}}" height="300" width="400" ng-show="image" />
                     <!--<label for="image" class="btn btn-success btn-xs pull-center" name="upload" Value="">Upload Photo</label>-->
                 </div>

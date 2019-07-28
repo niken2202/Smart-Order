@@ -5,11 +5,11 @@
 
     imgUpload.$inject = ['$http', 'notificationService', 'authenticationService','$rootScope'];
 
-    function imgUpload($http, notificationService, authenticationService, $rootScope) {
+    function imgUpload($http, notificationService) {
 
         return {
             restrict: 'A',
-            link: function (scope, elem, attrs) {
+            link: function (scope, elem, attrs ) {
                 var canvas = document.createElement("canvas");
                 var extensions = 'jpeg ,jpg, png, gif';
                 elem.on('change', function () {
@@ -31,6 +31,8 @@
                 reader.onload = function (e) {
                     scope.image = e.target.result;
                     scope.$apply();
+
+                   
 
                 }
             }
