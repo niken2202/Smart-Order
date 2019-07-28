@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model.Models
@@ -12,8 +13,7 @@ namespace Model.Models
 
         [Required]
         [MaxLength(256)]
-        public string Name { set; get; }
-
-        public bool Status { get; set; }
+        public string Name { set; get;}
+        public int Status { get; set; }
     }
 }

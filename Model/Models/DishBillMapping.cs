@@ -21,7 +21,5 @@ namespace Model.Models
         [ForeignKey("BillID")]
         public virtual Bill Bill { set; get; }
 
-        public virtual IEnumerable<DishBillMapping> DishBillMappings { set; get; }
-
     }
 }

@@ -28,7 +28,6 @@ namespace Model.Models
         public string CreatedBy { set; get; }
         public int? Discount { set; get; }
         public bool Status { get; set; }
-
         public virtual IEnumerable<BillDetail> BillDetail { set; get; }
 
     }
