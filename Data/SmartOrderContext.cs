@@ -24,15 +24,18 @@ namespace Data
         public DbSet<DishComboMapping> DishComboMapping { set; get; }
         public DbSet<BillDetail> BillDetail { set; get; }
         public DbSet<PromotionCode> PromotionCode { set; get; }
+        public DbSet<ApplicationRole> ApplicationRoles { set; get; }
+        public DbSet<ApplicationUserRole> ApplicationUserRoles { set; get; }
         public static SmartOrderContext Create()
         {
             return new SmartOrderContext();
         }
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-            builder.Entity<IdentityUserRole>().HasKey(i => new {i.UserId,i.RoleId });
-            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
-
+            builder.Entity<IdentityUserRole>().HasKey(i => new {i.UserId,i.RoleId }).ToTable("ApplicationUserRoles");
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("ApplicationUserLogins");
+            builder.Entity<IdentityUserClaim>().HasKey(i => new { i.UserId }).ToTable("ApplicationUserClaims");
+            builder.Entity<IdentityRole>().ToTable("ApplicationRoles");
         }
     }
 }
