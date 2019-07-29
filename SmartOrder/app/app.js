@@ -19,6 +19,11 @@
                 templateUrl: "/app/components/login/loginView.html",
                 controller: "loginController"
             })
+            .state('register', {
+                url: "/register",
+                templateUrl: "/app/components/login/registerView.html",
+                controller: "registerController"
+            })
             .state('home', {
                 url: "/admin",
                 parent: 'base',

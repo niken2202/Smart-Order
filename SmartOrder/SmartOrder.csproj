@@ -241,7 +241,9 @@
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
     <Content Include="app\components\home\rootController.js" />
+    <Content Include="app\components\login\registerController.js" />
     <Content Include="app\components\login\loginController.js" />
+    <Content Include="app\components\login\registerView.html" />
     <Content Include="app\components\login\loginView.html" />
     <Content Include="app\components\materials\listMaterialController.js" />
     <Content Include="app\components\materials\listMaterialView.html" />
@@ -293,6 +295,8 @@
     <Content Include="assets\css\style.css" />
     <Content Include="assets\css\toastr.css" />
     <Content Include="assets\fonts\fa-solid-900.svg" />
+    <Content Include="assets\images\login\register.png" />
+    <Content Include="assets\login\css\register.css" />
     <Content Include="assets\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="assets\images\avatars\1.jpg" />
     <Content Include="assets\images\avatars\10.jpg" />
@@ -304,7 +308,9 @@
     <Content Include="assets\images\avatars\5.jpg" />
     <Content Include="assets\images\avatars\8.jpg" />
     <Content Include="assets\images\avatars\9.jpg" />
+    <Content Include="assets\images\login\banner2.jpg" />
     <Content Include="assets\images\login\banner1.jpg" />
+    <Content Include="assets\images\login\bg-01.jpg" />
     <Content Include="assets\images\login\fac.png" />
     <Content Include="assets\images\login\l.png" />
     <Content Include="assets\images\login\m.png" />
@@ -313,9 +319,11 @@
     <Content Include="assets\images\logo-inverse.png" />
     <Content Include="assets\images\logo.png" />
     <Content Include="assets\images\Ziet-Logo.png" />
+    <Content Include="assets\login\css\bootstrap.min.css" />
+    <Content Include="assets\login\js\bootstrap.min.js" />
+    <Content Include="assets\login\js\popper.min.js" />
     <Content Include="assets\scripts\dirPagination.js" />
     <Content Include="assets\scripts\execute.js" />
-    <Content Include="assets\scripts\javascript.js" />
     <Content Include="assets\scripts\jquery.min.js" />
     <Content Include="assets\scripts\main.js" />
     <Content Include="assets\scripts\toastr.js" />
@@ -1237,6 +1245,9 @@
     <Content Include="lib\angular-ui-router\ui-router-angularjs.min.js.map" />
     <Content Include="lib\jquery\jquery.min.map" />
     <Content Include="lib\jquery\jquery.slim.min.map" />
+    <Content Include="assets\login\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="assets\login\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="assets\login\fonts\poppins\Poppins-Regular.ttf" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
