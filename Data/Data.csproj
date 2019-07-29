@@ -108,6 +108,8 @@
     <Compile Include="Repositories\ApplicationUserRoleRepository.cs" />
     <Compile Include="Repositories\BillDetailRepository.cs" />
     <Compile Include="Repositories\BillRepository.cs" />
+    <Compile Include="Repositories\CartDetailRepository.cs" />
+    <Compile Include="Repositories\CartRepository.cs" />
     <Compile Include="Repositories\ComboRepository.cs" />
     <Compile Include="Repositories\DishBillMappingRepository.cs" />
     <Compile Include="Repositories\DishCategoryRepository.cs" />

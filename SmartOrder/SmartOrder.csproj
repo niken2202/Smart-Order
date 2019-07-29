@@ -197,6 +197,8 @@
     <Compile Include="api\ApplicationUserController.cs" />
     <Compile Include="api\BillController.cs" />
     <Compile Include="api\BillDetailController.cs" />
+    <Compile Include="api\CartController.cs" />
+    <Compile Include="api\CartDetailController.cs" />
     <Compile Include="api\ComboController.cs" />
     <Compile Include="api\DishCategoryController.cs" />
     <Compile Include="api\DishController.cs" />
