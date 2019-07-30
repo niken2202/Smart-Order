@@ -101,6 +101,10 @@
     <Compile Include="Migrations\201907281547507_add-cart-table.Designer.cs">
       <DependentUpon>201907281547507_add-cart-table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907300934572_update_table.cs" />
+    <Compile Include="Migrations\201907300934572_update_table.Designer.cs">
+      <DependentUpon>201907300934572_update_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationRoleRepository.cs" />
@@ -167,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907281547507_add-cart-table.resx">
       <DependentUpon>201907281547507_add-cart-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907300934572_update_table.resx">
+      <DependentUpon>201907300934572_update_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
