@@ -295,6 +295,7 @@
     <Content Include="assets\css\style.css" />
     <Content Include="assets\css\toastr.css" />
     <Content Include="assets\fonts\fa-solid-900.svg" />
+    <Content Include="assets\images\login\banner1.jpg" />
     <Content Include="assets\images\login\register.png" />
     <Content Include="assets\login\css\register.css" />
     <Content Include="assets\fonts\Pe-icon-7-stroke.svg" />
@@ -309,7 +310,7 @@
     <Content Include="assets\images\avatars\8.jpg" />
     <Content Include="assets\images\avatars\9.jpg" />
     <Content Include="assets\images\login\banner2.jpg" />
-    <Content Include="assets\images\login\banner1.jpg" />
+    <Content Include="assets\images\login\banner11.jpg" />
     <Content Include="assets\images\login\bg-01.jpg" />
     <Content Include="assets\images\login\fac.png" />
     <Content Include="assets\images\login\l.png" />
