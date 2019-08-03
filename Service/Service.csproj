@@ -58,6 +58,8 @@
     <Compile Include="ApplicationUserRoleService.cs" />
     <Compile Include="BillDetailService.cs" />
     <Compile Include="BillService.cs" />
+    <Compile Include="CartDetailService.cs" />
+    <Compile Include="CartService.cs" />
     <Compile Include="ComboService.cs" />
     <Compile Include="DishCategoryService.cs" />
     <Compile Include="DishComboMappingService.cs" />

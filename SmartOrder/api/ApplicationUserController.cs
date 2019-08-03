@@ -1,16 +1,16 @@
 ﻿using Common.Exceptions;
-using Model.Models;
 using Service;
 using SmartOrder.App_Start;
 using SmartOrder.Infrastructure;
 using SmartOrder.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Linq;
+
 namespace SmartOrder.api
 {
     [RoutePrefix("api/user")]
@@ -18,6 +18,7 @@ namespace SmartOrder.api
     {
         private ApplicationUserManager userManager;
         private IApplicationRoleService appRoleService;
+
         public ApplicationUserController(IApplicationRoleService appRoleService,
             ApplicationUserManager userManager,
             IErrorService errorService,
@@ -27,9 +28,10 @@ namespace SmartOrder.api
             this.userManager = userManager;
             this.appRoleService = appRoleService;
         }
+
         [Route("getall")]
         [HttpGet]
-       // [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -45,7 +47,7 @@ namespace SmartOrder.api
                         UserName = user.UserName,
                         BirthDay = user.BirthDay,
                         PhoneNumber = user.PhoneNumber,
-                      //  Roles = user.Roles
+                        //  Roles = user.Roles
                     };
                     listUser.Add(u);
                 }
@@ -78,7 +80,6 @@ namespace SmartOrder.api
                     var result = await userManager.CreateAsync(newAppUser, applicationUserViewModel.PassWord);
                     if (result.Succeeded)
                     {
-
                         //add role to user
                         var listRole = appRoleService.GetAll().Select(x => x.Name);
                         foreach (var role in applicationUserViewModel.Roles)
@@ -88,7 +89,6 @@ namespace SmartOrder.api
                                 await userManager.RemoveFromRoleAsync(newAppUser.Id, role);
                                 await userManager.AddToRoleAsync(newAppUser.Id, role);
                             }
-
                         }
 
                         return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
@@ -110,6 +110,5 @@ namespace SmartOrder.api
                 return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
         }
-
     }
 }

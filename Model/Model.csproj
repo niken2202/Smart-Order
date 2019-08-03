@@ -61,6 +61,8 @@
     <Compile Include="Models\ApplicationUserRole.cs" />
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\BillDetail.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartDetail.cs" />
     <Compile Include="Models\Combo.cs" />
     <Compile Include="Models\Dish.cs" />
     <Compile Include="Models\DishBillMapping.cs" />

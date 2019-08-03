@@ -40,8 +40,9 @@ namespace SmartOrder.api
             });
         }
         
-        [Route("getall")]
-    //    [Authorize(Roles = "Guest, Cashier")]
+        //[Route("getall")]
+        //[Authorize(Roles = "Guest, Cashier")]
+        //[Authorize(Roles = "Guest, Cashier")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
