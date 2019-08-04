@@ -8,16 +8,11 @@ namespace Service
     public interface ITableService
     {
         Table Add(Table table);
-
         IEnumerable<Table> GetAll();
-
         Table GetById(int id);
-
         Table Delete(int id);
         void Update(Table table);
-
         IEnumerable<Table> GetByName(string name);
-
         void SaveChanges();
     }
 
@@ -41,8 +36,6 @@ namespace Service
         {
             return tableRepository.Delete(id);
         }
-
-
         public IEnumerable<Table> GetAll()
         {
             return tableRepository.GetAll();
