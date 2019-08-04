@@ -14,7 +14,6 @@ namespace Service
         Table GetById(int id);
 
         Table Delete(int id);
-
         void Update(Table table);
 
         IEnumerable<Table> GetByName(string name);
@@ -42,6 +41,7 @@ namespace Service
         {
             return tableRepository.Delete(id);
         }
+
 
         public IEnumerable<Table> GetAll()
         {

@@ -7,13 +7,13 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class add_new_revenue_storedproceduce : IMigrationMetadata
+    public sealed partial class addBillProceduced : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(add_new_revenue_storedproceduce));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addBillProceduced));
         
         string IMigrationMetadata.Id
         {
-            get { return "201907240751124_add_new_revenue_storedproceduce"; }
+            get { return "201907310544537_addBillProceduced"; }
         }
         
         string IMigrationMetadata.Source

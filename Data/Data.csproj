@@ -61,49 +61,17 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201907201415031_Initial.cs" />
-    <Compile Include="Migrations\201907201415031_Initial.Designer.cs">
-      <DependentUpon>201907201415031_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201907310500518_initial.cs" />
+    <Compile Include="Migrations\201907310500518_initial.Designer.cs">
+      <DependentUpon>201907310500518_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907210938039_add-promotionCodetable.cs" />
-    <Compile Include="Migrations\201907210938039_add-promotionCodetable.Designer.cs">
-      <DependentUpon>201907210938039_add-promotionCodetable.cs</DependentUpon>
+    <Compile Include="Migrations\201907310544537_addBillProceduced.cs" />
+    <Compile Include="Migrations\201907310544537_addBillProceduced.Designer.cs">
+      <DependentUpon>201907310544537_addBillProceduced.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907221427092_AddBillStoredProceduced.cs" />
-    <Compile Include="Migrations\201907221427092_AddBillStoredProceduced.Designer.cs">
-      <DependentUpon>201907221427092_AddBillStoredProceduced.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907230736118_update-combotable.cs" />
-    <Compile Include="Migrations\201907230736118_update-combotable.Designer.cs">
-      <DependentUpon>201907230736118_update-combotable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907231538283_update_dishcombomapping.cs" />
-    <Compile Include="Migrations\201907231538283_update_dishcombomapping.Designer.cs">
-      <DependentUpon>201907231538283_update_dishcombomapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907231546494_update_dishcombomapping_v2.cs" />
-    <Compile Include="Migrations\201907231546494_update_dishcombomapping_v2.Designer.cs">
-      <DependentUpon>201907231546494_update_dishcombomapping_v2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907240751124_add_new_revenue_storedproceduce.cs" />
-    <Compile Include="Migrations\201907240751124_add_new_revenue_storedproceduce.Designer.cs">
-      <DependentUpon>201907240751124_add_new_revenue_storedproceduce.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907241624452_rename-table-identity.cs" />
-    <Compile Include="Migrations\201907241624452_rename-table-identity.Designer.cs">
-      <DependentUpon>201907241624452_rename-table-identity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907251631067_update-identity.cs" />
-    <Compile Include="Migrations\201907251631067_update-identity.Designer.cs">
-      <DependentUpon>201907251631067_update-identity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907281547507_add-cart-table.cs" />
-    <Compile Include="Migrations\201907281547507_add-cart-table.Designer.cs">
-      <DependentUpon>201907281547507_add-cart-table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907300934572_update_table.cs" />
-    <Compile Include="Migrations\201907300934572_update_table.Designer.cs">
-      <DependentUpon>201907300934572_update_table.cs</DependentUpon>
+    <Compile Include="Migrations\201907310546173_add-new-revenue-proceduced.cs" />
+    <Compile Include="Migrations\201907310546173_add-new-revenue-proceduced.Designer.cs">
+      <DependentUpon>201907310546173_add-new-revenue-proceduced.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,38 +110,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907201415031_Initial.resx">
-      <DependentUpon>201907201415031_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907310500518_initial.resx">
+      <DependentUpon>201907310500518_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907210938039_add-promotionCodetable.resx">
-      <DependentUpon>201907210938039_add-promotionCodetable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907310544537_addBillProceduced.resx">
+      <DependentUpon>201907310544537_addBillProceduced.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907221427092_AddBillStoredProceduced.resx">
-      <DependentUpon>201907221427092_AddBillStoredProceduced.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907230736118_update-combotable.resx">
-      <DependentUpon>201907230736118_update-combotable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907231538283_update_dishcombomapping.resx">
-      <DependentUpon>201907231538283_update_dishcombomapping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907231546494_update_dishcombomapping_v2.resx">
-      <DependentUpon>201907231546494_update_dishcombomapping_v2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907240751124_add_new_revenue_storedproceduce.resx">
-      <DependentUpon>201907240751124_add_new_revenue_storedproceduce.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907241624452_rename-table-identity.resx">
-      <DependentUpon>201907241624452_rename-table-identity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907251631067_update-identity.resx">
-      <DependentUpon>201907251631067_update-identity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907281547507_add-cart-table.resx">
-      <DependentUpon>201907281547507_add-cart-table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907300934572_update_table.resx">
-      <DependentUpon>201907300934572_update_table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907310546173_add-new-revenue-proceduced.resx">
+      <DependentUpon>201907310546173_add-new-revenue-proceduced.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

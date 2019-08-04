@@ -9,7 +9,7 @@ namespace Model.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        public int? CartID { get; set; }
+        public int CartID { get; set; }
        
         [Required]
         [MaxLength(256)]
@@ -22,6 +22,9 @@ namespace Model.Models
         public string Image { get; set; }
         public int Status { get; set; }
         public int CateID { get; set; }
+        public int Type { get; set; }
+
+        [ForeignKey("CartID")]
         public virtual Cart Cart { get; set; }
 
     }

@@ -30,7 +30,7 @@ namespace SmartOrder.api
                 {
                     var result = materialService.Add(material);
                     materialService.SaveChanges();
-                    SaveHistory("Add new material with ID: " + result.ID);
+                    SaveHistory("Đã thêm nguyên liệu mới có ID: " + result.ID);
                     response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;
@@ -91,7 +91,7 @@ namespace SmartOrder.api
                 else
                 {
                     materialService.Update(material);
-                    SaveHistory("Update material with ID: " + material.ID);
+                    SaveHistory("Đã cập nhật nguyên liệu mới có ID: " + material.ID);
 
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
@@ -114,7 +114,7 @@ namespace SmartOrder.api
                 {
                     Material material = materialService.Delete(id);
                     materialService.SaveChanges();
-                    SaveHistory("Delete material with ID: " + material.ID);
+                    SaveHistory("Đã xóa nguyên liệu có ID: " + material.ID);
                     response = request.CreateResponse(HttpStatusCode.OK, material);
                 }
                 return response; 
