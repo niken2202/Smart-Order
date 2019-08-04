@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,5 +18,6 @@ namespace Model.Models
         [Key, Column(Order = 2)]
         public string DeviceID { get; set; }
         public int Status { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201907310546173_add-new-revenue-proceduced.Designer.cs">
       <DependentUpon>201907310546173_add-new-revenue-proceduced.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908041250217_update-table.cs" />
+    <Compile Include="Migrations\201908041250217_update-table.Designer.cs">
+      <DependentUpon>201908041250217_update-table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationRoleRepository.cs" />
@@ -118,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907310546173_add-new-revenue-proceduced.resx">
       <DependentUpon>201907310546173_add-new-revenue-proceduced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908041250217_update-table.resx">
+      <DependentUpon>201908041250217_update-table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

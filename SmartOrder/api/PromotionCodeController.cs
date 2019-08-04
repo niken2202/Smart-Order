@@ -77,5 +77,26 @@ namespace SmartOrder.api
                 return response;
             });
         }
+
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage request, PromotionCode code)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    promotionCodeService.Update(code);
+                    SaveHistory("Đã cập nhật promotion có ID: " + code.ID);
+                    response = request.CreateResponse(HttpStatusCode.OK);
+                }
+                return response;
+            });
+        }
     }
 }
