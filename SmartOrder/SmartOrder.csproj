@@ -242,6 +242,10 @@
     <Content Include="app\components\dishes\listDishView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
+    <Content Include="app\components\home\listHistoryController.js" />
+    <Content Include="app\components\home\listHistoryView.html" />
+    <Content Include="app\components\home\profileController.js" />
+    <Content Include="app\components\home\profileView.html" />
     <Content Include="app\components\home\rootController.js" />
     <Content Include="app\components\login\registerController.js" />
     <Content Include="app\components\login\loginController.js" />
@@ -255,6 +259,10 @@
     <Content Include="app\components\materials\materialEditsView.html" />
     <Content Include="app\components\materials\materials.module.js" />
     <Content Include="app\components\restaurant\billDetailView.html" />
+    <Content Include="app\components\restaurant\tableEditsController.js" />
+    <Content Include="app\components\restaurant\tableEditsView.html" />
+    <Content Include="app\components\restaurant\tableAddController.js" />
+    <Content Include="app\components\restaurant\tableAddView.html" />
     <Content Include="app\components\restaurant\revenusController.js" />
     <Content Include="app\components\restaurant\tablesView.html" />
     <Content Include="app\components\restaurant\listBillController.js" />

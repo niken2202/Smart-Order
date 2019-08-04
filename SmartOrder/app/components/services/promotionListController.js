@@ -39,7 +39,7 @@
 
             // Show the dialog detail promotion 
             var dialog = ngDialog.openConfirm({
-                template: '/app/components/services/promotionListView.html',
+                template: '/app/components/services/promotionEditsView.html',
                 scope: $scope,
                 controller: 'promotionEditsController',
                 controllerAs: "file",

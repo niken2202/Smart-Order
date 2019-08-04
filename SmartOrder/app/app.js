@@ -29,9 +29,22 @@
                 parent: 'base',
                 templateUrl: "/app/components/home/homeView.html",
                 controller: "homeController"
+            })
+            .state('history', {
+                url: "/history",
+                parent: 'base',
+                templateUrl: "/app/components/home/listHistoryView.html",
+                controller: "listHistoryController"
+            })
+            .state('profile', {
+                url: "/profile",
+                //parent: 'base',
+                templateUrl: "/app/components/home/profileView.html",
+                controller: "profileController"
             });
         $urlRouterProvider.otherwise('/login');
     }
+
     function configAuthentication($httpProvider) {
         $httpProvider.interceptors.push(function ($q, $location) {
             return {
@@ -60,4 +73,5 @@
             };
         });
     }
+
 })();

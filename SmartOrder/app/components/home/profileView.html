@@ -19,8 +19,8 @@
                         <!-- Background image for card set in CSS! -->
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title text-center">Tạo tài khoản</h5>
-                        <form class="form-signin" ng-submit="registerSubmit()">
+                        <h5 class="card-title text-center">Thông tin tài khoản</h5>
+                        <form class="form-signin" ng-submit="profileSubmit()">
                             <div class="form-label-group">
                                 <input type="text" id="fullName" class="form-control" maxlength="256" placeholder="Họ và tên" required autofocus ng-model="registerData.FullName">
                                 <label for="fullName">* Họ và tên</label>
@@ -43,7 +43,7 @@
     </div>-->
 
                             <div class="form-label-group">
-                                <input type="number" maxlength="13" id="phoneNumber" class="form-control" placeholder="Số điện thoại" required ng-model="registerData.PhoneNumber">
+                                <input type="number" maxlength="11" id="phoneNumber" class="form-control" placeholder="Số điện thoại" required ng-model="registerData.PhoneNumber">
                                 <label for="phoneNumber">Số điện thoại</label>
                             </div>
                             <!--<hr>-->
@@ -53,27 +53,26 @@
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="PSW" class="form-control" minlength="9" maxlength="25" placeholder="Mật khẩu" required ng-model="psw">
+                                <input type="password" id="PSW" class="form-control" maxlength="50" placeholder="Mật khẩu" required ng-model="psw">
                                 <label for="PSW">* Mật khẩu</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="rePSW" class="form-control" minlength="9" maxlength="25" placeholder="Nhập lại mật khẩu" required ng-model="rePsw">
+                                <input type="password" id="rePSW" class="form-control" maxlength="50" placeholder="Nhập lại mật khẩu" required ng-model="rePsw">
                                 <label for="rePSW">* Nhập lại mật khẩu</label>
                             </div>
 
                             <div class="position-relative form-group ">
                                 <label for="exampleSelect">Vai trò tài khoản</label>
                                 <select required name="role" class="form-control"
-                                        ng-model="registerData.Id" ng-options="option.Id as option.Name for option in roles">
+                                        ng-model="profile.Id" ng-options="option.Id as option.Name for option in roles">
                                     <option selected disabled value="">-- Nhóm --</option>
                                 </select>
-                                <!--<span ng-show="frmAddDish.dishCategory.$error.required" class="had-error">*Vui lòng chọn vai trò</span>-->
+                                <span ng-show="frmAddDish.dishCategory.$error.required" class="had-error">*Vui lòng chọn vai trò</span>
                             </div>
 
-
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Đăng ký</button>
-                            <a class="d-block text-center mt-2 small" ui-sref="login">Đăng nhập</a>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Lưu lại</button>
+                            <a class="d-block text-center mt-2 small" ui-sref="home">Trở về trang chủ</a>
                             <!--<hr class="my-4">-->
                             <!--<button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign up with Google</button>-->
                             <!--<button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button>-->

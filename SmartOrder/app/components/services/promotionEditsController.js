@@ -3,18 +3,20 @@
 
     promotionEditsController.$inject = ['$scope', 'apiService', 'notificationService'];
 
-    function promotionEditsController() {
+    function promotionEditsController($scope, ngDialog, apiService, notificationService) {
 
         var a = $scope.selectPromotion;
+        var ExpiredDate = new Date(a.ExpiredDate);
+        console.log("test date " + a.Status);
         $scope.edtPromo = {
-            ID: a.ID, Code: a.Code, CreatedDate: a.CreatedDate, ExpiredDate: a.ExpiredDate, Discount: a.Discount, Status: a.Status
+            ID: a.ID, Code: a.Code, CreatedDate: a.CreatedDate, ExpiredDate: ExpiredDate, Discount: a.Discount, Status: a.Status
         };
 
         //update dish
         $scope.updatePromo = updatePromo;
 
         function updatePromo() {
-            apiService.put('api/material/update', $scope.edtPromo,
+            apiService.put('api/promotioncode/update', $scope.edtPromo,
                 function (result) {
                     notificationService.displaySuccess($scope.edtPromo.Name + ' đã được cập nhật mới! ');
                     //console.log('update success');

@@ -1,0 +1,61 @@
+﻿<div class="main-card mb-3 card" ng-controller="listHistoryController">
+    <div class="card-body">
+        <div></div>
+        <h4 class="card-title customize-font-blue-color">Lịch sử hoạt động  {{title}}</h4>
+
+        <div class="nav-table-bar-parent"> 
+            <div class="div-currentDate">
+                <div class="divUser">
+                    <label class="cornflowerblue">Xem lịch sử trong: </label>
+                    <select name="option" class="customize-DateInput cornflowerblue"
+                            ng-change="selectEvent()"
+                            ng-model="userOption" ng-options="option.key as option.val for option in options">
+                        <option selected disabled value="">-- Thời gian --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="div-datePicker">
+                <div class="div1">
+                    <label class="cornflowerblue">Từ ngày: </label>
+                    <span>
+                        <input class="customize-DateInput cornflowerblue" type="date" name="fromDate"
+                               ng-change="cusDateEvent()" ng-model="dateSeclect.from" />
+                    </span>
+                </div>
+                <div class="div2">
+                    <label class="cornflowerblue ">Đến: </label>
+                    <input class="customize-DateInput cornflowerblue"  type="date" name="toDate"
+                           ng-model="dateSeclect.to" ng-change="cusDateEvent()" />
+                </div>
+            </div>
+
+        </div>
+
+        <h4 class="cornflowerblue countTotolRow">Tổng số hoạt động: {{count}}</h4>
+        <div class="table-responsive">
+            <table class="mb-0 table mb-0 table table-hover">
+                <thead>
+                    <tr>
+                        <!--<th style="width:2%" ng-click="sort('ID')">ID</th>-->
+                        <th style="width:70%">Nội dung hoạt động</th>
+                        <th style="width:30%; text-align:right" ng-click="sort('CreatedDate')">Ngày tạo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="item in histories |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
+                        <td>{{item.TaskName}}</td>
+                        <td style="text-align:right">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="customeize-pagination">
+                <dir-pagination-controls max-size="5"
+                                         direction-links="true"
+                                         boundary-links="true">
+                </dir-pagination-controls>
+            </div>
+
+        </div>
+    </div>
+</div>

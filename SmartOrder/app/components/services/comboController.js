@@ -87,7 +87,7 @@
                 apiService.del('api/combo/delete', data,
                     function (result) {
                         notificationService.displaySuccess('Xóa combo thành công');
-                        getcombo();
+                        getListCombo();
                     }, function (error) {
                         notificationService.displayError('Đã xảy ra lỗi !');
                         console.log(error);
