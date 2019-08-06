@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201908041256559_add_historyProceduced.Designer.cs">
       <DependentUpon>201908041256559_add_historyProceduced.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908060822495_edit-table.cs" />
+    <Compile Include="Migrations\201908060822495_edit-table.Designer.cs">
+      <DependentUpon>201908060822495_edit-table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationRoleRepository.cs" />
@@ -132,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908041256559_add_historyProceduced.resx">
       <DependentUpon>201908041256559_add_historyProceduced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908060822495_edit-table.resx">
+      <DependentUpon>201908060822495_edit-table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

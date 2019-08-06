@@ -60,6 +60,28 @@ namespace SmartOrder.api
             });
         }
 
+        [Route("applyimei")]
+        public HttpResponseMessage ApplyEmei(HttpRequestMessage request, int tableID, string imei)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                   var table = tableService.SaveIMEI(tableID, imei);
+                    tableService.SaveChanges();
+                   SaveHistory("Đã cập nhật IMEI bàn có ID: " + table.ID);
+                    response = request.CreateResponse(HttpStatusCode.OK,table);
+                }
+                return response;
+            });
+        }
+
         [Route("getall")]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
@@ -74,6 +96,26 @@ namespace SmartOrder.api
                 else
                 {
                     var listTable = tableService.GetAll();
+                    response = request.CreateResponse(HttpStatusCode.OK, listTable);
+                }
+                return response;
+            });
+        }
+
+        [Route("getvariable")]
+        public HttpResponseMessage GetVariableTable(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listTable = tableService.GetVariableTable();
                     response = request.CreateResponse(HttpStatusCode.OK, listTable);
                 }
                 return response;
