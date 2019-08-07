@@ -31,7 +31,7 @@ namespace SmartOrder.api
                 {
                     var result = dishService.Add(category);
                     dishService.SaveChanges();
-                    SaveHistory("Add Dish Category has ID " + category.ID);
+                    SaveHistory("Thêm loại món có ID " + category.ID);
                     response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;

@@ -14,9 +14,9 @@ namespace Model.Models
         [Required]
         [MaxLength(256)]
         public string Name { set; get; }
-
         public string DeviceID { get; set; }
         public int Status { get; set; }
         public DateTime CreatedDate { get; set; }
+     
     }
 }

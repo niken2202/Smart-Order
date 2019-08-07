@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/bill"), Authorize]
+    [RoutePrefix("api/bill")]
     public class BillController : ApiControllerBase
     {
         private IBillService billService;
@@ -140,7 +140,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getbilldetail"), HttpGet, Authorize]
+        [Route("getbilldetail"), HttpGet]
         public HttpResponseMessage GetBillDetail(HttpRequestMessage request,int id)
         {
             return CreateHttpResponse(request, () =>
