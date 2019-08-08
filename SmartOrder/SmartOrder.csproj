@@ -233,6 +233,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\cashier\cashier.module.js" />
+    <Content Include="app\components\cashier\cashierHomeController.js" />
+    <Content Include="app\components\cashier\cashierHomeView.html" />
     <Content Include="app\components\dishes\dishAddController.js" />
     <Content Include="app\components\dishes\dishAddView.html" />
     <Content Include="app\components\dishes\dishEditsController.js" />
@@ -305,8 +308,10 @@
     <Content Include="assets\css\style.css" />
     <Content Include="assets\css\toastr.css" />
     <Content Include="assets\fonts\fa-solid-900.svg" />
+    <Content Include="assets\images\demo.jpg" />
     <Content Include="assets\images\login\banner1.jpg" />
     <Content Include="assets\images\login\register.png" />
+    <Content Include="assets\images\login\—Pngtree—nostalgic retro background creative restaurant_588887.jpg" />
     <Content Include="assets\login\css\register.css" />
     <Content Include="assets\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="assets\images\avatars\1.jpg" />
@@ -327,8 +332,6 @@
     <Content Include="assets\images\login\m.png" />
     <Content Include="assets\images\login\tick.png" />
     <Content Include="assets\images\login\twitter.png" />
-    <Content Include="assets\images\logo-inverse.png" />
-    <Content Include="assets\images\logo.png" />
     <Content Include="assets\images\Ziet-Logo.png" />
     <Content Include="assets\login\css\bootstrap.min.css" />
     <Content Include="assets\login\js\bootstrap.min.js" />
@@ -1312,7 +1315,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\dish_categories\" />
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="App_Data\" />

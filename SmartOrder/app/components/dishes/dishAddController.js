@@ -15,12 +15,12 @@
         //$scope.test = function () {
         //    console.log('in the add controller :------' + $scope.imageName);
         //};
-        $scope.imageName = "" ;
+        $scope.imageSrc = "" ;
 
-        $scope.test = function () {
-            console.log('scope image: ' + $rootScope.anhch);
+        $scope.sendData = function (data) {
+            console.log("Data upload ", data);
+            $scope.imageSrc = data;
         }
-       
 
         //get list dish category to the select box
         $scope.DishCategory = [];        

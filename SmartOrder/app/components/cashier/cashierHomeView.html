@@ -1,0 +1,186 @@
+﻿<div class="cashier-main-parent" ng-controller="cashierHomeController">
+
+
+    <div class="cashier-child-left column" ng-init="tabselector = 'table'">
+        <!--header navigator bar right-->
+        <div class="topnav">
+            <div>
+                <a class="tab" ng-click="tabselector = 'table'">Bàn</a>
+                <a class="tab" ng-click="tabselector = 'dish'">Món ăn</a>
+            </div>
+        </div>
+
+        <!--content of left display table -->
+        <div ng-if="tabselector == 'table'">
+            <!--display list table-->
+            <!--header to search table-->
+            <div class="crashier-table-content">
+                <div class="crashier-table-header">
+                    <label class="card-title customize-font-blue-color">Bàn số</label>
+                    <form class="search-wrapper active">
+                        <div class="input-holder">
+                            <div class="input-holder">
+                                <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="crashier-table-body">
+                    
+                    <div class="crashier-table-row">                        
+                        <div  class="crashier-table-item" dir-paginate="item in tables |filter:search |itemsPerPage:18" pagination-id="tables">
+                            <img class="crashier-img" src="../../../assets/images/demo.jpg" />
+                            <div class="crashier-btn-title">
+                                <span class="crashier-btn-choose"
+                                      ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1,
+                                      'mb-2 mr-2 btn btn-danger':item.Status==0,
+                                      'mb-2 mr-2 btn btn-warning':item.Status==2}"
+                                      ng-click="showBill(item)">                                    
+                                    {{item.Name}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="cashier-table-footer">
+                    <div class="customeize-pagination">
+                        <dir-pagination-controls max-size="5"
+                                                 direction-links="true"
+                                                 pagination-id="tables"
+                                                 boundary-links="true">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--dishplay the list dishes-->
+        <div ng-if="tabselector == 'dish'">
+            <div class="crashier-table-content">
+                <!--header to search table-->
+                <div class="crashier-table-header">
+                    <label class="card-title customize-font-blue-color">Lọc món</label>
+                    <form class="search-wrapper active">
+                        <div class="input-holder">
+                            <div class="input-holder">
+                                <input type="text" ng-model="dish" class="search-input" placeholder="Tìm kiếm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="crashier-table-body">                  
+
+                    <div class="crashier-table-row">
+                        <div class="crashier-table-item" dir-paginate="item in dishes |filter:dish |itemsPerPage:18" pagination-id="dishes">
+                            <img class="crashier-img" src="../../../assets/images/demo.jpg" />
+                            <div class="crashier-btn-title">
+                                <span class="crashier-btn-choose"
+                                      ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1,'mb-2 mr-2 btn btn-danger':item.Status==0}"
+                                      ng-click="addDish(item)">
+                                    {{item.Name}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="cashier-table-footer">
+                    <div class="customeize-pagination">
+                        <dir-pagination-controls max-size="5"
+                                                 direction-links="true"
+                                                 pagination-id="dishes"
+                                                 boundary-links="true">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!--display the bill detail the left div-->
+    <div class="cashier-child-right column">
+        <div class="topnav">
+            <a class="active" style="float:right" href="#home">Đăng xuất</a>
+        </div>
+
+        <div class="crashier-billDetail-content">
+
+            <!--<div class="crashier-billDetail-header"></div>-->
+
+            <div class="crashier-billDetail-body">
+
+                        <!--<h4 class="card-title customize-font-blue-color">Chi tiết hóa đơn </h4>-->
+
+
+                        <div class="table-responsive">
+                            <table class="mb-0 table mb-0 table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Mã</th>
+                                        <th>Mặt hàng</th>
+                                        <th>Số lượng</th>
+                                        <th>Đơn giá</th>
+                                        <th>Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr dir-paginate="bill in cartDetails |itemsPerPage:10" pagination-id="cartDetail">
+                                        <td>{{bill.ID}}</td>
+                                        <td>{{bill.Name}}</td>
+                                        <td>{{bill.Amount}}</td>
+                                        <td>{{bill.Price}}</td>
+                                        <td>{{bill.Amount*bill.Price}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <dir-pagination-controls max-size="5"
+                                                     direction-links="true"
+                                                     pagination-id="cartDetail"
+                                                     boundary-links="true">
+                            </dir-pagination-controls>
+                        </div>
+
+                        <div class="div-footer-billdetail">
+                           
+                                <div class="row1">
+                                    <label class="">
+                                        Tổng tiền : 253.356
+                                    </label>
+                                </div>
+                                <div class="row2">
+                                    <label class="">
+                                        Giảm giá : {{bill.Discount | percentFilter}}
+                                    </label>
+                                </div>
+                                <div class="row3">
+                                    <label class="">
+                                        Thanh toán : 235,000
+                                    </label>
+                                </div>
+                                <div class="row4">
+                                    <!--<label class="">
+                                        Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
+                                    </label>-->
+                                </div>
+                          
+                        </div>
+                        
+            </div>
+
+            <!--<div class="crashier-billDetail-footer"></div>-->
+
+        </div>
+
+
+    </div>
+
+</div>

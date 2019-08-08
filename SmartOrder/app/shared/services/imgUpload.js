@@ -9,6 +9,9 @@
 
         return {
             restrict: 'A',
+            scope: {
+                imageSrc: "&"
+            },
             link: function (scope, elem, attrs ) {
                 var canvas = document.createElement("canvas");
                 var extensions = 'jpeg ,jpg, png, gif';
@@ -30,6 +33,7 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     scope.image = e.target.result;
+                    scope.imageSrc({ data: scope.image });
                     scope.$apply();
 
                    

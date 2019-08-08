@@ -1,7 +1,8 @@
 ﻿
 (function () {
     angular.module('SmartOrder',
-        ['SmartOrder.dishes', 'SmartOrder.materials', 'SmartOrder.restaurant','SmartOrder.services','SmartOrder.common'])
+        ['SmartOrder.dishes', 'SmartOrder.materials', 'SmartOrder.restaurant', 'SmartOrder.services',
+            'SmartOrder.cashier', 'SmartOrder.common'])
         .config(config)
      .config(configAuthentication);
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
