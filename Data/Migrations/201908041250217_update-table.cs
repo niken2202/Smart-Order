@@ -3,16 +3,16 @@ namespace Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class updatecombotable : DbMigration
+    public partial class updatetable : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Combo", "Image", c => c.String(maxLength: 256));
+            AddColumn("dbo.Table", "CreatedDate", c => c.DateTime(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Combo", "Image");
+            DropColumn("dbo.Table", "CreatedDate");
         }
     }
 }

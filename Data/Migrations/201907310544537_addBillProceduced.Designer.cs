@@ -7,18 +7,18 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class updateidentity : IMigrationMetadata
+    public sealed partial class addBillProceduced : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updateidentity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addBillProceduced));
         
         string IMigrationMetadata.Id
         {
-            get { return "201907251631067_update-identity"; }
+            get { return "201907310544537_addBillProceduced"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

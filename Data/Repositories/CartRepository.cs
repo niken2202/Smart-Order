@@ -16,9 +16,15 @@ namespace Data.Repositories
        public override Cart Add(Cart cart)
         {
             cart.CartPrice = cart.CartDetails.Sum(x => (x.Quantity * x.Price));
-            var c = DbContext.Cart.Add(cart);
+            Cart c = DbContext.Cart.SingleOrDefault(m => m.TableID == cart.TableID); ;
+            if (c == null)
+            {
+                c = DbContext.Cart.Add(cart);
+            }
+            
             foreach(var cd in cart.CartDetails)
             {
+                cd.CartID = c.ID;
                 DbContext.CartDetail.Add(cd);
             }
             return c;
@@ -29,6 +35,7 @@ namespace Data.Repositories
             var cart = (from c in DbContext.Cart
                         where c.TableID == tableID
                         select c).SingleOrDefault();
+            if (cart == null) return null;
             cart.CartDetails = (from cd in DbContext.CartDetail
                                where cd.CartID == cart.ID
                                select cd).ToList();

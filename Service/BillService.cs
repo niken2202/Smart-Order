@@ -10,23 +10,15 @@ namespace Service
     public interface IBillService
     {
         Bill Add(Bill bill);
-
         Bill GetById(int id);
-
         IEnumerable<Bill> GetAll();
-
         IEnumerable<Bill> GetTimeRange(DateTime fromDate, DateTime toDate);
-
         IEnumerable<Bill> GetBillLastMonth();
-
         IEnumerable<Bill> GetBillLast7Days();
-
         IEnumerable<Bill> GetBillToday();
         IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromDate, DateTime toDate);
         IEnumerable<RevenueByMonthViewModel> GetRevenueGroupByMonth(DateTime fromDate, DateTime toDate);
-
         object GetBillDetail(int id);
-
         void SaveChanges();
     }
 

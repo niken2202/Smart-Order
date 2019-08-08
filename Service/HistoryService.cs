@@ -1,6 +1,7 @@
 ﻿using Data.Infrastructure;
 using Data.Repositories;
 using Model.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Service
@@ -8,8 +9,11 @@ namespace Service
     public interface IHistoryService
     {
         History Add(History history);
-
         IEnumerable<History> GetAll();
+        IEnumerable<History> GetTimeRange(DateTime fromDate, DateTime toDate);
+        IEnumerable<History> GetHistoryLastMonth();
+        IEnumerable<History> GetHistoryLast7Days();
+        IEnumerable<History> GetHistoryToday();
 
         void SaveChanges();
     }
@@ -33,6 +37,26 @@ namespace Service
         public IEnumerable<History> GetAll()
         {
             return historyRepository.GetAll();
+        }
+
+        public IEnumerable<History> GetHistoryLast7Days()
+        {
+            return historyRepository.GetHistoryLast7Days();
+        }
+
+        public IEnumerable<History> GetHistoryLastMonth()
+        {
+            return historyRepository.GetHistoryLastMonth();
+        }
+
+        public IEnumerable<History> GetHistoryToday()
+        {
+            return historyRepository.GetHistoryToday();
+        }
+
+        public IEnumerable<History> GetTimeRange(DateTime fromDate, DateTime toDate)
+        {
+            return historyRepository.GetTimeRange( fromDate, toDate);
         }
 
         public void SaveChanges()

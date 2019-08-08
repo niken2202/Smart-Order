@@ -7,13 +7,13 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class renametableidentity : IMigrationMetadata
+    public sealed partial class addnewrevenueproceduced : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(renametableidentity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addnewrevenueproceduced));
         
         string IMigrationMetadata.Id
         {
-            get { return "201907241624452_rename-table-identity"; }
+            get { return "201907310546173_add-new-revenue-proceduced"; }
         }
         
         string IMigrationMetadata.Source

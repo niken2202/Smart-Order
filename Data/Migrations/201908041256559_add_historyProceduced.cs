@@ -1,24 +1,24 @@
 namespace Data.Migrations
 {
+    using System;
     using System.Data.Entity.Migrations;
 
-    public partial class AddBillStoredProceduced : DbMigration
+    public partial class add_historyProceduced : DbMigration
     {
         public override void Up()
         {
-            CreateStoredProcedure("GetBillByRange",
+            CreateStoredProcedure("GetHistoryByRange",
                 p => new
                 {
                     fromDate = p.DateTime(),
                     toDate = p.DateTime()
                 },
-                @"select * from Bill where Bill.CreatedDate>=@fromDate and Bill.CreatedDate<= @toDate"
-);
+                @"select * from History where History.CreatedDate>=@fromDate and History.CreatedDate<= @toDate");
         }
 
         public override void Down()
         {
-            DropStoredProcedure("dbo.GetBillByRange");
+            DropStoredProcedure("dbo.GetHistoryByRange");
         }
     }
 }

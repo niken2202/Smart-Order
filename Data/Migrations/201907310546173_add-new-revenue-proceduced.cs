@@ -2,8 +2,8 @@ namespace Data.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
-
-    public partial class add_new_revenue_storedproceduce : DbMigration
+    
+    public partial class addnewrevenueproceduced : DbMigration
     {
         public override void Up()
         {
@@ -26,5 +26,6 @@ namespace Data.Migrations
         {
             DropStoredProcedure("dbo.GetRevenueByMonth");
         }
+
     }
 }

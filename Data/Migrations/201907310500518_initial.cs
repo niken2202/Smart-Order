@@ -3,10 +3,37 @@ namespace Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initital : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.ApplicationRoles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(),
+                        Description = c.String(maxLength: 250),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.ApplicationUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
+                        IdentityRole_Id = c.String(maxLength: 128),
+                        ApplicationUser_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.ApplicationRoles", t => t.IdentityRole_Id)
+                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
+                .Index(t => t.IdentityRole_Id)
+                .Index(t => t.ApplicationUser_Id);
+            
             CreateTable(
                 "dbo.BillDetails",
                 c => new
@@ -40,6 +67,34 @@ namespace Data.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.Cart",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        TableID = c.Int(nullable: false),
+                        CartPrice = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.CartDetail",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        CartID = c.Int(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 256),
+                        Price = c.Double(nullable: false),
+                        Quantity = c.Int(nullable: false),
+                        Image = c.String(nullable: false, maxLength: 256),
+                        Status = c.Int(nullable: false),
+                        CateID = c.Int(nullable: false),
+                        Type = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Cart", t => t.CartID, cascadeDelete: true)
+                .Index(t => t.CartID);
+            
+            CreateTable(
                 "dbo.Combo",
                 c => new
                     {
@@ -48,6 +103,8 @@ namespace Data.Migrations
                         Description = c.String(),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Amount = c.Int(nullable: false),
+                        Image = c.String(maxLength: 256),
+                        Status = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -97,6 +154,7 @@ namespace Data.Migrations
                     {
                         DishID = c.Int(nullable: false),
                         ComboID = c.Int(nullable: false),
+                        Amount = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.DishID, t.ComboID })
                 .ForeignKey("dbo.Combo", t => t.ComboID, cascadeDelete: true)
@@ -165,38 +223,15 @@ namespace Data.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.IdentityRoles",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.IdentityUserRoles",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                        IdentityRole_Id = c.String(maxLength: 128),
-                        ApplicationUser_Id = c.String(maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.IdentityRoles", t => t.IdentityRole_Id)
-                .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
-                .Index(t => t.IdentityRole_Id)
-                .Index(t => t.ApplicationUser_Id);
-            
-            CreateTable(
                 "dbo.Table",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
+                        DeviceID = c.String(nullable: false, maxLength: 128),
                         Name = c.String(nullable: false, maxLength: 256),
-                        Status = c.Boolean(nullable: false),
+                        Status = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => new { t.ID, t.DeviceID });
             
             CreateTable(
                 "dbo.ApplicationUsers",
@@ -221,21 +256,21 @@ namespace Data.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.IdentityUserClaims",
+                "dbo.ApplicationUserClaims",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
-                        UserId = c.String(),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        Id = c.Int(nullable: false),
                         ClaimType = c.String(),
                         ClaimValue = c.String(),
                         ApplicationUser_Id = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.Id)
+                .PrimaryKey(t => t.UserId)
                 .ForeignKey("dbo.ApplicationUsers", t => t.ApplicationUser_Id)
                 .Index(t => t.ApplicationUser_Id);
             
             CreateTable(
-                "dbo.IdentityUserLogins",
+                "dbo.ApplicationUserLogins",
                 c => new
                     {
                         UserId = c.String(nullable: false, maxLength: 128),
@@ -251,34 +286,34 @@ namespace Data.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.IdentityUserRoles", "ApplicationUser_Id", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.IdentityUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.IdentityUserClaims", "ApplicationUser_Id", "dbo.ApplicationUsers");
-            DropForeignKey("dbo.IdentityUserRoles", "IdentityRole_Id", "dbo.IdentityRoles");
+            DropForeignKey("dbo.ApplicationUserRoles", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.ApplicationUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.ApplicationUserClaims", "ApplicationUser_Id", "dbo.ApplicationUsers");
+            DropForeignKey("dbo.ApplicationUserRoles", "IdentityRole_Id", "dbo.ApplicationRoles");
             DropForeignKey("dbo.DishMaterialMapping", "MaterialID", "dbo.Material");
             DropForeignKey("dbo.DishMaterialMapping", "DishID", "dbo.Dish");
             DropForeignKey("dbo.DishComboMapping", "DishID", "dbo.Dish");
             DropForeignKey("dbo.DishComboMapping", "ComboID", "dbo.Combo");
             DropForeignKey("dbo.DishBillMapping", "DishID", "dbo.Dish");
             DropForeignKey("dbo.DishBillMapping", "BillID", "dbo.Bill");
+            DropForeignKey("dbo.CartDetail", "CartID", "dbo.Cart");
             DropForeignKey("dbo.BillDetails", "BillID", "dbo.Bill");
-            DropIndex("dbo.IdentityUserLogins", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.IdentityUserClaims", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.IdentityUserRoles", new[] { "ApplicationUser_Id" });
-            DropIndex("dbo.IdentityUserRoles", new[] { "IdentityRole_Id" });
+            DropIndex("dbo.ApplicationUserLogins", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.ApplicationUserClaims", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.DishMaterialMapping", new[] { "MaterialID" });
             DropIndex("dbo.DishMaterialMapping", new[] { "DishID" });
             DropIndex("dbo.DishComboMapping", new[] { "ComboID" });
             DropIndex("dbo.DishComboMapping", new[] { "DishID" });
             DropIndex("dbo.DishBillMapping", new[] { "BillID" });
             DropIndex("dbo.DishBillMapping", new[] { "DishID" });
+            DropIndex("dbo.CartDetail", new[] { "CartID" });
             DropIndex("dbo.BillDetails", new[] { "BillID" });
-            DropTable("dbo.IdentityUserLogins");
-            DropTable("dbo.IdentityUserClaims");
+            DropIndex("dbo.ApplicationUserRoles", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.ApplicationUserRoles", new[] { "IdentityRole_Id" });
+            DropTable("dbo.ApplicationUserLogins");
+            DropTable("dbo.ApplicationUserClaims");
             DropTable("dbo.ApplicationUsers");
             DropTable("dbo.Table");
-            DropTable("dbo.IdentityUserRoles");
-            DropTable("dbo.IdentityRoles");
             DropTable("dbo.PromotionCode");
             DropTable("dbo.History");
             DropTable("dbo.Errors");
@@ -289,8 +324,12 @@ namespace Data.Migrations
             DropTable("dbo.Dish");
             DropTable("dbo.DishBillMapping");
             DropTable("dbo.Combo");
+            DropTable("dbo.CartDetail");
+            DropTable("dbo.Cart");
             DropTable("dbo.Bill");
             DropTable("dbo.BillDetails");
+            DropTable("dbo.ApplicationUserRoles");
+            DropTable("dbo.ApplicationRoles");
         }
     }
 }

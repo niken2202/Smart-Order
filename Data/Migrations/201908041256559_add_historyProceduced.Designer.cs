@@ -7,18 +7,18 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class update_table : IMigrationMetadata
+    public sealed partial class add_historyProceduced : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update_table));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(add_historyProceduced));
         
         string IMigrationMetadata.Id
         {
-            get { return "201907300934572_update_table"; }
+            get { return "201908041256559_add_historyProceduced"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

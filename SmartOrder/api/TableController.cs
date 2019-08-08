@@ -18,7 +18,7 @@ namespace SmartOrder.api
         }
 
         [Route("add"), Authorize]
-        public HttpResponseMessage Create(HttpRequestMessage request, Table table)
+        public HttpResponseMessage Post(HttpRequestMessage request, Table table)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -32,7 +32,7 @@ namespace SmartOrder.api
                 {
                     var result = tableService.Add(table);
                     tableService.SaveChanges();
-                    SaveHistory("Add new table with ID: " + result.ID);
+                    SaveHistory("Đã thêm bàn mới có ID: " + result.ID);
                     response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;
@@ -53,8 +53,30 @@ namespace SmartOrder.api
                 else
                 {
                     tableService.Update(table);
-                    SaveHistory("Update table with ID: " + table.ID);
+                    SaveHistory("Đã cập nhật bàn có ID: " + table.ID);
                     response = request.CreateResponse(HttpStatusCode.OK);
+                }
+                return response;
+            });
+        }
+
+        [Route("applyimei")]
+        public HttpResponseMessage ApplyEmei(HttpRequestMessage request, int tableID, string imei)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                   var table = tableService.SaveIMEI(tableID, imei);
+                    tableService.SaveChanges();
+                   SaveHistory("Đã cập nhật IMEI bàn có ID: " + table.ID);
+                    response = request.CreateResponse(HttpStatusCode.OK,table);
                 }
                 return response;
             });
@@ -80,7 +102,27 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("delete"), Authorize]
+        [Route("getvariable")]
+        public HttpResponseMessage GetVariableTable(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listTable = tableService.GetVariableTable();
+                    response = request.CreateResponse(HttpStatusCode.OK, listTable);
+                }
+                return response;
+            });
+        }
+
+        [Route("delete")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -95,7 +137,7 @@ namespace SmartOrder.api
                 {
                     Table table = tableService.Delete(id);
                     tableService.SaveChanges();
-                    SaveHistory("Delete table with ID: " + table.ID);
+                    SaveHistory("Đã xóa bàn có id : " + table.ID);
                     response = request.CreateResponse(HttpStatusCode.OK, table);
                 }
                 return response;

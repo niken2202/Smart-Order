@@ -7,13 +7,13 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class update_dishcombomapping_v2 : IMigrationMetadata
+    public sealed partial class updatetable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update_dishcombomapping_v2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updatetable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201907231546494_update_dishcombomapping_v2"; }
+            get { return "201908041250217_update-table"; }
         }
         
         string IMigrationMetadata.Source

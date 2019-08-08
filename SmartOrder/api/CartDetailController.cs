@@ -36,5 +36,25 @@ namespace SmartOrder.api
                 return response;
             });
         }
+        [Route("getall")]
+        //   [Authorize(Roles = "Guest, Cashier")]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var cartDetail = cartDetailService.GetAll();
+                    response = request.CreateResponse(HttpStatusCode.OK, cartDetail);
+                }
+                return response;
+            });
+        }
     }
 }
