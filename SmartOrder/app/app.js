@@ -1,7 +1,8 @@
 ﻿
 (function () {
     angular.module('SmartOrder',
-        ['SmartOrder.dishes', 'SmartOrder.materials', 'SmartOrder.restaurant','SmartOrder.services','SmartOrder.common'])
+        ['SmartOrder.dishes', 'SmartOrder.materials', 'SmartOrder.restaurant', 'SmartOrder.services',
+            'SmartOrder.cashier', 'SmartOrder.common'])
         .config(config)
      .config(configAuthentication);
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -19,14 +20,32 @@
                 templateUrl: "../app/components/login/loginView.html",
                 controller: "loginController"
             })
+            .state('register', {
+                url: "/register",
+                templateUrl: "/app/components/login/registerView.html",
+                controller: "registerController"
+            })
             .state('home', {
                 url: "/admin",
                 parent: 'base',
                 templateUrl: "/app/components/home/homeView.html",
                 controller: "homeController"
+            })
+            .state('history', {
+                url: "/history",
+                parent: 'base',
+                templateUrl: "/app/components/home/listHistoryView.html",
+                controller: "listHistoryController"
+            })
+            .state('profile', {
+                url: "/profile",
+                //parent: 'base',
+                templateUrl: "/app/components/home/profileView.html",
+                controller: "profileController"
             });
         $urlRouterProvider.otherwise('/login');
     }
+
     function configAuthentication($httpProvider) {
         $httpProvider.interceptors.push(function ($q, $location) {
             return {
@@ -55,4 +74,5 @@
             };
         });
     }
+
 })();

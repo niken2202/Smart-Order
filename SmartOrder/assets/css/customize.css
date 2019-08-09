@@ -1,4 +1,177 @@
-﻿/*Begin Customize validate form*/
+﻿/*Begin Customize cashier view*/
+* {
+    box-sizing: border-box;
+}
+
+.crashier-table-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+    float: left;
+    margin: 0px;
+    padding: 2%;
+    background-color: aliceblue;
+}
+.crashier-table-header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding-bottom: 5px;
+    margin-bottom: 2%;
+}
+crashier-table-body{
+    width:100%;
+    height:auto;
+}
+.cashier-table-footer {
+    height: auto;
+    width: 100%;
+    margin: 5px 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: aliceblue;
+}
+.crashier-table-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+.crashier-table-item {
+    display: flex;
+    flex-wrap: wrap;
+    width: 130px;
+    height: 160px;
+    margin: 5px;
+    padding: 5px;
+    background-color: blueviolet;
+}
+
+.crashier-billDetail-content {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    float: left;
+    margin: 0px;
+    padding: 2%;
+}
+.crashier-billDetail-header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding-bottom: 5px;
+    margin-bottom: 2%;
+}
+.crashier-billDetail-body {
+    display: flex;
+    flex-wrap:wrap;
+    width: 100%;
+    height: auto;
+    float: left;
+    margin: 0px;
+    padding: 2%;
+}
+.crashier-billDetail-footer {
+    height: auto;
+    width: 100%;
+    margin: 5px 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.crashier-btn-choose{
+    height:130px;
+    width:130px;
+    overflow:hidden;
+}
+.crashier-img {
+    height: 100px;
+    width: 120px;
+    padding:5px;
+    border-radius:12px;
+    overflow: hidden;
+}
+.crashier-btn-title {
+    height: 35px;
+    width: 130px;
+    padding:5px;
+    text-align:center;
+    overflow: hidden;
+}
+
+.column {
+    float: left;
+    width: auto;
+    padding: 10px;
+    height: 100%;
+}
+
+.roww:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.cashier-main-parent {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    float:left;
+    margin: 0px;
+    padding: 0px;
+    overflow: auto;
+}
+.cashier-child-left {
+    height: 100%;
+    width: 60%;
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    background-color: aliceblue;
+}
+.cashier-child-right {
+    background-color: white;
+    height: 100%;
+    width: 40%;
+    float: right;
+    margin: 0px;
+    padding: 0px;
+}
+.topnav {
+    width: 100%;
+    height: 5%;
+    overflow: hidden;
+    background-color: #4caf50;
+}
+
+    .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 5px 16px;
+        height:100%;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+
+/*Begin Customize validate form*/
 .had-error {
     color: red;
 }
@@ -8,8 +181,7 @@
 }
 
 .delete-icon {
-    color: white;
-    background-color: red;
+    background-color: #FFF;
     display: block;
     width: auto;
     height: auto;
@@ -19,8 +191,10 @@
     margin-left: 0px;
     margin-right: 5px;
     padding: 5px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+}
+.customize-delete-icon {
+    color: red;
+    font-size: large;
 }
 
 .attention-component {
@@ -66,6 +240,14 @@
         cursor: pointer
     }
 
+    .customize-delete-icon{
+        color:red;
+        width:20px;
+        height:20px;
+    }
+    .div-text-align-center{
+        text-align:center;
+    }
         .attention-component .close path:first-child {
             fill: #fff
         }
@@ -126,19 +308,64 @@
         background-color: #25B686;
         margin-left: 10px
     }
-/*Begin Customize logout button in base view page*/
 
-.logout-dropbtn {
-    background-color: #fafbfc;
-    color: #3f6ad8;
-    margin: 0px;
-    padding-top: 10px;
-    padding-bottom: 0px;
-    padding-left: 10px;
-    padding-right: 5px;
-    border: none;
-    cursor: pointer;
+.customeize-pagination {
+    width:auto;
+    height:auto; 
+    padding-top:9px;
 }
+
+/*custom view bill detail*/
+.div-footer-billdetail-content {
+    width: 25%;
+    height: auto;
+    background-color: #FFF;
+    text-align:left;
+    float:right
+}
+
+.div-footer-billdetail{
+    width:95%;
+    height:auto;
+    text-align:right;
+}
+    .div-footer-billdetail .row1 {
+        width: 100%;
+        height: 30px;
+        background-color: #FFF;
+        padding:5px;
+    }
+    .div-footer-billdetail .row2 {
+        width: 100%;
+        height: 30px;
+        background-color: #FFF;
+        padding: 5px;
+    }
+    .div-footer-billdetail .row3 {
+        width: 100%;
+        height: 30px;
+        background-color: #FFF;
+        padding: 5px;
+    }
+    .div-footer-billdetail .row4 {
+        width: 100%;
+        height: 30px;
+        background-color: #FFF;
+        padding: 5px;
+    }
+
+    /*Begin Customize logout button in base view page*/
+    .logout-dropbtn {
+        background-color: #fafbfc;
+        color: #3f6ad8;
+        margin: 0px;
+        padding-top: 10px;
+        padding-bottom: 0px;
+        padding-left: 10px;
+        padding-right: 5px;
+        border: none;
+        cursor: pointer;
+    }
 
 .logout-dropdown {
     position: relative;
@@ -243,6 +470,7 @@ disapear {
 }
 
 /*End Customize logout button in base view page*/
+
 /*Begin customize HomeView*/
 .inherit-height-width {
     height: inherit;
@@ -276,7 +504,6 @@ disapear {
     padding-right: 20px;
     margin: 0px;
     display: block;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
     float: left;
     background-color: white;
@@ -356,7 +583,64 @@ disapear {
     width: 100%;
     margin: 5px;
     padding-top: 2px;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
+}
+.div-currentDate {
+    width: 50%;
+    resize: both;
+    float: right;
+    margin: 5px 10px;
+    padding: 5px 10px;
+}
+.div-datePicker{
+    width:60%;
+    resize:both;
+    float:right;
+    margin:5px 10px;
+    padding:5px 10px;
+
+}
+
+.cornflowerblue {
+    color: cornflowerblue !important;
+}
+.countTotolRow{
+    float:right;
+    margin:0px;
+    padding-top:0px;
+    padding-bottom:5px;
+    padding-left:0px;
+    padding-right:20px;
+}
+.customize-DateInput {
+    border-radius: 5px;
+    margin:0px;
+    padding:0px;
+    padding-left:7px;
+    border-color: cornflowerblue;
+}
+    .div-datePicker .div1 {
+        width: 45%;
+        resize: both;
+        background-color: #FFF;
+        display: inline-block;
+        margin:5px 0px;
+    }
+
+.div-datePicker .div2 {
+    width: 45%;
+    resize: both;
+    background-color: #FFF;
+    display: inline-block;
+    margin: 5px 0px;
+}
+.div-currentDate .divUser {
+    width: 90%;
+    resize: both;
+    background-color: #FFF;
+    display: inline-block;
+    margin: 5px 0px;
+    padding:5px 10px;
 }
 
     .nav-table-bar-parent .box-1 {

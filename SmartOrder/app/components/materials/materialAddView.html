@@ -1,64 +1,70 @@
-﻿
-
-<div class="main-card mb-3 card" style="border:hidden">
+﻿<div class="main-card mb-3 card" style="border:hidden">
     <div class="card-body">
         <h4 class="card-title customize-font-blue-color"> Thêm nguyên liệu mới </h4>
-        <form class="" novalidate name="frmAddDish" role="form">
+        <form class="" novalidate name="frmAddMaterial" role="form">
 
             <div class="position-relative form-group">
-                <label for="exampleEmail" class="">Tên nguyên liệu </label>
-                <input name="dishName" placeholder="Nhập tên món" type="text" class="form-control" ng-model="dish.Name">
+                <label class="">Tên nguyên liệu </label>
+                <input required name="Name" maxlength="256" type="text" class="form-control" ng-model="mateAdd.Name">
+                <span ng-show="frmAddMaterial.Name.$invalid" class="had-error">*Hãy nhập tên món</span>
+                <span ng-show="frmAddMaterial.Name.$error.maxlength.invalid" class="had-error">Tên nguyên liệu quá dài</span>
             </div>
 
             <div class="position-relative form-group">
-                <label for="exampleEmail" class="">Giá bán</label>
-                <input name="dishPrice" placeholder="Nhập giá bán" type="number" class="form-control" ng-model="dish.Price">
+                <label class="">Giá tiền</label>
+                <input required name="Price" type="number" class="form-control" ng-model="mateAdd.Price">
+                <span ng-show="frmAddMaterial.Price.$invalid" class="had-error">*Vui lòng nhấp giá tiền mặt hàng</span>
             </div>
 
             <div class="position-relative form-group">
-                <label for="examplePassword" class="">Giá cấu thành sản phẩm</label>
-                <input name="password" placeholder="Nhập giá cấu thành sản phẩm" type="number" class="form-control" ng-model="dish.Amount">
+                <label class="">Số lượng</label>
+                <input required name="Amount" type="number" class="form-control" ng-model="mateAdd.Amount">
+                <span ng-show="frmAddMaterial.Amount.$invalid" class="had-error"></span>
             </div>
 
             <div class="position-relative form-group">
-                <label for="exampleSelect" class="">Nhóm món ăn</label>
-                <select name="dishCategory" class="form-control" ng-model="dish.CategoryID" ng-options="option.ID as option.Name for option in DishCategory"></select>
-                <input type="hidden" name="dishCategory" ng-model="dish.CategoryID" />
+                <label class="">Đơn vị</label>
+                <input required name="Unit" type="text" class="form-control" ng-model="mateAdd.Unit">
+                <span ng-show="frmAddMaterial.Unit.$invalid" class="had-error">*Vui lòng nhập đơn vị</span>
             </div>
 
-            <div class="position-relative form-group">
-                <label for="exampleText" class="">Mô tả chi tiết món</label>
-                <textarea name="dishDescription" class="form-control" ng-model="dish.Description">
-            </textarea>
+            <!--<div class="position-relative form-group">
+        <label for="exampleText" class="">Mô tả chi tiết món</label>
+        <textarea name="dishDescription" class="form-control" ng-model="dish.Description">
+    </textarea>
+    </div>-->
+            <!--<fieldset class="position-relative row form-group">
+        <legend class="col-form-label col-sm-2">Trạng thái món</legend>
+        <div class="col-sm-10">
+            <div class="position-relative form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" ng-model="mateAdd.Status" ng-value="1" />Có sẵn
+                </label>
             </div>
+            <div class="position-relative form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" ng-model="mateAdd.Status" ng-value="0" />
+                    Tạm hết
+                </label>
+            </div>
+        </div>
+    </fieldset>-->
 
-            <fieldset class="position-relative row form-group">
-                <legend class="col-form-label col-sm-2">Trạng thái món</legend>
-                <div class="col-sm-10">
-                    <div class="position-relative form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" ng-model="dish.Status" ng-value="1" />Có sẵn
-                        </label>
-                    </div>
-                    <div class="position-relative form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" ng-model="dish.Status" ng-value="0" />
-                            Tạm hết
-                        </label>
-                    </div>
+
+
+            <div class="nav-table-bar-parent">
+                <!--<div class="box-2">-->
+                    <button type="submit" ng-disabled="frmAddMaterial.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="CreateMate()">Thêm mới</button>
+                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click=closeThisDialog(0)>Hủy bỏ</button>
+                <!--</div>
+                <div class="box-1">
                 </div>
-            </fieldset>
-
-
-
-
-            <div class="search-div-nav">
-
+                <div class="box-3">
+                </div>
+                <div class="box-4">
+                </div>-->
             </div>
-            <div class="block-div-history">
-                <button class="mt-1 btn btn-primary" ng-click="CreateDish()">Lưu lại</button>
-                <button class="mt-1 btn btn-primary" ng-click=closeThisDialog("Cancel")>Hủy bỏ</button>
-            </div>
+
         </form>
     </div>
 </div>

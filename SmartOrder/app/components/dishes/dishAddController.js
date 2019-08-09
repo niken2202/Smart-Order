@@ -1,15 +1,25 @@
 ﻿(function (app) {
     app.controller('dishAddController', dishAddController);
 
-    dishAddController.$inject = ['$scope','apiService','notificationService'];
+    dishAddController.$inject = ['$scope', 'apiService', 'notificationService','$rootScope'];
 
-    function dishAddController($scope, apiService, notificationService) {
+    function dishAddController($scope, apiService, notificationService, $rootScope) {
 
         //dish binding in dialog add dish
         $scope.dishAdd = {
             CreatedDate: new Date,
             Status: 1,
             OrderCount: 0
+        }
+
+        //$scope.test = function () {
+        //    console.log('in the add controller :------' + $scope.imageName);
+        //};
+        $scope.imageSrc = "" ;
+
+        $scope.sendData = function (data) {
+            console.log("Data upload ", data);
+            $scope.imageSrc = data;
         }
 
         //get list dish category to the select box

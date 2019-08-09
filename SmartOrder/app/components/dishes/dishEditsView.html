@@ -10,12 +10,12 @@
             </div>
             <div class="position-relative form-group">
                 <label for="exampleEmail" class="">Giá bán</label>
-                <input required name="dishPrice" ng-model="edtDish.Price" placeholder="Nhập giá bán" type="text" class="form-control">
+                <input required name="dishPrice" ng-model="edtDish.Price" type="number" class="form-control">
                 <span ng-show="frmEditsDish.dishPrice.$invalid" class="had-error">*Phải nhập giá bán</span>
             </div>
             <div class="position-relative form-group">
                 <label for="examplePassword" class="">Giá cấu thành sản phẩm</label>
-                <input required name="dishAmount" ng-model="edtDish.Amount" placeholder="Nhập giá cấu thành sản phẩm" type="text" class="form-control">
+                <input required name="dishAmount" ng-model="edtDish.Amount"  type="number" class="form-control">
                 <span ng-show="frmEditsDish.dishAmount.$invalid" class="had-error">*Hãy nhập giá cấu thành sản phẩm</span>
             </div>
 
@@ -29,9 +29,10 @@
                 <label for="exampleText" class="">Mô tả chi tiết món</label>
                 <textarea name="description" class="form-control" ng-model="edtDish.Description"></textarea>
             </div>
+
             <div class="position-relative form-group">
                 <label for="exampleFile" class="">Chèn ảnh</label>
-                <input name="file"  type="file" class="form-control-file" ng-model="edtDish.Image">
+                <input name="file"  type="file" class="form-control-file" ng-model="edtDish.Image" ng-change="slectedChange($event)">
                 <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
             </div>
 
@@ -63,16 +64,16 @@
             </fieldset>
 
             <div class="nav-table-bar-parent">
-                <div class="box-1">
-                    <button class="mt-1 btn btn-primary" ng-disabled="frmEditsDish.$invalid" ng-click="updateDish()">Lưu lại</button>
-                    <button class="mt-1 btn btn-primary" ng-click=closeThisDialog(0)>Hủy bỏ</button>
-                </div>
-                <div class="box-2">                  
+                <!--<div class="box-2">-->
+                <button class="mb-2 mr-2 btn btn-primary" ng-disabled="frmEditsDish.$invalid" ng-click="updateDish()">Lưu lại</button>
+                <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click=closeThisDialog(0)>Hủy bỏ</button>
+            <!--</div>-->
+                <!--<div class="box-1">                  
                 </div>
                 <div class="box-3">                     
                 </div>
                 <div class="box-4">                   
-                </div>
+                </div>-->
             </div>
 
         </form>

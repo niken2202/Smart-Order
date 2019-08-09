@@ -1,10 +1,80 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-    This is comboView 
-</body>
-</html>
+﻿<div class="main-card mb-3 card" ng-controller="comboController as vm">
+    <div class="card-body">
+        <div></div>
+        <h4 class="card-title customize-font-blue-color">Danh sách combo</h4>
+
+        <div class="nav-table-bar-parent">
+            <div class="box-1">
+                <h4 class="card-title customize-font-blue-color">THANH CÔNG CỤ</h4>
+            </div>
+            <div class="box-2">
+                <form class="search-wrapper active">
+                    <div class="input-holder">
+                        <div class="input-holder cornflowerblue">
+                            <input type="text" ng-model="search" class="search-input cornflowerblue" placeholder="Tìm kiếm">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="box-3">
+               
+            </div>
+            <div class="box-4">
+               
+            </div>
+            <div class="box-5">
+                <h4 class="card-title customize-font-blue-color" style="float:right">Tạo combo mới </h4>
+            </div>
+            <div class="box-6">
+                <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="comboAdd()">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="mb-0 table mb-0 table table-hover">
+                <thead>
+                    <tr>
+                        <th class="cornflowerblue" style="width:5%" ng-click="sort('ID')">ID</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:20%" ng-click="sort('Name')">Tên combo</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:10%" ng-click="sort('Price')">Giá bán</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:10%" ng-click="sort('Amount')">Số lượng</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:20%" ng-click="sort('Status')">Trạng thái</th>
+                        <th class="cornflowerblue div-text-align-center" ng-click="sort('Description')" style="width:30%;text-align:center">Mô tả</th>
+                        <!--<th class="cornflowerblue div-text-align-center" ng-click="sort('CreatedDate')" style="text-align:center">Ngày khởi tạo</th>-->
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="item in combos |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
+                        <td ng-click="vm.openDialog($event,item)">{{item.ID}}</td>
+                        <td ng-click="vm.openDialog($event,item)">{{item.Name}}</td>
+                        <td class="div-text-align-center" ng-click="vm.openDialog($event,item)">{{item.Price}}</td>
+                        <td class="div-text-align-center" ng-click="vm.openDialog($event,item)">{{item.Amount}}</td>
+                        <td ng-click="vm.openDialog($event,item)">
+                            <span style="width:70%; float:right" ng-class="{'mb-2 mr-2 btn btn-success':item.Status==true,'mb-2 mr-2 btn btn-danger':item.Status==false}">
+                                {{item.Status | avaiableFilter}}
+                            </span>
+                        </td>
+                        <td ng-click="vm.openDialog($event,item)" style="width:8%; text-align:center">{{item.Description}}</td>
+                        <!--<td ng-click="vm.openDialog($event,item)" style="text-align:center">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>-->
+                        <td>
+                            <button class="btn delete-icon" ng-click="comboDel(item)">
+                                <i class="fas fa-trash f1f8 customize-delete-icon"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="customeize-pagination">
+                <dir-pagination-controls max-size="5"
+                                         direction-links="true"
+                                         boundary-links="true">
+                </dir-pagination-controls>
+            </div>
+
+        </div>
+    </div>
+</div>

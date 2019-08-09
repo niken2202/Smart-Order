@@ -233,6 +233,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\cashier\cashier.module.js" />
+    <Content Include="app\components\cashier\cashierHomeController.js" />
+    <Content Include="app\components\cashier\cashierHomeView.html" />
     <Content Include="app\components\dishes\dishAddController.js" />
     <Content Include="app\components\dishes\dishAddView.html" />
     <Content Include="app\components\dishes\dishEditsController.js" />
@@ -242,8 +245,14 @@
     <Content Include="app\components\dishes\listDishView.html" />
     <Content Include="app\components\home\homeController.js" />
     <Content Include="app\components\home\homeView.html" />
+    <Content Include="app\components\home\listHistoryController.js" />
+    <Content Include="app\components\home\listHistoryView.html" />
+    <Content Include="app\components\home\profileController.js" />
+    <Content Include="app\components\home\profileView.html" />
     <Content Include="app\components\home\rootController.js" />
+    <Content Include="app\components\login\registerController.js" />
     <Content Include="app\components\login\loginController.js" />
+    <Content Include="app\components\login\registerView.html" />
     <Content Include="app\components\login\loginView.html" />
     <Content Include="app\components\materials\listMaterialController.js" />
     <Content Include="app\components\materials\listMaterialView.html" />
@@ -252,6 +261,11 @@
     <Content Include="app\components\materials\materialEditsController.js" />
     <Content Include="app\components\materials\materialEditsView.html" />
     <Content Include="app\components\materials\materials.module.js" />
+    <Content Include="app\components\restaurant\billDetailView.html" />
+    <Content Include="app\components\restaurant\tableEditsController.js" />
+    <Content Include="app\components\restaurant\tableEditsView.html" />
+    <Content Include="app\components\restaurant\tableAddController.js" />
+    <Content Include="app\components\restaurant\tableAddView.html" />
     <Content Include="app\components\restaurant\revenusController.js" />
     <Content Include="app\components\restaurant\tablesView.html" />
     <Content Include="app\components\restaurant\listBillController.js" />
@@ -260,14 +274,26 @@
     <Content Include="app\components\restaurant\listBillView.html" />
     <Content Include="app\components\restaurant\revenusView.html" />
     <Content Include="app\components\services\comboController.js" />
+    <Content Include="app\components\services\comboAddController.js" />
+    <Content Include="app\components\services\comboAddView.html" />
+    <Content Include="app\components\services\comboEditsController.js" />
+    <Content Include="app\components\services\comboEditsView.html" />
+    <Content Include="app\components\services\promotionAddController.js" />
+    <Content Include="app\components\services\promotionEditsController.js" />
+    <Content Include="app\components\services\promotionAddView.html" />
+    <Content Include="app\components\services\promotionEditsView.html" />
     <Content Include="app\components\services\comboView.html" />
     <Content Include="app\components\services\services.module.js" />
-    <Content Include="app\components\services\promotionController.js" />
-    <Content Include="app\components\services\promotionView.html" />
+    <Content Include="app\components\services\promotionListController.js" />
+    <Content Include="app\components\services\promotionListView.html" />
     <Content Include="app\shared\filters\orderCountFilter.js" />
+    <Content Include="app\shared\filters\percentFilter.js" />
+    <Content Include="app\shared\filters\avaiableFilter.js" />
+    <Content Include="app\shared\filters\voucherFilter.js" />
     <Content Include="app\shared\filters\statusFilter.js" />
     <Content Include="app\shared\modules\SmartOrder.common.js" />
     <Content Include="app\shared\services\apiService.js" />
+    <Content Include="app\shared\services\imgUpload.js" />
     <Content Include="app\shared\services\authData.js" />
     <Content Include="app\shared\services\authenticationService.js" />
     <Content Include="app\shared\services\loginService.js" />
@@ -282,6 +308,11 @@
     <Content Include="assets\css\style.css" />
     <Content Include="assets\css\toastr.css" />
     <Content Include="assets\fonts\fa-solid-900.svg" />
+    <Content Include="assets\images\demo.jpg" />
+    <Content Include="assets\images\login\banner1.jpg" />
+    <Content Include="assets\images\login\register.png" />
+    <Content Include="assets\images\login\—Pngtree—nostalgic retro background creative restaurant_588887.jpg" />
+    <Content Include="assets\login\css\register.css" />
     <Content Include="assets\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="assets\images\avatars\1.jpg" />
     <Content Include="assets\images\avatars\10.jpg" />
@@ -293,18 +324,20 @@
     <Content Include="assets\images\avatars\5.jpg" />
     <Content Include="assets\images\avatars\8.jpg" />
     <Content Include="assets\images\avatars\9.jpg" />
-    <Content Include="assets\images\login\banner1.jpg" />
+    <Content Include="assets\images\login\banner2.jpg" />
+    <Content Include="assets\images\login\banner11.jpg" />
+    <Content Include="assets\images\login\bg-01.jpg" />
     <Content Include="assets\images\login\fac.png" />
     <Content Include="assets\images\login\l.png" />
     <Content Include="assets\images\login\m.png" />
     <Content Include="assets\images\login\tick.png" />
     <Content Include="assets\images\login\twitter.png" />
-    <Content Include="assets\images\logo-inverse.png" />
-    <Content Include="assets\images\logo.png" />
     <Content Include="assets\images\Ziet-Logo.png" />
+    <Content Include="assets\login\css\bootstrap.min.css" />
+    <Content Include="assets\login\js\bootstrap.min.js" />
+    <Content Include="assets\login\js\popper.min.js" />
     <Content Include="assets\scripts\dirPagination.js" />
     <Content Include="assets\scripts\execute.js" />
-    <Content Include="assets\scripts\javascript.js" />
     <Content Include="assets\scripts\jquery.min.js" />
     <Content Include="assets\scripts\main.js" />
     <Content Include="assets\scripts\toastr.js" />
@@ -1115,6 +1148,12 @@
     <Content Include="lib\angular.js\i18n\angular-locale_zh.js" />
     <Content Include="lib\angular.js\i18n\angular-locale_zu-za.js" />
     <Content Include="lib\angular.js\i18n\angular-locale_zu.js" />
+    <Content Include="lib\Chart.js\Chart.bundle.js" />
+    <Content Include="lib\Chart.js\Chart.bundle.min.js" />
+    <Content Include="lib\Chart.js\Chart.css" />
+    <Content Include="lib\Chart.js\Chart.js" />
+    <Content Include="lib\Chart.js\Chart.min.css" />
+    <Content Include="lib\Chart.js\Chart.min.js" />
     <Content Include="lib\font-awesome\css\all.css" />
     <Content Include="lib\font-awesome\css\all.min.css" />
     <Content Include="lib\font-awesome\css\brands.css" />
@@ -1220,6 +1259,9 @@
     <Content Include="lib\angular-ui-router\ui-router-angularjs.min.js.map" />
     <Content Include="lib\jquery\jquery.min.map" />
     <Content Include="lib\jquery\jquery.slim.min.map" />
+    <Content Include="assets\login\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="assets\login\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="assets\login\fonts\poppins\Poppins-Regular.ttf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -1274,7 +1316,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\dish_categories\" />
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="App_Data\" />

@@ -38,13 +38,13 @@
 
             <ul class="header-menu nav" style="">
                 <li class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link" style="color:#547adc;">
+                    <a  ui-sref="profile" class="nav-link" style="color:#547adc;">
                         <i class="nav-link-icon fas fa-user-circle" style="color:#547adc;"> </i>
                         Thông tin tài khoản
                     </a>
                 </li>
                 <li class="btn-group nav-item">
-                    <a href="javascript:void(0);" class="nav-link" style="color:#547adc;">
+                    <a ui-sref="history" class="nav-link" style="color:#547adc;">
                         <i class="nav-link-icon fa fa-edit" style="color:#547adc;"></i>
                         Lịch Sử Hoạt Động
                     </a>
@@ -75,8 +75,8 @@
                                             </button>
                                             <div class="logout-dropdown-content">
                                                 <a href="#" ng-click="logout()">Đăng xuất</a>
-                                                <a href="#">Đổi mật khẩu</a>
-                                                <a href="#">Lịch sử Hoạt Động</a>
+                                                <a ui-sref="profile">Đổi mật khẩu</a>
+                                                <a ui-sref="history">Lịch sử Hoạt Động</a>
                                             </div>
                                         </div>
                                     </div>
@@ -84,17 +84,12 @@
                             </div>
                             <div class="widget-content-left  ml-3 header-user-info">
                                 <div class="widget-heading">
-                                   
+                                    {{authentication.userName}}
                                 </div>
                                 <div class="widget-subheading">
                                     VP People Manager
                                 </div>
                             </div>
-
-                            <div class="widget-content-right header-user-info ml-3">
-                                {{authentication.userName}}
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -166,12 +161,12 @@
                                     </i>Quản lý nguyên liệu
                                 </a>
                             </li>
-                            <li>
+                            <!--<li>
                                 <a href="elements-dropdowns.html">
                                     <i class="metismenu-icon">
                                     </i>Quản lý bảng giá
                                 </a>
-                            </li>
+                            </li>-->
                         </ul>
                     </li>
 

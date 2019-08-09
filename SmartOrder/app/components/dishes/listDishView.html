@@ -10,8 +10,8 @@
             <div class="box-2">
                 <form class="search-wrapper active">
                     <div class="input-holder">
-                        <div class="input-holder">
-                            <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+                        <div class="input-holder cornflowerblue">
+                            <input type="text" ng-model="search" class="search-input cornflowerblue" placeholder="Tìm kiếm">
                         </div>
                     </div>
                 </form>
@@ -46,24 +46,24 @@
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
                     <tr>
-                        <th ng-click="sort('ID')">ID</th>
-                        <th ng-click="sort('Name')">Tên món</th>
-                        <th ng-click="sort('Price')">Giá bán</th>
-                        <th ng-click="sort('Amount')">Giá nhập</th>
-                        <th ng-click="sort('Status')">Trạng thái</th>
-                        <th ng-click="sort('OrderCount')" style="width:8%;text-align:center">Đã bán</th>
-                        <th ng-click="sort('CreatedDate')" style="text-align:center">Ngày khởi tạo</th>
+                        <th class="cornflowerblue " ng-click="sort('ID')">ID</th>
+                        <th class="cornflowerblue div-text-align-center"" ng-click="sort('Name')">Tên món</th>
+                        <th class="cornflowerblue div-text-align-center"" ng-click="sort('Price')">Giá bán</th>
+                        <th class="cornflowerblue div-text-align-center"" ng-click="sort('Amount')">Giá nhập</th>
+                        <th class="cornflowerblue div-text-align-center"" ng-click="sort('Status')">Trạng thái</th>
+                        <th class="cornflowerblue div-text-align-center"" ng-click="sort('OrderCount')" style="width:8%;text-align:center">Đã bán</th>
+                        <th class="cornflowerblue div-text-align-center"" ng-click="sort('CreatedDate')" style="text-align:center">Ngày khởi tạo</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr dir-paginate="item in dishes |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
-                        <td ng-click="vm.openDialog($event,item)">{{item.ID}}</td>
-                        <td ng-click="vm.openDialog($event,item)">{{item.Name}}</td>
-                        <td ng-click="vm.openDialog($event,item)">{{item.Price}}</td>
-                        <td ng-click="vm.openDialog($event,item)">{{item.Amount}}</td>
+                        <td  ng-click="vm.openDialog($event,item)">{{item.ID}}</td>
+                        <td  ng-click="vm.openDialog($event,item)">{{item.Name}}</td>
+                        <td class="div-text-align-center" ng-click="vm.openDialog($event,item)">{{item.Price}}</td>
+                        <td class="div-text-align-center" ng-click="vm.openDialog($event,item)">{{item.Amount}}</td>
                         <td ng-click="vm.openDialog($event,item)">
-                            <span ng-class="{'avaiabe-div':item.Status===1,'not-avaiabe-div':item.Status===0}">
+                            <span style="width:80%; float:right" ng-class="{'mb-2 mr-2 btn btn-success':item.Status===1,'mb-2 mr-2 btn btn-danger':item.Status===0}">
                                 {{item.Status | statusFilter}}
                             </span>
                         </td>
@@ -71,17 +71,20 @@
                         <td ng-click="vm.openDialog($event,item)" style="text-align:center">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>
                         <td>
                             <button class="btn delete-icon" ng-click="dishDel(item)">
-                                <i class="fas fa-times-circle"></i>
+                                <i class="fas fa-trash f1f8 customize-delete-icon"></i>
                             </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <dir-pagination-controls max-size="5"
-                                     direction-links="true"
-                                     boundary-links="true">
-            </dir-pagination-controls>
+            <div class="customeize-pagination">
+                <dir-pagination-controls max-size="5"
+                                         direction-links="true"
+                                         boundary-links="true">
+                </dir-pagination-controls>
+            </div>
+
         </div>
     </div>
 </div>

@@ -15,8 +15,18 @@
             }).state('promotion', {
                 url: "/promotion",
                 parent: 'base',
-                templateUrl: "/app/components/services/promotionView.html",
-                controller: "promotionController"
+                templateUrl: "/app/components/services/promotionListView.html",
+                controller: "promotionListController"
+            }).state('editPromotion', {
+                url: "/editPromotion",
+                parent: 'base',
+                templateUrl: "/app/components/services/promotionListView.html",
+                controller: "promotionEditsController"
+            }).state('addPromotion', {
+                url: "/addPromotion",
+                parent: 'base',
+                templateUrl: "/app/components/services/promotionAddView.html",
+                controller: "promotionAddController"
             });
     }
 

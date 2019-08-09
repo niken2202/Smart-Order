@@ -46,6 +46,11 @@
       "provider": "cdnjs",
       "library": "AlertifyJS@1.11.4",
       "destination": "lib/AlertifyJS/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "Chart.js@2.8.0",
+      "destination": "lib/Chart.js/"
     }
   ]
 }

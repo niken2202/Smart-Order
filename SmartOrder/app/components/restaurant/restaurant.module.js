@@ -7,11 +7,11 @@
 
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider
-              .state('list_bills', {
-                  url: "/list_bills",
+            .state('list_bills', {
+                url: "/list_bills",
                 parent: 'base',
                 templateUrl: "/app/components/restaurant/listBillView.html",
-                  controller: "listBillController"
+                controller: "listBillController"
             }).state('revenus', {
                 url: "/revenus",
                 parent: 'base',

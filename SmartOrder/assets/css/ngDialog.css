@@ -103,13 +103,13 @@
     pointer-events: all;
     margin-top:2%;
     margin-bottom:2%;
-    margin-left:8%;
-    margin-right:8%;
+    margin-left:20%;
+    margin-right:20%;
     padding-top: 10px;
     padding-bottom: 1px;
     padding-left: 2px;
     padding-right: 2px;
-    border-radius:15px;
+    border-radius:10px;
 }
 
 .ngdialog.ngdialog-closing .ngdialog-content {

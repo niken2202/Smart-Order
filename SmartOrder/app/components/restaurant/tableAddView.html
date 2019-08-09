@@ -1,0 +1,62 @@
+﻿<div class="main-card mb-3 card" style="border:hidden">
+    <div class="card-body">
+        <h4 class="card-title customize-font-blue-color"> Tạo bàn mới </h4>
+        <form  novalidate name="frmAddTable" role="form">
+
+            <div class="position-relative form-group">
+                <label  >Tên Bàn </label>
+                <input type="text" class="form-control" required name="tableName" ng-maxlength="256" ng-model="tableAdd.Name">
+                <span ng-show="frmAddtable.tableName.$invalid" class="had-error">*Hãy nhập tên bàn</span>
+                <span ng-show="frmAddtable.tableName.$error.maxlength.invalid" class="had-error">Tên bàn quá dài</span>
+            </div>
+
+            <div class="position-relative form-group">
+                <label  >Mã thiết bị</label>
+                <input required name="tableDeviceID" type="text" class="form-control" ng-maxlength="35" ng-model="tableAdd.DeviceID">
+                <span ng-show="frmAddtable.tableDeviceID.$invalid" class="had-error">*Phải nhập mã thiết bị</span>
+            </div>
+
+            <!--<div class="position-relative form-group">
+                <label >Nhập số ghế</label>
+                <input required name="tableCapacity" type="number" class="form-control" ng-model="tableAdd.Capacity">
+                <span ng-show="frmAddtable.tableCapacity.$invalid" class="had-error">*Hãy nhập sức chứa của bàn</span>
+            </div>-->          
+
+            <!--<div class="position-relative form-group">
+                <label >Mô tả table</label>
+                <textarea name="tableDescription" class="form-control" ng-model="tableAdd.Description">
+            </textarea>
+            </div>-->
+
+            <fieldset class="position-relative row form-group">
+                <legend class="col-form-label col-sm-2">Trạng thái</legend>
+                <div class="col-sm-10">
+                    <div class="position-relative form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" ng-model="tableAdd.Status" ng-value="1" />Hoạt động
+                        </label>
+                    </div>
+                    <div class="position-relative form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" ng-model="tableAdd.Status" ng-value="0" />
+                            Tạm dừng
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="nav-table-bar-parent">
+                <!--<div class="box-2">-->
+                    <button type="submit" ng-disabled="frmAddtable.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="Createtable()">Thêm bàn mới</button>
+                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click=closeThisDialog(0)>Hủy bỏ</button>
+                <!--</div>
+                <div class="box-1">
+                </div>
+                <div class="box-3">
+                </div>
+                <div class="box-4">
+                </div>-->
+            </div>
+        </form>
+    </div>
+</div>

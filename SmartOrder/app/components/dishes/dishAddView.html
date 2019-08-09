@@ -1,46 +1,53 @@
 ﻿<div class="main-card mb-3 card" style="border:hidden">
     <div class="card-body">
         <h4 class="card-title customize-font-blue-color"> Thêm món mới </h4>
-        <form class="" novalidate name="frmAddDish" role="form">
+        <form  novalidate name="frmAddDish" role="form">
 
             <div class="position-relative form-group">
-                <label for="exampleEmail" class="">Tên món </label>
+                <label  >Tên món </label>
                 <input type="text" class="form-control" required name="dishName" ng-maxlength="256" ng-model="dishAdd.Name">
                 <span ng-show="frmAddDish.dishName.$invalid" class="had-error">*Hãy nhập tên món</span>
                 <span ng-show="frmAddDish.dishName.$error.maxlength.invalid" class="had-error">Tên món quá dài</span>
             </div>
 
             <div class="position-relative form-group">
-                <label for="exampleEmail" class="">Giá bán</label>
+                <label  >Giá bán</label>
                 <input required name="dishPrice" type="number" class="form-control" ng-model="dishAdd.Price">
                 <span ng-show="frmAddDish.dishPrice.$invalid" class="had-error">*Phải nhập giá bán</span>
             </div>
 
             <div class="position-relative form-group">
-                <label for="examplePassword" class="">Giá cấu thành sản phẩm</label>
+                <label for="examplePassword" >Giá cấu thành sản phẩm</label>
                 <input required name="dishAmount" type="number" class="form-control" ng-model="dishAdd.Amount">
                 <span ng-show="frmAddDish.dishAmount.$invalid" class="had-error">*Hãy nhập giá cấu thành sản phẩm</span>
             </div>
 
-            <div class="position-relative form-group">
-                <label for="exampleSelect" class="">Nhóm món ăn</label>
+            <div class="position-relative form-group ">
+                <label for="exampleSelect" >Nhóm món ăn</label>
                 <select required name="dishCategory" class="form-control"
                         ng-model="dishAdd.CategoryID" ng-options="option.ID as option.Name for option in DishCategory">
-                    <option selected disabled value=""></option>
+                    <option selected disabled value="">-- Nhóm --</option>
                 </select>
                 <span ng-show="frmAddDish.dishCategory.$error.required" class="had-error">*Vui lòng chọn nhóm món ăn</span>
             </div>
 
             <div class="position-relative form-group">
-                <label for="exampleText" class="">Mô tả chi tiết món</label>
+                <label for="exampleText" >Mô tả chi tiết món</label>
                 <textarea name="dishDescription" class="form-control" ng-model="dishAdd.Description">
             </textarea>
             </div>
 
             <div class="position-relative form-group">
-                <label for="exampleFile" class="">Chèn ảnh</label>
-                <input name="file" id="exampleFile" type="file" class="form-control-file" ng-model="dishAdd.Image">
+                <!--<label for="exampleFile">Chèn ảnh</label>
+                <input name="file" id="exampleFile" type="file" class="form-control-file" ng-model="dishAdd.Image">-->
                 <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
+
+                <div class="input-group">
+                    <input id="image" class="hidden" type="file" img-upload ng-model="imageName" image-src="sendData(data)" name="imageName">
+                    <img ng-src="{{imageSrc}}" height="150" width="200" ng-show="imageSrc" />
+                    <!--<label for="image" class="btn btn-success btn-xs pull-center" name="upload" Value="">Upload Photo</label>-->
+                </div>
+
             </div>
 
             <fieldset class="position-relative row form-group">
@@ -61,16 +68,16 @@
             </fieldset>
 
             <div class="nav-table-bar-parent">
+                <!--<div class="box-2">-->
+                    <button type="submit" ng-disabled="frmAddDish.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="CreateDish()">Lưu lại</button>
+                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click=closeThisDialog(0)>Hủy bỏ</button>
+                <!--</div>
                 <div class="box-1">
-                    <button type="submit" ng-disabled="frmAddDish.$invalid" class="mt-1 btn btn-primary" ng-click="CreateDish()">Lưu lại</button>
-                    <button class="mt-1 btn btn-primary" ng-click=closeThisDialog(0)>Hủy bỏ</button>
-                </div>
-                <div class="box-2">
                 </div>
                 <div class="box-3">
                 </div>
                 <div class="box-4">
-                </div>
+                </div>-->
             </div>
         </form>
     </div>
