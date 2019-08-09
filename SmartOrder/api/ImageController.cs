@@ -19,7 +19,7 @@ namespace SmartOrder.api
         }
 
         [HttpPost]
-        [Route("api/upload")]
+        [Route("upload")]
         public HttpResponseMessage UploadImage(HttpRequestMessage request)
         {
            

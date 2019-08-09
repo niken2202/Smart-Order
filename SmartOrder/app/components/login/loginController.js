@@ -14,8 +14,8 @@
                     }
                     else {
                         var stateService = $injector.get('$state');
-                        //stateService.go('home');
-                        stateService.go('cashier');
+                        stateService.go('home');
+                       // stateService.go('cashier');
                     }
                 });
             }

@@ -10,7 +10,7 @@
             get: get,
             post: post,
             put: put,
-            del: del
+            del: del,
         }
         function del(url, data, success, failure) {
             authenticationService.setHeader();
@@ -42,6 +42,7 @@
 
             });
         }
+
         function put(url, data, success, failure) {
             authenticationService.setHeader();
             $http.put(url, data).then(function (result) {

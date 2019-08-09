@@ -1,29 +1,57 @@
-﻿(function (app) {
+﻿
+(function (app) {
     app.controller('dishAddController', dishAddController);
 
-    dishAddController.$inject = ['$scope', 'apiService', 'notificationService','$rootScope'];
 
-    function dishAddController($scope, apiService, notificationService, $rootScope) {
+    dishAddController.$inject = ['$http','$scope', 'apiService', 'notificationService', '$rootScope',];
+    app.directive('ngFiles', ['$parse', function ($parse) {
+        function fn_link(scope, element, attrs) {
+            
+            var onChange = $parse(attrs.ngFiles);
+            element.on('change', function (event) {
+                onChange(scope, { $files: event.target.files });
+               // getTheFiles(event.target.files);
+            });
+        };
+
+        return {
+            link: fn_link
+        }
+    }])
+
+    function dishAddController($http,$scope, apiService, notificationService, $rootScope) {
 
         //dish binding in dialog add dish
         $scope.dishAdd = {
             CreatedDate: new Date,
             Status: 1,
-            OrderCount: 0
+            OrderCount: 0,
+Image:null
         }
 
         //$scope.test = function () {
         //    console.log('in the add controller :------' + $scope.imageName);
         //};
-        $scope.imageSrc = "" ;
-
-        $scope.sendData = function (data) {
-            console.log("Data upload ", data);
-            $scope.imageSrc = data;
+        $scope.imageSrc = "";
+           
+        //Upload file
+        $scope.uploadFile = function(files) {
+                        var fd = new FormData();
+                        fd.append('Image', files[0]);
+                        $http.post('/api/image/upload', fd, {
+                                         transformRequest: angular.identity,
+                                         headers: {'Content-Type': undefined}
+                                    })
+                            .then(function(result){
+                            console.log(result.data);
+                        $scope.dishAdd.Image = result.data;
+                             })
+                             .error(function(){
+        });
         }
 
         //get list dish category to the select box
-        $scope.DishCategory = [];        
+        $scope.DishCategory = [];
         function getDishCategory() {
             apiService.get('/api/dishcategory/getall', null, function (result) {
                 $scope.DishCategory = result.data;
@@ -32,7 +60,7 @@
             });
         }
         getDishCategory();
- 
+
         //add dish to database
         $scope.CreateDish = CreateDish;
         function CreateDish() {
@@ -44,6 +72,6 @@
                     notificationService.displayError('Thêm mới không thành công.');
                 });
         }
-    
+
     }
 })(angular.module('SmartOrder.dishes'));
