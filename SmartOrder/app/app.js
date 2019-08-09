@@ -10,13 +10,13 @@
         $stateProvider
             .state('base', {
                 url: '',
-                templateUrl: "/app/shared/views/baseView.html",
+                templateUrl: "../app/shared/views/baseView.html",
                 controller: "baseController",
                 abstract: true
             })
             .state('login', {
                 url: "/login",
-                templateUrl: "/app/components/login/loginView.html",
+                templateUrl: "../app/components/login/loginView.html",
                 controller: "loginController"
             })
             .state('home', {
