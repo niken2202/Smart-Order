@@ -10,6 +10,7 @@ namespace Service
         void Update(Cart cart);
         Cart Delete(int id);
         Cart GetCartByTable(int tableID);
+
         void SaveChanges();
     }
 

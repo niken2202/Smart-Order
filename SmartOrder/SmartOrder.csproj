@@ -352,8 +352,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="lib\angular-file-upload\angular-file-upload.js" />
-    <Content Include="lib\angular-file-upload\angular-file-upload.min.js" />
     <Content Include="lib\angular-loading-bar\loading-bar.css" />
     <Content Include="lib\angular-loading-bar\loading-bar.js" />
     <Content Include="lib\angular-loading-bar\loading-bar.min.css" />
@@ -1264,8 +1262,6 @@
     <Content Include="assets\login\fonts\poppins\Poppins-Bold.ttf" />
     <Content Include="assets\login\fonts\poppins\Poppins-Medium.ttf" />
     <Content Include="assets\login\fonts\poppins\Poppins-Regular.ttf" />
-    <Content Include="lib\angular-file-upload\angular-file-upload.js.map" />
-    <Content Include="lib\angular-file-upload\angular-file-upload.min.js.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
