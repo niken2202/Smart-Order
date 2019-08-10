@@ -40,8 +40,7 @@ namespace SmartOrder.api
             });
         }
         
-        //[Route("getall")]
-        //[Authorize(Roles = "Guest, Cashier")]
+        [Route("getall")]
         //[Authorize(Roles = "Guest, Cashier")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
@@ -62,6 +61,28 @@ namespace SmartOrder.api
                 return response;
             });
         }
+        [Route("gettophot")]
+        //[Authorize(Roles = "Guest, Cashier")]
+        public HttpResponseMessage GetTopHot(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var tophot = dishService.GetTopDish();
+                    response = request.CreateResponse(HttpStatusCode.OK, new { tophot });
+                }
+                return response;
+            });
+        }
+
+
 
         [Route("getbycombo")]
         public HttpResponseMessage GetByCombo(HttpRequestMessage request, int comboId)

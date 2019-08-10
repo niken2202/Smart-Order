@@ -9,6 +9,7 @@ namespace Data.Repositories
         IEnumerable<Dish> GetDishByCombo(int comboId);
         IEnumerable<Dish> GetDishByCategory(int categoryId);
         IEnumerable<object> GetAll();
+        IEnumerable<Dish> GetTopHot();
         int GetDishCount();
 
     }
@@ -63,6 +64,11 @@ namespace Data.Repositories
         public int GetDishCount()
         {
             return DbContext.Dishes.Count();
+        }
+
+        public IEnumerable<Dish> GetTopHot()
+        {
+            return DbContext.Database.SqlQuery<Dish>("GetTop10Dish");
         }
     }
 }
