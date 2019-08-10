@@ -16,6 +16,7 @@ namespace Service
         Dish Delete(int id);
         IEnumerable<Dish> GetAllByComboId(int comboId);
         IEnumerable<Dish> GetByCategogy(int cateId);
+        IEnumerable<Dish> GetTopDish();
         int GetDishCount();
         void SaveChanges();
     }
@@ -68,6 +69,11 @@ namespace Service
         public int GetDishCount()
         {
             return dishRepository.GetDishCount();
+        }
+
+        public IEnumerable<Dish> GetTopDish()
+        {
+            return dishRepository.GetTopHot();
         }
 
         public void SaveChanges()
