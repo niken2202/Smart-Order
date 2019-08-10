@@ -33,6 +33,7 @@
             <div class="position-relative form-group">
                 <label for="exampleFile" class="">Chèn ảnh</label>
                 <input name="file"  type="file" class="form-control-file" ng-model="edtDish.Image" ng-change="slectedChange($event)">
+                <img src="{{edtDish.Image}}" />
                 <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
             </div>
 

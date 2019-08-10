@@ -85,6 +85,18 @@
     <Compile Include="Migrations\201908060822495_edit-table.Designer.cs">
       <DependentUpon>201908060822495_edit-table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908101027027_alter-cartDetail.cs" />
+    <Compile Include="Migrations\201908101027027_alter-cartDetail.Designer.cs">
+      <DependentUpon>201908101027027_alter-cartDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908101044454_add_cartDetail_Storedproceduce.cs" />
+    <Compile Include="Migrations\201908101044454_add_cartDetail_Storedproceduce.Designer.cs">
+      <DependentUpon>201908101044454_add_cartDetail_Storedproceduce.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908101509082_update_Cartdetail_table.cs" />
+    <Compile Include="Migrations\201908101509082_update_Cartdetail_table.Designer.cs">
+      <DependentUpon>201908101509082_update_Cartdetail_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationRoleRepository.cs" />
@@ -139,6 +151,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908060822495_edit-table.resx">
       <DependentUpon>201908060822495_edit-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101027027_alter-cartDetail.resx">
+      <DependentUpon>201908101027027_alter-cartDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101044454_add_cartDetail_Storedproceduce.resx">
+      <DependentUpon>201908101044454_add_cartDetail_Storedproceduce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908101509082_update_Cartdetail_table.resx">
+      <DependentUpon>201908101509082_update_Cartdetail_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

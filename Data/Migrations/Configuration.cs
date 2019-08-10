@@ -21,7 +21,7 @@ namespace Data.Migrations
 
             var user = new ApplicationUser()
             {
-                UserName = "anch",
+                UserName = "thang",
                 Email = "hahaa.hahaha@gmail.com",
                 EmailConfirmed = true,
                 BirthDay = DateTime.Now,

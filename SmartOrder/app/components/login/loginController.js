@@ -2,7 +2,7 @@
     app.controller('loginController', ['$scope', 'loginService', '$injector', 'notificationService',
         function ($scope, loginService, $injector, notificationService) {           
 
-            $scope.loginData = {
+         $scope.loginData = {
                 userName: "",
                 password: ""
             };
@@ -16,6 +16,7 @@
                 var stateService = $injector.get('$state');
                 stateService.go('crashier-login');
             };
-            
+
+
         }]);
 })(angular.module('SmartOrder'));

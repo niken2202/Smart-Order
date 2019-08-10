@@ -1,4 +1,5 @@
-﻿using Data.Infrastructure;
+﻿using Common.ViewModels;
+using Data.Infrastructure;
 using Data.Repositories;
 using Model.Models;
 using System.Collections.Generic;
@@ -9,8 +10,9 @@ namespace Service
     {
         CartDetail Add(CartDetail cartDetail);
         void Update(CartDetail cartDetail);
+        IEnumerable<CartDetailViewModel> GetAll();
         void DeleteMulti(int cartID);
-        IEnumerable<CartDetail> GetAll();
+       
         void SaveChanges();
     }
     public class CartDetailService : ICartDetailService
@@ -34,7 +36,7 @@ namespace Service
             cartDetailRepository.DeleteMulti(x => x.CartID == cartID);
         }
 
-        public IEnumerable<CartDetail> GetAll()
+        public IEnumerable<CartDetailViewModel> GetAll()
         {
             return cartDetailRepository.GetAll();
         }
