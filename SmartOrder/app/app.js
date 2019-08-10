@@ -1,10 +1,9 @@
-﻿
-(function () {
+﻿(function () {
     angular.module('SmartOrder',
         ['SmartOrder.dishes', 'SmartOrder.materials', 'SmartOrder.restaurant', 'SmartOrder.services',
             'SmartOrder.cashier', 'SmartOrder.common'])
         .config(config)
-     .config(configAuthentication);
+        .config(configAuthentication);
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
     function config($stateProvider, $urlRouterProvider) {
@@ -42,6 +41,18 @@
                 //parent: 'base',
                 templateUrl: "/app/components/home/profileView.html",
                 controller: "profileController"
+            })
+            .state('admin-login', {
+                url: "/admin-login",
+                //parent: 'base',
+                templateUrl: "/app/components/login/loginAdmin.html",
+                controller: "adminLoginController"
+            })
+            .state('crashier-login', {
+                url: "/crashier-login",
+                //parent: 'base',
+                templateUrl: "/app/components/login/loginCrashier.html",
+                controller: "crashierLoginController"
             });
         $urlRouterProvider.otherwise('/login');
     }
@@ -50,11 +61,9 @@
         $httpProvider.interceptors.push(function ($q, $location) {
             return {
                 request: function (config) {
-
                     return config;
                 },
                 requestError: function (rejection) {
-
                     return $q.reject(rejection);
                 },
                 response: function (response) {
@@ -65,7 +74,6 @@
                     return response;
                 },
                 responseError: function (rejection) {
-
                     if (rejection.status == "401") {
                         $location.path('/login');
                     }
@@ -74,5 +82,4 @@
             };
         });
     }
-
 })();

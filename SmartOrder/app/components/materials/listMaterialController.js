@@ -15,6 +15,14 @@
         }
         getMaterial();
 
+        //generate index number in table
+        $scope.serial = 1;
+        $scope.itemPerPage = 10
+        $scope.indexCount = function (newPageNumber) {
+
+            $scope.serial = newPageNumber * $scope.itemPerPage - ($scope.itemPerPage - 1);
+        }
+
         //function sort by title tr tag
         $scope.sort = function (keyname) {
             $scope.sortKey = keyname;   //set the sortKey to the param passed

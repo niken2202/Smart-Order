@@ -1,6 +1,5 @@
 ﻿<div class="cashier-main-parent" ng-controller="cashierHomeController">
 
-
     <div class="cashier-child-left column" ng-init="tabselector = 'table'">
         <!--header navigator bar right-->
         <div class="topnav">
@@ -27,22 +26,20 @@
                 </div>
 
                 <div class="crashier-table-body">
-                    
                     <div class="crashier-table-row">                        
-                        <div  class="crashier-table-item" dir-paginate="item in tables |filter:search |itemsPerPage:18" pagination-id="tables">
+                        <div class="crashier-table-item" dir-paginate="item in tables |filter:search |itemsPerPage:18" pagination-id="tables">
                             <img class="crashier-img" src="../../../assets/images/demo.jpg" />
                             <div class="crashier-btn-title">
                                 <span class="crashier-btn-choose"
                                       ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1,
                                       'mb-2 mr-2 btn btn-danger':item.Status==0,
                                       'mb-2 mr-2 btn btn-warning':item.Status==2}"
-                                      ng-click="showBill(item)">                                    
+                                      ng-click="showBill(item)">
                                     {{item.Name}}
                                 </span>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="cashier-table-footer">
@@ -54,7 +51,6 @@
                         </dir-pagination-controls>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -72,8 +68,8 @@
                         </div>
                     </form>
                 </div>
-                
-                <div class="crashier-table-body">                  
+
+                <div class="crashier-table-body">
 
                     <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="item in dishes |filter:dish |itemsPerPage:18" pagination-id="dishes">
@@ -87,7 +83,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="cashier-table-footer">
@@ -99,12 +94,9 @@
                         </dir-pagination-controls>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-
-    
 
     <!--display the bill detail the left div-->
     <div class="cashier-child-right column">
@@ -118,69 +110,67 @@
 
             <div class="crashier-billDetail-body">
 
-                        <!--<h4 class="card-title customize-font-blue-color">Chi tiết hóa đơn </h4>-->
+                <!--<h4 class="card-title customize-font-blue-color">Chi tiết hóa đơn </h4>-->
 
+                <div class="table-responsive">
+                    <h5 class="card-title customize-font-blue-color">Hóa đơn {{curTableName}}</h5>
+                    <table class="mb-0 table mb-0 table table-hover">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mặt hàng</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="bill in cartDetails |itemsPerPage:10" pagination-id="cartDetail">
+                                <td>{{ $index + serial}}</td>
+                                <td>{{bill.Name}}</td>
+                                <td><input required name="dishPrice" type="number" 
+                                           ng-change="quantityChange(bill)" ng-model="bill.Quantity"></td>
+                                <td>{{bill.Price}}</td>
+                                <td>{{bill.Quantity*bill.Price}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <dir-pagination-controls max-size="5" on-page-change='indexCount(newPageNumber)'
+                                             direction-links="true"
+                                             pagination-id="cartDetail"
+                                             boundary-links="true">
+                    </dir-pagination-controls>
 
-                        <div class="table-responsive">
-                            <table class="mb-0 table mb-0 table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Mã</th>
-                                        <th>Mặt hàng</th>
-                                        <th>Số lượng</th>
-                                        <th>Đơn giá</th>
-                                        <th>Thành tiền</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr dir-paginate="bill in cartDetails |itemsPerPage:10" pagination-id="cartDetail">
-                                        <td>{{bill.ID}}</td>
-                                        <td>{{bill.Name}}</td>
-                                        <td>{{bill.Amount}}</td>
-                                        <td>{{bill.Price}}</td>
-                                        <td>{{bill.Amount*bill.Price}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <dir-pagination-controls max-size="5"
-                                                     direction-links="true"
-                                                     pagination-id="cartDetail"
-                                                     boundary-links="true">
-                            </dir-pagination-controls>
+                    <div class="div-footer-billdetail">
+
+                        <div class="row1">
+                            <label class="">
+                                Tổng tiền : {{totalPrice}}
+                            </label>
                         </div>
-
-                        <div class="div-footer-billdetail">
-                           
-                                <div class="row1">
-                                    <label class="">
-                                        Tổng tiền : 253.356
-                                    </label>
-                                </div>
-                                <div class="row2">
-                                    <label class="">
-                                        Giảm giá : {{bill.Discount | percentFilter}}
-                                    </label>
-                                </div>
-                                <div class="row3">
-                                    <label class="">
-                                        Thanh toán : 235,000
-                                    </label>
-                                </div>
-                                <div class="row4">
-                                    <!--<label class="">
-                                        Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
-                                    </label>-->
-                                </div>
-                          
+                        <div class="row2">
+                            <label class="">
+                                Giảm giá : {{bill.Discount | percentFilter}}
+                            </label>
                         </div>
-                        
+                        <div class="row3">
+                            <label class="">
+                                Thanh toán : 235,000
+                            </label>
+                        </div>
+                        <div class="row4">
+                            <!--<label class="">
+                Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
+            </label>-->
+                        </div>
+                    </div>
+
+                </div>
+
+                
             </div>
 
             <!--<div class="crashier-billDetail-footer"></div>-->
-
         </div>
-
-
     </div>
-
 </div>

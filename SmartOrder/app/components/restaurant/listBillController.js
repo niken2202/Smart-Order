@@ -9,6 +9,14 @@
         $scope.title;
         //user option from slect box
         $scope.userOption;
+
+        //generate index number in table
+        $scope.serial = 1;
+        $scope.itemPerPage = 10
+        $scope.indexCount = function (newPageNumber) {
+
+            $scope.serial = newPageNumber * $scope.itemPerPage - ($scope.itemPerPage - 1);
+        }
         
         //for user customize date from to .. 
         $scope.dateSeclect = {

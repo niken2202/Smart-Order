@@ -7,7 +7,7 @@
 
         var a = $scope.table;
         $scope.edtTable = {
-            ID: a.ID, Name: a.Name, DeviceID: a.DeviceID, Status: a.Status ,/*CreatedDate: a.CreatedDate*/
+            ID: a.ID, Name: a.Name, DeviceID: a.DeviceID, Status: a.Status ,CreatedDate: a.CreatedDate
         };
 
         //update combo

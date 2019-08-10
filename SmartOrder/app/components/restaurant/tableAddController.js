@@ -7,7 +7,7 @@
 
         //dish binding in dialog add table
         $scope.tableAdd = {
-            //CreatedDate: new Date,
+            CreatedDate: new Date,
             Name: "Bàn số ",
             Status: 1,
         }
@@ -16,7 +16,7 @@
         $scope.Createtable = Createtable;
 
         function Createtable() {
-            console.log("table add infomation : " + $scope.tableAdd.Name)
+            //console.log("table add infomation : " + $scope.tableAdd.DeviceID)
             apiService.post('api/table/add', $scope.tableAdd,
                 function (result) {
                     notificationService.displaySuccess('table ' + $scope.tableAdd.Name + ' đã được thêm mới');

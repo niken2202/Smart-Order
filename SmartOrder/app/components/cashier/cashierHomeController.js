@@ -5,7 +5,11 @@
 
     function cashierHomeController($scope, ngDialog, apiService, notificationService, $interval) {
 
-        $scope.checkCart; 
+        
+        $scope.totalPrice = 0;
+        $scope.checkCart = false;
+        $scope.curTableID = 0;
+        $scope.curTableName = "";
         //get table list from api
         function getListTable() {
             apiService.get('/api/table/getall', null, function (result) {
@@ -15,6 +19,14 @@
             });
         }
         getListTable();
+
+        //generate index number in table
+        $scope.serial = 1;
+        $scope.itemPerPage = 20
+        $scope.indexCount = function (newPageNumber) {
+
+            $scope.serial = newPageNumber * $scope.itemPerPage - ($scope.itemPerPage - 1);
+        }
 
         //get dishes list from api
         function getDish() {
@@ -29,19 +41,28 @@
         }
         getDish();
 
-        //show billdetail 
+        //show cart by select table 
         $scope.showBill = showBill;
         function showBill(item) {
             $scope.curTableID = item.ID;
+            $scope.curTableName = item.Name;
             var transfer = {
                 params: {
-                    billId: $scope.curTableID,
+                    tableId: $scope.curTableID,
                 }
             }
             apiService.get('/api/cart/getbytable', transfer, function (result) {
-                $scope.cartDetails = result.data;
-                if (result.data.length == 0) {
-                    $scope.checkCart = false;//it mean cart is not created
+                if (result.data == null) {
+                    $scope.checkCart = false;//it mean cart is not created      
+                } else {      
+                    $scope.cartDetails = result.data.CartDetails;
+                    var total = 0;
+                    for (var i = 0; i < $scope.cartDetails.length; i++) {
+                        var product = $scope.cartDetails[i];
+                        total += (product.Price * product.Quantity);   
+                        $scope.cartDetails.order = i;
+                    }
+                    $scope.totalPrice = total;
                 };
             }, function () {
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải dữ liệu!');
@@ -54,10 +75,14 @@
         function addDish(item) {
             //create new cart for table
             if ($scope.checkCart == false) {
-
-                $scope.checkCart == true;
+                if ($scope.curTableID === 0) {
+                    console.log(item);
+                } else {
+                    $scope.checkCart == true;
+                }
+               
             };
-            if ($scope.checkCart == true) {
+            if ($scope.checkCart == true) {               
             var transfer = {
                 params: {
                     billId: $scope.curTableID,
@@ -71,6 +96,22 @@
             }
         };
 
+        //catch event when user change quality of dish
+        $scope.quantityChange = quantityChange;
+        function quantityChange(item) {
+            var num = item.Quantity;
+            var bol = true;
+            if (num < 1 == true || num > 25 == true) {
+                item.Quantity = 1;
+                bol = false;
+            } else {
+                bol = true;            
+            }
+            if (bol === false) {
+                notificationService.displayError('Dữ liệu nhập vào không hợp lệ');
+            }
+        };
+
         //auto update current cart
         function autoUpdateCart() {
             var date = new Date();
@@ -78,7 +119,7 @@
         }
 
         //set schedule to auto call update view
-        $interval(rellTime, 3000);
+        $interval(rellTime, 10000);
 
         function rellTime() {
             getListTable();

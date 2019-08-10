@@ -11,10 +11,12 @@ namespace SmartOrder.api
     public class CartController : ApiControllerBase
     {
         private ICartService cartService;
-        public CartController(ICartService cartService,IErrorService errorService, IHistoryService _historyService) : base(errorService, _historyService)
+
+        public CartController(ICartService cartService, IErrorService errorService, IHistoryService _historyService) : base(errorService, _historyService)
         {
             this.cartService = cartService;
         }
+
         [Route("add")]
         public HttpResponseMessage Create(HttpRequestMessage request, Cart cart)
         {
@@ -35,6 +37,7 @@ namespace SmartOrder.api
                 return response;
             });
         }
+
         [Route("getbytable")]
         //   [Authorize(Roles = "Guest, Cashier")]
         public HttpResponseMessage GetAll(HttpRequestMessage request, int tableId)
@@ -50,7 +53,7 @@ namespace SmartOrder.api
                 else
                 {
                     var cart = cartService.GetCartByTable(tableId);
-                    response = request.CreateResponse(HttpStatusCode.OK,  cart);
+                    response = request.CreateResponse(HttpStatusCode.OK, cart);
                 }
                 return response;
             });

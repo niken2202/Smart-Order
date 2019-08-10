@@ -1,13 +1,12 @@
 ﻿using Service;
 using SmartOrder.Infrastructure;
-using System.Net.Http;
-using System.Web.Http;
-using System.Linq;
-using System.Web;
 using System;
 using System.IO;
+using System.Linq;
 using System.Net;
-using System.Web.Hosting;
+using System.Net.Http;
+using System.Web;
+using System.Web.Http;
 
 namespace SmartOrder.api
 {
@@ -22,7 +21,6 @@ namespace SmartOrder.api
         [Route("api/upload")]
         public HttpResponseMessage UploadImage(HttpRequestMessage request)
         {
-           
             return CreateHttpResponse(request, () =>
             {
                 string imageName = null;
@@ -38,8 +36,8 @@ namespace SmartOrder.api
                     filePath = HttpContext.Current.Server.MapPath("/Images/" + imageName);
                     postedFile.SaveAs(filePath);
                 }
-               
-                var response = request.CreateResponse(HttpStatusCode.OK,"/Images/"+imageName);
+
+                var response = request.CreateResponse(HttpStatusCode.OK, "/Images/" + imageName);
                 return response;
             });
         }

@@ -9,13 +9,21 @@
             apiService.get('/api/dish/getall', null, function (result) {
                 $scope.dishes = result.data.listDish;
                 if ($scope.dishes.length === 0) {
-                    //notificationService.displayWarning('Danh sách trống !');
+                    //notificationService.displayWarning('Danh sách trống !');                    
                 }
             }, function () {
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
             });
         }
         getDish();
+
+        //generate index number in table
+        $scope.serial = 1;
+        $scope.itemPerPage = 10
+        $scope.indexCount = function (newPageNumber) {
+
+            $scope.serial = newPageNumber * $scope.itemPerPage - ($scope.itemPerPage - 1);
+        }
 
         //reload table
         $scope.reload = function (data) {

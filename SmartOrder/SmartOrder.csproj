@@ -251,6 +251,10 @@
     <Content Include="app\components\home\profileController.js" />
     <Content Include="app\components\home\profileView.html" />
     <Content Include="app\components\home\rootController.js" />
+    <Content Include="app\components\login\crashierLoginController.js" />
+    <Content Include="app\components\login\adminLoginController.js" />
+    <Content Include="app\components\login\loginCrashier.html" />
+    <Content Include="app\components\login\loginAdmin.html" />
     <Content Include="app\components\login\registerController.js" />
     <Content Include="app\components\login\loginController.js" />
     <Content Include="app\components\login\registerView.html" />
@@ -310,6 +314,7 @@
     <Content Include="assets\css\toastr.css" />
     <Content Include="assets\fonts\fa-solid-900.svg" />
     <Content Include="assets\images\demo.jpg" />
+    <Content Include="assets\images\login\background.jpg" />
     <Content Include="assets\images\login\banner1.jpg" />
     <Content Include="assets\images\login\register.png" />
     <Content Include="assets\images\login\—Pngtree—nostalgic retro background creative restaurant_588887.jpg" />

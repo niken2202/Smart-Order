@@ -7,17 +7,15 @@
                 password: ""
             };
 
-            $scope.loginSubmit = function () {
-                loginService.login($scope.loginData.userName, $scope.loginData.password).then(function (response) {
-                    if (response != null && response.data.error != undefined) {
-                        notificationService.displayError("Đăng nhập không đúng.");
-                    }
-                    else {
-                        var stateService = $injector.get('$state');
-                        //stateService.go('home');
-                        stateService.go('cashier');
-                    }
-                });
-            }
+            $scope.adminLogin = function () {
+                var stateService = $injector.get('$state');
+                stateService.go('admin-login');
+            };
+
+            $scope.crashierLogin = function () {
+                var stateService = $injector.get('$state');
+                stateService.go('crashier-login');
+            };
+            
         }]);
 })(angular.module('SmartOrder'));

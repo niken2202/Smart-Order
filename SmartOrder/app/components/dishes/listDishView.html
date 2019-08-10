@@ -57,8 +57,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr dir-paginate="item in dishes |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
-                        <td  ng-click="vm.openDialog($event,item)">{{item.ID}}</td>
+                    <tr dir-paginate="item in dishes |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:itemPerPage" >
+                        <td ng-click="vm.openDialog($event,item)">{{ $index + serial}}</td>
                         <td  ng-click="vm.openDialog($event,item)">{{item.Name}}</td>
                         <td class="div-text-align-center" ng-click="vm.openDialog($event,item)">{{item.Price}}</td>
                         <td class="div-text-align-center" ng-click="vm.openDialog($event,item)">{{item.Amount}}</td>
@@ -79,7 +79,7 @@
             </table>
 
             <div class="customeize-pagination">
-                <dir-pagination-controls max-size="5"
+                <dir-pagination-controls max-size="5" on-page-change='indexCount(newPageNumber)'
                                          direction-links="true"
                                          boundary-links="true">
                 </dir-pagination-controls>

@@ -48,8 +48,8 @@
                 </thead>
                 <tbody>
                     <tr ng-click="billDetailEvent(item)"
-                        dir-paginate="item in bills |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
-                        <td>{{item.ID}}</td>
+                        dir-paginate="item in bills |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:itemPerPage">
+                        <td>{{$index + serial}}</td>
                         <td>{{item.CustomerName}}</td>
                         <td>{{item.Voucher | voucherFilter}}</td>
                         <td>{{item.TableID}}</td>
@@ -62,7 +62,7 @@
             </table>
 
             <div class="customeize-pagination">
-                <dir-pagination-controls max-size="5"
+                <dir-pagination-controls max-size="5" on-page-change='indexCount(newPageNumber)'
                                          direction-links="true"
                                          boundary-links="true">
                 </dir-pagination-controls>
