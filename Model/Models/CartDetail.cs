@@ -22,6 +22,9 @@ namespace Model.Models
         public string Image { get; set; }
         public int Status { get; set; }
         public int ProID { get; set; }
+
+        [MaxLength(256)]
+        public string Note { get; set; }
         public int Type { get; set; }
 
         [ForeignKey("CartID")]
