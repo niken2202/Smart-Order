@@ -82,7 +82,7 @@
                 }
                
             };
-            if ($scope.checkCart == true) {               
+            if ($scope.checkCart == true) {                
             var transfer = {
                 params: {
                     billId: $scope.curTableID,
@@ -93,7 +93,14 @@
             }, function () {
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải dữ liệu!');
                     });
-            }
+            };
+
+            for (i = 0; i < $scope.cartDetails.lenght; i++) {
+                if (item.ID === $scope.cartDetails) {
+
+                }
+            };
+
         };
 
         //catch event when user change quality of dish

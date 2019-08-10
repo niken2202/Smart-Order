@@ -57,7 +57,7 @@
                 }
             }
 
-            apiService.get('/api/bill/getrevenue', config, function (result) {
+            apiService.get('/api/bill/getrevenuebymonth', config, function (result) {
                 $scope.bills = result.data;
                 $scope.title = "7 ngày gần đây";
                 console.log($scope.bills);
@@ -77,8 +77,21 @@
             if ($scope.userOption === 1) {
                 getRevenue7day();
             } else if ($scope.userOption === 2) {
+                 fdate = new Date();
+                 tDate = new Date(fdate);
 
-                apiService.get('/api/bill/getlast7day', null, function (result) {
+                tDate.setDate(tDate.getDate() - 30);
+
+                console.log(fdate);
+                console.log(tDate);
+
+                var config = {
+                    params: {
+                        fromDate: fdate,
+                        toDate: tDate
+                    }
+                }
+                apiService.get('/api/bill/getrevenuebymonth', config, function (result) {
                     $scope.bills = result.data;
                     $scope.title = "30 ngày gần đây";
                     if ($scope.bills.length === 0) {
@@ -92,7 +105,21 @@
                 });
 
             } else if ($scope.userOption === 3) {
-                apiService.get('/api/bill/getlastmonth', null, function (result) {
+                fdate = new Date();
+                tDate = new Date(fdate);
+
+                tDate.setMonth(tDate.getMonth() - 12);
+
+                console.log(fdate);
+                console.log(tDate);
+
+                var config = {
+                    params: {
+                        fromDate: fdate,
+                        toDate: tDate
+                    }
+                }
+                apiService.get('/api/bill/getrevenuebymonth', config, function (result) {
                     $scope.bills = result.data;
                     $scope.title = "12 Tháng gần đây";
                     if ($scope.bills.length === 0) {
