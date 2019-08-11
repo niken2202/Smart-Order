@@ -4,7 +4,6 @@
     homeController.$inject = ['$scope', 'ngDialog', 'apiService', 'notificationService'];
 
     function homeController($scope, ngDialog, apiService, notificationService) {
-
         $scope.title;
         //user option from slect box
         $scope.userOption;
@@ -24,13 +23,11 @@
 
         //get all history
         function getHistory() {
-
             var config = {
                 params: {
-
                 }
             }
-            apiService.get('/api/history/getall', config, function (result) {      
+            apiService.get('/api/history/getall', config, function (result) {
                 $scope.history = result.data;
                 //console.log(result.data);
             }, function () {
@@ -39,9 +36,33 @@
         }
         getHistory();
 
+        //generate index number in table
+        $scope.serial = 1;
+        $scope.indexCount = function (newPageNumber) {
+            $scope.serial = newPageNumber * 10 - 9;
+        }
+
+        //get top hot dish
+        function getTopHotDish() {
+            var config = {
+                params: {
+                }
+            }
+            apiService.get('/api/dish/gettophot', null, function (result) {
+                if (result.data == null) {
+                   //data is empty it mean is not have any top hot dish
+                } else {
+                    $scope.hotDishes = result.data.tophot;
+                    console.log('hot dishes ' + $scope.hotDishes);
+                }
+            }, function () {
+                console.log('Load history failed.');
+            });
+        }
+        getTopHotDish();
+
         //get default data in recently 7 days
         function getRevenue7day() {
-
             var fdate = new Date();
             var tDate = new Date(fdate);
 
@@ -64,12 +85,10 @@
                 if ($scope.bills.length === 0) {
                     //notificationService.displayWarning('Danh sách trống !');
                 } else {
-                    
                 }
             }, function () {
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
             });
-
         };
 
         //catch event user select box change
@@ -77,8 +96,8 @@
             if ($scope.userOption === 1) {
                 getRevenue7day();
             } else if ($scope.userOption === 2) {
-                 fdate = new Date();
-                 tDate = new Date(fdate);
+                fdate = new Date();
+                tDate = new Date(fdate);
 
                 tDate.setDate(tDate.getDate() - 30);
 
@@ -103,7 +122,6 @@
                 }, function () {
                     notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
                 });
-
             } else if ($scope.userOption === 3) {
                 fdate = new Date();
                 tDate = new Date(fdate);
@@ -135,7 +153,6 @@
             }
         };
 
-
         $scope.fruits = {
             labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
             data: [950000, 1400000, 1200000, 1200000, 1600000, 1400000, 1300000, 1300000, 1200000, 1200000, 1100000, 1200000],
@@ -162,7 +179,5 @@
                 showDatasetLabels: false
             }
         });
-
-
     };
 })(angular.module('SmartOrder'));

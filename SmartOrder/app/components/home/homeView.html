@@ -1,45 +1,90 @@
 ﻿<div class="main-content-homeView">
 
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+                </div>
+                <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:200%;heiGht:200%;left:0; top:0"></div>
+                </div>
+            </div>
+            <h4 class="card-title customize-font-blue-color">Biểu đồ thống kê Doanh thu {{title}}</h4>
+
+            <div class="nav-table-bar-parent">
+                <label class="cornflowerblue" style="padding-right:5px;">Xem doanh thu trong: </label>
+                <select name="dishCategory" class="customize-DateInput cornflowerblue"
+                        ng-change="selectEvent()"
+                        ng-model="userOption" ng-options="option.key as option.val for option in options">
+                    <option selected disabled value="">-- Thời gian --</option>
+                </select>
+            </div>
+            <!--<div class="div-datePicker">
+                <div class="div1">
+                    <label class="cornflowerblue">Từ ngày: </label>
+                    <input class="customize-DateInput cornflowerblue" type="date" name="fromDate"
+                           ng-change="cusDateEvent()" ng-model="dateSeclect.from" />
+                </div>
+                <div class="div2">
+                    <label class="cornflowerblue ">Đến: </label>
+                    <input class="customize-DateInput cornflowerblue" type="date" name="toDate"
+                           ng-model="dateSeclect.to" ng-change="cusDateEvent()" />
+                </div>
+            </div>-->
+        </div>
+
+        <canvas id="dvCanvas" height="300" width="900" class="chartjs-render-monitor" style="display: block; height: 90%; width: 95%;"></canvas>
+    </div>
 
     <div class="main-card mb-3 card">
         <div class="card-body">
             <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-        <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-        </div>
-        <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-            <div style="position:absolute;width:200%;heiGht:200%;left:0; top:0"></div>
-        </div>
-    </div>
-            <h4 class="card-title customize-font-blue-color">Biểu đồ thống kê Doanh thu {{title}}</h4>
-
-            <div class="nav-table-bar-parent"> 
-                        <label class="cornflowerblue" style="padding-right:5px;">Xem hóa đơn trong: </label>
-                        <select name="dishCategory" class="customize-DateInput cornflowerblue"
-                                ng-change="selectEvent()"
-                                ng-model="userOption" ng-options="option.key as option.val for option in options">
-                            <option selected disabled value="">-- Thời gian --</option>
-                        </select>
+                <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
                 </div>
-                <!--<div class="div-datePicker">
-                    <div class="div1">
-                        <label class="cornflowerblue">Từ ngày: </label>
-                        <input class="customize-DateInput cornflowerblue" type="date" name="fromDate"
-                               ng-change="cusDateEvent()" ng-model="dateSeclect.from" />
-                    </div>
-                    <div class="div2">
-                        <label class="cornflowerblue ">Đến: </label>
-                        <input class="customize-DateInput cornflowerblue" type="date" name="toDate"
-                               ng-model="dateSeclect.to" ng-change="cusDateEvent()" />
-                    </div>
-                </div>-->
-
+                <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:200%;heiGht:200%;left:0; top:0"></div>
+                </div>
             </div>
+            <h4 class="card-title customize-font-blue-color">Danh sách 10 sản phẩm bán chạy gần đây {{titleHotDish}}</h4>
 
-            <canvas id="dvCanvas" height="300" width="900" class="chartjs-render-monitor" style="display: block; height: 90%; width: 95%;"></canvas>
-        </div>
+            <div class="nav-table-bar-parent">
+                
+                <div class="table-responsive">
+                    <table class="mb-0 table mb-0 table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="cornflowerblue ">#</th>
+                                <th class="cornflowerblue div-text-align-center">Tên món</th>
+                                <th class="cornflowerblue div-text-align-center">Giá bán</th>
+                                <th class="cornflowerblue div-text-align-center">Giá nhập</th>
+                                <!--<th class="cornflowerblue div-text-align-center">Trạng thái</th>-->
+                                <th class="cornflowerblue div-text-align-center" style="width:10%;text-align:center">Đã bán</th>
+                                <th class="cornflowerblue div-text-align-center" style="text-align:center">Ngày khởi tạo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr dir-paginate="item in hotDishes |itemsPerPage:itemPerPage" on-page-change='indexCount(newPageNumber)'>
+                                <td>{{ $index + serial}}</td>
+                                <td>{{item.Name}}</td>
+                                <td class="div-text-align-center">{{item.Price}}</td>
+                                <td class="div-text-align-center">{{item.Amount}}</td>
+                                <!--<td>
+                                    <span style="width:80%; float:right" ng-class="{'mb-2 mr-2 btn btn-success':item.Status===1,'mb-2 mr-2 btn btn-danger':item.Status===0}">
+                                        {{item.Status | statusFilter}}
+                                    </span>
+                                </td>-->
+                                <td style="width:8%; text-align:center">{{item.OrderCount | orderCountFilter}}</td>
+                                <td style="text-align:center">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>                                
+                            </tr>
+                        </tbody>
+                    </table>
+                                   
+                </div>
+            </div>
+        </div>        
     </div>
-    
 </div>
 
 <div class="history-homeView">
@@ -49,6 +94,5 @@
             <div class="titleHistory customize-font-blue-color">{{item.TaskName}}</div>
             <div class="timeHistory" style="font-size:12px">{{item.CreatedDate | date:'hh:mm - dd/MM/yyyy '}}</div>
         </div>
-
-     </div>
+    </div>
 </div>

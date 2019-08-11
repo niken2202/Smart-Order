@@ -15,11 +15,11 @@
             <!--header to search table-->
             <div class="crashier-table-content">
                 <div class="crashier-table-header">
-                    <h4 class="card-title customize-font-blue-color ng-binding">Biểu đồ thống kê Doanh thu </h4>
+                    <h4 class="card-title customize-font-green-color ng-binding">Danh sách bàn </h4>
 
                     <!--<div class="nav-table-bar-parent">
                         <div class="box-1">
-                            <h4 class="card-title customize-font-blue-color">THANH CÔNG CỤ</h4>
+                            <h4 class="card-title customize-font-green-color">THANH CÔNG CỤ</h4>
                         </div>
                         <div class="box-2">
                             <form class="search-wrapper active">
@@ -31,7 +31,7 @@
                             </form>
                         </div>
                         <div class="box-3">
-                            <h4 class="card-title customize-font-blue-color" style="float:right">Thêm món</h4>
+                            <h4 class="card-title customize-font-green-color" style="float:right">Thêm món</h4>
                         </div>
                         <div class="box-4">
                             <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="dishAdd()">
@@ -39,7 +39,7 @@
                             </button>
                         </div>
                         <div class="box-5">
-                            <h4 class="card-title customize-font-blue-color" style="float:right">Thêm loại sản phẩm  </h4>
+                            <h4 class="card-title customize-font-green-color" style="float:right">Thêm loại sản phẩm  </h4>
                         </div>
                         <div class="box-6">
                             <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="AddCategory()">
@@ -47,18 +47,17 @@
                             </button>
                         </div>
                     </div>-->
-
                     <!--<form class="search-wrapper active">
-        <div class="input-holder">
-            <div class="input-holder">
-                <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
-            </div>
-        </div>
-    </form>-->
+                        <div class="input-holder">
+                            <div class="input-holder">
+                                <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+                            </div>
+                        </div>
+                    </form>-->
                 </div>
 
                 <div class="crashier-table-body">
-                    <div class="crashier-table-row">                        
+                    <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="item in tables |filter:search |itemsPerPage:18" pagination-id="tables">
                             <img class="crashier-img" src="../../../assets/images/demo.jpg" />
                             <div class="crashier-btn-title">
@@ -91,7 +90,7 @@
             <div class="crashier-table-content">
                 <!--header to search table-->
                 <div class="crashier-table-header">
-                    <label class="card-title customize-font-blue-color">Lọc món</label>
+                    <label class="card-title customize-font-green-color">Lọc món</label>
                     <form class="search-wrapper active">
                         <div class="input-holder">
                             <div class="input-holder">
@@ -142,10 +141,10 @@
 
             <div class="crashier-billDetail-body">
 
-                <!--<h4 class="card-title customize-font-blue-color">Chi tiết hóa đơn </h4>-->
+                <!--<h4 class="card-title customize-font-green-color">Chi tiết hóa đơn </h4>-->
 
                 <div class="table-responsive">
-                    <h5 class="card-title customize-font-blue-color">Hóa đơn {{curTableName}}</h5>
+                    <h5 class="card-title customize-font-green-color">Hóa đơn {{curTableName}}</h5>
                     <table class="mb-0 table mb-0 table table-hover">
                         <thead>
                             <tr>
@@ -160,8 +159,10 @@
                             <tr dir-paginate="bill in cartDetails |itemsPerPage:10" pagination-id="cartDetail">
                                 <td>{{ $index + serial}}</td>
                                 <td>{{bill.Name}}</td>
-                                <td><input required name="dishPrice" type="number" 
-                                           ng-change="quantityChange(bill)" ng-model="bill.Quantity"></td>
+                                <td>
+                                    <input required name="dishPrice" type="number"
+                                           ng-change="quantityChange(bill)" ng-model="bill.Quantity">
+                                </td>
                                 <td>{{bill.Price}}</td>
                                 <td>{{bill.Quantity*bill.Price}}</td>
                             </tr>
@@ -192,14 +193,11 @@
                         </div>
                         <div class="row4">
                             <!--<label class="">
-                Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
-            </label>-->
+                                Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
+                            </label>-->
                         </div>
                     </div>
-
                 </div>
-
-                
             </div>
 
             <!--<div class="crashier-billDetail-footer"></div>-->
