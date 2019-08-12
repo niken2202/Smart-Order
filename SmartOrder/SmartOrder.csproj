@@ -203,7 +203,6 @@
     <Compile Include="api\DishCategoryController.cs" />
     <Compile Include="api\DishController.cs" />
     <Compile Include="api\HistoryController.cs" />
-    <Compile Include="api\HomeController.cs" />
     <Compile Include="api\ImageController.cs" />
     <Compile Include="api\MaterialController.cs" />
     <Compile Include="api\PromotionCodeController.cs" />

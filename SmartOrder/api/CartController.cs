@@ -70,6 +70,7 @@ namespace SmartOrder.api
                 else
                 {
                     cartService.Update(cart);
+                    cartService.SaveChanges();
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
                 return response;
