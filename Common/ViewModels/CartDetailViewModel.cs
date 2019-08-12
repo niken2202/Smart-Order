@@ -17,6 +17,7 @@ namespace Common.ViewModels
         public int Status { get; set; }
         public int ProID { get; set; }
         public int Type { get; set; }
+        public string Note { get; set; }
         public string TableName { get; set; }
         public int TableID { get; set; }
 

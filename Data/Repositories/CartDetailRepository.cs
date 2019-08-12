@@ -23,5 +23,6 @@ namespace Data.Repositories
             var cartDetail = DbContext.Database.SqlQuery<CartDetailViewModel>("GetAllCartDetail");
             return cartDetail;
         }
+        
     }
 }

@@ -6,11 +6,14 @@ namespace Data.Repositories
     public interface ICartRepository : IRepository<Cart>
     {
         Cart GetCartByTable(int tableID);
+       
+        
     }
     public class CartRepository : RepositoryBase<Cart>, ICartRepository
     {
         public CartRepository(IDbFactory dbFactory) : base(dbFactory)
         {
+            
         }
 
        public override Cart Add(Cart cart)
@@ -29,6 +32,7 @@ namespace Data.Repositories
             }
             return c;
         }
+    
 
         public Cart GetCartByTable(int tableID)
         {
