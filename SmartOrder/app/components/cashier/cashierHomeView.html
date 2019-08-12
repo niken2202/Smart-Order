@@ -143,7 +143,7 @@
 
                 <!--<h4 class="card-title customize-font-green-color">Chi tiết hóa đơn </h4>-->
 
-                <div class="table-responsive">
+                <div class="mb-0 table table-striped">
                     <h5 class="card-title customize-font-green-color">Hóa đơn {{curTableName}}</h5>
                     <table class="mb-0 table mb-0 table table-hover">
                         <thead>
@@ -156,7 +156,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr dir-paginate="bill in cartDetails |itemsPerPage:10" pagination-id="cartDetail">
+                            <tr dir-paginate="bill in cartDetails |itemsPerPage:itemPerPage" pagination-id="cartDetail" on-page-change='indexCount(newPageNumber)'>
                                 <td>{{ $index + serial}}</td>
                                 <td>{{bill.Name}}</td>
                                 <td>
@@ -168,39 +168,53 @@
                             </tr>
                         </tbody>
                     </table>
-                    <dir-pagination-controls max-size="5" on-page-change='indexCount(newPageNumber)'
-                                             direction-links="true"
-                                             pagination-id="cartDetail"
-                                             boundary-links="true">
-                    </dir-pagination-controls>
+                </div>
+            </div>
+            
+        </div>
 
-                    <div class="div-footer-billdetail">
+        <div class="crashier-billDetail-bottom">
+            <div class="crashier-billDetail-total">
+                <div class="div-footer-billdetail">
 
-                        <div class="row1">
-                            <label class="">
-                                Tổng tiền : {{totalPrice}}
-                            </label>
-                        </div>
-                        <div class="row2">
-                            <label class="">
-                                Giảm giá : {{bill.Discount | percentFilter}}
-                            </label>
-                        </div>
-                        <div class="row3">
-                            <label class="">
-                                Thanh toán : 235,000
-                            </label>
-                        </div>
-                        <div class="row4">
-                            <!--<label class="">
-                                Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
-                            </label>-->
-                        </div>
+                    <div class="row1">
+                        <label class="">
+                            Tổng tiền : {{totalPrice}}
+                        </label>
+                    </div>
+                    <div class="row2">
+                        <label class="">
+                            Giảm giá : {{bill.Discount | percentFilter}}
+                        </label>
+                    </div>
+                    <div class="row3">
+                        <label class="">
+                            Thanh toán : 235,000
+                        </label>
+                    </div>
+                    <div class="row4">
+                        <!--<label class="">
+                Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
+            </label>-->
                     </div>
                 </div>
             </div>
 
-            <!--<div class="crashier-billDetail-footer"></div>-->
+            <div class=" crashier-billDetail-action">
+                <div class="crashier-billDetail-action-lsBoxTB">
+                    <select class="form-control"
+                            ng-model="changeTable" ng-options="option.ID as option.Name for option in lsAvaiableTables">
+                        <option selected disabled value="">-- Chuyển tới --</option>
+                    </select>
+                </div>
+                <div class="crashier-billDetail-action-changeTB">
+                    <button type="submit" ng-disabled="frmAddDish.$invalid" class="mb-2 mr-2 btn btn-success" ng-click="">Chuyển bàn</button>
+                </div>
+                <div class="crashier-billDetail-action-payment">
+                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click="">Thanh toán</button>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
