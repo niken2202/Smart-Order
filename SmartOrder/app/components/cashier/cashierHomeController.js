@@ -6,12 +6,11 @@
     function cashierHomeController($scope, ngDialog, apiService, notificationService, $interval) {
         $scope.totalPrice = 0;
         $scope.checkCart = false;
-        $scope.curTableID = 0;
-        $scope.curTableName = "";
-        $scope.cartDetails;
+        $scope.curTable = null;
         $scope.tables;
         $scope.curCart = null;
         $scope.changeTable;
+        $scope.listDish = [];
         //get table list from api
         function getListTable() {
             apiService.get('/api/table/getall', null, function (result) {
@@ -24,20 +23,13 @@
         getListTable();
 
         //get list table avaiable
-        $scope.lsAvaiableTables = [];
         function getListTableAvaiable() {
-            var j = 0;
-            for (i = 0; i < $scope.tables.length; i++) {                
+            $scope.lsAvaiableTables = [];
+            for (i = 0; i < $scope.tables.length; i++) {
                 if ($scope.tables[i].Status === 1) {
-                    $scope.lsAvaiableTables[j] = $scope.tables[i];
-                    j++;
-                } 
+                    $scope.lsAvaiableTables.push($scope.tables[i]);
+                }
             }
-        }
-
-        //catch event click to change table
-        function changeTableEvt() {
-            
         }
 
         //generate index number in table
@@ -62,42 +54,46 @@
         //show cart by select table
         $scope.showBill = showBill;
         function showBill(item) {
-            getCartDetails(item.ID, item.Name);
+            getCartDetails(item);
         };
 
         //function get cart details by table id
-        function getCartDetails(tbID, tbName) {
-
-            $scope.curTableID = tbID;
-            $scope.curTableName = tbName;
+        function getCartDetails(item) {
+            $scope.listDish = [];
+            $scope.curTable = item;
             var transfer = {
                 params: {
-                    tableId: $scope.curTableID,
+                    tableId: $scope.curTable.ID,
                 }
             }
             apiService.get('/api/cart/getbytable', transfer, function (result) {
                 if (result.data == null) {
                     $scope.checkCart = false;//it mean cart is not created
+                    $scope.curCart = null;
                 } else {
-                    $scope.cartDetails = result.data.CartDetails;
-                    var total = 0;
-                    for (var i = 0; i < $scope.cartDetails.length; i++) {
-                        var product = $scope.cartDetails[i];
-                        total += (product.Price * product.Quantity);
-                        $scope.cartDetails.order = i;
-                    }
-                    $scope.totalPrice = total;
                     $scope.curCart = {
-                        CartDetails: $scope.cartDetails,
+                        CartDetails: result.data.CartDetails,
                         ID: result.data.ID,
                         TableID: result.data.TableID,
                         CartPrice: result.data.CartPrice
                     }
+                    $scope.checkCart = true;
+                    countTotalPrice();
                 };
             }, function () {
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải dữ liệu!');
             });
+        }
 
+        //count total cart price
+        function countTotalPrice() {
+            var total = 0;
+            for (var i = 0; i < $scope.curCart.CartDetails.length; i++) {
+                var product = $scope.curCart.CartDetails[i];
+                total += (product.Price * product.Quantity);
+                $scope.curCart.CartDetails.order = i;
+            }
+            $scope.totalPrice = total;
         }
 
         //add dish to cart
@@ -106,7 +102,31 @@
             //create new cart for table
             var condition = new Boolean(true);
             if ($scope.curCart == null) {
-                
+                if ($scope.curTable == null) {
+                    for (i = 0; i < $scope.tables.length; i++) {
+                        if ($scope.tables[i].Status == 1) {
+                            $scope.curTable = $scope.tables[i];
+                            break;
+                        }
+
+                    }
+                }
+                $scope.dishCart = {
+                    Name: item.Name,
+                    Price: item.Price,
+                    Quantity: 1,
+                    Image: item.Image,
+                    Status: 1,
+                    ProID: item.ID,
+                    Note: null,
+                    Type: 1
+                };
+                $scope.listDish.push($scope.dishCart);
+                $scope.curCart = {
+                    CartDetails: $scope.listDish,
+                    TableID: $scope.curTable.ID,
+                    CartPrice: 256
+                }
             } else {
                 //add dish by update quantity of dish in cart details
                 for (i = 0; i < $scope.curCart.CartDetails.length; i++) {
@@ -119,8 +139,6 @@
                 //add new dish to cart detail
                 if (condition == true) {
                     $scope.dishCart = {
-                        //ID : 3,
-                        CartID: $scope.curCart.ID,
                         Name: item.Name,
                         Price: item.Price,
                         Quantity: 1,
@@ -130,26 +148,83 @@
                         Note: null,
                         Type: 1
                     };
-                    var index = $scope.curCart.CartDetails.length;
-                    $scope.curCart.CartDetails[index] = $scope.dishCart;
-                    console.log('before ' + $scope.curCart.CartDetails[1].Name);
-                    apiService.put('/api/cart/update', $scope.curCart, function (result) {
-                        console.log('after ' + $scope.curCart.CartDetails[2].Name);
-                    }, function () { 
-                        notificationService.displayError('Rất tiếc đã sảy lỗi xảy ra!');
-                    });
-
+                    $scope.curCart.CartDetails.push($scope.dishCart);
+                    countTotalPrice();
                 }
-
-            }             
-
+            }
         };
+
+        //order send list cart detail to kitchen
+        $scope.Order = Order;
+        function Order() {
+            if ($scope.curCart == null) {
+                notificationService.displayWarning("Vui lòng chọn bàn và món");
+            } else {
+                //create new cart
+                if ($scope.checkCart == false) {
+                    apiService.post('/api/cart/add', $scope.curCart, function (result) {
+                        notificationService.displaySuccess('Ok !');
+                        changeTableStatusOff($scope.curTable);
+                    }, function () {
+                        notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                    });
+                }
+            }
+        }
+
+        //payment method
+        $scope.Payment = Payment;
+        function Payment() {
+            if ($scope.curCart == null) {
+                console.log('null');
+                notificationService.displayWarning("Không có bàn thanh toán");
+            } else {
+                //create new cart
+                if ($scope.curCart == null || $scope.checkCart == false) {
+                } else {
+                    apiService.post('/api/cart/add', $scope.curCart, function (result) {
+                        changeTableStatusOff();
+                    }, function () {
+                        notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                    });
+                }
+            }
+        }
+
+        //change cart to other table which is avaiable when customer require
+        $scope.changeTableEvt = changeTableEvt;
+        function changeTableEvt() {
+            if ($scope.curCart == null) {
+                notificationService.displayWarning("Hóa đơn trống");
+            } else if ($scope.curTable == null) {
+                notificationService.displayWarning("Vui lòng chọn bàn cần chuyển");
+            } else if ($scope.changeTable == null) {
+                notificationService.displayWarning("Vui lòng chọn bàn chuyển đến");
+            } else {
+                $scope.curCart.TableID = $scope.changeTable;
+                apiService.put('/api/cart/update', $scope.curCart, function (result) {
+                    changeTableStatusOn($scope.curTable);
+                    for (i = 0; i < $scope.tables.length; i++) {
+                        if ($scope.tables[i].ID === $scope.changeTable) {
+                            $scope.curTable = $scope.tables[i];
+                            break;
+                        }
+                    }
+                    changeTableStatusOff($scope.curTable); 
+                }, function () {
+                    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                });
+            }
+        }
 
         //catch event when user change quality of dish
         $scope.quantityChange = quantityChange;
         function quantityChange(item) {
             var num = item.Quantity;
             var bol = true;
+            if (num == null) {
+                item.Quantity = 1;
+            }
             if (num < 1 == true || num > 25 == true) {
                 item.Quantity = 1;
                 bol = false;
@@ -159,6 +234,7 @@
             if (bol === false) {
                 notificationService.displayError('Dữ liệu nhập vào không hợp lệ');
             }
+            countTotalPrice();
         };
 
         //auto update current cart
@@ -167,13 +243,32 @@
             console.log("Timeout occurred" + date);
         }
 
+        //changer table status is not avaiable
+        function changeTableStatusOff(item) {
+            item.Status = 0;
+            apiService.put('api/table/update', item, function (result) {
+                //console.log('update table succes')
+            }, function () {
+                notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+            });
+        }
+
+        //changer table status avaiable
+        function changeTableStatusOn(item) {
+            item.Status = 1;
+            apiService.put('api/table/update', item, function (result) {
+                //console.log('update table succes')
+            }, function () {
+                notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+            });
+        }
+
         //set schedule to auto call update view
-        $interval(rellTime, 10000);
+        $interval(rellTime, 15000);
 
         function rellTime() {
             getListTable();
             autoUpdateCart();
-
         }
     }
 })(angular.module('SmartOrder.cashier'));

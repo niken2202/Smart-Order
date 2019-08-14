@@ -4,8 +4,8 @@
         <!--header navigator bar right-->
         <div class="topnav">
             <div>
-                <a class="tab" ng-click="tabselector = 'table'">Bàn</a>
-                <a class="tab" ng-click="tabselector = 'dish'">Món ăn</a>
+                <a href="javascript:void(0)" class="tab" ng-click="tabselector = 'table'">Bàn</a>
+                <a href="javascript:void(0)" class="tab" ng-click="tabselector = 'dish'">Món ăn</a>
             </div>
         </div>
 
@@ -16,7 +16,6 @@
             <div class="crashier-table-content">
                 <div class="crashier-table-header">
                     <h4 class="card-title customize-font-green-color ng-binding">Danh sách bàn </h4>
-
                     <!--<div class="nav-table-bar-parent">
                         <div class="box-1">
                             <h4 class="card-title customize-font-green-color">THANH CÔNG CỤ</h4>
@@ -59,7 +58,8 @@
                 <div class="crashier-table-body">
                     <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="item in tables |filter:search |itemsPerPage:18" pagination-id="tables">
-                            <img class="crashier-img" src="../../../assets/images/demo.jpg" />
+                            <!--<img class="crashier-img" src="../../../assets/images/demo.jpg" />-->
+                            <img style="height:inherit; width:inherit; padding:2px" src="../../../assets/images/table.jpg" />
                             <div class="crashier-btn-title">
                                 <span class="crashier-btn-choose"
                                       ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1,
@@ -141,26 +141,25 @@
 
             <div class="crashier-billDetail-body">
 
-                <!--<h4 class="card-title customize-font-green-color">Chi tiết hóa đơn </h4>-->
-
                 <div class="mb-0 table table-striped">
-                    <h5 class="card-title customize-font-green-color">Hóa đơn {{curTableName}}</h5>
+                    <h5 class="card-title customize-font-green-color">Hóa đơn {{curTable.Name}}</h5>
                     <table class="mb-0 table mb-0 table table-hover">
                         <thead>
                             <tr>
-                                <th>STT</th>
-                                <th>Mặt hàng</th>
-                                <th>Số lượng</th>
-                                <th>Đơn giá</th>
-                                <th>Thành tiền</th>
+                                <th class="customize-font-green-color">STT</th>
+                                <th class="customize-font-green-color">Mặt hàng</th>
+                                <th class="customize-font-green-color">Số lượng</th>
+                                <th class="customize-font-green-color">Đơn giá</th>
+                                <th class="customize-font-green-color">Thành tiền</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr dir-paginate="bill in cartDetails |itemsPerPage:itemPerPage" pagination-id="cartDetail" on-page-change='indexCount(newPageNumber)'>
+                            <tr class="customize-font-green-color"
+                                dir-paginate="bill in curCart.CartDetails |itemsPerPage:itemPerPage" pagination-id="cartDetail" on-page-change='indexCount(newPageNumber)'>
                                 <td>{{ $index + serial}}</td>
                                 <td>{{bill.Name}}</td>
                                 <td>
-                                    <input required name="dishPrice" type="number"
+                                    <input class="crashier-cart-quantity" type="number"
                                            ng-change="quantityChange(bill)" ng-model="bill.Quantity">
                                 </td>
                                 <td>{{bill.Price}}</td>
@@ -170,7 +169,6 @@
                     </table>
                 </div>
             </div>
-            
         </div>
 
         <div class="crashier-billDetail-bottom">
@@ -178,43 +176,45 @@
                 <div class="div-footer-billdetail">
 
                     <div class="row1">
-                        <label class="">
+                        <label class="customize-font-green-color">
                             Tổng tiền : {{totalPrice}}
                         </label>
                     </div>
                     <div class="row2">
-                        <label class="">
+                        <label class="customize-font-green-color">
                             Giảm giá : {{bill.Discount | percentFilter}}
                         </label>
                     </div>
                     <div class="row3">
-                        <label class="">
-                            Thanh toán : 235,000
+                        <label class="customize-font-green-color">
+                            Thanh toán : {{totalPrice}}
                         </label>
                     </div>
                     <div class="row4">
                         <!--<label class="">
-                Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
-            </label>-->
+                            Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
+                        </label>-->
                     </div>
                 </div>
             </div>
 
             <div class=" crashier-billDetail-action">
                 <div class="crashier-billDetail-action-lsBoxTB">
-                    <select class="form-control"
+                    <select class="customize-font-green-color form-control"
                             ng-model="changeTable" ng-options="option.ID as option.Name for option in lsAvaiableTables">
-                        <option selected disabled value="">-- Chuyển tới --</option>
+                        <option selected disabled value="">Chuyển tới</option>
                     </select>
                 </div>
                 <div class="crashier-billDetail-action-changeTB">
-                    <button type="submit" ng-disabled="frmAddDish.$invalid" class="mb-2 mr-2 btn btn-success" ng-click="">Chuyển bàn</button>
+                    <button class="mb-2 mr-2 btn btn-success" type="button" ng-click="changeTableEvt()">Chuyển bàn</button>
+                </div>
+                <div class="crashier-billDetail-action-order">
+                    <button class="mb-2 mr-2 btn btn-success" style="margin-left:15px" type="button" ng-click="Order()">Đặt món</button>
                 </div>
                 <div class="crashier-billDetail-action-payment">
-                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click="">Thanh toán</button>
+                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" type="button" ng-click="">Thanh toán</button>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
