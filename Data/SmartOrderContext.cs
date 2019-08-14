@@ -14,7 +14,6 @@ namespace Data
         public DbSet<Bill> Bills { set; get; }
         public DbSet<Combo> Combos { set; get; }
         public DbSet<Dish> Dishes { set; get; }
-        public DbSet<DishBillMapping> DishBillMappings { set; get; }
         public DbSet<DishCategory> DishCategories { set; get; }
         public DbSet<DishMaterialMapping> DishMaterialMappings { set; get; }
         public DbSet<Error> Errors { set; get; }

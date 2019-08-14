@@ -65,7 +65,6 @@
     <Compile Include="Models\CartDetail.cs" />
     <Compile Include="Models\Combo.cs" />
     <Compile Include="Models\Dish.cs" />
-    <Compile Include="Models\DishBillMapping.cs" />
     <Compile Include="Models\DishCategory.cs" />
     <Compile Include="Models\DishComboMapping.cs" />
     <Compile Include="Models\DishMaterialMapping.cs" />
