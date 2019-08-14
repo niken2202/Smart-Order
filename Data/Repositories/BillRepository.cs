@@ -7,12 +7,13 @@ using System.Data.SqlClient;
 using System.Linq;
 namespace Data.Repositories
 {
-    public interface IBillRepository: IRepository<Bill>{
+    public interface IBillRepository : IRepository<Bill>
+    {
 
-        IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromDate,DateTime toDate);
-        IEnumerable<RevenueByMonthViewModel> GetRevenueGroupByMonth(DateTime fromdate,DateTime toDate);
+        IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromDate, DateTime toDate);
+        IEnumerable<RevenueByMonthViewModel> GetRevenueGroupByMonth(DateTime fromdate, DateTime toDate);
         IEnumerable<Bill> GetAll();
-        IEnumerable<Bill> GetTimeRange(DateTime fromDate,DateTime toDate);
+        IEnumerable<Bill> GetTimeRange(DateTime fromDate, DateTime toDate);
         IEnumerable<Bill> GetBillLastMonth();
         IEnumerable<Bill> GetBillLast7Days();
         IEnumerable<Bill> GetBillToday();
@@ -27,7 +28,7 @@ namespace Data.Repositories
 
         public IEnumerable<Bill> GetAll()
         {
-            
+
             var query = from d in DbContext.Bills
                         select d;
             return query;
@@ -105,12 +106,13 @@ namespace Data.Repositories
         {
             Bill bill = GetSingleById(id);
             if (bill == null) return null;
-            var query = from bd in DbContext.BillDetail where bd.BillID==id
-                            select bd;
+            var query = from bd in DbContext.BillDetail
+                        where bd.BillID == id
+                        select bd;
 
-        bill.BillDetail = query.ToList();
+            bill.BillDetail = query.ToList();
             var total = query.Sum(i => (i.Amount * i.Price));
-            
+
             var b = new
             {
                 bill.ID,
@@ -123,8 +125,24 @@ namespace Data.Repositories
                 bill.Content,
                 bill.BillDetail,
                 bill.Discount,
-                Total= total
+                Total = total
             };
+            return b;
+        }
+        public override Bill Add(Bill bill)
+        {
+            Bill b = DbContext.Bills.Add(bill);
+            foreach (var bd in bill.BillDetail)
+            {
+                bd.BillID = b.ID;
+                DbContext.BillDetail.Add(bd);
+            }
+            var cart = DbContext.Cart.SingleOrDefault(m => m.ID == bill.TableID);
+            if (cart != null)
+            {
+                DbContext.Cart.Remove(cart);
+            }
+
             return b;
         }
 

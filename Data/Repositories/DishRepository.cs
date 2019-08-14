@@ -2,23 +2,26 @@
 using Model.Models;
 using System.Collections.Generic;
 using System.Linq;
+
 namespace Data.Repositories
 {
     public interface IDishRepository : IRepository<Dish>
     {
         IEnumerable<Dish> GetDishByCombo(int comboId);
-        IEnumerable<Dish> GetDishByCategory(int categoryId);
-        IEnumerable<object> GetAll();
-        IEnumerable<Dish> GetTopHot();
-        int GetDishCount();
 
+        IEnumerable<Dish> GetDishByCategory(int categoryId);
+
+        IEnumerable<object> GetAll();
+
+        IEnumerable<Dish> GetTopHot();
+
+        int GetDishCount();
     }
 
     public class DishRepository : RepositoryBase<Dish>, IDishRepository
     {
         public DishRepository(IDbFactory dbFactory) : base(dbFactory)
         {
-
         }
 
         public IEnumerable<object> GetAll()
@@ -29,15 +32,15 @@ namespace Data.Repositories
                         select new
                         {
                             ID = d.ID,
-                            Image= d.Image,
-                            Name= d.Name,
-                            OrderCount= d.OrderCount,
+                            Image = d.Image,
+                            Name = d.Name,
+                            OrderCount = d.OrderCount,
                             Price = d.Price,
-                            Status= d.Status,
-                            Amount=d.Amount,
-                            CategoryID= d.CategoryID,
-                            CreatedDate= d.CreatedDate,
-                            Description= d.Description,
+                            Status = d.Status,
+                            Amount = d.Amount,
+                            CategoryID = d.CategoryID,
+                            CreatedDate = d.CreatedDate,
+                            Description = d.Description,
                             CategoryName = ct.Name
                         };
             return query;
@@ -51,7 +54,7 @@ namespace Data.Repositories
             return query;
         }
 
-        public IEnumerable<Dish> GetDishByCombo(int comboId )
+        public IEnumerable<Dish> GetDishByCombo(int comboId)
         {
             var query = from d in DbContext.Dishes
                         join dc in DbContext.DishComboMapping on d.ID equals dc.DishID

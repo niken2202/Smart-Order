@@ -35,7 +35,8 @@ namespace Model.Models
         public DateTime CreatedDate { get; set; }
 
         public virtual IEnumerable<DishComboMapping> DishComboMappings { set; get; }
-        public virtual IEnumerable<DishBillMapping> DishBillMappings { set; get; }
         public virtual IEnumerable<DishMaterialMapping> DishMaterialMappings { set; get; }
+        [ForeignKey("CategoryID")]
+        public virtual DishCategory DishCategory { set; get; }
     }
 }
