@@ -199,11 +199,12 @@ crashier-table-body {
 }
 
 .crashier-cart-quantity {
-    width: auto;
+    width: 80%;
     height: auto;
     text-align: center;
-    border: thin;
+    border: none;
     color: #4caf50;
+    float:left;
 }
 
 .crashier-img {

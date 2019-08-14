@@ -59,7 +59,8 @@
                     <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="item in tables |filter:search |itemsPerPage:18" pagination-id="tables">
                             <!--<img class="crashier-img" src="../../../assets/images/demo.jpg" />-->
-                            <img style="height:inherit; width:inherit; padding:2px" src="../../../assets/images/table.jpg" />
+                            <!--<img style="height:inherit; width:inherit; padding:2px" src="../../../assets/images/table.jpg" />-->
+                            <img style="width:120px; height:120px" src="../../../assets/images/restaurant-table-and-chairs.svg" />
                             <div class="crashier-btn-title">
                                 <span class="crashier-btn-choose"
                                       ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1,
@@ -146,11 +147,12 @@
                     <table class="mb-0 table mb-0 table table-hover">
                         <thead>
                             <tr>
-                                <th class="customize-font-green-color">STT</th>
-                                <th class="customize-font-green-color">Mặt hàng</th>
-                                <th class="customize-font-green-color">Số lượng</th>
-                                <th class="customize-font-green-color">Đơn giá</th>
-                                <th class="customize-font-green-color">Thành tiền</th>
+                                <th style="width:10%" class="customize-font-green-color">STT</th>
+                                <th style="width:25%" class="customize-font-green-color">Mặt hàng</th>
+                                <th style="width:20%" class="customize-font-green-color">Số lượng</th>
+                                <th style="width:20%" class="customize-font-green-color">Đơn giá</th>
+                                <th style="width:20%" class="customize-font-green-color">Thành tiền</th>
+                                <td style="width:10%"></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -164,6 +166,11 @@
                                 </td>
                                 <td>{{bill.Price}}</td>
                                 <td>{{bill.Quantity*bill.Price}}</td>
+                                <td>
+                                    <button class="btn delete-icon" ng-click="dishDel(item)">
+                                        <i class="fas fa-trash f1f8 customize-delete-icon"></i>
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -181,6 +188,10 @@
                         </label>
                     </div>
                     <div class="row2">
+                        <select style="float:left; width:50%" class="customize-font-green-color form-control"
+                                ng-model="changeTable" ng-options="option.ID as option.Code for option in promotions">
+                            <option selected disabled value="">Mã giảm giá</option>
+                        </select>
                         <label class="customize-font-green-color">
                             Giảm giá : {{bill.Discount | percentFilter}}
                         </label>
@@ -212,7 +223,7 @@
                     <button class="mb-2 mr-2 btn btn-success" style="margin-left:15px" type="button" ng-click="Order()">Đặt món</button>
                 </div>
                 <div class="crashier-billDetail-action-payment">
-                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" type="button" ng-click="">Thanh toán</button>
+                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" type="button" ng-click="Payment()">Thanh toán</button>
                 </div>
             </div>
         </div>

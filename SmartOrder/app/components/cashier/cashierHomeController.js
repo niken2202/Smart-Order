@@ -51,6 +51,16 @@
         }
         getDish();
 
+        //get promotion list from api
+        function getPromotion() {
+            apiService.get('/api/promotioncode/getall', null, function (result) {
+                $scope.promotions = result.data;
+            }, function () {
+                notificationService.displayError('Tải danh sách mã khuyến mại không thành công');
+            });
+        }
+        getPromotion();
+
         //show cart by select table
         $scope.showBill = showBill;
         function showBill(item) {
@@ -88,10 +98,12 @@
         //count total cart price
         function countTotalPrice() {
             var total = 0;
-            for (var i = 0; i < $scope.curCart.CartDetails.length; i++) {
-                var product = $scope.curCart.CartDetails[i];
-                total += (product.Price * product.Quantity);
-                $scope.curCart.CartDetails.order = i;
+            if ($scope.curCart != null && $scope.curCart.CartDetails.length > 0) {
+                for (var i = 0; i < $scope.curCart.CartDetails.length; i++) {
+                    var product = $scope.curCart.CartDetails[i];
+                    total += (product.Price * product.Quantity);
+                    $scope.curCart.CartDetails.order = i;
+                }
             }
             $scope.totalPrice = total;
         }
@@ -108,7 +120,6 @@
                             $scope.curTable = $scope.tables[i];
                             break;
                         }
-
                     }
                 }
                 $scope.dishCart = {
@@ -163,7 +174,8 @@
                 //create new cart
                 if ($scope.checkCart == false) {
                     apiService.post('/api/cart/add', $scope.curCart, function (result) {
-                        notificationService.displaySuccess('Ok !');
+                        notificationService.displaySuccess('Ok !' + result.data.ID);
+                        $scope.curCart.ID = result.data.ID;
                         changeTableStatusOff($scope.curTable);
                     }, function () {
                         notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
@@ -176,20 +188,57 @@
         $scope.Payment = Payment;
         function Payment() {
             if ($scope.curCart == null) {
-                console.log('null');
                 notificationService.displayWarning("Không có bàn thanh toán");
             } else {
-                //create new cart
-                if ($scope.curCart == null || $scope.checkCart == false) {
-                } else {
-                    apiService.post('/api/cart/add', $scope.curCart, function (result) {
-                        changeTableStatusOff();
-                    }, function () {
-                        notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
-                    });
+                $scope.listDish = [];
+                for (i = 0; i < $scope.curCart.CartDetails.length; i++) {
+                    var dish = {
+                        Name: $scope.curCart.CartDetails[i].Name,
+                        Price: $scope.curCart.CartDetails[i].Price,
+                        Amount: $scope.curCart.CartDetails[i].Quantity,
+                        Description: "Test demo",
+                        Image: $scope.curCart.CartDetails[i].Image
+                    };
+                    $scope.listDish.push(dish);
                 }
+
+                $scope.addBill = {
+                    BillDetail: $scope.listDish,
+                    Voucher: "test add ",
+                    CustomerName: "AnhCH",
+                    Content: "dsfdfd",
+                    TableID: 2,
+                    CreatedDate: new Date,
+                    CreatedBy: "HKT",
+                    Discount: 30,
+                    Status: true
+                }
+                apiService.post('/api/bill/add', $scope.addBill, function (result) {
+                    deleteCart($scope.curCart.ID);
+                    changeTableStatusOn($scope.curTable);
+                }, function () {
+                    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                    console.log('add bill falied');
+                });
             }
         }
+
+        //delete cart after add bill
+        function deleteCart(cartID) {
+            var data = {
+                params: {
+                    ID: cartID
+                }
+            }
+            apiService.del('/api/cart/delete', data, function (result) {
+                changeTableStatusOn($scope.curTable);
+                $scope.curCart = null;
+                countTotalPrice();
+            }, function () {
+                notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                console.log('detele cart falied');
+            });
+        };
 
         //change cart to other table which is avaiable when customer require
         $scope.changeTableEvt = changeTableEvt;
@@ -210,7 +259,7 @@
                             break;
                         }
                     }
-                    changeTableStatusOff($scope.curTable); 
+                    changeTableStatusOff($scope.curTable);
                 }, function () {
                     notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
                 });
@@ -268,7 +317,9 @@
 
         function rellTime() {
             getListTable();
+            getDish();
             autoUpdateCart();
+            getPromotion();
         }
     }
 })(angular.module('SmartOrder.cashier'));

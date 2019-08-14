@@ -118,7 +118,6 @@
         //open popup to determine before delete dish
         $scope.dishDel = function (item) {
             alertify.confirm('Xóa món', 'Bạn có muốn xóa món: ' + item.Name + ' ?', function () {
-                console.log(item.ID);
                 var data = {
                     params: {
                         ID: item.ID
