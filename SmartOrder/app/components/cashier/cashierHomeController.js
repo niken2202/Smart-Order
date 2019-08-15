@@ -55,6 +55,19 @@
         }
         getDish();
 
+        //get list combos from api
+        function getCombo() {
+            apiService.get('/api/combo/getall', null, function (result) {
+                $scope.combos = result.data;
+                if ($scope.combos.length === 0) {
+                    //notificationService.displayWarning('Danh sách trống !');
+                }
+            }, function () {
+                notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
+            });
+        }
+        getCombo();
+
         //get promotion list from api
         function getPromotion() {
             apiService.get('/api/promotioncode/getall', null, function (result) {
@@ -164,6 +177,65 @@
                         Type: 1
                     };
                     $scope.curCart.CartDetails.push($scope.dishCart);
+                    countTotalPrice();
+                }
+            }
+        };
+
+        //add combo to cart
+        $scope.addCombo = addCombo;
+        function addCombo(item) {
+            //create new cart for table
+            var condition = new Boolean(true);
+            if ($scope.curCart == null) {
+                if ($scope.curTable == null) {
+                    for (i = 0; i < $scope.tables.length; i++) {
+                        if ($scope.tables[i].Status == 1) {
+                            $scope.curTable = $scope.tables[i];
+                            break;
+                        }
+                    }
+                }
+                $scope.comboCart = {
+                    ID: item.ID,
+                    Name: item.Name,
+                    Description: item.Description,
+                    Price: item.Price,
+                    Amount: item.Amount,
+                    Image: item.Image,
+                    Status: true,
+                    DishComboMappings: null,
+                    Type: 2
+                };
+                $scope.listDish.push($scope.comboCart);
+                $scope.curCart = {
+                    CartDetails: $scope.listDish,
+                    TableID: $scope.curTable.ID,
+                    CartPrice: 256
+                }
+            } else {
+                //add dish by update quantity of combo in cart details
+                for (i = 0; i < $scope.curCart.CartDetails.length; i++) {
+                    if ($scope.curCart.CartDetails[i].Type == 2 && item.ID == $scope.curCart.CartDetails[i].ProID) {
+                        $scope.curCart.CartDetails[i].Quantity += 1;
+                        condition = false;
+                        break;
+                    }
+                }
+                //add new c to cart detail
+                if (condition == true) {
+                    $scope.comboCart = {
+                        ID: item.ID,
+                        Name: item.Name,
+                        Description: item.Description,
+                        Price: item.Price,
+                        Amount: item.Amount,
+                        Image: item.Image,
+                        Status: true,
+                        DishComboMappings: null,
+                        Type: 2
+                    };
+                    $scope.curCart.CartDetails.push($scope.comboCart);
                     countTotalPrice();
                 }
             }
@@ -327,6 +399,7 @@
             console.log('long' +b)
             getPromotion();
             getDish();
+            getCombo();
         }
     }
 })(angular.module('SmartOrder.cashier'));

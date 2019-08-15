@@ -1,58 +1,59 @@
 ﻿<div class="cashier-main-parent" ng-controller="cashierHomeController">
 
-    <div class="cashier-child-left column" ng-init="tabselector = 'table'">
+    <div class="cashier-child-left column" ng-init="tabselector = 'listTable'">
         <!--header navigator bar right-->
         <div class="topnav">
             <div>
-                <a href="javascript:void(0)" class="tab" ng-click="tabselector = 'table'">Bàn</a>
-                <a href="javascript:void(0)" class="tab" ng-click="tabselector = 'dish'">Món ăn</a>
+                <a href="javascript:void(0)" class="tab" ng-click="tabselector = 'listTable'">Bàn</a>
+                <a href="javascript:void(0)" class="tab" ng-click="tabselector = 'listDish'">Món ăn</a>
+                <a href="javascript:void(0)" class="tab" ng-click="tabselector = 'combo'">Combo</a>
             </div>
         </div>
 
         <!--content of left display table -->
-        <div ng-if="tabselector == 'table'">
+        <div ng-if="tabselector == 'listTable'">
             <!--display list table-->
             <!--header to search table-->
             <div class="crashier-table-content">
                 <div class="crashier-table-header">
                     <h4 class="card-title customize-font-green-color ng-binding">Danh sách bàn </h4>
                     <!--<div class="nav-table-bar-parent">
-                        <div class="box-1">
-                            <h4 class="card-title customize-font-green-color">THANH CÔNG CỤ</h4>
-                        </div>
-                        <div class="box-2">
-                            <form class="search-wrapper active">
-                                <div class="input-holder">
-                                    <div class="input-holder cornflowerblue">
-                                        <input type="text" ng-model="search" class="search-input cornflowerblue" placeholder="Tìm kiếm">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="box-3">
-                            <h4 class="card-title customize-font-green-color" style="float:right">Thêm món</h4>
-                        </div>
-                        <div class="box-4">
-                            <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="dishAdd()">
-                                <i class="fas fa-plus-circle"></i>
-                            </button>
-                        </div>
-                        <div class="box-5">
-                            <h4 class="card-title customize-font-green-color" style="float:right">Thêm loại sản phẩm  </h4>
-                        </div>
-                        <div class="box-6">
-                            <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="AddCategory()">
-                                <i class="fas fa-plus-circle"></i>
-                            </button>
-                        </div>
-                    </div>-->
-                    <!--<form class="search-wrapper active">
-                        <div class="input-holder">
+                    <div class="box-1">
+                        <h4 class="card-title customize-font-green-color">THANH CÔNG CỤ</h4>
+                    </div>
+                    <div class="box-2">
+                        <form class="search-wrapper active">
                             <div class="input-holder">
-                                <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+                                <div class="input-holder cornflowerblue">
+                                    <input type="text" ng-model="search" class="search-input cornflowerblue" placeholder="Tìm kiếm">
+                                </div>
                             </div>
+                        </form>
+                    </div>
+                    <div class="box-3">
+                        <h4 class="card-title customize-font-green-color" style="float:right">Thêm món</h4>
+                    </div>
+                    <div class="box-4">
+                        <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="dishAdd()">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
+                    </div>
+                    <div class="box-5">
+                        <h4 class="card-title customize-font-green-color" style="float:right">Thêm loại sản phẩm  </h4>
+                    </div>
+                    <div class="box-6">
+                        <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="AddCategory()">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
+                    </div>
+                </div>-->
+                    <!--<form class="search-wrapper active">
+                    <div class="input-holder">
+                        <div class="input-holder">
+                            <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
                         </div>
-                    </form>-->
+                    </div>
+                </form>-->
                 </div>
 
                 <div class="crashier-table-body">
@@ -87,7 +88,7 @@
         </div>
 
         <!--dishplay the list dishes-->
-        <div ng-if="tabselector == 'dish'">
+        <div ng-if="tabselector == 'listDish'">
             <div class="crashier-table-content">
                 <!--header to search table-->
                 <div class="crashier-table-header">
@@ -95,7 +96,7 @@
                     <form class="search-wrapper active">
                         <div class="input-holder">
                             <div class="input-holder">
-                                <input type="text" ng-model="dish" class="search-input" placeholder="Tìm kiếm">
+                                <input type="text" ng-model="searchDish" class="search-input" placeholder="Tìm kiếm">
                             </div>
                         </div>
                     </form>
@@ -104,13 +105,13 @@
                 <div class="crashier-table-body">
 
                     <div class="crashier-table-row">
-                        <div class="crashier-table-item" dir-paginate="item in dishes |filter:dish |itemsPerPage:18" pagination-id="dishes">
+                        <div class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:18" pagination-id="dishes">
                             <img class="crashier-img" src="../../../assets/images/demo.jpg" />
                             <div class="crashier-btn-title">
                                 <span class="crashier-btn-choose"
-                                      ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1,'mb-2 mr-2 btn btn-danger':item.Status==0}"
-                                      ng-click="addDish(item)">
-                                    {{item.Name}}
+                                      ng-class="{'mb-2 mr-2 btn btn-success':DishItem.Status==1,'mb-2 mr-2 btn btn-danger':DishItem.Status==0}"
+                                      ng-click="addDish(DishItem)">
+                                    {{DishItem.Name}}
                                 </span>
                             </div>
                         </div>
@@ -128,7 +129,53 @@
                 </div>
             </div>
         </div>
+
+        <!--display the list combos-->
+        <div ng-if="tabselector == 'combo'">
+            <div class="crashier-table-content">
+                <!--header to search table-->
+                <div class="crashier-table-header">
+                    <label class="card-title customize-font-green-color">Lọc combo</label>
+                    <form class="search-wrapper active">
+                        <div class="input-holder">
+                            <div class="input-holder">
+                                <input type="text" ng-model="searchCombo" class="search-input" placeholder="Tìm kiếm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="crashier-table-body">
+
+                    <div class="crashier-table-row">
+                        <div class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:18" pagination-id="combos">
+                            <img class="crashier-img" src="../../../assets/images/demo.jpg" />
+                            <div class="crashier-btn-title">
+                                <span class="crashier-btn-choose"
+                                      ng-class="{'mb-2 mr-2 btn btn-success':comboItem.Status==1,'mb-2 mr-2 btn btn-danger':comboItem.Status==0}"
+                                      ng-click="addDish(comboItem)">
+                                    {{comboItem.Name}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cashier-table-footer">
+                    <div class="customeize-pagination">
+                        <dir-pagination-controls max-size="5"
+                                                 direction-links="true"
+                                                 pagination-id="combos"
+                                                 boundary-links="true">
+                        </dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
 
     <!--display the bill detail the left div-->
     <div class="cashier-child-right column">
