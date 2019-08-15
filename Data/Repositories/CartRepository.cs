@@ -6,6 +6,7 @@ namespace Data.Repositories
     public interface ICartRepository : IRepository<Cart>
     {
         Cart GetCartByTable(int tableID);
+        void ChangeTable(Cart cart);
 
 
     }
@@ -43,8 +44,6 @@ namespace Data.Repositories
                 }
             }
         }
-
-
         public Cart GetCartByTable(int tableID)
         {
             var cart = (from c in DbContext.Cart
@@ -55,6 +54,36 @@ namespace Data.Repositories
                                 where cd.CartID == cart.ID
                                 select cd).ToList();
             return cart;
+        }
+
+        public void ChangeTable(Cart cart)
+        {
+            //check cart exist in table
+
+            var result = DbContext.Cart.FirstOrDefault(x => x.TableID == cart.TableID);
+            if (result != null)
+            {
+                var listCD = DbContext.CartDetail.Where(x => x.CartID == result.ID);
+                foreach (var cd in cart.CartDetails)
+                {
+                    if (listCD.Any(x => x.ProID == cd.ProID & x.Note.Trim() == cd.Note.Trim()))
+                    {
+                        var newCd = DbContext.CartDetail.FirstOrDefault(x => x.CartID == result.ID & x.ProID == cd.ProID & x.Note == cd.Note);
+                        newCd.Quantity += cd.Quantity;
+                    }
+                    else
+                    {
+                        cd.CartID = result.ID;
+                        DbContext.CartDetail.Add(cd);
+                    }
+                }
+            }
+            else
+            {
+                Add(cart);
+            }
+            var oldCart = DbContext.Cart.FirstOrDefault(x => x.ID == cart.ID);
+            DbContext.Cart.Remove(oldCart);
         }
     }
 }

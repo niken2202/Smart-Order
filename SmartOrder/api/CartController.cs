@@ -56,6 +56,27 @@ namespace SmartOrder.api
             });
         }
 
+        [Route("changetable"), HttpPut]
+        public HttpResponseMessage ChangeTable(HttpRequestMessage request, Cart cart)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    cartService.ChangeTable(cart);
+                    cartService.SaveChanges();
+                    response = request.CreateResponse(HttpStatusCode.OK);
+                }
+                return response;
+            });
+        }
+
         [Route("update")]
         public HttpResponseMessage Put(HttpRequestMessage request, Cart cart)
         {
