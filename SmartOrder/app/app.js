@@ -16,7 +16,7 @@
             })
             .state('login', {
                 url: "/login",
-                templateUrl: "../app/components/login/loginView.html",
+                templateUrl: "/app/components/login/loginView.html",
                 controller: "loginController"
             })
             .state('register', {

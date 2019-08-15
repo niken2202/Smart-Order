@@ -11,6 +11,10 @@
         $scope.curCart = null;
         $scope.changeTable;
         $scope.listDish = [];
+        $scope.CustomerName = " ";
+        $scope.CrashierName = " ";
+        $scope.ContentBill = " ";
+        $scope.Promotions = { Code: "Không có", Discount: 0};
         //get table list from api
         function getListTable() {
             apiService.get('/api/table/getall', null, function (result) {
@@ -201,16 +205,15 @@
                     };
                     $scope.listDish.push(dish);
                 }
-
                 $scope.addBill = {
                     BillDetail: $scope.listDish,
-                    Voucher: "test add ",
-                    CustomerName: "AnhCH",
-                    Content: "dsfdfd",
-                    TableID: 2,
+                    Voucher: $scope.Promotions.Name,
+                    CustomerName: $scope.CustomerName,
+                    Content: $scope.ContentBill,
+                    TableID: $scope.curTable.ID,
                     CreatedDate: new Date,
-                    CreatedBy: "HKT",
-                    Discount: 30,
+                    CreatedBy: $scope.CrashierName,
+                    Discount: $scope.Promotions.Discount,
                     Status: true
                 }
                 apiService.post('/api/bill/add', $scope.addBill, function (result) {
@@ -314,12 +317,16 @@
 
         //set schedule to auto call update view
         $interval(rellTime, 15000);
-
         function rellTime() {
-            getListTable();
-            getDish();
-            autoUpdateCart();
+            getListTable();            
+            autoUpdateCart();            
+        }
+        $interval(longRellTime, 120000);
+        function longRellTime() {
+            var b = new Date;
+            console.log('long' +b)
             getPromotion();
+            getDish();
         }
     }
 })(angular.module('SmartOrder.cashier'));

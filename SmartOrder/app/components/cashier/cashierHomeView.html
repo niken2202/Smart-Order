@@ -181,30 +181,47 @@
         <div class="crashier-billDetail-bottom">
             <div class="crashier-billDetail-total">
                 <div class="div-footer-billdetail">
-
-                    <div class="row1">
-                        <label class="customize-font-green-color">
+                    <div class="row1" style="display:flex; margin:2px;">
+                        <label style="text-align:right; width:25%" class="customize-font-green-color">
+                            Tạo bởi: &nbsp;
+                        </label>
+                        <input  style="text-align:right; width:30%" class="customeize-input" type="text"
+                               ng-model="CrashierName">
+                        <label style="text-align:right; width:25%" class="customize-font-green-color">
                             Tổng tiền : {{totalPrice}}
                         </label>
                     </div>
-                    <div class="row2">
-                        <select style="float:left; width:50%" class="customize-font-green-color form-control"
-                                ng-model="changeTable" ng-options="option.ID as option.Code for option in promotions">
-                            <option selected disabled value="">Mã giảm giá</option>
+                    <div class="row2" style="display:flex; margin:2px;">
+                        <label style="text-align:right; width:25%" class="customize-font-green-color">
+                            Mã giảm giá: &nbsp; 
+                        </label>
+                        <select style="text-align:right; width:30%" class="customize-font-green-color customeize-input"
+                                ng-model="Promotions" ng-options="y.Code for (x, y) in promotions">
+                            <option selected value="">Không</option>
                         </select>
-                        <label class="customize-font-green-color">
-                            Giảm giá : {{bill.Discount | percentFilter}}
+                        <label style="text-align:right; width:25%" class="customize-font-green-color">
+                            Giảm giá : {{Promotions.Discount | percentFilter}}
                         </label>
                     </div>
-                    <div class="row3">
-                        <label class="customize-font-green-color">
+                    <div class="row3" style="display:flex; margin:2px;">
+                        <label  style="text-align:right; width:25%" class="customize-font-green-color">
+                            Khách hàng: &nbsp;
+                        </label>
+                        <input style="text-align:right; width:30%" class="customeize-input" type="text"
+                                ng-model="CustomerName">
+                        <label style="text-align:right; width:25%" class="customize-font-green-color">
                             Thanh toán : {{totalPrice}}
                         </label>
                     </div>
-                    <div class="row4">
-                        <!--<label class="">
-                            Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
-                        </label>-->
+                    <div class="row4" style="display:flex; margin:2px;">
+                        <label style="text-align:right; width:25%" class="customize-font-green-color">
+                            Nội dung : &nbsp;
+                        </label>
+                        <input style="text-align:right; width:30%" class="customeize-input" type="text"
+                               ng-model="ContentBill">
+                        <label style="text-align:right; width:25%" class="customize-font-green-color">
+                            Số tiền thừa : {{totalPrice - ((totalPrice/100)*Promotions.Discount)}}
+                        </label>
                     </div>
                 </div>
             </div>
