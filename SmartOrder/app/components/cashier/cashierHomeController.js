@@ -196,20 +196,22 @@
                         }
                     }
                 }
-                $scope.comboCart = {
-                    ID: item.ID,
+                var comboCart = {
+                    ProID: item.ID,
                     Name: item.Name,
-                    Description: item.Description,
+                    //Description: item.Description,
                     Price: item.Price,
-                    Amount: item.Amount,
+                    Quantity: item.Amount,
                     Image: item.Image,
-                    Status: true,
-                    DishComboMappings: null,
-                    Type: 2
+                    Status: 1,
+                    //DishComboMappings: null,
+                    Type: 2,
+                    Note: null,
                 };
-                $scope.listDish.push($scope.comboCart);
+                var listDish = [];
+                    listDish.push(comboCart);
                 $scope.curCart = {
-                    CartDetails: $scope.listDish,
+                    CartDetails: listDish,
                     TableID: $scope.curTable.ID,
                     CartPrice: 256
                 }
@@ -224,18 +226,19 @@
                 }
                 //add new c to cart detail
                 if (condition == true) {
-                    $scope.comboCart = {
-                        ID: item.ID,
+                    var comboCart = {
+                        ProID: item.ID,
                         Name: item.Name,
-                        Description: item.Description,
+                        //Description: item.Description,
                         Price: item.Price,
-                        Amount: item.Amount,
+                        Quantity: item.Amount,
                         Image: item.Image,
-                        Status: true,
-                        DishComboMappings: null,
-                        Type: 2
+                        Status: 1,
+                        //DishComboMappings: null,
+                        Type: 2,
+                        Note: null,
                     };
-                    $scope.curCart.CartDetails.push($scope.comboCart);
+                    $scope.curCart.CartDetails.push(comboCart);
                     countTotalPrice();
                 }
             }

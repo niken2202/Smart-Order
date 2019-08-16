@@ -29,16 +29,11 @@
             </div>
 
             <div class="position-relative form-group">
-                <!--<label for="exampleFile">Chèn ảnh</label>
-                <input name="file" id="exampleFile" type="file" class="form-control-file" ng-model="comboAdd.Image">-->
-                <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
-
                 <div class="input-group">
-                    <input id="image" class="hidden" type="file" img-upload ng-model="imageName" name="imageName">
-                    <img ng-src="{{image}}" height="300" width="400" ng-show="image" />
-                    <!--<label for="image" class="btn btn-success btn-xs pull-center" name="upload" Value="">Upload Photo</label>-->
+                    <input class="btn btn-primary btn-xs pull-center" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
                 </div>
-
+                <br />
+                <img ng-src="{{comboAdd.Image}}" height="150" width="200" ng-show="comboAdd.Image" />
             </div>
 
             <fieldset class="position-relative row form-group">

@@ -29,10 +29,7 @@
             Image: null
         }
 
-        //$scope.test = function () {
-        //    console.log('in the add controller :------' + $scope.imageName);
-        //};
-        $scope.imageSrc = "";
+        //$scope.imageSrc = "";
 
         //Upload file
         $scope.uploadFile = function (files) {
@@ -43,10 +40,9 @@
                 headers: { 'Content-Type': undefined }
             })
                 .then(function (result) {
-                    console.log(result.data);
                     $scope.dishAdd.Image = result.data;
                 })
-                .error(function () {
+                .then(function () {
                 });
         }
 

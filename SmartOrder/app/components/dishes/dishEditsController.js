@@ -1,9 +1,24 @@
 ﻿(function (app) {
     app.controller('dishEditsController', dishEditsController);
 
-    dishEditsController.$inject = ['$scope', '$state', 'ngDialog', 'apiService', 'notificationService', '$stateParams'];
+    dishEditsController.$inject = ['$http','$scope', '$state', 'apiService', 'notificationService', '$stateParams'];
+    app.directive('ngFiles', ['$parse', function ($parse) {
+        function fn_link(scope, element, attrs) {
 
-    function dishEditsController($scope, $state, ngDialog, apiService, notificationService, $stateParams) {
+            var onChange = $parse(attrs.ngFiles);
+            element.on('change', function (event) {
+                onChange(scope, { $files: event.target.files });
+                // getTheFiles(event.target.files);
+            });
+        };
+
+        return {
+            link: fn_link
+        }
+    }])
+
+    function dishEditsController($http, $scope, $state, apiService, notificationService, $stateParams) {
+
         //get list dish category to the select box
         $scope.DishCategory = [];
 
@@ -28,6 +43,22 @@
 
         $scope.slectedChange = function (evt) {
             console.log('event' + evt);
+        }
+
+
+        //Upload file
+        $scope.uploadFile = function (files) {
+            var fd = new FormData();
+            fd.append('Image', files[0]);
+            $http.post('/api/image/upload', fd, {
+                transformRequest: angular.identity,
+                headers: { 'Content-Type': undefined }
+            })
+                .then(function (result) {
+                    $scope.edtDish.Image = result.data;
+                })
+                .then(function () {
+                });
         }
 
         //update dish

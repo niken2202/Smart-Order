@@ -25,9 +25,11 @@
             </div>
 
             <div class="position-relative form-group">
-                <label for="exampleFile" class="">Chèn ảnh</label>
-                <input name="file"  type="file" class="form-control-file" ng-model="edtCombo.Image" ng-change="slectedChange($event)">
-                <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
+                <div class="input-group">
+                    <input class="btn btn-primary" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />                   
+                </div>
+                <br />
+                <img ng-src="{{edtCombo.Image}}" height="150" width="200" ng-show="edtCombo.Image" />
             </div>
 
             <!--<div class="position-relative form-group">

@@ -31,15 +31,12 @@
                 <textarea name="dishDescription" class="form-control" ng-model="dishAdd.Description">
             </textarea>
             </div>
-            <div class="position-relative form-group">
-                <!--<label for="exampleFile">Chèn ảnh</label>
-                <input name="file" id="exampleFile" type="file" class="form-control-file" ng-model="dishAdd.Image">-->
-                <!--<small class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
+            <div class="position-relative form-group">                
                 <div class="input-group">
-                    <input type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
-                    <img ng-src="{{imageSrc}}" height="150" width="200" ng-show="imageSrc" />
-                    <!--<label for="image" class="btn btn-success btn-xs pull-center" name="upload" Value="">Upload Photo</label>-->
+                    <input class="btn btn-primary btn-xs pull-center" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
                 </div>
+                <br />
+                <img ng-src="{{dishAdd.Image}}" height="150" width="200" ng-show="dishAdd.Image" />
             </div>
             <fieldset class="position-relative row form-group">
                 <legend class="col-form-label col-sm-2">Trạng thái món</legend>
