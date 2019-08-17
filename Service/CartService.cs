@@ -10,7 +10,7 @@ namespace Service
         void Update(Cart cart);
         Cart Delete(int id);
         Cart GetCartByTable(int tableID);
-
+        void ChangeTable(Cart cart);
         void SaveChanges();
     }
 
@@ -28,6 +28,11 @@ namespace Service
         public Cart Add(Cart cart)
         {
             return cartRepository.Add(cart);
+        }
+
+        public void ChangeTable(Cart cart)
+        {
+            cartRepository.ChangeTable(cart);
         }
 
         public Cart Delete(int id)

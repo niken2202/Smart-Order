@@ -25,6 +25,8 @@ namespace Model.Models
         public int TableID { get; set; }
         public DateTime CreatedDate { get; set; }
 
+        [Required]
+        public double Total { get; set; }
         public string CreatedBy { set; get; }
         public int? Discount { set; get; }
         public bool Status { get; set; }

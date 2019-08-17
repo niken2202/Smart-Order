@@ -1,4 +1,5 @@
-﻿using Data.Infrastructure;
+﻿using Common.ViewModels;
+using Data.Infrastructure;
 using Model.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Data.Repositories
     public interface IComboRepository : IRepository<Combo>
     {
         IEnumerable<Combo> GetAll();
-        object GetComboById(int id);
+        ComboViewModel GetComboById(int id);
 
     }
 
@@ -26,7 +27,7 @@ namespace Data.Repositories
         }
 
         
-        public object GetComboById(int id)
+        public ComboViewModel GetComboById(int id)
         {
             var combo = (from c in DbContext.Combos
                         where c.ID == id
@@ -35,29 +36,29 @@ namespace Data.Repositories
             var dishes = from d in DbContext.Dishes
                          join dc in DbContext.DishComboMapping on d.ID equals dc.ComboID
                          where dc.ComboID == id
-                         select new
+                         select new DishComboViewModel()
                          {
-                             d.ID,
-                             d.Name,
-                             d.Price,
-                             d.Status,
-                             d.Description,
-                             d.CategoryID,
-                             d.CreatedDate,
-                             dc.Amount,
-                             d.Image,
+                            ID= d.ID,
+                             Name= d.Name,
+                             Price=d.Price,
+                             Status= d.Status,
+                             Description= d.Description,
+                             CategoryID= d.CategoryID,
+                             CreatedDate= d.CreatedDate,
+                             Amount=dc.Amount,
+                             Image=  d.Image,
                          };
             if (combo == null) return null;
-          var cc = new
+          var cc = new ComboViewModel
             {
-                combo.ID,
-                combo.Image,
-                combo.Name,
-                combo.Price,
-                combo.Amount,
-                combo.Description,
-                combo.Status,
-                dishes
+              ID= combo.ID,
+              Image=  combo.Image,
+              Name=  combo.Name,
+              Price=  combo.Price,
+              Amount= combo.Amount,
+              Description= combo.Description,
+              Status=  combo.Status,
+              dishes=  dishes
             };
             return cc;
 

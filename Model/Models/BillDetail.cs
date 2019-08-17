@@ -18,6 +18,7 @@ namespace Model.Models
         [Required]
         public decimal Price { get; set; }
 
+    
         [Required]
         public int Amount { get; set; }
 
