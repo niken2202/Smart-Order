@@ -14,7 +14,8 @@
         $scope.CustomerName = " ";
         $scope.CrashierName = " ";
         $scope.ContentBill = " ";
-        $scope.Promotions = { Code: "Không có", Discount: 0};
+        $scope.CustomerPromotions;
+        $scope.notiPromotion = "";
         //get table list from api
         function getListTable() {
             apiService.get('/api/table/getall', null, function (result) {
@@ -73,7 +74,7 @@
             apiService.get('/api/promotioncode/getall', null, function (result) {
                 $scope.promotions = result.data;
             }, function () {
-                notificationService.displayError('Tải danh sách mã khuyến mại không thành công');
+                //notificationService.displayError('Tải danh sách mã khuyến mại không thành công');
             });
         }
         getPromotion();
@@ -244,6 +245,24 @@
             }
         };
 
+        //event catch input promotion 
+        $scope.promotionEvt = promotionEvt;
+        function promotionEvt() {
+            var condition = new Boolean(false);
+            for (i = 0; i < $scope.promotions.length; i++) {                
+                if ($scope.CustomerPromotions == $scope.promotions[i].Code) {
+                    $scope.Promotions = $scope.promotions[i];
+                    $scope.notiPromotion = ""
+                    condition = true;
+                    break;
+                }
+            }
+            if (condition == false) {
+                $scope.notiPromotion = "Mã không tồn tại!"
+            }
+
+        }
+
         //order send list cart detail to kitchen
         $scope.Order = Order;
         function Order() {
@@ -289,7 +308,7 @@
                     CreatedDate: new Date,
                     CreatedBy: $scope.CrashierName,
                     Discount: $scope.Promotions.Discount,
-                    Status: true
+                    Status: true    
                 }
                 apiService.post('/api/bill/add', $scope.addBill, function (result) {
                     deleteCart($scope.curCart.ID);

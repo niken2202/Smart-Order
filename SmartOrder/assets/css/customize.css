@@ -1,8 +1,10 @@
 ﻿/*Begin Customize cashier view*/
+
 .customeize-input {
     border-style: solid;
     border-width: 0px 0px 1px 0px;
     border-color: #4caf50;
+    color: #4caf50;
 }
 * {
     box-sizing: border-box;
@@ -453,7 +455,7 @@ crashier-table-body {
 }
 
 .div-footer-billdetail {
-    width: 95%;
+    width: 100%;
     height: auto;
     text-align: right;
 }

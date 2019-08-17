@@ -30,28 +30,31 @@
             </dir-pagination-controls>
         </div>
 
-        <div class="div-footer-billdetail">
-            <div class="div-footer-billdetail-content">
-                <div class="row1">
-                    <label class="">
-                        Tổng tiền : 253.356
-                    </label>
-                </div>
-                <div class="row2">
-                    <label class="">
-                        Giảm giá : {{item.Discount | percentFilter}}
-                    </label>
-                </div>
-                <div class="row3">
-                    <label class="">
-                        Thanh toán : 235,000
-                    </label>
-                </div>
-                <div class="row4">
-                    <label class="">
-                        Ngày {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
-                    </label>
-                </div>
+        <div class="div-footer-billdetail" style="text-align:right!important">
+            <div class="row1" style=" margin:2px;">
+                <label style="text-align:right; width:70%" class="customize-font-blue-color">
+                    Tạo bởi: {{currentBill.CreatedBy}}  Tổng tiền : {{currentBill.Price}}
+                </label>
+            </div>
+            <div class="row2" style=" margin:2px;">
+                <label style="text-align:right; width:70%" class="customize-font-blue-color">
+                    Mã giảm giá: {{currentBill.Voucher}}   Giảm giá : {{currentBill.Discount}} %
+                </label>
+            </div>
+            <div class="row3" style=" margin:2px;">
+                <label style="text-align:right; width:70%" class="customize-font-blue-color">
+                    Khách hàng: {{currentBill.CustomerName}}
+                </label>
+            </div>
+            <div class="row3" style=" margin:2px;">
+                <label style="text-align:right; width:70%" class="customize-font-blue-color">
+                    Thời gian : {{currentBill.CreatedDate | date:' hh : ss'}}  Ngày : {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
+                </label>
+            </div>
+            <div class="row4" style=" margin:2px;">
+                <label style="text-align:right; width:70%" class="customize-font-blue-color">
+                    Nội dung : {{currentBill.Content}}
+                </label>
             </div>
         </div>
 
