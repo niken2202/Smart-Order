@@ -18,7 +18,12 @@
 
             $scope.serial = newPageNumber * $scope.itemPerPage - ($scope.itemPerPage - 1);
         }
-        
+        //generate index number in table bill details
+        $scope.serialBillDetails = 1;
+        $scope.indexCountBillDetails = function (newPageNumber) {
+            $scope.serialBillDetails = newPageNumber * 10 - 9;
+        }  
+
         //for user customize date from to .. 
         $scope.dateSeclect = {
             from: new Date(),
@@ -132,7 +137,8 @@
             });
 
         }
-               
+
+
         //show bill details
         $scope.billDetailEvent = function (data) {
             $scope.currentBill = data;
@@ -144,7 +150,6 @@
 
             apiService.get('/api/billdetail/getbybillid', transfer, function (result) {
                 $scope.billDetails = result.data;
-                console.log($scope.billDetails);
             }, function () {
                 notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải dữ liệu!');
             });

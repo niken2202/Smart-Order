@@ -1,13 +1,17 @@
 ﻿<div class="main-card mb-3 card">
     <div class="card-body">
-        <h4 class="card-title customize-font-blue-color">Chi tiết hóa đơn </h4>
+        <h4 class="card-title customize-font-blue-color">Chi tiết hóa đơn Khách hàng: &nbsp; {{currentBill.CustomerName}}</h4>
+        <div class="row3" style=" margin:2px;">
+            <label style="text-align:right; width:100%" class="customize-font-blue-color">
+                Thời gian : {{currentBill.CreatedDate | date:' hh : mm'}}  Ngày : {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
+            </label>
+        </div>
 
-
-        <div class="table-responsive">
+        <div class="table-responsive" style="height:auto; max-height:350px; overflow:auto">
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
-                    <tr>
-                        <th>Mã</th>
+                    <tr class="customize-font-blue-color">
+                        <th>STT</th>
                         <th>Mặt hàng</th>
                         <th>Số lượng</th>
                         <th>Đơn giá</th>
@@ -15,8 +19,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr dir-paginate="item in billDetails |itemsPerPage:10">
-                        <td>{{item.ID}}</td>
+                    <tr dir-paginate="item in billDetails |itemsPerPage:itemPerPage" on-page-change='indexCountBillDetails(newPageNumber)'>
+                        <td>{{$index + serialBillDetails}}</td>
                         <td>{{item.Name}}</td>
                         <td>{{item.Amount}}</td>
                         <td>{{item.Price}}</td>
@@ -24,35 +28,21 @@
                     </tr>
                 </tbody>
             </table>
-            <dir-pagination-controls max-size="5"
-                                     direction-links="true"
-                                     boundary-links="true">
-            </dir-pagination-controls>
         </div>
 
         <div class="div-footer-billdetail" style="text-align:right!important">
-            <div class="row1" style=" margin:2px;">
-                <label style="text-align:right; width:70%" class="customize-font-blue-color">
-                    Tạo bởi: {{currentBill.CreatedBy}}  Tổng tiền : {{currentBill.Price}}
-                </label>
-            </div>
             <div class="row2" style=" margin:2px;">
-                <label style="text-align:right; width:70%" class="customize-font-blue-color">
-                    Mã giảm giá: {{currentBill.Voucher}}   Giảm giá : {{currentBill.Discount}} %
+                <label style="text-align:left; width:40%" class="customize-font-blue-color">
+                    Giảm giá: {{currentBill.Discount}} %
                 </label>
             </div>
-            <div class="row3" style=" margin:2px;">
-                <label style="text-align:right; width:70%" class="customize-font-blue-color">
-                    Khách hàng: {{currentBill.CustomerName}}
-                </label>
-            </div>
-            <div class="row3" style=" margin:2px;">
-                <label style="text-align:right; width:70%" class="customize-font-blue-color">
-                    Thời gian : {{currentBill.CreatedDate | date:' hh : ss'}}  Ngày : {{currentBill.CreatedDate | date:'dd-MM-yyyy'}}
+            <div class="row1" style=" margin:2px;">
+                <label style="text-align:left; width:40%" class="customize-font-blue-color">
+                    Tổng tiền : {{currentBill.Total}}
                 </label>
             </div>
             <div class="row4" style=" margin:2px;">
-                <label style="text-align:right; width:70%" class="customize-font-blue-color">
+                <label style="text-align:left; width:40%" class="customize-font-blue-color">
                     Nội dung : {{currentBill.Content}}
                 </label>
             </div>
