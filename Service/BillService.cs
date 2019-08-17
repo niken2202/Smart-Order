@@ -38,14 +38,10 @@ namespace Service
         {
             return billRepository.Add(bill);
         }
-
-
-
         public IEnumerable<Bill> GetAll()
         {
             return billRepository.GetAll();
         }
-
         public object GetBillDetail(int id)
         {
             return billRepository.GetBillDetail(id);

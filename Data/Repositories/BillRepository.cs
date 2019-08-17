@@ -9,10 +9,8 @@ namespace Data.Repositories
 {
     public interface IBillRepository : IRepository<Bill>
     {
-
         IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromDate, DateTime toDate);
         IEnumerable<RevenueByMonthViewModel> GetRevenueGroupByMonth(DateTime fromdate, DateTime toDate);
-        IEnumerable<Bill> GetAll();
         IEnumerable<Bill> GetTimeRange(DateTime fromDate, DateTime toDate);
         IEnumerable<Bill> GetBillLastMonth();
         IEnumerable<Bill> GetBillLast7Days();
@@ -25,15 +23,6 @@ namespace Data.Repositories
         {
 
         }
-
-        public IEnumerable<Bill> GetAll()
-        {
-
-            var query = from d in DbContext.Bills
-                        select d;
-            return query;
-        }
-
         public IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromdate, DateTime toDate)
         {
             var parameters = new object[]
