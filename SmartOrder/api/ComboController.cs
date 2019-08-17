@@ -17,7 +17,7 @@ namespace SmartOrder.api
             this.comboService = comboService;
         }
 
-        [Route("add"), Authorize]
+        [Route("add")]
         public HttpResponseMessage Post(HttpRequestMessage request, Combo combo)
         {
             return CreateHttpResponse(request, () =>
@@ -32,7 +32,7 @@ namespace SmartOrder.api
                 {
                     var result = comboService.Add(combo);
                     comboService.SaveChanges();
-                    SaveHistory("Add Combo has ID " + combo.ID);
+                    SaveHistory("Thêm Combo có ID " + combo.ID);
                     response = request.CreateResponse(HttpStatusCode.Created, result);
                 }
                 return response;

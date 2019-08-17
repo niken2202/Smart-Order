@@ -8,18 +8,11 @@ namespace Service
     public interface IMaterialServie
     {
         Material Add(Material material);
-
-        IEnumerable<Material> GetAll(int pageIndex, int pageSize, out int totalRow);
         IEnumerable<Material> GetAll();
-
         Material GetById(int id);
-
         Material Delete(int id);
-
         void Update(Material material);
-
         IEnumerable<Material> GetByName(string name);
-
         void SaveChanges();
     }
 
@@ -43,12 +36,6 @@ namespace Service
         {
             return materialRepository.Delete(id);
         }
-
-        public IEnumerable<Material> GetAll(int pageIndex, int pageSize, out int totalRow)
-        {
-            return materialRepository.GetAll( pageIndex,  pageSize, out totalRow);
-        }
-
         public IEnumerable<Material> GetAll()
         {
             return materialRepository.GetAll();

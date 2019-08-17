@@ -77,8 +77,16 @@
     <Compile Include="RepositoryTest\ComboTest.cs" />
     <Compile Include="RepositoryTest\DishCategoryTest.cs" />
     <Compile Include="RepositoryTest\DishTest.cs" />
+    <Compile Include="RepositoryTest\ErrorTest.cs" />
+    <Compile Include="RepositoryTest\HistoryTest.cs" />
+    <Compile Include="RepositoryTest\MaterialTest.cs" />
+    <Compile Include="RepositoryTest\PromotionCodeTest.cs" />
     <Compile Include="RepositoryTest\TableTest.cs" />
+    <Compile Include="ServiceTest\BillDetailServiceTest.cs" />
     <Compile Include="ServiceTest\BillServiceTest.cs" />
+    <Compile Include="ServiceTest\CartDetailServiceTest.cs" />
+    <Compile Include="ServiceTest\CartServiceTest.cs" />
+    <Compile Include="ServiceTest\ComboServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

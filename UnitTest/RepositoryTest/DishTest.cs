@@ -25,9 +25,6 @@ namespace UnitTest.RepositoryTest
             unitOfWork = new UnitOfWork(dbFactory);
         }
 
-        private TestContext testContextInstance;
-
-     
         #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:

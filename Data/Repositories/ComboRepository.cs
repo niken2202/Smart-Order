@@ -8,9 +8,8 @@ namespace Data.Repositories
 {
     public interface IComboRepository : IRepository<Combo>
     {
-        IEnumerable<Combo> GetAll();
         ComboViewModel GetComboById(int id);
-
+       
     }
 
     public class ComboRepository : RepositoryBase<Combo>, IComboRepository
@@ -18,15 +17,20 @@ namespace Data.Repositories
         public ComboRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
-
-        public IEnumerable<Combo> GetAll()
+        public override Combo Add(Combo entity)
         {
-            var listc = from c in DbContext.Combos
-                        select c;
-            return listc;
+            var c = DbContext.Combos.Add(entity);
+            if (c != null)
+            {
+                foreach(var dc in entity.DishComboMappings)
+            {
+                dc.ComboID = c.ID;
+                DbContext.DishComboMapping.Add(dc);
+            }
+            }
+           
+            return c;
         }
-
-        
         public ComboViewModel GetComboById(int id)
         {
             var combo = (from c in DbContext.Combos
