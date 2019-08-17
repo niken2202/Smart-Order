@@ -71,7 +71,26 @@ namespace SmartOrder.api
                 else
                 {
                     var code = promotionCodeService.GetById(id);
-                    SaveHistory("Get Bill by id" + id);
+                    response = request.CreateResponse(HttpStatusCode.OK, code);
+                }
+                return response;
+            });
+        }
+
+        [Route("getbycode")]
+        public HttpResponseMessage GetByCode(HttpRequestMessage request, string Code)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var code = promotionCodeService.GetByCode(Code.Trim());
                     response = request.CreateResponse(HttpStatusCode.OK, code);
                 }
                 return response;

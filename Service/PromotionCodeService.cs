@@ -16,7 +16,7 @@ namespace Service
         PromotionCode Delete(int id);
 
         void Update(PromotionCode promotionCode);
-
+        PromotionCode GetByCode(string Code);
         void SaveChanges();
     }
 
@@ -34,6 +34,11 @@ namespace Service
         public PromotionCode Add(PromotionCode promotionCode)
         {
             return promotionCodeRepository.Add(promotionCode);
+        }
+
+        public PromotionCode GetByCode(string Code)
+        {
+            return promotionCodeRepository.GetSingleByCondition(x => x.Code == Code);
         }
 
         public PromotionCode Delete(int id)

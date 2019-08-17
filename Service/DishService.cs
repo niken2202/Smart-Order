@@ -1,4 +1,5 @@
-﻿using Data.Infrastructure;
+﻿using Common.ViewModels;
+using Data.Infrastructure;
 using Data.Repositories;
 using Model.Models;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Service
     public interface IDishService
     {
         Dish Add(Dish dish);
-        IEnumerable<object> GetAll();
+        IEnumerable<DishViewModel> GetAll();
         Dish GetById(int id);
       //  IEnumerable<Bill> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
         Dish GetByName(string name);
@@ -41,7 +42,7 @@ namespace Service
             return dishRepository.Delete(id);
         }
 
-        public IEnumerable<object> GetAll()
+        public IEnumerable<DishViewModel> GetAll()
         {
             return dishRepository.GetAll();
         }

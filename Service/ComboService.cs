@@ -1,4 +1,5 @@
-﻿using Data.Infrastructure;
+﻿using Common.ViewModels;
+using Data.Infrastructure;
 using Data.Repositories;
 using Model.Models;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace Service
 
         void Update(Combo combo);
 
-        object GetCombobyId(int id);
+        ComboViewModel GetCombobyId(int id);
         void SaveChanges();
     }
 
@@ -52,7 +53,7 @@ namespace Service
             return comboRepository.GetSingleById(id);
         }
 
-        public object GetCombobyId(int id)
+        public ComboViewModel GetCombobyId(int id)
         {
             return comboRepository.GetComboById(id);
         }

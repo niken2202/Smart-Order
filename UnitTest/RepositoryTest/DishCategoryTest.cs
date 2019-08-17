@@ -1,33 +1,32 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Data.Infrastructure;
+﻿using Data.Infrastructure;
 using Data.Repositories;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model.Models;
+using System;
 using System.Linq;
 
 namespace UnitTest.RepositoryTest
 {
     /// <summary>
-    /// Summary description for BillTest
+    /// Summary description for BillDetailTest
     /// </summary>
     [TestClass]
-    public class TableTest
+    public class DishCategoryTest
     {
-        IDbFactory dbFactory;
-        ITableRepository _repository;
-        IUnitOfWork unitOfWork;
+        private IDbFactory dbFactory;
+        private IDishCategoryRepository _repository;
+        private IUnitOfWork unitOfWork;
 
         [TestInitialize]
         public void Initialize()
         {
             dbFactory = new DbFactory();
-            _repository = new TableRepository(dbFactory);
+            _repository = new DishCategoryRepository(dbFactory);
             unitOfWork = new UnitOfWork(dbFactory);
         }
 
         #region Additional test attributes
+
         //
         // You can use the following additional attributes as you write your tests:
         //
@@ -39,7 +38,7 @@ namespace UnitTest.RepositoryTest
         // [ClassCleanup()]
         // public static void MyClassCleanup() { }
         //
-        // Use TestInitialize to run code before running each test 
+        // Use TestInitialize to run code before running each test
         // [TestInitialize()]
         // public void MyTestInitialize() { }
         //
@@ -47,40 +46,33 @@ namespace UnitTest.RepositoryTest
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
-        #endregion
+
+        #endregion Additional test attributes
 
         [TestMethod]
-        public void Add_Table_Test()
+        public void Add_DishCategory_Test()
         {
-            Table table = new Table();
-            table.Name = "Ban 1";
-            table.Status = 1;
-            table.DeviceID = "dsdsdsd";
-            table.CreatedDate = DateTime.Now;
-            var result = _repository.Add(table);
+            DishCategory dc = new DishCategory();
+            dc.Name = "Test";
+            dc.CreatedDate = DateTime.Now;
+            var result = _repository.Add(dc);
             unitOfWork.Commit();
             Assert.IsNotNull(result);
-            Assert.AreEqual(5, result.ID);
-        }
-        [TestMethod]
-        public void Table_Repository_GetAll()
-        {
-            var list = _repository.GetAll().ToList();
-            Assert.AreEqual(5, list.Count);
-        }
-        [TestMethod]
-        public void Table_Repository_GetVairable()
-        {
-            var result = _repository.GetVariableTable().ToList();
-            Assert.AreEqual(0, result.Count);
-        }
-        [TestMethod]
-        public void Table_Repository_Delete()
-        {
-            var result = _repository.Delete(1);
             Assert.AreEqual(1, result.ID);
         }
 
+        [TestMethod]
+        public void Cart_Repository_GetAll()
+        {
+            var list = _repository.GetAll().ToList();
+            Assert.AreEqual(1, list.Count);
+        }
 
+        [TestMethod]
+        public void DishCategory_Repository_Delete()
+        {
+            var list = _repository.Delete(1);
+            Assert.AreEqual(1, list.ID);
+        }
     }
 }

@@ -74,6 +74,9 @@
     <Compile Include="RepositoryTest\BillTest.cs" />
     <Compile Include="RepositoryTest\CartDetailTest.cs" />
     <Compile Include="RepositoryTest\CartTest.cs" />
+    <Compile Include="RepositoryTest\ComboTest.cs" />
+    <Compile Include="RepositoryTest\DishCategoryTest.cs" />
+    <Compile Include="RepositoryTest\DishTest.cs" />
     <Compile Include="RepositoryTest\TableTest.cs" />
     <Compile Include="ServiceTest\BillServiceTest.cs" />
   </ItemGroup>

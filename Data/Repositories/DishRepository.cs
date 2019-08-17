@@ -1,4 +1,5 @@
-﻿using Data.Infrastructure;
+﻿using Common.ViewModels;
+using Data.Infrastructure;
 using Model.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Data.Repositories
 
         IEnumerable<Dish> GetDishByCategory(int categoryId);
 
-        IEnumerable<object> GetAll();
+        IEnumerable<DishViewModel> GetAll();
 
         IEnumerable<Dish> GetTopHot();
 
@@ -24,12 +25,12 @@ namespace Data.Repositories
         {
         }
 
-        public IEnumerable<object> GetAll()
+        public IEnumerable<DishViewModel> GetAll()
         {
             var query = from d in DbContext.Dishes
                         join ct in DbContext.DishCategories
                         on d.CategoryID equals ct.ID
-                        select new
+                        select new DishViewModel()
                         {
                             ID = d.ID,
                             Image = d.Image,

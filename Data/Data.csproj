@@ -69,10 +69,6 @@
     <Compile Include="Migrations\201907310544537_addBillProceduced.Designer.cs">
       <DependentUpon>201907310544537_addBillProceduced.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907310546173_add-new-revenue-proceduced.cs" />
-    <Compile Include="Migrations\201907310546173_add-new-revenue-proceduced.Designer.cs">
-      <DependentUpon>201907310546173_add-new-revenue-proceduced.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201908041250217_update-table.cs" />
     <Compile Include="Migrations\201908041250217_update-table.Designer.cs">
       <DependentUpon>201908041250217_update-table.cs</DependentUpon>
@@ -108,6 +104,14 @@
     <Compile Include="Migrations\201908130835546_add-foreignkey-dishcategory.cs" />
     <Compile Include="Migrations\201908130835546_add-foreignkey-dishcategory.Designer.cs">
       <DependentUpon>201908130835546_add-foreignkey-dishcategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908151435246_add-revenue-stored-proceduced.cs" />
+    <Compile Include="Migrations\201908151435246_add-revenue-stored-proceduced.Designer.cs">
+      <DependentUpon>201908151435246_add-revenue-stored-proceduced.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908170802236_add-stored-proceduce-get-revenue-by-moth.cs" />
+    <Compile Include="Migrations\201908170802236_add-stored-proceduce-get-revenue-by-moth.Designer.cs">
+      <DependentUpon>201908170802236_add-stored-proceduce-get-revenue-by-moth.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -151,9 +155,6 @@
     <EmbeddedResource Include="Migrations\201907310544537_addBillProceduced.resx">
       <DependentUpon>201907310544537_addBillProceduced.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907310546173_add-new-revenue-proceduced.resx">
-      <DependentUpon>201907310546173_add-new-revenue-proceduced.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908041250217_update-table.resx">
       <DependentUpon>201908041250217_update-table.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,6 +181,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908130835546_add-foreignkey-dishcategory.resx">
       <DependentUpon>201908130835546_add-foreignkey-dishcategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908151435246_add-revenue-stored-proceduced.resx">
+      <DependentUpon>201908151435246_add-revenue-stored-proceduced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908170802236_add-stored-proceduce-get-revenue-by-moth.resx">
+      <DependentUpon>201908170802236_add-stored-proceduce-get-revenue-by-moth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

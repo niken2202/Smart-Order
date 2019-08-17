@@ -45,7 +45,8 @@ namespace Data.Migrations
                         Amount = c.Int(nullable: false),
                         Description = c.String(),
                         Image = c.String(maxLength: 256),
-                    })
+                       
+        })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Bill", t => t.BillID, cascadeDelete: true)
                 .Index(t => t.BillID);
@@ -63,7 +64,8 @@ namespace Data.Migrations
                         CreatedBy = c.String(),
                         Discount = c.Int(),
                         Status = c.Boolean(nullable: false),
-                    })
+                    Total = c.Double(nullable: false)
+                })
                 .PrimaryKey(t => t.ID);
             
             CreateTable(

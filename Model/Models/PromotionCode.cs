@@ -15,6 +15,8 @@ namespace Model.Models
         public string Code { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ExpiredDate { get; set; }
+
+        [Required]
         public int Discount { set; get; }
         public bool Status { get; set; }
     }
