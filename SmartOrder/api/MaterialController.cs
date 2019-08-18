@@ -10,8 +10,8 @@ namespace SmartOrder.api
     [RoutePrefix("api/material"), Authorize]
     public class MaterialController : ApiControllerBase
     {
-        IMaterialServie materialService;
-        public MaterialController(IErrorService errorService, IMaterialServie materialService, IHistoryService historyService) : base(errorService, historyService)
+        IMaterialService materialService;
+        public MaterialController(IErrorService errorService, IMaterialService materialService, IHistoryService historyService) : base(errorService, historyService)
         {
             this.materialService = materialService;
         }
@@ -73,6 +73,26 @@ namespace SmartOrder.api
                 {
                     var listDish = materialService.GetById(materialId);
                     response = request.CreateResponse(HttpStatusCode.OK, listDish);
+                }
+                return response;
+            });
+        }
+
+        [Route("getbydishid")]
+        public HttpResponseMessage GetAllByDishID(HttpRequestMessage request, int dishID)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listMaterial = materialService.GetAllByDishID(dishID);
+                    response = request.CreateResponse(HttpStatusCode.OK, listMaterial);
                 }
                 return response;
             });

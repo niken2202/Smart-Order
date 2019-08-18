@@ -5,18 +5,19 @@ using System.Collections.Generic;
 
 namespace Service
 {
-    public interface IMaterialServie
+    public interface IMaterialService
     {
         Material Add(Material material);
         IEnumerable<Material> GetAll();
         Material GetById(int id);
         Material Delete(int id);
+        IEnumerable<Material> GetAllByDishID(int dishID);
         void Update(Material material);
         IEnumerable<Material> GetByName(string name);
         void SaveChanges();
     }
 
-    public class MaterialService : IMaterialServie
+    public class MaterialService : IMaterialService
     {
         private IUnitOfWork unitOfWork;
         private IMaterialRepository materialRepository;
@@ -39,6 +40,11 @@ namespace Service
         public IEnumerable<Material> GetAll()
         {
             return materialRepository.GetAll();
+        }
+
+        public IEnumerable<Material> GetAllByDishID(int dishID)
+        {
+            return materialRepository.GetAllByDishID(dishID);
         }
 
         public Material GetById(int id)

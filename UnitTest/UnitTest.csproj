@@ -87,6 +87,13 @@
     <Compile Include="ServiceTest\CartDetailServiceTest.cs" />
     <Compile Include="ServiceTest\CartServiceTest.cs" />
     <Compile Include="ServiceTest\ComboServiceTest.cs" />
+    <Compile Include="ServiceTest\DishCategoryServiceTest.cs" />
+    <Compile Include="ServiceTest\DishServiceTest.cs" />
+    <Compile Include="ServiceTest\ErrorServiceTest.cs" />
+    <Compile Include="ServiceTest\HistoryServiceTest.cs" />
+    <Compile Include="ServiceTest\MaterialServiceTest.cs" />
+    <Compile Include="ServiceTest\PromotionCodeTest.cs" />
+    <Compile Include="ServiceTest\TableServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
