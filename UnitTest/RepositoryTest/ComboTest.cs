@@ -33,6 +33,7 @@ namespace UnitTest.RepositoryTest
             combo.Name = "Test";
             combo.Amount = 10;
             combo.Status = true;
+            combo.CreatedDate = DateTime.Now;
             combo.DishComboMappings = new List<DishComboMapping>()
             {
                 new DishComboMapping(){ DishID=2, Amount=1 }
@@ -40,7 +41,7 @@ namespace UnitTest.RepositoryTest
             var result = _repository.Add(combo);
             unitOfWork.Commit();
             Assert.IsNotNull(result);
-            Assert.AreEqual(7, result.ID);
+            Assert.AreEqual(6, result.ID);
         }
         [TestMethod]
         public void Combo_Repository_GetAll()
@@ -52,15 +53,15 @@ namespace UnitTest.RepositoryTest
         [TestMethod]
         public void Combo_Repository_GetbyId()
         {
-            var list = _repository.GetComboById(1);
-            Assert.AreEqual(1, list.ID);
+            var list = _repository.GetComboById(5);
+            Assert.AreEqual(5, list.ID);
         }
 
         [TestMethod]
         public void Combo_Repository_Delete()
         {
-            var list = _repository.Delete(1);
-            Assert.AreEqual(1, list.ID);
+            var list = _repository.Delete(5);
+            Assert.AreEqual(5, list.ID);
         }
     }
 }

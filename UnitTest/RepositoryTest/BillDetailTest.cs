@@ -62,7 +62,7 @@ namespace UnitTest.RepositoryTest
             var result = _repository.Add(bd);
             unitOfWork.Commit();
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.ID);
+            Assert.AreEqual(4, result.ID);
            
         }
 
@@ -70,7 +70,7 @@ namespace UnitTest.RepositoryTest
         public void BillDetail_Repository_GetByBillID()
         {
             var list = _repository.GetAll().ToList();
-            Assert.AreEqual(13, list.Count);
+            Assert.AreEqual(4, list.Count);
         }
 
      

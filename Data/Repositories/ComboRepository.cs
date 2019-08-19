@@ -9,7 +9,6 @@ namespace Data.Repositories
     public interface IComboRepository : IRepository<Combo>
     {
         ComboViewModel GetComboById(int id);
-       
     }
 
     public class ComboRepository : RepositoryBase<Combo>, IComboRepository
