@@ -38,7 +38,7 @@ namespace Data.Repositories
                         select c).FirstOrDefault();
 
             var dishes = from d in DbContext.Dishes
-                         join dc in DbContext.DishComboMapping on d.ID equals dc.ComboID
+                         join dc in DbContext.DishComboMapping on d.ID equals dc.DishID
                          where dc.ComboID == id
                          select new DishComboViewModel()
                          {

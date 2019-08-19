@@ -18,7 +18,7 @@ namespace UnitTest.ServiceTest
         private Mock<IUnitOfWork> _mockUnitOfWork;
         private IDishService _service;
         private List<Dish> _listDish;
-
+        private List<DishViewModel> _listDishModelView;
         [TestInitialize]
         public void Initialize()
         {
@@ -30,6 +30,11 @@ namespace UnitTest.ServiceTest
             {
                 new Dish() {ID =1 , Name="fddf"},
                 new Dish() {ID =2 }
+             };
+            _listDishModelView = new List<DishViewModel>()
+            {
+                new DishViewModel() {ID =1 , Name="fddf"},
+                new DishViewModel() {ID =2 }
              };
         }
 
@@ -58,16 +63,9 @@ namespace UnitTest.ServiceTest
         [TestMethod]
         public void Dish_Service_GetAll()
         {
-            _mockRepository.Setup(m => m.GetAll()).Returns((List<DishViewModel> p) =>
-            {
-                p.Add(new DishViewModel()
-                {
-                    ID = 1
-                });
-                return p;
-            });
+            _mockRepository.Setup(m => m.GetAll()).Returns(_listDishModelView);
             var result = _service.GetAll().ToList();
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(2, result.Count);
         }
 
         [TestMethod]

@@ -33,16 +33,20 @@ namespace UnitTest.RepositoryTest
             combo.Name = "Test";
             combo.Amount = 10;
             combo.Status = true;
+            combo.DishComboMappings = new List<DishComboMapping>()
+            {
+                new DishComboMapping(){ DishID=2, Amount=1 }
+            };
             var result = _repository.Add(combo);
             unitOfWork.Commit();
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.ID);
+            Assert.AreEqual(7, result.ID);
         }
         [TestMethod]
         public void Combo_Repository_GetAll()
         {
             var list = _repository.GetAll().ToList();
-            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(2, list.Count);
         }
 
         [TestMethod]

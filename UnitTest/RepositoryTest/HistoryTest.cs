@@ -55,41 +55,41 @@ namespace UnitTest.RepositoryTest
             var result = _repository.Add(h);
             unitOfWork.Commit();
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.ID);
+            Assert.AreEqual(3, result.ID);
         }
 
         [TestMethod]
         public void Cart_Repository_GetHistoryToday()
         {
             var list = _repository.GetHistoryToday().ToList();
-            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(2, list.Count);
         }
 
         [TestMethod]
         public void Cart_Repository_GetHistoryLastMonth()
         {
             var list = _repository.GetHistoryLastMonth().ToList();
-            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(3, list.Count);
         }
         [TestMethod]
         public void Cart_Repository_GetHistoryLast7Days()
         {
             var list = _repository.GetHistoryLast7Days().ToList();
-            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(3, list.Count);
         }
 
         [TestMethod]
         public void Cart_Repository_GetAll()
         {
             var list = _repository.GetAll().ToList();
-            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(3, list.Count);
         }
 
         [TestMethod]
         public void Cart_Repository_GetTimeRange()
         {
             var list = _repository.GetTimeRange(new DateTime(2018,01,01), new DateTime(2019, 01, 01)).ToList();
-            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(0, list.Count);
         }
     }
 }

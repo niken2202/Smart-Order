@@ -7,11 +7,8 @@ namespace Model.Models
     public class DishComboMapping
     {
         [Key]
-        [Column(Order = 1)]
+        public int ID { get; set; }
         public int DishID { get; set; }
-
-        [Key]
-        [Column(Order = 2)]
         public int ComboID { get; set; }
 
         public int Amount { get; set; }

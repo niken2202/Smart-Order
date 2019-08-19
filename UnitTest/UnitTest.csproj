@@ -48,6 +48,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -70,6 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryTest\ApplicationRoleRepositoryTest.cs" />
+    <Compile Include="RepositoryTest\ApplicationUserRoleTest.cs" />
+    <Compile Include="RepositoryTest\ApplicationUserTest.cs" />
     <Compile Include="RepositoryTest\BillDetailTest.cs" />
     <Compile Include="RepositoryTest\BillTest.cs" />
     <Compile Include="RepositoryTest\CartDetailTest.cs" />
@@ -82,6 +91,8 @@
     <Compile Include="RepositoryTest\MaterialTest.cs" />
     <Compile Include="RepositoryTest\PromotionCodeTest.cs" />
     <Compile Include="RepositoryTest\TableTest.cs" />
+    <Compile Include="ServiceTest\ApplicationRoleServiceTest.cs" />
+    <Compile Include="ServiceTest\ApplicationUserRoleServiceTest.cs" />
     <Compile Include="ServiceTest\BillDetailServiceTest.cs" />
     <Compile Include="ServiceTest\BillServiceTest.cs" />
     <Compile Include="ServiceTest\CartDetailServiceTest.cs" />

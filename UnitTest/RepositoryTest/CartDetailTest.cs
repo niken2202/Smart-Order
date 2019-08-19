@@ -48,10 +48,10 @@ namespace UnitTest.RepositoryTest
 
         #endregion Additional test attributes
 
+    
         [TestMethod]
         public void CartDetail_Repository_GetAll ()
         {
-
             var list = _repository.GetAll().ToList();
             Assert.AreEqual(2, list.Count);
         }

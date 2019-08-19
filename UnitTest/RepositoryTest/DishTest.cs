@@ -56,27 +56,28 @@ namespace UnitTest.RepositoryTest
             d.Description = "unit test";
             d.Image = "unit test";
             d.OrderCount = 1;
+            d.Name = "unit test";
             d.Price = 1;
             d.Status = 1;
             d.Amount = 1;
             var result = _repository.Add(d);
             unitOfWork.Commit();
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.ID);
+            Assert.AreEqual(5, result.ID);
         }
 
         [TestMethod]
         public void Dish_Repository_GetAll()
         {
             var result = _repository.GetAll().ToList();
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(2, result.Count);
         }
 
         [TestMethod]
         public void Dish_Repository_GetTopHot()
         {
             var result = _repository.GetTopHot().ToList();
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(2, result.Count);
         }
         [TestMethod]
         public void Dish_Repository_GetByCombo()
@@ -88,22 +89,22 @@ namespace UnitTest.RepositoryTest
         [TestMethod]
         public void Dish_Repository_GetByID()
         {
-            var result = _repository.GetSingleById(1);
-            Assert.AreEqual(1, result.ID);
+            var result = _repository.GetSingleById(2);
+            Assert.AreEqual(2, result.ID);
         }
 
         [TestMethod]
         public void Dish_Repository_GetDishByCategory()
         {
             var result = _repository.GetDishByCategory(1).ToList();
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(2, result.Count);
         }
 
         [TestMethod]
         public void Dish_Repository_Delete()
         {
-            var result = _repository.Delete(1);
-            Assert.AreEqual(1, result.ID);
+            var result = _repository.Delete(2);
+            Assert.AreEqual(2, result.ID);
         }
     }
 }

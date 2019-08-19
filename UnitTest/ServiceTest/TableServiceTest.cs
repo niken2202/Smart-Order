@@ -46,28 +46,28 @@ namespace UnitTest.ServiceTest
             _mockRepository.Setup(m => m.Add(table)).Returns(table);
             var result = _service.Add(table);
             Assert.IsNotNull(result);
-            Assert.AreEqual(5, result.ID);
+            Assert.AreEqual(1, result.ID);
         }
         [TestMethod]
         public void Table_Service_GetAll()
         {
             _mockRepository.Setup(m => m.GetAll(null)).Returns(_listCategory);
             var list = _service.GetAll().ToList();
-            Assert.AreEqual(5, list.Count);
+            Assert.AreEqual(2, list.Count);
         }
         [TestMethod]
         public void Table_Service_GetVairable()
         {
             _mockRepository.Setup(m => m.GetVariableTable()).Returns(_listCategory);
             var result = _service.GetVariableTable().ToList();
-            Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(2, result.Count);
         }
         [TestMethod]
         public void Table_Service_Delete()
         {
             _mockRepository.Setup(m => m.Delete(1)).Returns(_listCategory[0]);
             var result = _service.Delete(1);
-            Assert.AreEqual(1, result.ID);
+            Assert.AreEqual(2, result.ID);
         }
     }
 }
