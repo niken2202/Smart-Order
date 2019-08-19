@@ -17,22 +17,72 @@
         }
     }])
 
-    function comboEditsController($http,$scope, apiService, notificationService, $stateParams) {
+    function comboEditsController($http, $scope, apiService, notificationService, $stateParams) {
 
-        var a = $scope.combo;
-        $scope.edtCombo = {
-            ID: a.ID, Name: a.Name, Price: a.Price, Amount: a.Amount, Description: a.Description,
-            Image: a.Image, Status: a.Status
-            //, CreatedDate: a.CreatedDate
-        };
+        $scope.listDishInCombo = null;
+        function getDish() {
+            apiService.get('/api/dish/getall', null, function (result) {
+                $scope.dishes = result.data.listDish;
+                if ($scope.dishes.length === 0) {
+                    //notificationService.displayWarning('Danh sách trống !');
+                }
+            }, function () {
+                notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
+            });
+        }
+        getDish();
+
+        //get combo details by id 
+        function getComboByID() {
+            console.log('comboID : ' + $stateParams.ID);
+        }
+        getComboByID();
+
+        //add dish to combo
+        $scope.addDish = addDish;
+        function addDish(item) {
+            if ($scope.listDishInCombo == null || $scope.listDishInCombo.length < 1) {
+                var dishInCombo = {
+                    DishID: item.ID,
+                    Amount: 1,
+                    Name: item.Name
+                }
+                $scope.listDishInCombo = [];
+                $scope.listDishInCombo.push(dishInCombo);
+            } else {
+                var condition = new Boolean(false);
+                for (i = 0; i < $scope.listDishInCombo.length; i++) {
+                    if (item.ID == $scope.listDishInCombo[i].DishID) {
+                        $scope.listDishInCombo[i].Amount += 1;
+                        condition = true;
+                    }
+                }
+                if (condition == false) {
+                    dishInCombo = {
+                        DishID: item.ID,
+                        Amount: 1,
+                        Name: item.Name
+                    }
+                    $scope.listDishInCombo.push(dishInCombo);
+                }
+            }
+        }
 
         //update combo
         $scope.updateCombo = updateCombo;
-
+        var createCombo = {
+            Name: $scope.comboEdt.Name,
+            Description: $scope.comboEdt.Description,
+            Price: $scope.comboEdt.Price,
+            Amount: 1,
+            Image: $scope.comboEdt.Image,
+            Status: true,
+            DishComboMappings: $scope.listDishInCombo
+        }
         function updateCombo() {            
-            apiService.put('api/combo/update', $scope.edtCombo,
+            apiService.put('api/combo/update', createCombo,
                 function (result) {
-                    notificationService.displaySuccess($scope.edtCombo.Name + ' đã được cập nhật mới! ');
+                    notificationService.displaySuccess(createCombo.Name + ' đã được cập nhật mới! ');
                     $scope.reload();
                 }, function (error) {
                     notificationService.displayError('Cập nhật mới không thành công ! Vui lòng kiểm tra lại thông tin đã nhập');

@@ -1,70 +1,142 @@
-﻿<div class="main-card mb-3 card" style="border:hidden">
-    <div class="card-body">
-        <h4 class="card-title customize-font-blue-color"> Thêm combo mới </h4>
-        <form  novalidate name="frmAddCombo" role="form">
+﻿<div class="row" style="background-color:white; padding:10px;">
+    <div class="col-md-5">
 
-            <div class="position-relative form-group">
-                <label  >Tên combo </label>
-                <input type="text" class="form-control" required name="comboName" ng-maxlength="256" ng-model="comboAdd.Name">
-                <span ng-show="frmAddCombo.comboName.$invalid" class="had-error">*Hãy nhập tên combo</span>
-                <span ng-show="frmAddCombo.comboName.$error.maxlength.invalid" class="had-error">Tên combo quá dài</span>
-            </div>
+        <div class="main-card mb-3 card" style="border:hidden; box-shadow:none;">
+            <div class="card-body">
+                <h4 class="card-title customize-font-blue-color"> Thêm combo mới </h4>
+                <form novalidate name="frmAddCombo" role="form">
 
-            <div class="position-relative form-group">
-                <label  >Giá bán</label>
-                <input required name="comboPrice" type="number" class="form-control" ng-model="comboAdd.Price">
-                <span ng-show="frmAddCombo.comboPrice.$invalid" class="had-error">*Phải nhập giá bán</span>
-            </div>
-
-            <div class="position-relative form-group">
-                <label >Nhập số lượng</label>
-                <input required name="comboAmount" type="number" class="form-control" ng-model="comboAdd.Amount">
-                <span ng-show="frmAddCombo.comboAmount.$invalid" class="had-error">*Hãy nhập giá cấu thành sản phẩm</span>
-            </div>          
-
-            <div class="position-relative form-group">
-                <label >Mô tả combo</label>
-                <textarea name="comboDescription" class="form-control" ng-model="comboAdd.Description">
-            </textarea>
-            </div>
-
-            <div class="position-relative form-group">
-                <div class="input-group">
-                    <input class="btn btn-primary btn-xs pull-center" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
-                </div>
-                <br />
-                <img ng-src="{{comboAdd.Image}}" height="150" width="200" ng-show="comboAdd.Image" />
-            </div>
-
-            <fieldset class="position-relative row form-group">
-                <legend class="col-form-label col-sm-2">Trạng thái</legend>
-                <div class="col-sm-10">
-                    <div class="position-relative form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" ng-model="comboAdd.Status" ng-value="true" />Khả dụng
-                        </label>
+                    <div class="position-relative form-group">
+                        <label>Tên combo </label>
+                        <input type="text" class="form-control" required name="comboName" ng-maxlength="256" ng-model="comboAdd.Name">
+                        <span ng-show="frmAddCombo.comboName.$invalid" class="had-error">*Hãy nhập tên combo</span>
+                        <span ng-show="frmAddCombo.comboName.$error.maxlength.invalid" class="had-error">Tên combo quá dài</span>
                     </div>
-                    <div class="position-relative form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" ng-model="comboAdd.Status" ng-value="false" />
-                            Tạm dừng
-                        </label>
+
+                    <div class="position-relative form-group">
+                        <label>Giá bán</label>
+                        <input required name="comboPrice" type="number" class="form-control" ng-model="comboAdd.Price">
+                        <span ng-show="frmAddCombo.comboPrice.$invalid" class="had-error">*Phải nhập giá bán</span>
+                    </div>
+
+                    <div class="position-relative form-group">
+                        <label>Nhập số lượng</label>
+                        <input required name="comboAmount" type="number" class="form-control" ng-model="comboAdd.Amount">
+                        <span ng-show="frmAddCombo.comboAmount.$invalid" class="had-error">*Hãy nhập giá cấu thành sản phẩm</span>
+                    </div>
+
+                    <div class="position-relative form-group">
+                        <label>Món trong combo</label>
+                        <div>
+
+                            <div class="crashier-table-row">
+                                <div class="" ng-repeat="(x, y) in listDishInCombo">                                    
+                                    <div class="crashier-btn-title">
+                                        <span class="crashier-btn-choose"
+                                              ng-click="delDishInCombo(y)">
+                                            {{y.Name}} {{y.Amount}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="position-relative form-group">
+                        <label>Mô tả combo</label>
+                        <textarea name="comboDescription" class="form-control" ng-model="comboAdd.Description"></textarea>
+                    </div>
+
+                    <div class="position-relative form-group">
+                        <div class="input-group">
+                            <input class="btn btn-primary btn-xs pull-center" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
+                        </div>
+                        <br />
+                        <img ng-src="{{comboAdd.Image}}" height="150" width="200" ng-show="comboAdd.Image" />
+                    </div>
+
+                    <fieldset class="position-relative row form-group">
+                        <legend class="col-form-label col-sm-6">Trạng thái</legend>
+                        <div class="col-sm-10">
+                            <div class="position-relative form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" ng-model="comboAdd.Status" ng-value="true" />Khả dụng
+                                </label>
+                            </div>
+                            <div class="position-relative form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" ng-model="comboAdd.Status" ng-value="false" />
+                                    Tạm dừng
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="nav-table-bar-parent">
+                        <!--<div class="box-2">-->
+                        <button type="submit" ng-disabled="frmAddCombo.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="CreateCombo()">Lưu lại</button>
+                        <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click=closeThisDialog(0)>Hủy bỏ</button>
+                        <!--</div>
+        <div class="box-1">
+        </div>
+        <div class="box-3">
+        </div>
+        <div class="box-4">
+        </div>-->
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-7">
+        <!--dishplay the list dishes-->        
+        <div style="padding: 0px 5% 0px 8%">
+            <!--header to search table-->           
+            <div class="">
+                <div class="row" style="padding-top:18px; padding-left:20px;padding-bottom:20px;">                   
+                    <div class="col-md-push-5"><h4 class="customize-font-blue-color"> Chọn món cho combo &nbsp; </h4></div>
+                    <div class="col-md-push-7">
+                        <form class="">
+                            <div class="input-holder">
+                                <div class="input-holder">
+                                    <input type="text" ng-model="searchDish" class="customeize-input-search" placeholder="Tìm kiếm">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </fieldset>
-
-            <div class="nav-table-bar-parent">
-                <!--<div class="box-2">-->
-                    <button type="submit" ng-disabled="frmAddCombo.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="CreateCombo()">Lưu lại</button>
-                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click=closeThisDialog(0)>Hủy bỏ</button>
-                <!--</div>
-                <div class="box-1">
-                </div>
-                <div class="box-3">
-                </div>
-                <div class="box-4">
-                </div>-->
             </div>
-        </form>
+
+            <div class="main-card mb-3 card" style="border:hidden; box-shadow:none;">
+
+                <div class="crashier-table-row">
+                    <div class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:16" pagination-id="dishes">
+                        <img class="crashier-img" src="{{DishItem.Image}}" />
+                        <div class="crashier-btn-title">
+                            <span class="crashier-btn-choose"
+                                  ng-class="{'mb-2 mr-2 btn btn-primary':DishItem.Status==1,'mb-2 mr-2 btn btn-danger':DishItem.Status==0}"
+                                  ng-click="addDish(DishItem)">
+                                {{DishItem.Name}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="">
+                <div class="customeize-pagination">
+                    <dir-pagination-controls max-size="5"
+                                             direction-links="true"
+                                             pagination-id="dishes"
+                                             boundary-links="true">
+                    </dir-pagination-controls>
+                </div>
+            </div>
+        </div>      
+
     </div>
 </div>

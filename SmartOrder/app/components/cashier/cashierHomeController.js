@@ -253,11 +253,11 @@
             }
         };
 
-        //event catch input promotion 
+        //event catch input promotion
         $scope.promotionEvt = promotionEvt;
         function promotionEvt() {
             $scope.avaiablePromotion = false;
-            for (i = 0; i < $scope.promotions.length; i++) {                
+            for (i = 0; i < $scope.promotions.length; i++) {
                 if ($scope.CustomerPromotions == $scope.promotions[i].Code) {
                     $scope.Promotions = $scope.promotions[i];
                     $scope.avaiablePromotion = true;
@@ -312,11 +312,11 @@
                 }
                 if ($scope.CustomerName.length < 1 || $scope.CustomerName == null) {
                     $scope.CustomerName = "Không tên";
-                }  if ($scope.CrashierName.length < 1 || $scope.CrashierName == null) {
+                } if ($scope.CrashierName.length < 1 || $scope.CrashierName == null) {
                     $scope.CrashierName = "Nhân viên đứng quầy";
-                }  if ($scope.ContentBill.length < 1 || $scope.ContentBill == null) {
+                } if ($scope.ContentBill.length < 1 || $scope.ContentBill == null) {
                     $scope.ContentBill = "Nội dung được tạo tự động";
-                } 
+                }
                 $scope.addBill = {
                     BillDetail: $scope.listDish,
                     Voucher: $scope.Promotions.Code,
@@ -327,7 +327,7 @@
                     CreatedBy: $scope.CrashierName,
                     Discount: $scope.Promotions.Discount,
                     Total: $scope.paymentPrice,
-                    Status: true    
+                    Status: true
                 }
                 apiService.post('/api/bill/add', $scope.addBill, function (result) {
                     $scope.CustomerName = "";
@@ -438,8 +438,8 @@
         //set schedule to auto call update view
         $interval(rellTime, 15000);
         function rellTime() {
-            getListTable();            
-            autoUpdateCart();            
+            getListTable();
+            autoUpdateCart();
         }
         $interval(longRellTime, 120000);
         function longRellTime() {

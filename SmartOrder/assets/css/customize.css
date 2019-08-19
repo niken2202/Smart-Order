@@ -1,5 +1,13 @@
 ﻿/*Begin Customize cashier view*/
-
+.pointer {
+    cursor: pointer;
+}
+.customeize-input-search {
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: #547adc;
+    color: #547adc;
+}
 .customeize-input {
     border-style: solid;
     border-width: 0px 0px 1px 0px;
@@ -43,7 +51,7 @@
     float: left;
     margin: 0px;
     padding: 2%;
-    background-color: aliceblue;
+    background-color: #e9ecef;
 }
 
 .crashier-table-header {
@@ -67,7 +75,7 @@ crashier-table-body {
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: aliceblue;
+    background-color: #e9ecef;
 }
 
 .crashier-table-row {
@@ -86,7 +94,7 @@ crashier-table-body {
     height: 160px;
     margin: 5px;
     padding: 5px;
-    background-color: blueviolet;
+    /*background-color: blueviolet;*/
 }
 
 .crashier-billDetail-bottom {
@@ -259,7 +267,7 @@ crashier-table-body {
     float: left;
     margin: 0px;
     padding: 0px;
-    background-color: aliceblue;
+    background-color: #e9ecef;
 }
 
 .cashier-child-right {

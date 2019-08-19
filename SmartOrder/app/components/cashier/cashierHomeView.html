@@ -92,7 +92,7 @@
             <div class="crashier-table-content">
                 <!--header to search table-->
                 <div class="crashier-table-header">
-                    <label class="card-title customize-font-green-color">Lọc món</label>
+                    <label style="padding: 10px 10px 0px 10px;" class="card-title customize-font-green-color">Lọc món &nbsp;</label>
                     <form class="search-wrapper active">
                         <div class="input-holder">
                             <div class="input-holder">
@@ -106,7 +106,7 @@
 
                     <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:18" pagination-id="dishes">
-                            <img class="crashier-img" src="../../../assets/images/demo.jpg" />
+                            <img class="crashier-img" src="{{DishItem.Image}}" />
                             <div class="crashier-btn-title">
                                 <span class="crashier-btn-choose"
                                       ng-class="{'mb-2 mr-2 btn btn-success':DishItem.Status==1,'mb-2 mr-2 btn btn-danger':DishItem.Status==0}"
@@ -135,7 +135,7 @@
             <div class="crashier-table-content">
                 <!--header to search table-->
                 <div class="crashier-table-header">
-                    <label class="card-title customize-font-green-color">Lọc combo</label>
+                    <label style="padding: 10px 10px 0px 10px;" class="card-title customize-font-green-color">Lọc combo &nbsp;</label>
                     <form class="search-wrapper active">
                         <div class="input-holder">
                             <div class="input-holder">
@@ -149,7 +149,7 @@
 
                     <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:18" pagination-id="combos">
-                            <img class="crashier-img" src="../../../assets/images/demo.jpg" />
+                            <img class="crashier-img" src="{{comboItem.Image}}" />
                             <div class="crashier-btn-title">
                                 <span class="crashier-btn-choose"
                                       ng-class="{'mb-2 mr-2 btn btn-success':comboItem.Status==1,'mb-2 mr-2 btn btn-danger':comboItem.Status==0}"

@@ -27,6 +27,16 @@
                 parent: 'base',
                 templateUrl: "/app/components/services/promotionAddView.html",
                 controller: "promotionAddController"
+            }).state('addCombo', {
+                url: "/addCombo",
+                parent: 'base',
+                templateUrl: "/app/components/services/comboAddView.html",
+                controller: "comboAddController"
+            }).state('editCombo', {
+                url: "/editCombo/{ID:int}",
+                parent: 'base',
+                templateUrl: "/app/components/services/comboEditsView.html",
+                controller: "comboEditsController"
             });
     }
 

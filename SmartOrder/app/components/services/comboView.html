@@ -48,17 +48,17 @@
                 </thead>
                 <tbody>
                     <tr dir-paginate="item in combos |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
-                        <td ng-click="vm.openDialog($event,item)">{{item.ID}}</td>
-                        <td ng-click="vm.openDialog($event,item)">{{item.Name}}</td>
-                        <td class="div-text-align-center" ng-click="vm.openDialog($event,item)">{{item.Price}}</td>
-                        <td class="div-text-align-center" ng-click="vm.openDialog($event,item)">{{item.Amount}}</td>
-                        <td ng-click="vm.openDialog($event,item)">
+                        <td class="pointer" ng-click="comboDetails(item)">{{item.ID}}</td>
+                        <td class="pointer" ng-click="comboDetails(item)">{{item.Name}}</td>
+                        <td class="div-text-align-center pointer" ng-click="comboDetails(item)">{{item.Price}}</td>
+                        <td class="div-text-align-center pointer" ng-click="comboDetails(item)">{{item.Amount}}</td>
+                        <td ng-click="comboDetails(item)">
                             <span style="width:70%; float:right" ng-class="{'mb-2 mr-2 btn btn-success':item.Status==true,'mb-2 mr-2 btn btn-danger':item.Status==false}">
                                 {{item.Status | avaiableFilter}}
                             </span>
                         </td>
-                        <td ng-click="vm.openDialog($event,item)" style="width:8%; text-align:center">{{item.Description}}</td>
-                        <!--<td ng-click="vm.openDialog($event,item)" style="text-align:center">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>-->
+                        <td class="pointer" ng-click="comboDetails(item)" style="width:8%; text-align:center">{{item.Description}}</td>
+                        <!--<td class="pointer" ng-click="comboDetails(item)" style="text-align:center">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>-->
                         <td>
                             <button class="btn delete-icon" ng-click="comboDel(item)">
                                 <i class="fas fa-trash f1f8 customize-delete-icon"></i>

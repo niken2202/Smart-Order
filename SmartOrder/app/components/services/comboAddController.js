@@ -19,19 +19,72 @@
 
     function comboAddController($http,$scope, apiService, notificationService) {
 
-        //dish binding in dialog add dish
+        //combo binding in dialog add combo
         $scope.comboAdd = {
             //CreatedDate: new Date,
             Status: true,
         }
- 
+        $scope.listDishInCombo = null;
+
+        //get dishes list from api
+        function getDish() {
+            apiService.get('/api/dish/getall', null, function (result) {
+                $scope.dishes = result.data.listDish;
+                if ($scope.dishes.length === 0) {
+                    //notificationService.displayWarning('Danh sách trống !');
+                }
+            }, function () {
+                notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
+            });
+        }
+        getDish();
+
+        //add dish to combo
+        $scope.addDish = addDish;
+        function addDish(item) {
+            if ($scope.listDishInCombo == null || $scope.listDishInCombo.length < 1) {
+                var dishInCombo = {
+                    DishID: item.ID,
+                    Amount: 1,
+                    Name: item.Name
+                }
+                $scope.listDishInCombo = [];
+                $scope.listDishInCombo.push(dishInCombo);
+            } else {
+                var condition = new Boolean(false);
+                for (i = 0; i < $scope.listDishInCombo.length; i++) {
+                    if (item.ID == $scope.listDishInCombo[i].DishID) {
+                        $scope.listDishInCombo[i].Amount += 1;
+                        condition = true;
+                    }                   
+                }
+                if (condition == false) {
+                     dishInCombo = {
+                        DishID: item.ID,
+                         Amount: 1,
+                         Name: item.Name
+                    }
+                    $scope.listDishInCombo.push(dishInCombo);
+                }
+            }
+        }
+
         //add combo to database
         $scope.CreateCombo = CreateCombo;
 
         function CreateCombo() {
-            apiService.post('api/combo/add', $scope.comboAdd,
+            var createCombo = {
+                Name: $scope.comboAdd.Name,
+                Description: $scope.comboAdd.Description,
+                Price: $scope.comboAdd.Price,
+                Amount: 1,
+                Image: $scope.comboAdd.Image,
+                Status: true,
+                DishComboMappings :$scope.listDishInCombo
+            }
+            apiService.post('api/combo/add', createCombo,
                 function (result) {
-                    notificationService.displaySuccess('Combo ' + $scope.comboAdd.Name + ' đã được thêm mới');
+                    notificationService.displaySuccess('Combo ' + createCombo.Name + ' đã được thêm mới');
                     $scope.reload();
                 }, function (error) {
                     notificationService.displayError('Thêm mới không thành công.');
