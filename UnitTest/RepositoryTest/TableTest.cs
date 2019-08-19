@@ -60,13 +60,13 @@ namespace UnitTest.RepositoryTest
             var result = _repository.Add(table);
             unitOfWork.Commit();
             Assert.IsNotNull(result);
-            Assert.AreEqual(5, result.ID);
+            Assert.AreEqual(4, result.ID);
         }
         [TestMethod]
         public void Table_Repository_GetAll()
         {
             var list = _repository.GetAll().ToList();
-            Assert.AreEqual(5, list.Count);
+            Assert.AreEqual(3, list.Count);
         }
         [TestMethod]
         public void Table_Repository_GetVairable()

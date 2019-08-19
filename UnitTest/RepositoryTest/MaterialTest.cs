@@ -24,12 +24,10 @@ namespace UnitTest.RepositoryTest
         public void Material_Repository_Add()
         {
             Material m = new Material();
-           
             m.CreatedDate = DateTime.Now;
-           
             m.Price = 1;
-        
             m.Amount = 1;
+            m.Name = "dsds";
             var result = _repository.Add(m);
             unitOfWork.Commit();
             Assert.IsNotNull(result);
@@ -40,14 +38,14 @@ namespace UnitTest.RepositoryTest
         public void Material_Repository_GetAll()
         {
             var result = _repository.GetAll().ToList();
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [TestMethod]
         public void Material_Repository_GetByDish()
         {
             var result = _repository.GetAllByDishID(1).ToList();
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [TestMethod]
@@ -57,7 +55,7 @@ namespace UnitTest.RepositoryTest
             Assert.AreEqual(1, result.ID);
         }
         [TestMethod]
-        public void Dish_Repository_Delete()
+        public void Material_Repository_Delete()
         {
             var result = _repository.Delete(1);
             Assert.AreEqual(1, result.ID);

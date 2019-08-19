@@ -70,7 +70,7 @@ namespace UnitTest.RepositoryTest
         public void BillDetail_Repository_GetByBillID()
         {
             var list = _repository.GetAll().ToList();
-            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(13, list.Count);
         }
 
      

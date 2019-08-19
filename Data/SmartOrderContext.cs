@@ -8,7 +8,7 @@ namespace Data
     {
         public SmartOrderContext() : base("SmartOrderConnection")
         {
-            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         public DbSet<Bill> Bills { set; get; }

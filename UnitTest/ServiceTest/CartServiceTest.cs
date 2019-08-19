@@ -18,13 +18,17 @@ namespace UnitTest.ServiceTest
         private Mock<IUnitOfWork> _mockUnitOfWork;
         private ICartService _service;
         private List<Cart> _listCategory;
-
+        Cart c;
         [TestInitialize]
         public void Initialize()
         {
             _mockRepository = new Mock<ICartRepository>();
             _mockUnitOfWork = new Mock<IUnitOfWork>();
             _service = new CartService(_mockUnitOfWork.Object, _mockRepository.Object);
+            c= new Cart()
+            {
+                ID = 1
+            };
             _listCategory = new List<Cart>()
             {
                 new Cart() {ID =2 , CartPrice=1, TableID=1},
@@ -75,11 +79,7 @@ namespace UnitTest.ServiceTest
         [TestMethod]
         public void Cart_Repository_GetByTable()
         {
-            _mockRepository.Setup(m => m.GetCartByTable(1)).Returns( ( Cart c) =>
-            {
-                c.ID = 1;
-                return c;
-            });
+            _mockRepository.Setup(m => m.GetCartByTable(1)).Returns(c);
             var list = _service.GetCartByTable(1);
             Assert.AreEqual(1, list.ID);
         }
@@ -87,11 +87,8 @@ namespace UnitTest.ServiceTest
         [TestMethod]
         public void Cart_Repository_Delete()
         {
-            _mockRepository.Setup(m => m.Delete(1)).Returns((Cart c) =>
-            {
-                c.ID = 1;
-                return c;
-            });
+           
+            _mockRepository.Setup(m => m.Delete(1)).Returns(c);
             var list = _service.Delete(1);
             Assert.AreEqual(1, list.ID);
         }
