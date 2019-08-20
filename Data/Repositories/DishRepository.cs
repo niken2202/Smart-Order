@@ -16,6 +16,8 @@ namespace Data.Repositories
 
         IEnumerable<Dish> GetTopHot();
 
+        void  IsSold(List<UpdateSoldViewModel> list);
+
         int GetDishCount();
     }
 
@@ -73,6 +75,33 @@ namespace Data.Repositories
         public IEnumerable<Dish> GetTopHot()
         {
             return DbContext.Database.SqlQuery<Dish>("GetTop10Dish");
+        }
+
+        public void IsSold(List<UpdateSoldViewModel> list)
+        {
+            foreach(UpdateSoldViewModel pro in list)
+            {
+                switch (pro.Type)
+                {
+                    case 1:
+                        var dish = DbContext.Dishes.SingleOrDefault(x => x.ID == pro.Id);
+                        if (dish != null && dish.Amount >= pro.Amount)
+                        {
+                            dish.Amount = dish.Amount- pro.Amount;
+                            dish.OrderCount = dish.OrderCount + pro.Amount;
+                        }
+                    break;
+                    case 2:
+                        var combo = DbContext.Combos.SingleOrDefault(x => x.ID == pro.Id);
+                        if (combo != null && combo.Amount >= pro.Amount)
+                        {
+                            combo.Amount = combo.Amount - pro.Amount;
+                        }
+                        break;
+
+                }
+            }
+            
         }
     }
 }

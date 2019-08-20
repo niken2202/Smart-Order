@@ -20,6 +20,7 @@ namespace Service
         IEnumerable<Dish> GetTopDish();
         int GetDishCount();
         void SaveChanges();
+        void IsSold(List<UpdateSoldViewModel> list);
     }
 
     public class DishService : IDishService
@@ -75,6 +76,11 @@ namespace Service
         public IEnumerable<Dish> GetTopDish()
         {
             return dishRepository.GetTopHot();
+        }
+
+        public void IsSold(List<UpdateSoldViewModel> list)
+        {
+            dishRepository.IsSold(list);
         }
 
         public void SaveChanges()

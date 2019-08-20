@@ -1,6 +1,8 @@
-﻿using Model.Models;
+﻿using Common.ViewModels;
+using Model.Models;
 using Service;
 using SmartOrder.Infrastructure;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -160,7 +162,26 @@ namespace SmartOrder.api
                 return response;
             });
         }
+        [Route("issold"),HttpPost]
+        public HttpResponseMessage IsSold(HttpRequestMessage request, List<UpdateSoldViewModel> list)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
 
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    dishService.IsSold(list);
+                    dishService.SaveChanges();
+                    response = request.CreateResponse(HttpStatusCode.OK);
+                }
+                return response;
+            });
+        }
         [Route("delete"), Authorize]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
