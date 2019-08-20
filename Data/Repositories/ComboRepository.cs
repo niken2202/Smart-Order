@@ -59,6 +59,7 @@ namespace Data.Repositories
               Name=  combo.Name,
               Price=  combo.Price,
               Amount= combo.Amount,
+              CreatedDate = combo.CreatedDate,
               Description= combo.Description,
               Status=  combo.Status,
               dishes=  dishes
