@@ -47,7 +47,7 @@ namespace UnitTest.RepositoryTest
         #endregion Additional test attributes
 
         [TestMethod]
-        public void Add_Cart_Test()
+        public void Add_History_Test()
         {
             History h = new History();
             h.TaskName = "Unit Test";
@@ -59,34 +59,34 @@ namespace UnitTest.RepositoryTest
         }
 
         [TestMethod]
-        public void Cart_Repository_GetHistoryToday()
+        public void History_Repository_GetHistoryToday()
         {
             var list = _repository.GetHistoryToday().ToList();
-            Assert.AreEqual(2, list.Count);
+            Assert.AreEqual(3, list.Count);
         }
 
         [TestMethod]
-        public void Cart_Repository_GetHistoryLastMonth()
+        public void History_Repository_GetHistoryLastMonth()
         {
             var list = _repository.GetHistoryLastMonth().ToList();
             Assert.AreEqual(3, list.Count);
         }
         [TestMethod]
-        public void Cart_Repository_GetHistoryLast7Days()
+        public void History_Repository_GetHistoryLast7Days()
         {
             var list = _repository.GetHistoryLast7Days().ToList();
             Assert.AreEqual(3, list.Count);
         }
 
         [TestMethod]
-        public void Cart_Repository_GetAll()
+        public void History_Repository_GetAll()
         {
             var list = _repository.GetAll().ToList();
             Assert.AreEqual(3, list.Count);
         }
 
         [TestMethod]
-        public void Cart_Repository_GetTimeRange()
+        public void History_Repository_GetTimeRange()
         {
             var list = _repository.GetTimeRange(new DateTime(2018,01,01), new DateTime(2019, 01, 01)).ToList();
             Assert.AreEqual(0, list.Count);

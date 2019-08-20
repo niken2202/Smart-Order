@@ -96,7 +96,7 @@ namespace UnitTest.RepositoryTest
     public void Bill_Repository_GetTimeRange()
     {
         var list = billRepository.GetTimeRange(new DateTime(2018, 01, 01), new DateTime(2019, 01, 01)).ToList();
-        Assert.AreEqual(1, list.Count);
+        Assert.AreEqual(0, list.Count);
     }
 
     [TestMethod]

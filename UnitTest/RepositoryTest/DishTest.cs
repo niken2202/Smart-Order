@@ -63,7 +63,7 @@ namespace UnitTest.RepositoryTest
             var result = _repository.Add(d);
             unitOfWork.Commit();
             Assert.IsNotNull(result);
-            Assert.AreEqual(5, result.ID);
+            Assert.AreEqual(3, result.ID);
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace UnitTest.RepositoryTest
         public void Dish_Repository_GetByCombo()
         {
             var result = _repository.GetDishByCombo(1).ToList();
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [TestMethod]

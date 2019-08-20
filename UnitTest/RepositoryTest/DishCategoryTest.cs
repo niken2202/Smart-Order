@@ -58,14 +58,14 @@ namespace UnitTest.RepositoryTest
             var result = _repository.Add(dc);
             unitOfWork.Commit();
             Assert.IsNotNull(result);
-            Assert.AreEqual(3, result.ID);
+            Assert.AreEqual(2, result.ID);
         }
 
         [TestMethod]
         public void Cart_Repository_GetAll()
         {
             var list = _repository.GetAll().ToList();
-            Assert.AreEqual(3, list.Count);
+            Assert.AreEqual(2, list.Count);
         }
 
         [TestMethod]

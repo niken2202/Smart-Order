@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/billdetail"), Authorize]
+    [RoutePrefix("api/billdetail")]
     public class BillDetailController : ApiControllerBase
     {
         private IBillDetailService billDetailService;

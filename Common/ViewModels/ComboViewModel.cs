@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Common.ViewModels
 {
@@ -11,6 +12,7 @@ namespace Common.ViewModels
         public decimal Price { get; set; }
         public int Amount { get; set; }
         public string Image { get; set; }
+        public DateTime CreatedDate { get; set; }
         public IEnumerable<DishComboViewModel> dishes{get;set;}
         public bool Status { get; set; }
     }
