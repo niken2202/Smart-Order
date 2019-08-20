@@ -109,7 +109,7 @@
                     Price: $scope.comboEdt.Price,
                     Amount: 1,
                     Image: $scope.comboEdt.Image,
-                    CreatedDate: $scope.comboEdt.CreatedDate,
+                    CreatedDate: new Date,
                     Status: true,
                     DishComboMappings: $scope.comboEdt.dishes
                 }
