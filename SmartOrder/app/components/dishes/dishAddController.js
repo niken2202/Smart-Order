@@ -52,7 +52,7 @@
             apiService.get('/api/dishcategory/getall', null, function (result) {
                 $scope.DishCategory = result.data;
             }, function () {
-                console.log('Can get lish dish category');
+                //console.log('Can get lish dish category');
             });
         }
         getDishCategory();

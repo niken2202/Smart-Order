@@ -1,10 +1,9 @@
 ﻿(function (app) {
     app.controller('comboAddController', comboAddController);
 
-    comboAddController.$inject = ['$http','$scope', 'apiService', 'notificationService'];
+    comboAddController.$inject = ['$http', '$state', '$scope', 'apiService', 'notificationService'];
     app.directive('ngFiles', ['$parse', function ($parse) {
         function fn_link(scope, element, attrs) {
-
             var onChange = $parse(attrs.ngFiles);
             element.on('change', function (event) {
                 onChange(scope, { $files: event.target.files });
@@ -17,11 +16,9 @@
         }
     }])
 
-    function comboAddController($http,$scope, apiService, notificationService) {
-
+    function comboAddController($http, $state, $scope, apiService, notificationService) {
         //combo binding in dialog add combo
         $scope.comboAdd = {
-            //CreatedDate: new Date,
             Status: true,
         }
         $scope.listDishInCombo = null;
@@ -56,15 +53,31 @@
                     if (item.ID == $scope.listDishInCombo[i].DishID) {
                         $scope.listDishInCombo[i].Amount += 1;
                         condition = true;
-                    }                   
+                    }
                 }
                 if (condition == false) {
-                     dishInCombo = {
+                    dishInCombo = {
                         DishID: item.ID,
-                         Amount: 1,
-                         Name: item.Name
+                        Amount: 1,
+                        Name: item.Name
                     }
                     $scope.listDishInCombo.push(dishInCombo);
+                }
+            }
+        }
+
+        //reduce amount of dish in combo
+        $scope.delDishInCombo = delDishInCombo;
+        function delDishInCombo(obj) {
+            for (i = 0; i < $scope.listDishInCombo.length; i++) {
+                if (obj.DishID == $scope.listDishInCombo[i].DishID) {
+                    if ($scope.listDishInCombo[i].Amount == 1) {
+                        $scope.listDishInCombo.splice(i, 1);
+                        break;
+                    } else {
+                        $scope.listDishInCombo[i].Amount -= 1;
+                        break;
+                    }
                 }
             }
         }
@@ -73,22 +86,39 @@
         $scope.CreateCombo = CreateCombo;
 
         function CreateCombo() {
-            var createCombo = {
-                Name: $scope.comboAdd.Name,
-                Description: $scope.comboAdd.Description,
-                Price: $scope.comboAdd.Price,
-                Amount: 1,
-                Image: $scope.comboAdd.Image,
-                Status: true,
-                DishComboMappings :$scope.listDishInCombo
+            var descri = $scope.comboAdd.Description;
+            descri = descri.trim()
+            if ($scope.listDishInCombo == null || $scope.listDishInCombo.length < 2) {
+                notificationService.displayError('Số lượng món trong combo phải lớn hơn 2');
+            } else if ($scope.comboAdd.Image == null) {
+                notificationService.displayError('Vui lòng chọn ảnh');
+            } else if (descri == null || descri.length < 1) {
+                $scope.comboAdd.Description = "Nội dung được tạo tự động";
+            } else {
+                var createCombo = {
+                    Name: $scope.comboAdd.Name,
+                    Description: $scope.comboAdd.Description,
+                    Price: $scope.comboAdd.Price,
+                    Amount: 1,
+                    Image: $scope.comboAdd.Image,
+                    Status: true,
+                    CreatedDate: new Date,
+                    DishComboMappings: $scope.listDishInCombo
+                }
+                apiService.post('api/combo/add', createCombo,
+                    function (result) {
+                        notificationService.displaySuccess('Combo ' + createCombo.Name + ' đã được thêm mới');
+                        $state.go('combo');
+                    }, function (error) {
+                        notificationService.displayError('Thêm mới không thành công.');
+                    });
             }
-            apiService.post('api/combo/add', createCombo,
-                function (result) {
-                    notificationService.displaySuccess('Combo ' + createCombo.Name + ' đã được thêm mới');
-                    $scope.reload();
-                }, function (error) {
-                    notificationService.displayError('Thêm mới không thành công.');
-                });
+        }
+
+        //cancel button to back list combo
+        $scope.Cancel = Cancel;
+        function Cancel() {
+            $state.go('combo');
         }
 
         //Upload file
@@ -105,6 +135,5 @@
                 .then(function () {
                 });
         }
-    
     }
 })(angular.module('SmartOrder.services'));

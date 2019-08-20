@@ -9,13 +9,17 @@
                 <span ng-show="frmAddDish.dishName.$error.maxlength.invalid" class="had-error">Tên món quá dài</span>
             </div>
             <div class="position-relative form-group">
-                <label>Giá bán</label>
-                <input required name="dishPrice" type="number" class="form-control" ng-model="dishAdd.Price">
+                <label>Giá bán </label>
+                <span class="customize-font-bold">{{dishAdd.Price | currency:"VNĐ ":0}}</span>
+                <input required name="dishPrice" type="number" class="form-control" ng-model="dishAdd.Price"
+                       min="0" oninput="this.value = Math.abs(this.value)">
                 <span ng-show="frmAddDish.dishPrice.$invalid" class="had-error">*Phải nhập giá bán</span>
             </div>
             <div class="position-relative form-group">
                 <label for="examplePassword">Giá cấu thành sản phẩm</label>
-                <input required name="dishAmount" type="number" class="form-control" ng-model="dishAdd.Amount">
+                <span class="customize-font-bold">{{dishAdd.Amount | currency:"VNĐ ":0}}</span>
+                <input required name="dishAmount" type="number" class="form-control" ng-model="dishAdd.Amount"
+                       min="0" oninput="this.value = Math.abs(this.value)">
                 <span ng-show="frmAddDish.dishAmount.$invalid" class="had-error">*Hãy nhập giá cấu thành sản phẩm</span>
             </div>
             <div class="position-relative form-group ">
@@ -33,10 +37,10 @@
             </div>
             <div class="position-relative form-group">                
                 <div class="input-group">
-                    <input class="btn btn-primary btn-xs pull-center" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
+                    <input class="btn btn-primary btn-xs pull-center col-md-6" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
                 </div>
                 <br />
-                <img ng-src="{{dishAdd.Image}}" height="150" width="200" ng-show="dishAdd.Image" />
+                <img style="border-radius:8px; border: solid 2px cornflowerblue" ng-src="{{dishAdd.Image}}" height="150" width="200" ng-show="dishAdd.Image" />
             </div>
             <fieldset class="position-relative row form-group">
                 <legend class="col-form-label col-sm-2">Trạng thái món</legend>

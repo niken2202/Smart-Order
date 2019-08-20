@@ -7,57 +7,59 @@
                 <form novalidate name="frmAddCombo" role="form">
 
                     <div class="position-relative form-group">
-                        <label>Tên combo </label>
-                        <input type="text" class="form-control" required name="comboName" ng-maxlength="256" ng-model="comboAdd.Name">
+                        <label class="customize-font-blue-color">Tên combo </label>
+                        <input type="text" class="form-control customize-border-blue" required name="comboName" ng-maxlength="256" ng-model="comboAdd.Name">
                         <span ng-show="frmAddCombo.comboName.$invalid" class="had-error">*Hãy nhập tên combo</span>
                         <span ng-show="frmAddCombo.comboName.$error.maxlength.invalid" class="had-error">Tên combo quá dài</span>
                     </div>
 
                     <div class="position-relative form-group">
-                        <label>Giá bán</label>
-                        <input required name="comboPrice" type="number" class="form-control" ng-model="comboAdd.Price">
+                        <label class="customize-font-blue-color">Giá bán </label>
+                        <span class="customize-font-blue-color">{{comboAdd.Price | currency:"VNĐ ":0}}</span>
+                        <input required name="comboPrice" type="number" class="form-control customize-border-blue"
+                               ng-model="comboAdd.Price" aria-label="comboAdd.Price"
+                               min="0" oninput="this.value = Math.abs(this.value)">
                         <span ng-show="frmAddCombo.comboPrice.$invalid" class="had-error">*Phải nhập giá bán</span>
                     </div>
 
                     <div class="position-relative form-group">
-                        <label>Nhập số lượng</label>
-                        <input required name="comboAmount" type="number" class="form-control" ng-model="comboAdd.Amount">
+                        <label class="customize-font-blue-color">Nhập số lượng</label>
+                        <input required name="comboAmount" type="number" class="form-control customize-border-blue" ng-model="comboAdd.Amount"
+                               min="0" oninput="this.value = Math.abs(this.value)">
                         <span ng-show="frmAddCombo.comboAmount.$invalid" class="had-error">*Hãy nhập giá cấu thành sản phẩm</span>
                     </div>
 
                     <div class="position-relative form-group">
-                        <label>Món trong combo</label>
+                        <label class="customize-font-blue-color">Món trong combo</label>
                         <div>
-
-                            <div class="crashier-table-row">
-                                <div class="" ng-repeat="(x, y) in listDishInCombo">                                    
-                                    <div class="crashier-btn-title">
-                                        <span class="crashier-btn-choose"
-                                              ng-click="delDishInCombo(y)">
-                                            {{y.Name}} {{y.Amount}}
-                                        </span>
+                            <div class="div-dish-in-combo customize-border-blue">
+                                <div class="crashier-table-row">
+                                    <div class="" ng-repeat="(x, y) in listDishInCombo">
+                                        <div class="btn-choose-dish-in-combo pointer" ng-click="delDishInCombo(y)">
+                                            <div class="div-choose-dish-in-combo-name"> {{y.Name}}</div>
+                                            <div class="div-choose-dish-in-combo-amount">{{y.Amount}}</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
                     <div class="position-relative form-group">
-                        <label>Mô tả combo</label>
-                        <textarea name="comboDescription" class="form-control" ng-model="comboAdd.Description"></textarea>
+                        <label class="customize-font-blue-color">Mô tả combo</label>
+                        <textarea name="comboDescription" class="form-control customize-border-blue" ng-model="comboAdd.Description"></textarea>
                     </div>
 
                     <div class="position-relative form-group">
                         <div class="input-group">
-                            <input class="btn btn-primary btn-xs pull-center" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
+                            <input style="width:100%" class="btn btn-primary btn-xs pull-center" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
                         </div>
                         <br />
                         <img ng-src="{{comboAdd.Image}}" height="150" width="200" ng-show="comboAdd.Image" />
                     </div>
 
                     <fieldset class="position-relative row form-group">
-                        <legend class="col-form-label col-sm-6">Trạng thái</legend>
+                        <legend class="col-form-label col-sm-6 customize-font-blue-color">Trạng thái</legend>
                         <div class="col-sm-10">
                             <div class="position-relative form-check">
                                 <label class="form-check-label">
@@ -76,27 +78,26 @@
                     <div class="nav-table-bar-parent">
                         <!--<div class="box-2">-->
                         <button type="submit" ng-disabled="frmAddCombo.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="CreateCombo()">Lưu lại</button>
-                        <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click=closeThisDialog(0)>Hủy bỏ</button>
+                        <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click=Cancel()>Hủy bỏ</button>
                         <!--</div>
-        <div class="box-1">
-        </div>
-        <div class="box-3">
-        </div>
-        <div class="box-4">
-        </div>-->
+                        <div class="box-1">
+                        </div>
+                        <div class="box-3">
+                        </div>
+                        <div class="box-4">
+                        </div>-->
                     </div>
                 </form>
             </div>
         </div>
-
     </div>
 
     <div class="col-md-7">
-        <!--dishplay the list dishes-->        
+        <!--dishplay the list dishes-->
         <div style="padding: 0px 5% 0px 8%">
-            <!--header to search table-->           
+            <!--header to search table-->
             <div class="">
-                <div class="row" style="padding-top:18px; padding-left:20px;padding-bottom:20px;">                   
+                <div class="row" style="padding-top:18px; padding-left:20px;padding-bottom:20px;">
                     <div class="col-md-push-5"><h4 class="customize-font-blue-color"> Chọn món cho combo &nbsp; </h4></div>
                     <div class="col-md-push-7">
                         <form class="">
@@ -113,18 +114,15 @@
             <div class="main-card mb-3 card" style="border:hidden; box-shadow:none;">
 
                 <div class="crashier-table-row">
-                    <div class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:16" pagination-id="dishes">
-                        <img class="crashier-img" src="{{DishItem.Image}}" />
-                        <div class="crashier-btn-title">
-                            <span class="crashier-btn-choose"
-                                  ng-class="{'mb-2 mr-2 btn btn-primary':DishItem.Status==1,'mb-2 mr-2 btn btn-danger':DishItem.Status==0}"
-                                  ng-click="addDish(DishItem)">
+                    <div class="crashier-table-item pointer" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:16" pagination-id="dishes">
+                        <div ng-click="addDish(DishItem)" class="btn-dish">
+                            <img class="crashier-img" src="{{DishItem.Image}}" />
+                            <div style="color:#2d6ca2" class="crashier-btn-title">
                                 {{DishItem.Name}}
-                            </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="">
@@ -136,7 +134,6 @@
                     </dir-pagination-controls>
                 </div>
             </div>
-        </div>      
-
+        </div>
     </div>
 </div>

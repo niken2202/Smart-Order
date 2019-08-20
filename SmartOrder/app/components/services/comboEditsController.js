@@ -1,10 +1,9 @@
 ﻿(function (app) {
     app.controller('comboEditsController', comboEditsController);
 
-    comboEditsController.$inject = ['$http', '$scope', 'apiService', 'notificationService', '$stateParams'];
+    comboEditsController.$inject = ['$http', '$state', '$scope', 'apiService', 'notificationService', '$stateParams'];
     app.directive('ngFiles', ['$parse', function ($parse) {
         function fn_link(scope, element, attrs) {
-
             var onChange = $parse(attrs.ngFiles);
             element.on('change', function (event) {
                 onChange(scope, { $files: event.target.files });
@@ -17,9 +16,8 @@
         }
     }])
 
-    function comboEditsController($http, $scope, apiService, notificationService, $stateParams) {
-
-        $scope.listDishInCombo = null;
+    function comboEditsController($http, $state, $scope, apiService, notificationService, $stateParams) {
+        $scope.comboEdt = null;
         function getDish() {
             apiService.get('/api/dish/getall', null, function (result) {
                 $scope.dishes = result.data.listDish;
@@ -32,61 +30,104 @@
         }
         getDish();
 
-        //get combo details by id 
+        //get combo details by id
         function getComboByID() {
-            console.log('comboID : ' + $stateParams.ID);
+            var transfer = {
+                params: {
+                    comboId: $stateParams.ID,
+                }
+            }
+            apiService.get('api/combo/getbyid', transfer,
+                function (result) {
+                    $scope.comboEdt = result.data;
+                }, function (error) {
+                    notificationService.displayError('Đã xảy ra lỗi trong quá trình tải dữ liệu');
+                });
         }
         getComboByID();
 
         //add dish to combo
         $scope.addDish = addDish;
         function addDish(item) {
-            if ($scope.listDishInCombo == null || $scope.listDishInCombo.length < 1) {
+            if ($scope.comboEdt.dishes == null || $scope.comboEdt.dishes.length < 1) {
                 var dishInCombo = {
-                    DishID: item.ID,
+                    ID: item.ID,
                     Amount: 1,
                     Name: item.Name
                 }
-                $scope.listDishInCombo = [];
-                $scope.listDishInCombo.push(dishInCombo);
+                $scope.comboEdt.dishes = [];
+                $scope.comboEdt.dishes.push(dishInCombo);
             } else {
                 var condition = new Boolean(false);
-                for (i = 0; i < $scope.listDishInCombo.length; i++) {
-                    if (item.ID == $scope.listDishInCombo[i].DishID) {
-                        $scope.listDishInCombo[i].Amount += 1;
+                for (i = 0; i < $scope.comboEdt.dishes.length; i++) {
+                    if (item.ID == $scope.comboEdt.dishes[i].ID) {
+                        $scope.comboEdt.dishes[i].Amount += 1;
                         condition = true;
                     }
                 }
                 if (condition == false) {
                     dishInCombo = {
-                        DishID: item.ID,
+                        ID: item.ID,
                         Amount: 1,
                         Name: item.Name
                     }
-                    $scope.listDishInCombo.push(dishInCombo);
+                    $scope.comboEdt.dishes.push(dishInCombo);
+                }
+            }
+        }
+
+        //reduce amount of dish in combo
+        $scope.delDishInCombo = delDishInCombo;
+        function delDishInCombo(obj) {
+            for (i = 0; i < $scope.comboEdt.dishes.length; i++) {
+                if (obj.ID == $scope.comboEdt.dishes[i].ID) {
+                    if ($scope.comboEdt.dishes[i].Amount == 1) {
+                        $scope.comboEdt.dishes.splice(i, 1);
+                        break;
+                    } else {
+                        $scope.comboEdt.dishes[i].Amount -= 1;
+                        break;
+                    }
                 }
             }
         }
 
         //update combo
-        $scope.updateCombo = updateCombo;
-        var createCombo = {
-            Name: $scope.comboEdt.Name,
-            Description: $scope.comboEdt.Description,
-            Price: $scope.comboEdt.Price,
-            Amount: 1,
-            Image: $scope.comboEdt.Image,
-            Status: true,
-            DishComboMappings: $scope.listDishInCombo
+        $scope.updateCombo = function updateCombo() {
+            var descri = $scope.comboEdt.Description;
+            descri = descri.trim()
+            if ($scope.comboEdt.dishes == null || $scope.comboEdt.dishes.length < 2) {
+                notificationService.displayError('Số lượng món trong combo phải lớn hơn 2');
+            } else if ($scope.comboEdt.Image == null) {
+                notificationService.displayError('Vui lòng chọn ảnh');
+            } else if (descri == null || descri.length < 1) {
+                $scope.comboEdt.Description = "Nội dung được tạo tự động";
+            } else {
+                var updateCombo = {
+                    ID: $scope.comboEdt.ID,
+                    Name: $scope.comboEdt.Name,
+                    Description: $scope.comboEdt.Description,
+                    Price: $scope.comboEdt.Price,
+                    Amount: 1,
+                    Image: $scope.comboEdt.Image,
+                    CreatedDate: new Date,
+                    Status: true,
+                    DishComboMappings: $scope.comboEdt.dishes
+                }
+                apiService.put('api/combo/update', updateCombo,
+                    function (result) {
+                        notificationService.displaySuccess(updateCombo.Name + ' đã được cập nhật mới! ');
+                        $scope.reload();
+                    }, function (error) {
+                        notificationService.displayError('Cập nhật mới không thành công ! Vui lòng kiểm tra lại thông tin đã nhập');
+                    });
+            }
         }
-        function updateCombo() {            
-            apiService.put('api/combo/update', createCombo,
-                function (result) {
-                    notificationService.displaySuccess(createCombo.Name + ' đã được cập nhật mới! ');
-                    $scope.reload();
-                }, function (error) {
-                    notificationService.displayError('Cập nhật mới không thành công ! Vui lòng kiểm tra lại thông tin đã nhập');
-                });
+
+        //cancel button to back list combo
+        $scope.Cancel = Cancel;
+        function Cancel() {
+            $state.go('combo');
         }
 
         //Upload file
@@ -98,11 +139,10 @@
                 headers: { 'Content-Type': undefined }
             })
                 .then(function (result) {
-                    $scope.edtCombo.Image = result.data;
+                    $scope.comboEdt.Image = result.data;
                 })
                 .then(function () {
                 });
         }
-
     }
 })(angular.module('SmartOrder.services'));

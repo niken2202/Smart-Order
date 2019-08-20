@@ -19,7 +19,7 @@
 
         //generate index number in table
         $scope.serial = 1;
-        $scope.itemPerPage = 10
+        $scope.itemPerPage = 25
         $scope.indexCount = function (newPageNumber) {
 
             $scope.serial = newPageNumber * $scope.itemPerPage - ($scope.itemPerPage - 1);
@@ -40,7 +40,7 @@
         
         //open popup to create new category
         $scope.AddCategory = function () {
-            alertify.prompt('Thêm mới nhóm sản phẩm', 'Tên nhóm sản phẩm', ''
+            alertify.prompt('Thêm mới nhóm đồ ăn', 'Tên nhóm đồ ăn', ''
                 , function (evt, value) {
                     var category = {
                         CreatedDate: new Date,
@@ -124,8 +124,8 @@
                     }
                 }
                 apiService.del('api/dish/delete', data,
-                    function (result) {                        
-                        notificationService.displaySuccess('Xóa món thành công');
+                    function (result) {
+                        notificationService.displaySuccess(item.Name + ' đã được xóa !');
                         getDish();
                     }, function (error) {
                         notificationService.displayError('Đã xảy ra lỗi !');

@@ -1,7 +1,78 @@
 ﻿/*Begin Customize cashier view*/
-.pointer {
-    cursor: pointer;
+.div-choose-dish-in-combo-name {
+    width: auto;
+    height: 30px;
+    padding:2px;
+    margin:0px;
 }
+.div-choose-dish-in-combo-amount {
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    padding: 1px 7px 2px 7px;
+    margin: 2px 5px 2px 5px;
+    background-color:white;
+    color:cornflowerblue;
+}
+.btn-choose-dish-in-combo {
+    display:flex;
+    height: auto;
+    width: auto;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 8px;
+    margin: 2px;
+    padding: 5px;
+}
+    .btn-choose-dish-in-combo:hover {
+        background-color: rgba(255, 0, 0, 0.5);
+        color: white;
+        border-radius: 8px;
+        margin: 2px;
+        padding: 3px;
+    }
+.div-dish-in-combo {
+    height: auto;
+    width: 100%;
+    padding: 5px;
+    margin: 0px;
+}
+.customize-border-blue {
+    border: 2px solid #d7e0f7;
+    border-radius: 4px;
+}
+.btn-dish {
+    height: auto;
+    width: auto;
+    padding: 5px;
+    margin: 0px;
+    border: none;
+    border-radius: 10px;
+}
+    .btn-dish:hover {
+        background-color: #d7e0f7;
+        padding: 0px;
+        font-weight: bold;
+        color: white;
+    }
+.crashier-btn-dish {
+    height: auto;
+    width: auto;
+    padding: 5px;
+    margin: 0px;
+    border: none;
+    border-radius: 10px;
+}
+
+    .crashier-btn-dish:hover {
+        background-color: white;
+        padding: 0px;
+        font-weight: bold;
+        color: white;
+    }
+    .pointer {
+        cursor: pointer;
+    }
 .customeize-input-search {
     border-style: solid;
     border-width: 0px 0px 1px 0px;
@@ -224,7 +295,7 @@ crashier-table-body {
 
 .crashier-img {
     height: 100px;
-    width: 120px;
+    width: 100%;
     padding: 5px;
     border-radius: 12px;
     overflow: hidden;
@@ -236,6 +307,9 @@ crashier-table-body {
     padding: 5px;
     text-align: center;
     overflow: hidden;
+}
+.crashier-btn-title:hover {
+  font-weight:bold;
 }
 
 .column {

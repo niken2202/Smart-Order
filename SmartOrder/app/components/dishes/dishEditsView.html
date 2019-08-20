@@ -8,14 +8,20 @@
                 <span ng-show="frmEditsDish.dishName.$invalid" class="had-error">*Hãy nhập tên món</span>
                 <span ng-show="frmEditsDish.dishName.$error.maxlength.invalid" class="had-error">Tên món quá dài</span>
             </div>
+
             <div class="position-relative form-group">
-                <label for="exampleEmail" class="">Giá bán</label>
-                <input required name="dishPrice" ng-model="edtDish.Price" type="number" class="form-control">
+                <label>Giá bán </label>
+                <span class="customize-font-bold">{{edtDish.Price | currency:"VNĐ ":0}}</span>
+                <input required name="dishPrice" type="number" class="form-control" ng-model="edtDish.Price"
+                       min="0" oninput="this.value = Math.abs(this.value)">
                 <span ng-show="frmEditsDish.dishPrice.$invalid" class="had-error">*Phải nhập giá bán</span>
             </div>
+
             <div class="position-relative form-group">
                 <label for="examplePassword" class="">Giá cấu thành sản phẩm</label>
-                <input required name="dishAmount" ng-model="edtDish.Amount"  type="number" class="form-control">
+                <span class="customize-font-bold">{{edtDish.Amount | currency:"VNĐ ":0}}</span>
+                <input required name="dishAmount" ng-model="edtDish.Amount" type="number" class="form-control"
+                       min="0" oninput="this.value = Math.abs(this.value)">
                 <span ng-show="frmEditsDish.dishAmount.$invalid" class="had-error">*Hãy nhập giá cấu thành sản phẩm</span>
             </div>
 
@@ -32,11 +38,11 @@
 
             <div class="position-relative form-group">              
                 <div class="input-group">
-                    <input class="btn btn-primary" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
+                    <input class="btn btn-primary col-md-6" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
                     <!--<label for="image" class="btn btn-success btn-xs pull-center" name="upload" Value="">Upload Photo</label>-->
                 </div>
                 <br />
-                <img ng-src="{{edtDish.Image}}" height="150" width="200" ng-show="edtDish.Image" />
+                <img style="border-radius:8px; border: solid 2px cornflowerblue" ng-src="{{edtDish.Image}}" height="150" width="200" ng-show="edtDish.Image" />
             </div>
 
             <div class="position-relative form-group">

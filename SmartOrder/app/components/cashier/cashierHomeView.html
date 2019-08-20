@@ -106,13 +106,11 @@
 
                     <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:18" pagination-id="dishes">
-                            <img class="crashier-img" src="{{DishItem.Image}}" />
-                            <div class="crashier-btn-title">
-                                <span class="crashier-btn-choose"
-                                      ng-class="{'mb-2 mr-2 btn btn-success':DishItem.Status==1,'mb-2 mr-2 btn btn-danger':DishItem.Status==0}"
-                                      ng-click="addDish(DishItem)">
+                            <div ng-click="addDish(DishItem)" class="crashier-btn-dish">
+                                <img class="crashier-img" src="{{DishItem.Image}}" />
+                                <div style="color:#1ebb1e" class="crashier-btn-title">
                                     {{DishItem.Name}}
-                                </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -149,13 +147,11 @@
 
                     <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:18" pagination-id="combos">
-                            <img class="crashier-img" src="{{comboItem.Image}}" />
-                            <div class="crashier-btn-title">
-                                <span class="crashier-btn-choose"
-                                      ng-class="{'mb-2 mr-2 btn btn-success':comboItem.Status==1,'mb-2 mr-2 btn btn-danger':comboItem.Status==0}"
-                                      ng-click="addCombo(comboItem)">
+                            <div ng-click="addCombo(comboItem)" class="crashier-btn-dish">
+                                <img class="crashier-img" src="{{comboItem.Image}}" />
+                                <div style="color:#1ebb1e" class="crashier-btn-title">
                                     {{comboItem.Name}}
-                                </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -172,10 +168,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-
 
     <!--display the bill detail the left div-->
     <div class="cashier-child-right column">
@@ -211,8 +204,8 @@
                                     <input class="crashier-cart-quantity" type="number"
                                            ng-change="quantityChange(bill)" ng-model="bill.Quantity">
                                 </td>
-                                <td>{{bill.Price}}</td>
-                                <td>{{bill.Quantity*bill.Price}}</td>
+                                <td>{{bill.Price | currency : "" : 0}}</td>
+                                <td>{{bill.Quantity*bill.Price | currency : "" : 0}}</td>
                                 <td>
                                     <button class="btn delete-icon" ng-click="dishDel(item)">
                                         <i class="fas fa-trash f1f8 customize-delete-icon"></i>
@@ -235,7 +228,7 @@
                         <input style="text-align:right; width:30%" class="customeize-input" type="text"
                                ng-model="CrashierName">
                         <label style="text-align:left; width:45%" class="customize-font-green-color">
-                            &nbsp; Tổng tiền : {{totalPrice}}
+                            &nbsp; Tổng tiền : {{totalPrice | currency : "" : 0}}
                         </label>
                     </div>
                     <div class="row2" style="display:flex; margin:2px;">
@@ -247,9 +240,8 @@
                         <label style="text-align:left; width:40%" class="customize-font-green-color">
                             &nbsp; Giảm giá : {{Promotions.Discount | percentFilter}}
                             <i ng-show="avaiablePromotion" class="fas fa-check-circle ng-hide customize-font-green-color"></i>
-                        </label>                    
-                       
-                    </div>                    
+                        </label>
+                    </div>
                     <div class="row3" style="display:flex; margin:2px;">
                         <label style="text-align:left; width:25%" class="customize-font-green-color">
                             Khách hàng: &nbsp;
@@ -257,7 +249,7 @@
                         <input style="text-align:right; width:30%" class="customeize-input" type="text"
                                ng-model="CustomerName">
                         <label style="text-align:left; width:45%" class="customize-font-green-color">
-                            &nbsp; Thanh toán : {{paymentPrice}}
+                            &nbsp; Thanh toán : {{paymentPrice | currency : "" : 0}}
                         </label>
                     </div>
                     <div class="row4" style="display:flex; margin:2px;">
