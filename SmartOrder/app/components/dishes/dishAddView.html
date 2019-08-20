@@ -40,7 +40,7 @@
                     <input class="btn btn-primary btn-xs pull-center col-md-6" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
                 </div>
                 <br />
-                <img style="border-radius:8px; border: solid 2px cornflowerblue" ng-src="{{dishAdd.Image}}" height="150" width="200" ng-show="dishAdd.Image" />
+                <img ng-src="{{dishAdd.Image}}" class="admin-img" ng-show="dishAdd.Image" />
             </div>
             <fieldset class="position-relative row form-group">
                 <legend class="col-form-label col-sm-2">Trạng thái món</legend>

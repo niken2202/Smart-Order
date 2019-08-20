@@ -5,61 +5,29 @@
 
     function comboController($scope, $state,ngDialog, apiService, notificationService) {
 
+        //generate index number in table
+        $scope.serial = 1;
+        $scope.itemPerPage = 25
+        $scope.indexCount = function (newPageNumber) {
+
+            $scope.serial = newPageNumber * $scope.itemPerPage - ($scope.itemPerPage - 1);
+        }
 
         //get combo list from api
         function getListCombo() {
             apiService.get('/api/combo/getall', null, function (result) {
                 $scope.combos = result.data;
             }, function () {
-                notificationService.displayError('Tải danh sách mã khuyến mại không thành công');
+                //notificationService.displayError('Tải danh sách mã Combo không thành công');
             });
         }
         getListCombo();
 
-        //reload table
-        $scope.reload = function (data) {
-            getListCombo();
-            ngDialog.close(vm.dialogId);
-        };
-
         //show the dialog ditail combo by table
         $scope.comboDetails = comboDetails;
         function comboDetails(item) {
-            //var abc = {
-            //    ID: item.ID, Name: item.Name, Price: item.Price, Amount: item.Amount, Description: item.Description,
-            //    Image: item.Image, Status: item.Status
-            ////, CreatedDate: a.CreatedDate
-            //};
             $state.go('editCombo', { ID: item.ID });
         }
-
-
-        //var vm = this;
-        //vm.openDialog = function ($event, item) {
-        //    vm.init = function () {
-        //        $scope.combo = item;
-        //    }
-
-        //    vm.init();
-
-        //    // Show the dialog in the main controller
-        //    var dialog = ngDialog.openConfirm({
-        //        template: '/app/components/services/comboEditsView.html',
-        //        scope: $scope,
-        //        controller: 'comboEditsController',
-        //        controllerAs: "file",
-        //        closeByDocument: false, //can not close dialog by click out of dialog area
-        //        className: 'ngdialog',
-        //        showClose: false,
-        //    }).then(
-        //        function (value) {
-        //            //save the contact form
-        //        },
-        //        function (value) {
-        //            //Cancel or do nothing
-        //        }
-        //    );
-        //};
 
         //function sort by title tr tag
         $scope.sort = function (keyname) {
@@ -70,21 +38,6 @@
         //show dialog to create new combo
         $scope.comboAdd = function () {
             $state.go('addCombo');
-            //var addDialog = ngDialog.openConfirm({
-            //    template: '/app/components/services/comboAddView.html',
-            //    scope: $scope,
-            //    controller: 'comboAddController',
-            //    closeByDocument: false, //can not close dialog by click out of dialog area
-            //    className: 'ngdialog',
-            //    showClose: false,
-            //}).then(
-            //    function (value) {
-            //        //save the contact form
-            //    },
-            //    function (value) {
-            //        //Cancel or do nothing
-            //    }
-            //);
         };
 
         //open popup to determine before delete combo

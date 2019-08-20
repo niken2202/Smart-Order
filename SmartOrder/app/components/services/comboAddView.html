@@ -47,7 +47,8 @@
 
                     <div class="position-relative form-group">
                         <label class="customize-font-blue-color">Mô tả combo</label>
-                        <textarea name="comboDescription" class="form-control customize-border-blue" ng-model="comboAdd.Description"></textarea>
+                        <textarea name="comboDescription" class="form-control customize-border-blue" 
+                                 ng-trim="boolean" ng-model="comboAdd.Description"></textarea>
                     </div>
 
                     <div class="position-relative form-group">
@@ -55,7 +56,7 @@
                             <input style="width:100%" class="btn btn-primary btn-xs pull-center" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
                         </div>
                         <br />
-                        <img ng-src="{{comboAdd.Image}}" height="150" width="200" ng-show="comboAdd.Image" />
+                        <img ng-src="{{comboAdd.Image}}" class="admin-img" ng-show="comboAdd.Image" />
                     </div>
 
                     <fieldset class="position-relative row form-group">

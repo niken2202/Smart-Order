@@ -293,6 +293,15 @@ crashier-table-body {
     float:left;
 }
 
+.admin-img {
+    height: 150px;
+    width: 200px;
+    padding: 5px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: solid 2px cornflowerblue;
+}
+
 .crashier-img {
     height: 100px;
     width: 100%;

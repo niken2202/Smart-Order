@@ -86,15 +86,14 @@
         $scope.CreateCombo = CreateCombo;
 
         function CreateCombo() {
-            var descri = $scope.comboAdd.Description;
-            descri = descri.trim()
             if ($scope.listDishInCombo == null || $scope.listDishInCombo.length < 2) {
                 notificationService.displayError('Số lượng món trong combo phải lớn hơn 2');
             } else if ($scope.comboAdd.Image == null) {
                 notificationService.displayError('Vui lòng chọn ảnh');
-            } else if (descri == null || descri.length < 1) {
-                $scope.comboAdd.Description = "Nội dung được tạo tự động";
             } else {
+                if ($scope.comboAdd.Description == null || $scope.comboAdd.Description.length < 1) {
+                    $scope.comboAdd.Description = "Nội dung được tạo tự động";
+                }
                 var createCombo = {
                     Name: $scope.comboAdd.Name,
                     Description: $scope.comboAdd.Description,
@@ -102,7 +101,7 @@
                     Amount: 1,
                     Image: $scope.comboAdd.Image,
                     Status: true,
-                    CreatedDate: new Date,
+                    CreatedDate: new Date,                   
                     DishComboMappings: $scope.listDishInCombo
                 }
                 apiService.post('api/combo/add', createCombo,

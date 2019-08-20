@@ -94,15 +94,14 @@
 
         //update combo
         $scope.updateCombo = function updateCombo() {
-            var descri = $scope.comboEdt.Description;
-            descri = descri.trim()
             if ($scope.comboEdt.dishes == null || $scope.comboEdt.dishes.length < 2) {
                 notificationService.displayError('Số lượng món trong combo phải lớn hơn 2');
             } else if ($scope.comboEdt.Image == null) {
                 notificationService.displayError('Vui lòng chọn ảnh');
-            } else if (descri == null || descri.length < 1) {
-                $scope.comboEdt.Description = "Nội dung được tạo tự động";
             } else {
+                if ($scope.comboEdt.Description == null || $scope.comboEdt.Description.length < 1) {
+                    $scope.comboEdt.Description = "Nội dung được tạo tự động";
+                }
                 var updateCombo = {
                     ID: $scope.comboEdt.ID,
                     Name: $scope.comboEdt.Name,
@@ -110,7 +109,7 @@
                     Price: $scope.comboEdt.Price,
                     Amount: 1,
                     Image: $scope.comboEdt.Image,
-                    CreatedDate: new Date,
+                    CreatedDate: $scope.comboEdt.CreatedDate,
                     Status: true,
                     DishComboMappings: $scope.comboEdt.dishes
                 }
