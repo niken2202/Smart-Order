@@ -127,7 +127,12 @@ namespace Data.Repositories
             {
                 DbContext.Cart.Remove(cart);
             }
-
+            var code = DbContext.PromotionCode.SingleOrDefault(x => x.Code.Equals(b.Voucher));
+            if (code.Times > 0)
+            {
+                code.Times--;
+            }
+            if (code.Times <= 0) code.Status = false;
             return b;
         }
         public IEnumerable<BillViewModel> GetAll()
