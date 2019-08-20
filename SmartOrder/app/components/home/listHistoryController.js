@@ -2,7 +2,13 @@
     app.controller('listHistoryController', ['$scope', 'apiService', 'notificationService',
         function ($scope, apiService, notificationService) {
 
+            //generate index number in table
+            $scope.serial = 1;
+            $scope.itemPerPage = 100
+            $scope.indexCount = function (newPageNumber) {
 
+                $scope.serial = newPageNumber * $scope.itemPerPage - ($scope.itemPerPage - 1);
+            }
 
             $scope.count = 0;
             $scope.title = "";
@@ -38,10 +44,10 @@
             //get default list history today
             function getListToday() {
 
-                apiService.get('/api/history/getall', null, function (result) {
+                apiService.get('/api/history/gettoday', null, function (result) {
                     $scope.histories = result.data;
                     $scope.title = "Hôm nay";
-                    $scope.count = $scope.histories.length;
+                    $scope.countHistory = $scope.histories.length;
                 }, function () {
                     notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
                 });
@@ -52,48 +58,38 @@
             $scope.selectEvent = function () {
                 if ($scope.userOption === 1) {
 
-                    apiService.get('/api/history/getall', null, function (result) {
-                        $scope.histories = result.data;
-                        $scope.title = "Hôm nay";
-
-                        if ($scope.histories.length === 0) {
-                            notificationService.displayWarning('Danh sách trống !');
-                        } else {
-                            $scope.countBill = $scope.histories.length;
-                        }
-                    }, function () {
-                        notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
-                    });
+                    getListToday();
+                    notificationService.displaySuccess('Tổng cộng có: ' + $scope.histories.length + ' hoạt động');
+                    $scope.countHistory = $scope.histories.length;
 
                 } else if ($scope.userOption === 2) {
 
-                    apiService.get('/api/history/getall', null, function (result) {
+                    apiService.get('/api/history/getlast7day', null, function (result) {
                         $scope.histories = result.data;
                         $scope.title = "7 ngày gần đây";
-                        console.log($scope.histories);
                         if ($scope.histories.length === 0) {
-                            notificationService.displayWarning('Danh sách trống !');
+                            notificationService.displayWarning('Không có hoạt động mới trong 7 ngày vừa qua !');
                         } else {
-                            notificationService.displaySuccess('Tổng cộng có: ' + $scope.histories.length + ' hóa đơn');
-                            $scope.countBill = $scope.histories.length;
+                            notificationService.displaySuccess('Tổng cộng có: ' + $scope.histories.length + ' hoạt động');
+                            $scope.countHistory = $scope.histories.length;
                         }
                     }, function () {
                         notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
                     });
 
                 } else if ($scope.userOption === 3) {
-                    apiService.get('/api/history/getall', null, function (result) {
+                    apiService.get('/api/history/getlastmonth', null, function (result) {
                         $scope.histories = result.data;
                         $scope.title = "Tháng gần đây";
                         if ($scope.histories.length === 0) {
                             notificationService.displayWarning('Danh sách trống !');
                         } else {
-                            notificationService.displaySuccess('Tổng cộng có: ' + $scope.histories.length + ' hóa đơn');
-                            $scope.countBill = $scope.histories.length;
+                            notificationService.displaySuccess('Tổng cộng có: ' + $scope.histories.length + ' hoạt động');
+                            $scope.countHistory = $scope.histories.length;
                         }
                     }, function () {
-                        notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
-                        $scope.countBill = $scope.histories.length;
+                        //notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
+                        //$scope.countHistory = $scope.histories.length;
                     });
                 }
             };
@@ -108,51 +104,19 @@
                     }
                 }
 
-                apiService.get('/api/bill/gettimerange', transfer, function (result) {
+                apiService.get('/api/history/gettimerange', transfer, function (result) {
                     $scope.histories = result.data;
                     $scope.title = "";
                     if ($scope.histories.length === 0) {
                         notificationService.displayWarning('Danh sách trống !');
                     } else {
                         notificationService.displaySuccess('Tổng cộng có: ' + $scope.histories.length + ' hóa đơn');
-                        $scope.countBill = $scope.histories.length;
+                        $scope.countHistory = $scope.histories.length;
                     }
                 }, function () {
-                    notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
+                    //notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
                 });
 
             }
-
-        //show bill details
-        //$scope.billDetailEvent = function (data) {
-        //    $scope.currentBill = data;
-        //    var transfer = {
-        //        params: {
-        //            billId: data.ID,
-        //        }
-        //    }
-
-        //    apiService.get('/api/billdetail/getbybillid', transfer, function (result) {
-        //        $scope.billDetails = result.data;
-        //        console.log($scope.billDetails);
-        //    }, function () {
-        //        notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải dữ liệu!');
-        //    });
-
-        //    var detailDialog = ngDialog.openConfirm({
-        //        template: '/app/components/restaurant/billDetailView.html',
-        //        scope: $scope,
-        //        className: 'ngdialog',
-        //        showClose: false,
-        //    }).then(
-        //        function (value) {
-        //            //save the contact form
-        //        },
-        //        function (value) {
-        //            //Cancel or do nothing
-        //        }
-        //    );
-        //};
-
         }]);
 })(angular.module('SmartOrder'));

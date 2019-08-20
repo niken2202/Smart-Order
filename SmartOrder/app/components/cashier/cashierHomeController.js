@@ -374,7 +374,7 @@
                 notificationService.displayWarning("Vui lòng chọn bàn chuyển đến");
             } else {
                 $scope.curCart.TableID = $scope.changeTable;
-                apiService.put('/api/cart/update', $scope.curCart, function (result) {
+                apiService.put('/api/cart/changetable', $scope.curCart, function (result) {
                     changeTableStatusOn($scope.curTable);
                     for (i = 0; i < $scope.tables.length; i++) {
                         if ($scope.tables[i].ID === $scope.changeTable) {

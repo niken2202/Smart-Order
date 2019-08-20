@@ -31,7 +31,7 @@
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
                     <tr>
-                        <th class="cornflowerblue" style="width:10%" ng-click="sort('ID')">Mã</th>
+                        <th class="cornflowerblue" style="width:10%" ng-click="sort('$index')"><i class="fas fa-sort-down"></i></th>
                         <th class="cornflowerblue div-text-align-center" style="width:20%">Mã giảm giá</th>
                         <th class="cornflowerblue div-text-align-center" style="width:10%" ng-click="sort('Discount')" >Giảm %</th>
                         <th class="cornflowerblue div-text-align-center" style="width:20%" ng-click="sort('ExpiredDate')">Hiệu lực đến</th>
@@ -40,8 +40,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr dir-paginate="item in promotions |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
-                        <td ng-click="openDialog($event,item)">{{item.ID}}</td>
+                    <tr dir-paginate="item in promotions |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:itemPerPage">
+                        <td ng-click="openDialog($event,item)">{{$index + serial}}</td>
                         <td ng-click="openDialog($event,item)">{{item.Code}}</td>
                         <td class="div-text-align-center" ng-click="openDialog($event,item)">{{item.Discount | percentFilter}}</td>
                         <td class="div-text-align-center" ng-click="openDialog($event,item)">{{item.ExpiredDate | date:"dd-MM-yyyy"}}</td>
@@ -61,7 +61,7 @@
             </table>
 
             <div class="customeize-pagination">
-                <dir-pagination-controls max-size="5"
+                <dir-pagination-controls max-size="5" on-page-change='indexCount(newPageNumber)'
                                          direction-links="true"
                                          boundary-links="true">
                 </dir-pagination-controls>

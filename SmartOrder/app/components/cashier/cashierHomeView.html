@@ -106,9 +106,17 @@
 
                     <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:18" pagination-id="dishes">
-                            <div ng-click="addDish(DishItem)" class="crashier-btn-dish">
+                            <div ng-if="DishItem.Status == 1"
+                                 ng-click="addDish(DishItem)" class="crashier-btn-dish pointer">
                                 <img class="crashier-img" src="{{DishItem.Image}}" />
                                 <div style="color:#1ebb1e" class="crashier-btn-title">
+                                    {{DishItem.Name}}
+                                </div>
+                            </div>
+                            <div ng-if="DishItem.Status == 0" style="opacity:0.7"
+                                 class="crashier-btn-dish-not-avaiable">
+                                <img class="crashier-img" src="{{DishItem.Image}}" />
+                                <div style="color:red" class="crashier-btn-title customize-font-bold">
                                     {{DishItem.Name}}
                                 </div>
                             </div>
@@ -146,13 +154,22 @@
                 <div class="crashier-table-body">
 
                     <div class="crashier-table-row">
-                        <div class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:18" pagination-id="combos">
-                            <div ng-click="addCombo(comboItem)" class="crashier-btn-dish">
+                        <div class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:18" pagination-id="combos">                            
+                            <div ng-if="comboItem.Status == true"
+                                 ng-click="addDish(DishItem)" class="crashier-btn-dish pointer">
                                 <img class="crashier-img" src="{{comboItem.Image}}" />
                                 <div style="color:#1ebb1e" class="crashier-btn-title">
                                     {{comboItem.Name}}
                                 </div>
                             </div>
+                            <div ng-if="comboItem.Status == false" style="opacity:0.7"
+                                 class="crashier-btn-dish-not-avaiable">
+                                <img class="crashier-img" src="{{comboItem.Image}}" />
+                                <div style="color:red" class="crashier-btn-title customize-font-bold">
+                                    {{comboItem.Name}}
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -268,7 +285,8 @@
             <div class=" crashier-billDetail-action">
                 <div class="crashier-billDetail-action-lsBoxTB">
                     <select class="customize-font-green-color form-control"
-                            ng-model="changeTable" ng-options="option.ID as option.Name for option in lsAvaiableTables">
+                            ng-class="{'customize-font-green-color':y.Status==1,'customize-font-blue-color':y.Status==0}"
+                            ng-model="changeTable" ng-options="y.ID as y.Name for (x,y) in tables">
                         <option selected disabled value="">Chuyển tới</option>
                     </select>
                 </div>

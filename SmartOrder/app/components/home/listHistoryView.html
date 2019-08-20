@@ -31,18 +31,19 @@
 
         </div>
 
-        <h4 class="cornflowerblue countTotolRow">Tổng số hoạt động: {{count}}</h4>
+        <h4 class="cornflowerblue countTotolRow">Tổng số hoạt động: {{countHistory}}</h4>
         <div class="table-responsive">
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
                     <tr>
-                        <!--<th style="width:2%" ng-click="sort('ID')">ID</th>-->
+                        <th style="width:5%" ng-click="sort('ID')"><i class="fas fa-sort-down"></i></th>
                         <th style="width:70%">Nội dung hoạt động</th>
-                        <th style="width:30%; text-align:right" ng-click="sort('CreatedDate')">Ngày tạo</th>
+                        <th style="width:25%; text-align:right" ng-click="sort('CreatedDate')">Ngày tạo</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr dir-paginate="item in histories |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:10">
+                    <tr dir-paginate="item in histories |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:itemPerPage">
+                        <td>{{$index + serial}}</td>
                         <td>{{item.TaskName}}</td>
                         <td style="text-align:right">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>
                     </tr>
@@ -50,7 +51,7 @@
             </table>
 
             <div class="customeize-pagination">
-                <dir-pagination-controls max-size="5"
+                <dir-pagination-controls max-size="5" on-page-change='indexCount(newPageNumber)'
                                          direction-links="true"
                                          boundary-links="true">
                 </dir-pagination-controls>

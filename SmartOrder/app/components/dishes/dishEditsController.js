@@ -64,11 +64,9 @@
         //update dish
         $scope.updateDish = updateDish;
         function updateDish() {
-            console.log($scope.edtDish)
             apiService.put('api/dish/update', $scope.edtDish,
                 function (result) {
                     notificationService.displaySuccess($scope.edtDish.Name + ' đã được cập nhật mới! ');
-                    //console.log('update success');
                     $scope.reload();
                 }, function (error) {
                     notificationService.displayError('Cập nhật mới không thành công ! Vui lòng kiểm tra lại thông tin đã nhập');

@@ -109,14 +109,14 @@
                     Price: $scope.comboEdt.Price,
                     Amount: 1,
                     Image: $scope.comboEdt.Image,
-                    CreatedDate: new Date,
-                    Status: true,
+                    CreatedDate: $scope.comboEdt.CreatedDate,
+                    Status: $scope.comboEdt.Status,
                     DishComboMappings: $scope.comboEdt.dishes
                 }
                 apiService.put('api/combo/update', updateCombo,
                     function (result) {
                         notificationService.displaySuccess(updateCombo.Name + ' đã được cập nhật mới! ');
-                        $scope.reload();
+                        $state.go('combo');
                     }, function (error) {
                         notificationService.displayError('Cập nhật mới không thành công ! Vui lòng kiểm tra lại thông tin đã nhập');
                     });

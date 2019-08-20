@@ -5,6 +5,13 @@
 
     function promotionListController($scope, ngDialog, apiService, notificationService) {
 
+        //generate index number in table
+        $scope.serial = 1;
+        $scope.itemPerPage = 25
+        $scope.indexCount = function (newPageNumber) {
+
+            $scope.serial = newPageNumber * $scope.itemPerPage - ($scope.itemPerPage - 1);
+        }
 
         //get promotion list from api
         function getPromotion() {

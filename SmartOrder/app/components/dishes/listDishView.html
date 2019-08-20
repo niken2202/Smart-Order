@@ -34,19 +34,11 @@
             </div>
         </div>
 
-        <!--<form class="search-wrapper active">
-            <div class="input-holder">
-                <div class="input-holder">
-                    <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
-                </div>
-            </div>
-        </form>-->
-
         <div class="table-responsive">
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
                     <tr>
-                        <th class="cornflowerblue " ng-click="sort('ID')">ID</th>
+                        <th class="cornflowerblue " ng-click="sort('$index')"><i class="fas fa-sort-down"></i></th>
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('Name')">Tên món</th>
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('CategoryID')">Nhóm đồ</th>
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('Price')">Giá bán</th>

@@ -23,15 +23,14 @@
 
         //get all history
         function getHistory() {
-            var config = {
-                params: {
-                }
-            }
-            apiService.get('/api/history/getall', config, function (result) {
+            //var config = {
+            //    params: {
+            //    }
+            //}
+            apiService.get('/api/history/getlast7day', null, function (result) {
                 $scope.history = result.data;
-                //console.log(result.data);
             }, function () {
-                console.log('Load history failed.');
+                //console.log('Load history failed.');
             });
         }
         getHistory();
@@ -44,16 +43,15 @@
 
         //get top hot dish
         function getTopHotDish() {
-            var config = {
-                params: {
-                }
-            }
+            //var config = {
+            //    params: {
+            //    }
+            //}
             apiService.get('/api/dish/gettophot', null, function (result) {
                 if (result.data == null) {
                    //data is empty it mean is not have any top hot dish
                 } else {
                     $scope.hotDishes = result.data.tophot;
-                    console.log('hot dishes ' + $scope.hotDishes);
                 }
             }, function () {
                 console.log('Load history failed.');
@@ -87,7 +85,7 @@
                 } else {
                 }
             }, function () {
-                notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
+                //notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
             });
         };
 
@@ -153,21 +151,22 @@
             }
         };
 
-        $scope.fruits = {
+        $scope.revenues = {
             labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
             data: [950000, 1400000, 1200000, 1200000, 1600000, 1400000, 1300000, 1300000, 1200000, 1200000, 1100000, 1200000],
             color: ["#4f8bcc"]
         };
+
         var ctx = document.getElementById("dvCanvas").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 datasets: [{
-                    data: $scope.fruits.data,
-                    backgroundColor: $scope.fruits.color,
+                    data: $scope.revenues.data,
+                    backgroundColor: $scope.revenues.color,
                     label: "Doanh thu",
                 }],
-                labels: $scope.fruits.labels,
+                labels: $scope.revenues.labels,
             },
             options: {
                 responsive: true,

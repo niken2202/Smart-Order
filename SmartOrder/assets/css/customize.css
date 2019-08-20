@@ -70,6 +70,14 @@
         font-weight: bold;
         color: white;
     }
+.crashier-btn-dish-not-avaiable {
+    height: auto;
+    width: auto;
+    padding: 5px;
+    margin: 0px;
+    border: none;
+    border-radius: 10px;
+}
     .pointer {
         cursor: pointer;
     }
@@ -706,7 +714,7 @@ disapear {
 
 .history-homeView {
     width: 25%;
-    height: 500px;
+    height: 80vh;
     /*min-height: 500px;*/
     padding-top: 10px;
     padding-bottom: 10px;
@@ -718,7 +726,9 @@ disapear {
     background-color: white;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 5px;
-    overflow: scroll;
+    overflow-wrap:break-word;
+    overflow-y:scroll;
+    overflow-x:hidden;
 }
 
 .main-content-homeView {
