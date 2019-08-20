@@ -1,6 +1,7 @@
 ﻿using Data.Infrastructure;
 using Data.Repositories;
 using Model.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Service
@@ -8,14 +9,10 @@ namespace Service
     public interface IPromotionCodeService
     {
         PromotionCode Add(PromotionCode promotionCode);
-
         IEnumerable<PromotionCode> GetAll();
-
-        PromotionCode GetById(int id);
-
         PromotionCode Delete(int id);
-
         void Update(PromotionCode promotionCode);
+        PromotionCode CheckValid(string Code);
         PromotionCode GetByCode(string Code);
         void SaveChanges();
     }
@@ -38,7 +35,7 @@ namespace Service
 
         public PromotionCode GetByCode(string Code)
         {
-            return promotionCodeRepository.GetSingleByCondition(x => x.Code == Code);
+            return promotionCodeRepository.GetSingleByCondition(x => x.Code.Trim().Equals(Code.Trim()) );
         }
 
         public PromotionCode Delete(int id)
@@ -51,11 +48,6 @@ namespace Service
             return promotionCodeRepository.GetAll();
         }
 
-        public PromotionCode GetById(int id)
-        {
-            return promotionCodeRepository.GetSingleById(id);
-        }
-
         public void SaveChanges()
         {
             unitOfWork.Commit();
@@ -64,6 +56,15 @@ namespace Service
         public void Update(PromotionCode promotionCode)
         {
             promotionCodeRepository.Update(promotionCode);
+        }
+
+        public PromotionCode CheckValid(string Code)
+        {
+            return promotionCodeRepository.GetSingleByCondition(x => x.Status == true &&
+            x.Code.Trim().Equals(Code.Trim())
+            && (DateTime.Compare(x.ExpiredDate,DateTime.Now)>=0)
+            && x.Times>0
+            );
         }
     }
 }
