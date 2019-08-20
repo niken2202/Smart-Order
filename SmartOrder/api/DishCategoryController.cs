@@ -73,7 +73,7 @@ namespace SmartOrder.api
                 else
                 {
                     dishService.Update(dishCategory);
-                    SaveHistory("Update Dish Category has ID " + dishCategory.ID);
+                    SaveHistory("Cập nhật loại sản phẩm có ID " + dishCategory.ID);
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
                 return response;
@@ -95,7 +95,7 @@ namespace SmartOrder.api
                 {
                     DishCategory dishcategory = dishService.Delete(id);
                     dishService.SaveChanges();
-                    SaveHistory("Delete Dish Category has ID " + id);
+                    SaveHistory("Xóa sản phẩm có ID " + id);
                     response = request.CreateResponse(HttpStatusCode.OK, dishcategory);
                 }
                 return response;

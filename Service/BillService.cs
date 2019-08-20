@@ -11,7 +11,7 @@ namespace Service
     {
         Bill Add(Bill bill);
         Bill GetById(int id);
-        IEnumerable<Bill> GetAll();
+        IEnumerable<BillViewModel> GetAll();
         IEnumerable<Bill> GetTimeRange(DateTime fromDate, DateTime toDate);
         IEnumerable<Bill> GetBillLastMonth();
         IEnumerable<Bill> GetBillLast7Days();
@@ -38,7 +38,7 @@ namespace Service
         {
             return billRepository.Add(bill);
         }
-        public IEnumerable<Bill> GetAll()
+        public IEnumerable<BillViewModel> GetAll()
         {
             return billRepository.GetAll();
         }

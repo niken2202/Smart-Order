@@ -93,7 +93,7 @@ namespace SmartOrder.api
                 else
                 {
                     comboService.Update(combo);
-                    SaveHistory("Update Combo has ID " + combo.ID);
+                    SaveHistory("Cập nhật combo có ID " + combo.ID);
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
                 return response;
@@ -115,7 +115,7 @@ namespace SmartOrder.api
                 {
                     Combo combo = comboService.Delete(id);
                     comboService.SaveChanges();
-                    SaveHistory("Delete Combo has ID " + combo.ID);
+                    SaveHistory("Xóa combo có ID " + combo.ID);
                     response = request.CreateResponse(HttpStatusCode.OK, combo);
                 }
                 return response;

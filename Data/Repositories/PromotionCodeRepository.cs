@@ -5,7 +5,7 @@ namespace Data.Repositories
 {
     public interface IPromotionCodeRepository : IRepository<PromotionCode>
     {
-       
+      
     }
 
     public class PromotionCodeRepository : RepositoryBase<PromotionCode>, IPromotionCodeRepository

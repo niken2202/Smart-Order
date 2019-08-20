@@ -8,9 +8,6 @@ namespace Model.Models
     public class PromotionCode
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { set; get; }
-
         [MaxLength(256)]
         public string Code { get; set; }
         public DateTime CreatedDate { get; set; }

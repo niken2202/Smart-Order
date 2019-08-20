@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/promotioncode"), Authorize]
+    [RoutePrefix("api/promotioncode")]
     public class PromotionCodeController : ApiControllerBase
     {
         private IPromotionCodeService promotionCodeService;
@@ -57,26 +57,6 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getbyid")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int id)
-        {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-
-                if (!ModelState.IsValid)
-                {
-                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var code = promotionCodeService.GetById(id);
-                    response = request.CreateResponse(HttpStatusCode.OK, code);
-                }
-                return response;
-            });
-        }
-
         [Route("getbycode")]
         public HttpResponseMessage GetByCode(HttpRequestMessage request, string Code)
         {
@@ -91,6 +71,25 @@ namespace SmartOrder.api
                 else
                 {
                     var code = promotionCodeService.GetByCode(Code.Trim());
+                    response = request.CreateResponse(HttpStatusCode.OK, code);
+                }
+                return response;
+            });
+        }
+        [Route("checkvalid")]
+        public HttpResponseMessage CheckValid(HttpRequestMessage request, string Code)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var code = promotionCodeService.CheckValid(Code.Trim());
                     response = request.CreateResponse(HttpStatusCode.OK, code);
                 }
                 return response;
@@ -111,7 +110,7 @@ namespace SmartOrder.api
                 else
                 {
                     promotionCodeService.Update(code);
-                    SaveHistory("Đã cập nhật promotion có ID: " + code.ID);
+                    SaveHistory("Đã cập nhật promotion có Code: " + code.Code);
                     response = request.CreateResponse(HttpStatusCode.OK);
                 }
                 return response;

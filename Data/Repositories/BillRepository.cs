@@ -15,6 +15,7 @@ namespace Data.Repositories
         IEnumerable<Bill> GetBillLastMonth();
         IEnumerable<Bill> GetBillLast7Days();
         IEnumerable<Bill> GetBillToday();
+        IEnumerable<BillViewModel> GetAll();
         object GetBillDetail(int id);
     }
     public class BillRepository : RepositoryBase<Bill>, IBillRepository
@@ -32,7 +33,6 @@ namespace Data.Repositories
             };
             return DbContext.Database.SqlQuery<RevenueStatisticViewModel>("GetRevenueStatistic @fromDate,@toDate", parameters);
         }
-
         public IEnumerable<Bill> GetTimeRange(DateTime fromDate, DateTime toDate)
         {
             var parameters = new object[]
@@ -51,7 +51,6 @@ namespace Data.Repositories
                };
             return DbContext.Database.SqlQuery<Bill>("GetBillByRange @fromDate,@toDate", parameters);
         }
-
         public IEnumerable<Bill> GetBillLastMonth()
         {
             DateTime toDate = DateTime.Now;
@@ -64,7 +63,6 @@ namespace Data.Repositories
               };
             return DbContext.Database.SqlQuery<Bill>("GetBillByRange @fromDate,@toDate", parameters);
         }
-
         public IEnumerable<Bill> GetBillLast7Days()
         {
             DateTime toDate = DateTime.Now;
@@ -77,7 +75,6 @@ namespace Data.Repositories
               };
             return DbContext.Database.SqlQuery<Bill>("GetBillByRange @fromDate,@toDate", parameters);
         }
-
         public IEnumerable<Bill> GetBillToday()
         {
             DateTime toDate = DateTime.Now;
@@ -90,7 +87,6 @@ namespace Data.Repositories
               };
             return DbContext.Database.SqlQuery<Bill>("GetBillByRange @fromDate,@toDate", parameters);
         }
-
         public object GetBillDetail(int id)
         {
             Bill bill = GetSingleById(id);
@@ -133,6 +129,25 @@ namespace Data.Repositories
             }
 
             return b;
+        }
+        public IEnumerable<BillViewModel> GetAll()
+        {
+            var query = from d in DbContext.Bills
+                        join t in DbContext.Tables on d.TableID equals t.ID
+                        select new BillViewModel()
+                        {
+                            ID= d.ID,
+                            TableID= d.TableID,
+                            CustomerName=d.CustomerName,
+                            Voucher= d.Voucher,
+                            Discount=d.Discount,
+                            Content=d.Content,
+                            CreatedBy=d.CreatedBy,
+                            CreatedDate=d.CreatedDate,
+                            Status=d.Status,
+                            TableName= t.Name
+                        };
+            return query;
         }
 
         public IEnumerable<RevenueByMonthViewModel> GetRevenueGroupByMonth(DateTime fromDate, DateTime toDate)
