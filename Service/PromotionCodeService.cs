@@ -63,6 +63,7 @@ namespace Service
             return promotionCodeRepository.GetSingleByCondition(x => x.Status == true &&
             x.Code.Trim().Equals(Code.Trim())
             && (DateTime.Compare(x.ExpiredDate,DateTime.Now)>=0)
+            && x.Times>0
             );
         }
     }

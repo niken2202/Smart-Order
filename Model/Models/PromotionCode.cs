@@ -15,6 +15,8 @@ namespace Model.Models
 
         [Required]
         public int Discount { set; get; }
+        [Required]
+        public int Times { set; get; }
         public bool Status { get; set; }
     }
 }

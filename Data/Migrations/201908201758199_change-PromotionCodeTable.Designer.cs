@@ -13,7 +13,7 @@ namespace Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201908201740185_change-PromotionCodeTable"; }
+            get { return "201908201758199_change-PromotionCodeTable"; }
         }
         
         string IMigrationMetadata.Source
