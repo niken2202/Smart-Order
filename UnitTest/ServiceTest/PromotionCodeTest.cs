@@ -25,12 +25,12 @@ namespace UnitTest.ServiceTest
             _service = new PromotionCodeService(_mockUnitOfWork.Object, _mockRepository.Object);
             c = new PromotionCode()
             {
-                ID = 1
+                Code = "C"
             };
             _listCategory = new List<PromotionCode>()
             {
-                new PromotionCode() {ID =2 },
-                new PromotionCode() {ID =1},
+                new PromotionCode() {Code ="A" },
+                new PromotionCode() {Code ="B"},
              };
         }
         [TestMethod]
@@ -41,21 +41,14 @@ namespace UnitTest.ServiceTest
             c.ExpiredDate = DateTime.Now.AddDays(30);
             c.Status = true;
             c.Code = "D";
-            c.ID = 1;
             _mockRepository.Setup(m => m.Add(c)).Returns(c);
             var result = _service.Add(c);
           
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.ID);
+            Assert.AreEqual("D", result.Code);
         }
 
-        [TestMethod]
-        public void ProCode_Service_GetByCode()
-        {
-            _mockRepository.Setup(m => m.GetSingleById(1)).Returns(c);
-            var list = _service.GetByCode("D");
-            Assert.AreEqual(1, list.ID);
-        }
+ 
         [TestMethod]
         public void ProCode_Service_GetAll()
         {
@@ -64,11 +57,11 @@ namespace UnitTest.ServiceTest
             Assert.AreEqual(2, list.Count);
         }
         [TestMethod]
-        public void ProCode_Service_Delete()
+        public void ProCode_Service_CheckValid()
         {
-            _mockRepository.Setup(m => m.Delete(1)).Returns(_listCategory[0]);
-            var list = _service.Delete(1);
-            Assert.AreEqual(1, list.ID);
+          //  _mockRepository.Setup(m => m.Ch(null)).Returns(_listCategory);
+            var list = _service.CheckValid("D");
+            Assert.AreEqual("D", list.Code);
         }
     }
 }

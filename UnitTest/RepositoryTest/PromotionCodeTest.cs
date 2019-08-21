@@ -57,14 +57,14 @@ namespace UnitTest.RepositoryTest
             var result = _repository.Add(c);
             unitOfWork.Commit();
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.ID);
+            Assert.AreEqual("D", result.Code);
         }
 
         [TestMethod]
         public void ProCode_Repository_GetByCode()
         {
             var list = _repository.GetSingleByCondition(x => x.Code=="D");
-            Assert.AreEqual(1, list.ID);
+            Assert.AreEqual("D", list.Code);
         }
         [TestMethod]
         public void ProCode_Repository_GetAll()
@@ -76,7 +76,8 @@ namespace UnitTest.RepositoryTest
         public void ProCode_Repository_Delete()
         {
             var list = _repository.Delete(1);
-            Assert.AreEqual(1, list.ID);
+            Assert.AreEqual("D", list.Code);
         }
+
     }
 }
