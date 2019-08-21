@@ -37,7 +37,7 @@
 
         //show the dialog ditail promotion by table
         var vm = this;
-        $scope.openDialog = function ($event, item) {
+        $scope.openDialog = function (item) {
             vm.init = function () {
                 $scope.selectPromotion = item;
             }

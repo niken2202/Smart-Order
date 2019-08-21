@@ -14,7 +14,7 @@
         $scope.CustomerName = "";
         $scope.CrashierName = "";
         $scope.ContentBill = "";
-        $scope.CustomerPromotions;
+        $scope.CustomerPromotions = "";
         $scope.paymentPrice = 0;
         $scope.Promotions = {
             Code: "Không",
@@ -253,23 +253,36 @@
             }
         };
 
+        //delete combo or dish from cart
+        $scope.dishDel = dishDel;
+        function dishDel(item) {
+            for (i = 0; i < $scope.curCart.CartDetails.length; i++) {
+                if (item.Type == $scope.curCart.CartDetails[i].Type) {
+                    if (item.ProID == $scope.curCart.CartDetails[i].ProID) {
+                        $scope.curCart.CartDetails.splice(i, 1);
+                    }
+                }
+            }
+        }
+
         //event catch input promotion
         $scope.promotionEvt = promotionEvt;
         function promotionEvt() {
-            $scope.avaiablePromotion = false;
-            for (i = 0; i < $scope.promotions.length; i++) {
-                if ($scope.CustomerPromotions == $scope.promotions[i].Code) {
-                    $scope.Promotions = $scope.promotions[i];
+            apiService.post('/api/promotioncode/checkvalid?Code=' + $scope.CustomerPromotions , null, function (result) {
+                if (result.data != null) {
+                    $scope.Promotions = result.data
                     $scope.avaiablePromotion = true;
-                    break;
+                } else {
+                    $scope.avaiablePromotion = false;
+                    $scope.Promotions = {
+                        Code: "Không có",
+                        Discount: 0
+                    }
                 }
-            }
-            if ($scope.avaiablePromotion == false) {
-                $scope.Promotions = {
-                    Code: "Không có",
-                    Discount: 0
-                }
-            }
+            }, function () {
+                notificationService.displayError('Tải danh sách mã khuyến mại không thành công');
+            });
+
             var payPrice = $scope.totalPrice - ($scope.totalPrice / 100) * $scope.Promotions.Discount;
             $scope.paymentPrice = payPrice;
         }
@@ -436,7 +449,7 @@
         }
 
         //set schedule to auto call update view
-        $interval(rellTime, 15000);
+        $interval(rellTime, 9000);
         function rellTime() {
             getListTable();
             autoUpdateCart();

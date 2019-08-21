@@ -18,42 +18,42 @@
                 <div class="crashier-table-header">
                     <h4 class="card-title customize-font-green-color ng-binding">Danh sách bàn </h4>
                     <!--<div class="nav-table-bar-parent">
-                    <div class="box-1">
-                        <h4 class="card-title customize-font-green-color">THANH CÔNG CỤ</h4>
-                    </div>
-                    <div class="box-2">
-                        <form class="search-wrapper active">
-                            <div class="input-holder">
-                                <div class="input-holder cornflowerblue">
-                                    <input type="text" ng-model="search" class="search-input cornflowerblue" placeholder="Tìm kiếm">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="box-3">
-                        <h4 class="card-title customize-font-green-color" style="float:right">Thêm món</h4>
-                    </div>
-                    <div class="box-4">
-                        <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="dishAdd()">
-                            <i class="fas fa-plus-circle"></i>
-                        </button>
-                    </div>
-                    <div class="box-5">
-                        <h4 class="card-title customize-font-green-color" style="float:right">Thêm loại sản phẩm  </h4>
-                    </div>
-                    <div class="box-6">
-                        <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="AddCategory()">
-                            <i class="fas fa-plus-circle"></i>
-                        </button>
-                    </div>
-                </div>-->
-                    <!--<form class="search-wrapper active">
-                    <div class="input-holder">
-                        <div class="input-holder">
-                            <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+                        <div class="box-1">
+                            <h4 class="card-title customize-font-green-color">THANH CÔNG CỤ</h4>
                         </div>
-                    </div>
-                </form>-->
+                        <div class="box-2">
+                            <form class="search-wrapper active">
+                                <div class="input-holder">
+                                    <div class="input-holder cornflowerblue">
+                                        <input type="text" ng-model="search" class="search-input cornflowerblue" placeholder="Tìm kiếm">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="box-3">
+                            <h4 class="card-title customize-font-green-color" style="float:right">Thêm món</h4>
+                        </div>
+                        <div class="box-4">
+                            <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="dishAdd()">
+                                <i class="fas fa-plus-circle"></i>
+                            </button>
+                        </div>
+                        <div class="box-5">
+                            <h4 class="card-title customize-font-green-color" style="float:right">Thêm loại sản phẩm  </h4>
+                        </div>
+                        <div class="box-6">
+                            <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="AddCategory()">
+                                <i class="fas fa-plus-circle"></i>
+                            </button>
+                        </div>
+                    </div>-->
+                    <!--<form class="search-wrapper active">
+                        <div class="input-holder">
+                            <div class="input-holder">
+                                <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+                            </div>
+                        </div>
+                    </form>-->
                 </div>
 
                 <div class="crashier-table-body">
@@ -154,9 +154,9 @@
                 <div class="crashier-table-body">
 
                     <div class="crashier-table-row">
-                        <div class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:18" pagination-id="combos">                            
+                        <div class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:18" pagination-id="combos">
                             <div ng-if="comboItem.Status == true"
-                                 ng-click="addDish(DishItem)" class="crashier-btn-dish pointer">
+                                 ng-click="addCombo(comboItem)" class="crashier-btn-dish pointer">
                                 <img class="crashier-img" src="{{comboItem.Image}}" />
                                 <div style="color:#1ebb1e" class="crashier-btn-title">
                                     {{comboItem.Name}}
@@ -169,7 +169,6 @@
                                     {{comboItem.Name}}
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -214,17 +213,17 @@
                         </thead>
                         <tbody>
                             <tr class="customize-font-green-color"
-                                dir-paginate="bill in curCart.CartDetails |itemsPerPage:itemPerPage" pagination-id="cartDetail" on-page-change='indexCount(newPageNumber)'>
+                                dir-paginate="cartItem in curCart.CartDetails |itemsPerPage:itemPerPage" pagination-id="cartDetail" on-page-change='indexCount(newPageNumber)'>
                                 <td>{{ $index + serial}}</td>
-                                <td>{{bill.Name}}</td>
+                                <td>{{cartItem.Name}}</td>
                                 <td>
                                     <input class="crashier-cart-quantity" type="number"
-                                           ng-change="quantityChange(bill)" ng-model="bill.Quantity">
+                                           ng-change="quantityChange(cartItem)" ng-model="cartItem.Quantity">
                                 </td>
-                                <td>{{bill.Price | currency : "" : 0}}</td>
-                                <td>{{bill.Quantity*bill.Price | currency : "" : 0}}</td>
+                                <td>{{cartItem.Price | currency : "" : 0}}</td>
+                                <td>{{cartItem.Quantity*cartItem.Price | currency : "" : 0}}</td>
                                 <td>
-                                    <button class="btn delete-icon" ng-click="dishDel(item)">
+                                    <button class="btn delete-icon" ng-click="dishDel(cartItem)">
                                         <i class="fas fa-trash f1f8 customize-delete-icon"></i>
                                     </button>
                                 </td>
@@ -245,7 +244,7 @@
                         <input style="text-align:right; width:30%" class="customeize-input" type="text"
                                ng-model="CrashierName">
                         <label style="text-align:left; width:45%" class="customize-font-green-color">
-                            &nbsp; Tổng tiền : {{totalPrice | currency : "" : 0}}
+                            &nbsp; Tổng tiền : {{totalPrice | currency : "" : 0}} VNĐ
                         </label>
                     </div>
                     <div class="row2" style="display:flex; margin:2px;">
@@ -266,7 +265,7 @@
                         <input style="text-align:right; width:30%" class="customeize-input" type="text"
                                ng-model="CustomerName">
                         <label style="text-align:left; width:45%" class="customize-font-green-color">
-                            &nbsp; Thanh toán : {{paymentPrice | currency : "" : 0}}
+                            &nbsp; Thanh toán : {{paymentPrice | currency : "" : 0}} VNĐ
                         </label>
                     </div>
                     <div class="row4" style="display:flex; margin:2px;">

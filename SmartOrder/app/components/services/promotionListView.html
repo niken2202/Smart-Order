@@ -1,4 +1,4 @@
-﻿<div class="main-card mb-3 card">
+﻿<div class="main-card mb-3 card" ng-controller="promotionListController as vm">
     <div class="card-body">
         <h4 class="card-title customize-font-blue-color">Danh sách mã giảm giá</h4>
 
@@ -31,26 +31,28 @@
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
                     <tr>
-                        <th class="cornflowerblue" style="width:10%" ng-click="sort('$index')"><i class="fas fa-sort-down"></i></th>
+                        <th class="cornflowerblue" style="width:5%" ng-click="sort('$index')"><i class="fas fa-sort-down"></i></th>
                         <th class="cornflowerblue div-text-align-center" style="width:20%">Mã giảm giá</th>
-                        <th class="cornflowerblue div-text-align-center" style="width:10%" ng-click="sort('Discount')" >Giảm %</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:10%" ng-click="sort('Discount')">Giảm %</th>
                         <th class="cornflowerblue div-text-align-center" style="width:20%" ng-click="sort('ExpiredDate')">Hiệu lực đến</th>
                         <th class="cornflowerblue div-text-align-center" style="width:15%" ng-click="sort('Status')">Trạng thái</th>
-                        <th class="cornflowerblue div-text-align-center" style="width:20%" ng-click="sort('CreatedDate')">Ngày tạo</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:10%">Số lượng</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:15%" ng-click="sort('CreatedDate')">Ngày tạo</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr dir-paginate="item in promotions |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:itemPerPage">
-                        <td ng-click="openDialog($event,item)">{{$index + serial}}</td>
-                        <td ng-click="openDialog($event,item)">{{item.Code}}</td>
-                        <td class="div-text-align-center" ng-click="openDialog($event,item)">{{item.Discount | percentFilter}}</td>
-                        <td class="div-text-align-center" ng-click="openDialog($event,item)">{{item.ExpiredDate | date:"dd-MM-yyyy"}}</td>
-                        <td ng-click="vm.openDialog($event,item)">
+                        <td class="pointer" ng-click="openDialog(item)">{{$index + serial}}</td>
+                        <td class="pointer" ng-click="openDialog(item)">{{item.Code}}</td>
+                        <td class="div-text-align-center pointer" ng-click="openDialog(item)">{{item.Discount | percentFilter}}</td>
+                        <td class="div-text-align-center pointer" ng-click="openDialog(item)">{{item.ExpiredDate | date:"dd-MM-yyyy"}}</td>
+                        <td ng-click="vm.openDialog(item)">
                             <span style="width:80%; float:right" ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1,'mb-2 mr-2 btn btn-danger':item.Status==0}">
                                 {{item.Status | avaiableFilter}}
                             </span>
                         </td>
-                        <td class="div-text-align-center" ng-click="openDialog($event,item)">{{item.CreatedDate | date:"dd-MM-yyyy"}}</td>
+                        <td class="pointer div-text-align-center" ng-click="openDialog(item)">{{item.Times}}</td>
+                        <td class="div-text-align-center pointer" ng-click="openDialog(item)">{{item.CreatedDate | date:"dd-MM-yyyy"}}</td>
                         <!--<td>
         <button class="btn delete-icon" ng-click="mateDel(item)">
             <i class="fas fa-trash f1f8 customize-delete-icon"></i>

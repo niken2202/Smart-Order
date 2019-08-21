@@ -4,12 +4,12 @@
     promotionEditsController.$inject = ['$scope', 'apiService', 'notificationService'];
 
     function promotionEditsController($scope, apiService, notificationService) {
-        $scope.edtPromo = {
-            ID: $scope.selectPromotion.ID,
+        $scope.edtPromo = {            
             Code: $scope.selectPromotion.Code,
             CreatedDate: $scope.selectPromotion.CreatedDate,
             ExpiredDate: new Date($scope.selectPromotion.ExpiredDate),
             Discount: $scope.selectPromotion.Discount,
+            Times: $scope.selectPromotion.Times,
             Status: $scope.selectPromotion.Status
         };
 
@@ -24,7 +24,7 @@
                     notificationService.displaySuccess($scope.edtPromo.Code + ' đã được cập nhật mới! ');
                     $scope.reloadPromo();
                 }, function (error) {
-                    notificationService.displayError('Cập nhật mới không thành công ! Vui lòng kiểm tra lại thông tin đã nhập');
+                    notificationService.displayError('Lỗi ! Vui lòng kiểm tra lại mã giảm giá không được trùng');
                 });
 
         }

@@ -21,7 +21,7 @@
                     //console.log('update success');
                     $scope.reloadPromo();
                 }, function (error) {
-                    notificationService.displayError('Cập nhật mới không thành công ! Vui lòng kiểm tra lại thông tin đã nhập');
+                    notificationService.displayError('Lỗi ! Vui lòng kiểm tra lại mã giảm giá không được trùng');
                 });
         }
 
