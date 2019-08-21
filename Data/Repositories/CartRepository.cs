@@ -35,12 +35,17 @@ namespace Data.Repositories
         }
         public override void Update(Cart cart)
         {
-            var CartDetails = DbContext.CartDetail.Where(x => x.CartID == x.ID).Select(x => x.ID);
+            var CartDetails = DbContext.CartDetail.Where(x => x.CartID == x.ID);
             foreach (var c in cart.CartDetails)
             {
-                if (!CartDetails.Contains(c.ID))
+                var cd = CartDetails.SingleOrDefault(x => x.ProID == c.ProID && x.Note.Trim().Equals(c.Note.Trim()));
+                if (cd == null)
                 {
                     DbContext.CartDetail.Add(c);
+                }
+                else
+                {
+                    cd.Quantity = cd.Quantity + c.Quantity;
                 }
             }
         }
