@@ -125,6 +125,10 @@
     <Compile Include="Migrations\201908201758199_change-PromotionCodeTable.Designer.cs">
       <DependentUpon>201908201758199_change-PromotionCodeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908211654098_alter-bill-table.cs" />
+    <Compile Include="Migrations\201908211654098_alter-bill-table.Designer.cs">
+      <DependentUpon>201908211654098_alter-bill-table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationRoleRepository.cs" />
@@ -208,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908201758199_change-PromotionCodeTable.resx">
       <DependentUpon>201908201758199_change-PromotionCodeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908211654098_alter-bill-table.resx">
+      <DependentUpon>201908211654098_alter-bill-table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

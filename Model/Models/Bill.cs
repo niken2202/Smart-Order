@@ -26,7 +26,7 @@ namespace Model.Models
         public DateTime CreatedDate { get; set; }
 
         [Required]
-        public double Total { get; set; }
+        public decimal Total { get; set; }
         public string CreatedBy { set; get; }
         public int? Discount { set; get; }
         public bool Status { get; set; }

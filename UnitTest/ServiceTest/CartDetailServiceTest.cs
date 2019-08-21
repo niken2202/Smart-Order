@@ -46,6 +46,6 @@ namespace UnitTest.ServiceTest
             var result = _service.GetAll() as List<CartDetailViewModel>;
             Assert.AreEqual(1, result.Count);
         }
-
+  
     }
 }

@@ -49,8 +49,8 @@ namespace UnitTest.RepositoryTest
 
         #endregion Additional test attributes
 
-        [TestMethod]
-        public void Add_Bill_Test()
+    [TestMethod]
+    public void Add_Bill_Test()
         {
             Bill bill = new Bill();
             bill.CustomerName = "Test bill";

@@ -24,6 +24,7 @@ namespace UnitTest.ServiceTest
         private List<Bill> _listCategory;
         List<RevenueStatisticViewModel> _listRevenue;
         List<RevenueByMonthViewModel> _listRevenue2;
+        List<BillViewModel> _listBVM;
         [TestInitialize]
         public void Initialize()
         {
@@ -44,6 +45,7 @@ namespace UnitTest.ServiceTest
             {
                 new RevenueByMonthViewModel(){ Revenue=30,Month=8,Year=2019}
             };
+            _listBVM = new List<BillViewModel>() { new BillViewModel { ID = 1 } };
         }
         [TestMethod]
         public void Bill_Service_Create()
@@ -67,14 +69,14 @@ namespace UnitTest.ServiceTest
         public void Bill_Service_GetAll()
         {
             //setup method
-            _mockRepository.Setup(m => m.GetAll(null)).Returns(_listCategory);
+            _mockRepository.Setup(m => m.GetAll()).Returns(_listBVM);
 
             //call action
-            var result = _service.GetAll() as List<Bill>;
+            var result = _service.GetAll() as List<BillViewModel>;
 
             //compare
             Assert.IsNotNull(result);
-            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(1, result.Count);
         }
 
         [TestMethod]

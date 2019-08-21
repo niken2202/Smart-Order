@@ -57,7 +57,20 @@ namespace UnitTest.ServiceTest
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.ID);
         }
-  
+        [TestMethod]
+        public void Combo_Service_Update()
+        {
+            Combo combo = new Combo();
+            combo.Description = "Test combo";
+            combo.Price = 10;
+            combo.Name = "Test";
+            combo.Amount = 10;
+            combo.Status = true;
+
+            _mockRepository.Setup(m => m.Update(combo));
+
+            _service.Update(combo);
+        }
 
         [TestMethod]
         public void Combo_Service_GetComboById()

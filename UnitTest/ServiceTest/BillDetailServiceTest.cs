@@ -27,6 +27,7 @@ namespace UnitTest.ServiceTest
             {
                 new BillDetail()
                 {
+                    ID=1,
             BillID = 1,
             Image = "dsds",
             Name = "Mon chua ngot",
@@ -38,13 +39,23 @@ namespace UnitTest.ServiceTest
         }
 
         [TestMethod]
-        public void BillDetail_Service_GetAll()
+        public void BillDetail_Service_GetByBillID()
         {
             //setup method
             _mockRepository.Setup(m => m.GetByBillID(1)).Returns(_listBillDetail);
             //call action
             var result = _service.GetByBillId(1) as List<BillDetail>;
             Assert.AreEqual(1, result.Count);
+        }
+        [TestMethod]
+        public void BillDetail_Service_Add()
+        {
+            //setup method
+            _mockRepository.Setup(m => m.Add(_listBillDetail[0]));
+            //call action
+            var result = _service.Add(_listBillDetail[0]);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.ID);
         }
     }
 }
