@@ -129,7 +129,7 @@
                 }
             }
             $scope.totalPrice = total;
-            $scope.paymentPrice = $scope.totalPrice - ($scope.totalPrice / 100) * $scope.Promotions.Discount;
+            $scope.paymentPrice = $scope.totalPrice - (($scope.totalPrice / 100) * $scope.Promotions.Discount);
         }
 
         //add dish to cart
@@ -343,6 +343,7 @@
                     Status: true
                 }
                 apiService.post('/api/bill/add', $scope.addBill, function (result) {
+                    console.log(result);
                     $scope.CustomerName = "";
                     $scope.CrashierName = "";
                     $scope.ContentBill = "";

@@ -18,11 +18,11 @@
             </div>
 
             <div class="position-relative form-group">
-                <label for="examplePassword" class="">Giá cấu thành sản phẩm</label>
+                <label for="examplePassword" class="">Số lượng</label>
                 <span class="customize-font-bold">{{edtDish.Amount | currency:"VNĐ ":0}}</span>
                 <input required name="dishAmount" ng-model="edtDish.Amount" type="number" class="form-control"
                        min="0" oninput="this.value = Math.abs(this.value)">
-                <span ng-show="frmEditsDish.dishAmount.$invalid" class="had-error">*Hãy nhập giá cấu thành sản phẩm</span>
+                <span ng-show="frmEditsDish.dishAmount.$invalid" class="had-error">*Hãy nhập số lượng cho món</span>
             </div>
 
             <div class="position-relative form-group">

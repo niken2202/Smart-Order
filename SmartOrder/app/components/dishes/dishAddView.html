@@ -16,11 +16,11 @@
                 <span ng-show="frmAddDish.dishPrice.$invalid" class="had-error">*Phải nhập giá bán</span>
             </div>
             <div class="position-relative form-group">
-                <label for="examplePassword">Giá cấu thành sản phẩm</label>
+                <label for="examplePassword">Số lượng</label>
                 <span class="customize-font-bold">{{dishAdd.Amount | currency:"VNĐ ":0}}</span>
                 <input required name="dishAmount" type="number" class="form-control" ng-model="dishAdd.Amount"
                        min="0" oninput="this.value = Math.abs(this.value)">
-                <span ng-show="frmAddDish.dishAmount.$invalid" class="had-error">*Hãy nhập giá cấu thành sản phẩm</span>
+                <span ng-show="frmAddDish.dishAmount.$invalid" class="had-error">*Hãy nhập số lượng cho món</span>
             </div>
             <div class="position-relative form-group ">
                 <label for="exampleSelect">Nhóm món ăn</label>
