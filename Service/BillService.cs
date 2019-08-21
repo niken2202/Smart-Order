@@ -19,7 +19,6 @@ namespace Service
         IEnumerable<RevenueStatisticViewModel> GetRevenueStatistic(DateTime fromDate, DateTime toDate);
         IEnumerable<RevenueByMonthViewModel> GetRevenueGroupByMonth(DateTime fromDate, DateTime toDate);
         object GetBillDetail(int id);
-       
         void SaveChanges();
     }
 

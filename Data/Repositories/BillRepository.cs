@@ -127,12 +127,21 @@ namespace Data.Repositories
             {
                 DbContext.Cart.Remove(cart);
             }
-            var code = DbContext.PromotionCode.SingleOrDefault(x => x.Code.Equals(b.Voucher));
-            if (code.Times > 0)
+            var code = DbContext.PromotionCode.SingleOrDefault(x => x.Status == true &&
+            x.Code.Trim().Equals(b.Voucher.Trim())
+            && (DateTime.Compare(x.ExpiredDate, DateTime.Now) >= 0)
+            && x.Times > 0);
+            int dis = 1;
+            if (code != null)
             {
-                code.Times--;
+                if (code.Times > 0)
+                {
+                    code.Times--;
+                    dis = code.Discount;
+                }
+                if (code.Times <= 0) code.Status = false;
             }
-            if (code.Times <= 0) code.Status = false;
+            b.Total = b.BillDetail.Sum(x => (x.Amount * x.Price)) * dis;
             return b;
         }
         public IEnumerable<BillViewModel> GetAll()

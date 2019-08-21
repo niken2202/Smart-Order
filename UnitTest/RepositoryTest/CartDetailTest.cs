@@ -56,6 +56,5 @@ namespace UnitTest.RepositoryTest
             Assert.AreEqual(2, list.Count);
         }
 
-        
     }
 }
