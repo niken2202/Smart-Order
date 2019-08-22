@@ -7,6 +7,8 @@
         $scope.title;
         //user option from slect box
         $scope.userOption;
+        $scope.label = [];
+        $scope.data = [];
 
         var optionArr = new Array();
         function tmp(key, val) {
@@ -123,37 +125,32 @@
             } else if ($scope.userOption === 3) {
                 fdate = new Date();
                 tDate = new Date(fdate);
+                //fdate.setMonth(tDate.getMonth() - 12);
 
-                tDate.setMonth(tDate.getMonth() - 12);
+                var fromDate = fdate.getFullYear() + "-" + 01 + "-" + 01;
+                var toDate = tDate.getFullYear() + "-" + (tDate.getMonth() + 1) + "-" + tDate.getDate() ;
+                var url = "/api/bill/getrevenuebymonth?fromDate=" + fromDate + "&toDate=" + toDate; 
+                console.log(fromDate);
+                console.log(toDate);
+                console.log(url);
 
-                console.log(fdate);
-                console.log(tDate);
+                apiService.get(url, null, function (result) {
 
-                var config = {
-                    params: {
-                        fromDate: fdate,
-                        toDate: tDate
-                    }
-                }
-                apiService.get('/api/bill/getrevenuebymonth', config, function (result) {
-                    $scope.bills = result.data;
+                    console.log(result.data.length);
                     $scope.title = "12 Tháng gần đây";
-                    if ($scope.bills.length === 0) {
-                        //notificationService.displayWarning('Danh sách trống !');
-                    } else {
-                        //notificationService.displaySuccess('Tổng cộng có: ' + $scope.bills.length + ' hóa đơn');
-                        //$scope.countBill = $scope.bills.length;
-                    }
+                    for (i = 0; i < result.data.length; i++) {
+                        $scope.label.push(result.data[i].Month);
+                        $scope.data.push(result.data[i].Revenue);
+                    }                   
                 }, function () {
                     notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
-                    $scope.countBill = $scope.bills.length;
                 });
             }
         };
 
         $scope.revenues = {
-            labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
-            data: [950000, 1400000, 1200000, 1200000, 1600000, 1400000, 1300000, 1300000, 1200000, 1200000, 1100000, 1200000],
+            labels: $scope.label,
+            data: $scope.data,
             color: ["#4f8bcc"]
         };
 

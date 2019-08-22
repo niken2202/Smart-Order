@@ -43,7 +43,7 @@
                     <tr dir-paginate="item in materials |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:itemPerPage">
                         <td ng-click="openDialog($event,item)">{{ $index + serial}}</td>
                         <td ng-click="openDialog($event,item)">{{item.Name}}</td>
-                        <td ng-click="openDialog($event,item)">{{item.Price}}</td>
+                        <td ng-click="openDialog($event,item)">{{item.Price | currency:"VNĐ ":0}}</td>
                         <td ng-click="openDialog($event,item)">{{item.Amount}}</td>
                         <td ng-click="openDialog($event,item)">{{item.Unit}}</td>
                         <td>

@@ -12,13 +12,16 @@
 
             <div class="position-relative form-group">
                 <label class="">Giá tiền</label>
-                <input required name="Price" type="number" class="form-control" ng-model="edtMate.Price">
+                <span class="customize-font-bold">{{edtMate.Price | currency:"VNĐ ":0}}</span>
+                <input required name="Price" type="number" class="form-control" ng-model="edtMate.Price"
+                       min="0" oninput="this.value = Math.abs(this.value)">
                 <span ng-show="frmEditMaterial.Price.$invalid" class="had-error">*Vui lòng nhấp giá tiền</span>
             </div>
 
             <div class="position-relative form-group">
                 <label class="">Số lượng</label>
-                <input required name="Amount" type="number" class="form-control" ng-model="edtMate.Amount">
+                <input required name="Amount" type="number" class="form-control" ng-model="edtMate.Amount"
+                        min="0" oninput="this.value = Math.abs(this.value)">
                 <span ng-show="frmEditMaterial.Amount.$invalid" class="had-error"></span>
             </div>
 

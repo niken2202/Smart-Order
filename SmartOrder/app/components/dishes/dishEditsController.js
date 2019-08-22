@@ -35,6 +35,19 @@
         }
         getDishCategory();
 
+        //get list dish from api
+        function getDish() {
+            apiService.get('/api/dish/getall', null, function (result) {
+                $scope.dishes = result.data.listDish;
+                if ($scope.dishes.length === 0) {
+                    //notificationService.displayWarning('Danh sách trống !');                    
+                }
+            }, function () {
+                notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
+            });
+        }
+        getDish();
+
         var a = $scope.dish;
         $scope.edtDish = {
             ID: a.ID, Name: a.Name, Price: a.Price, Amount: a.Amount, Description: a.Description,
@@ -64,13 +77,27 @@
         //update dish
         $scope.updateDish = updateDish;
         function updateDish() {
-            apiService.put('api/dish/update', $scope.edtDish,
-                function (result) {
-                    notificationService.displaySuccess($scope.edtDish.Name + ' đã được cập nhật mới! ');
-                    $scope.reload();
-                }, function (error) {
-                    notificationService.displayError('Cập nhật mới không thành công ! Vui lòng kiểm tra lại thông tin đã nhập');
-                });
+            var condition = new Boolean(true);
+            var checkName = $scope.edtDish.Name;
+            var curName;
+            checkName = checkName.trim().toLowerCase();
+            for (i = 0; i < $scope.dishes.length; i++) {
+                curName = $scope.dishes[i].Name;
+                curName = curName.trim().toLowerCase();
+                if ($scope.edtDish.ID != $scope.dishes[i].ID && checkName == curName)
+                    condition = false;
+            }
+            if (condition == true) {
+                apiService.put('api/dish/update', $scope.edtDish,
+                    function (result) {
+                        notificationService.displaySuccess($scope.edtDish.Name + ' đã được cập nhật mới! ');
+                        $scope.reload();
+                    }, function (error) {
+                        notificationService.displayError('Cập nhật mới không thành công ! Vui lòng kiểm tra lại thông tin đã nhập');
+                    });
+            } else {
+                notificationService.displayError('Món đã tồn tại');
+            }            
         }
     }
 })(angular.module('SmartOrder.dishes'));

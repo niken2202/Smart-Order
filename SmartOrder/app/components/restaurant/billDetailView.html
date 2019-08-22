@@ -11,20 +11,20 @@
             <table class="mb-0 table mb-0 table table-hover">
                 <thead>
                     <tr class="customize-font-blue-color">
-                        <th>STT</th>
-                        <th>Mặt hàng</th>
-                        <th>Số lượng</th>
-                        <th>Đơn giá</th>
-                        <th>Thành tiền</th>
+                        <th style="width:5%"><i class="fas fa-sort-down"></i></th>
+                        <th style="width:30%">Mặt hàng</th>
+                        <th style="width:15%; text-align:center">Số lượng</th>
+                        <th style="width:25%; text-align:center">Đơn giá</th>
+                        <th style="width:25%; text-align:center">Thành tiền</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr dir-paginate="item in billDetails |itemsPerPage:itemPerPage" on-page-change='indexCountBillDetails(newPageNumber)'>
                         <td>{{$index + serialBillDetails}}</td>
                         <td>{{item.Name}}</td>
-                        <td>{{item.Amount}}</td>
-                        <td>{{item.Price}}</td>
-                        <td>{{item.Amount*item.Price}}</td>
+                        <td style="text-align:center">{{item.Amount}}</td>
+                        <td style="text-align:center">{{item.Price | currency:"":0}}</td>
+                        <td style="text-align:center">{{item.Amount*item.Price | currency:"":0}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -38,7 +38,7 @@
             </div>
             <div class="row1" style=" margin:2px;">
                 <label style="text-align:left; width:40%" class="customize-font-blue-color">
-                    Tổng tiền : {{currentBill.Total}}
+                    Tổng tiền : {{currentBill.Total | currency:"₫ ":0}}
                 </label>
             </div>
             <div class="row4" style=" margin:2px;">

@@ -42,7 +42,7 @@
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('Name')">Tên món</th>
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('CategoryID')">Nhóm đồ</th>
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('Price')">Giá bán</th>
-                        <th class="cornflowerblue div-text-align-center" ng-click="sort('Amount')">Giá nhập</th>
+                        <th class="cornflowerblue div-text-align-center" ng-click="sort('Amount')">Số lượng</th>
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('Status')">Trạng thái</th>
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('OrderCount')" style="width:8%;text-align:center">Đã bán</th>
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('CreatedDate')" style="text-align:center">Ngày khởi tạo</th>
@@ -54,7 +54,7 @@
                         <td class="pointer" ng-click="vm.openDialog($event,item)">{{ $index + serial}}</td>
                         <td class="pointer" ng-click="vm.openDialog($event,item)">{{item.Name}}</td>
                         <td class="pointer" ng-click="vm.openDialog($event,item)">{{item.CategoryName}}</td>
-                        <td class="div-text-align-center pointer" ng-click="vm.openDialog($event,item)">{{item.Price}}</td>
+                        <td class="div-text-align-center pointer" ng-click="vm.openDialog($event,item)">{{item.Price | currency:"" :0}}</td>
                         <td class="div-text-align-center pointer" ng-click="vm.openDialog($event,item)">{{item.Amount}}</td>
                         <td class="pointer" ng-click="vm.openDialog($event,item)">
                             <span style="width:80%; float:right" ng-class="{'mb-2 mr-2 btn btn-success':item.Status===1,'mb-2 mr-2 btn btn-danger':item.Status===0}">

@@ -4,7 +4,7 @@
     listDishController.$inject = ['$scope', 'ngDialog', 'apiService', 'notificationService'];
 
     function listDishController($scope, ngDialog, apiService, notificationService) {
-        //get data from api
+        //get list dish from api
         function getDish() {            
             apiService.get('/api/dish/getall', null, function (result) {
                 $scope.dishes = result.data.listDish;

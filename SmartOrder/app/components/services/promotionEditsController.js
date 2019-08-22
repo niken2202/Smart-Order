@@ -24,7 +24,7 @@
                     notificationService.displaySuccess($scope.edtPromo.Code + ' đã được cập nhật mới! ');
                     $scope.reloadPromo();
                 }, function (error) {
-                    notificationService.displayError('Lỗi ! Vui lòng kiểm tra lại mã giảm giá không được trùng');
+                    notificationService.displayError('Mã giảm giá đã tồn tại');
                 });
 
         }

@@ -164,15 +164,15 @@
                     CartPrice: $scope.paymentPrice
                 }
                 $scope.checkCart = false;
-                Order();                
+                //Order();                
             } else {
                 //add dish by update quantity of dish in cart details
                 for (i = 0; i < $scope.curCart.CartDetails.length; i++) {
                     if ($scope.curCart.CartDetails[i].Type == 1 && item.ID == $scope.curCart.CartDetails[i].ProID) {
                         $scope.curCart.CartDetails[i].Quantity += 1;
                         condition = false;
-                        $scope.checkCart = true;
-                        Order();
+                        //$scope.checkCart = true;
+                        //Order();
                         break;
                     }
                 }
@@ -190,8 +190,8 @@
                         Type: 1
                     };
                     $scope.curCart.CartDetails.push($scope.dishCart);
-                    $scope.checkCart = true;
-                    Order();
+                    //$scope.checkCart = true;
+                    //Order();
                     countTotalPrice();
                 }
             }
@@ -310,13 +310,13 @@
                         notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
                     });
                 } else { //update current cart
-                    apiService.put('/api/cart/update', $scope.curCart, function (result) {
-                        notificationService.displaySuccess('Món đã được cập nhật !' );
-                        $scope.curCart.ID = result.data.ID;
-                        changeTableStatusOff($scope.curTable);
-                    }, function () {
-                        notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
-                    });
+                    //apiService.put('/api/cart/update', $scope.curCart, function (result) {
+                    //    notificationService.displaySuccess('Món đã được cập nhật !' );
+                    //    $scope.curCart.ID = result.data.ID;
+                    //    changeTableStatusOff($scope.curTable);
+                    //}, function () {
+                    //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                    //});
 
                 }
             }

@@ -12,13 +12,16 @@
 
             <div class="position-relative form-group">
                 <label class="">Giá tiền</label>
-                <input required name="Price" type="number" class="form-control" ng-model="mateAdd.Price">
+                <span class="customize-font-bold">{{mateAdd.Price | currency:"VNĐ ":0}}</span>
+                <input required name="Price" type="number" class="form-control" ng-model="mateAdd.Price"
+                       min="0" oninput="this.value = Math.abs(this.value)">
                 <span ng-show="frmAddMaterial.Price.$invalid" class="had-error">*Vui lòng nhấp giá tiền mặt hàng</span>
             </div>
 
             <div class="position-relative form-group">
                 <label class="">Số lượng</label>
-                <input required name="Amount" type="number" class="form-control" ng-model="mateAdd.Amount">
+                <input required name="Amount" type="number" class="form-control" ng-model="mateAdd.Amount"
+                        min="0" oninput="this.value = Math.abs(this.value)">
                 <span ng-show="frmAddMaterial.Amount.$invalid" class="had-error"></span>
             </div>
 

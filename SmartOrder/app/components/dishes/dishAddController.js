@@ -21,6 +21,7 @@
 
     function dishAddController($http, $scope, apiService, notificationService, $rootScope) {
 
+        $scope.dishes = [];
         //dish binding in dialog add dish
         $scope.dishAdd = {
             CreatedDate: new Date,
@@ -28,8 +29,6 @@
             OrderCount: 0,
             Image: null
         }
-
-        //$scope.imageSrc = "";
 
         //Upload file
         $scope.uploadFile = function (files) {
@@ -57,16 +56,47 @@
         }
         getDishCategory();
 
+        //get list dish from api
+        function getDish() {
+            apiService.get('/api/dish/getall', null, function (result) {
+                $scope.dishes = result.data.listDish;
+                if ($scope.dishes.length === 0) {
+                    //notificationService.displayWarning('Danh sách trống !');                    
+                }
+            }, function () {
+                notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
+            });
+        }
+        getDish();
+
         //add dish to database
         $scope.CreateDish = CreateDish;
         function CreateDish() {
-            apiService.post('api/dish/add', $scope.dishAdd,
-                function (result) {
-                    notificationService.displaySuccess($scope.dishAdd.Name + ' đã được thêm mới.');
-                    $scope.reload();
-                }, function (error) {
-                    notificationService.displayError('Thêm mới không thành công.');
-                });
+            var condition = new Boolean(true);
+            var checkName = $scope.dishAdd.Name;
+            var curName;
+            checkName = checkName.trim().toLowerCase();
+            for (i = 0; i < $scope.dishes.length; i++) {
+                curName = $scope.dishes[i].Name;
+                curName = curName.trim().toLowerCase();
+                if (checkName == curName)
+                    condition = false;
+            }
+            if (condition == true) {
+                if ($scope.dishAdd.Image != null) {
+                    apiService.post('api/dish/add', $scope.dishAdd,
+                        function (result) {
+                            notificationService.displaySuccess($scope.dishAdd.Name + ' đã được thêm mới.');
+                            $scope.reload();
+                        }, function (error) {
+                            notificationService.displayError('Thêm mới không thành công');
+                        });
+                } else {
+                    notificationService.displayError('Vui lòng chọn ảnh !');
+                }                
+            } else {
+                notificationService.displayError('Món đã tồn tại');
+            }            
         }
 
     }

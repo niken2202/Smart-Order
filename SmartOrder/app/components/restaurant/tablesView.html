@@ -35,8 +35,8 @@
                 <thead>
                     <tr>
                         <th class="cornflowerblue" style="width:5%" ng-click="sort('$index')"><i class="fas fa-sort-down"></i></th>
-                        <th class="cornflowerblue div-text-align-center" style="width:20%" ng-click="sort('Name')">Tên Bàn</th>
-                        <th class="cornflowerblue div-text-align-center" style="width:20%">Mã thiết bị</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:20%; text-align:left" ng-click="sort('Name')">Tên Bàn</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:20%; text-align:left">Mã thiết bị</th>
                         <th class="cornflowerblue div-text-align-center" style="width:20%" ng-click="sort('Status')">Trạng thái</th>
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('CreatedDate')" style="width:30%;text-align:center">Ngày khởi tạo</th>
                         <th></th>
@@ -48,7 +48,8 @@
                     <tr dir-paginate="item in tables |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:itemPerPage">
                         <td ng-click="vm.openDialog($event,item)">{{$index + serial}}</td>
                         <td ng-click="vm.openDialog($event,item)">{{item.Name}}</td>
-                        <td class="div-text-align-center" ng-click="vm.openDialog($event,item)">{{item.DeviceID}}</td>
+                        <td class="div-text-align-center" style="text-align:left"
+                            ng-click="vm.openDialog($event,item)">{{item.DeviceID}}</td>
                         <td ng-click="vm.openDialog($event,item)">
                             <span style="width:70%; float:right" ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1,'mb-2 mr-2 btn btn-danger':item.Status==0}">
                                 {{item.Status | avaiableFilter}}
