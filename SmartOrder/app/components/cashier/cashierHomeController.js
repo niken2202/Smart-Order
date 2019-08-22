@@ -171,7 +171,7 @@
                     if ($scope.curCart.CartDetails[i].Type == 1 && item.ID == $scope.curCart.CartDetails[i].ProID) {
                         $scope.curCart.CartDetails[i].Quantity += 1;
                         condition = false;
-                        $scope.checkCart == true;
+                        $scope.checkCart = true;
                         Order();
                         break;
                     }
@@ -179,6 +179,7 @@
                 //add new dish to cart detail
                 if (condition == true) {
                     $scope.dishCart = {
+                        ID:0,
                         Name: item.Name,
                         Price: item.Price,
                         Quantity: 1,
@@ -189,7 +190,7 @@
                         Type: 1
                     };
                     $scope.curCart.CartDetails.push($scope.dishCart);
-                    $scope.checkCart == true;
+                    $scope.checkCart = true;
                     Order();
                     countTotalPrice();
                 }
@@ -302,8 +303,8 @@
                 //create new cart
                 if ($scope.checkCart == false) {
                     apiService.post('/api/cart/add', $scope.curCart, function (result) {
-                        notificationService.displaySuccess('Ok !' + result.data.ID);
-                        $scope.curCart.ID = result.data.ID;
+                        //notificationService.displaySuccess('Ok !' + result.data.ID);
+                        $scope.curCart = result.data;
                         changeTableStatusOff($scope.curTable);
                     }, function () {
                         notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
