@@ -9,6 +9,14 @@
         $scope.userOption;
         $scope.label = [];
         $scope.data = [];
+        $scope.libColor = ["#3e95cd", "#fd7e14", "#6c757d", "#16aaff", "#6610f2", "#794c8a", "#ffc107", "#e8c3b9", "#2f1161", "#8e5ea2"]
+        $scope.colors = [];
+
+        $scope.revenues = {
+            labels: $scope.label,
+            data: $scope.data,
+            color: $scope.colors
+        };
 
         var optionArr = new Array();
         function tmp(key, val) {
@@ -19,11 +27,11 @@
         optionArr.push(op);
         op = new tmp(2, '30 ngày gần đây');
         optionArr.push(op);
-        op = new tmp(3, '12 tháng gần đây');
+        op = new tmp(3, 'Trong năm nay');
         optionArr.push(op);
         $scope.options = optionArr;
 
-        //get all history
+        //get history display in home page
         function getHistory() {
             //var config = {
             //    params: {
@@ -137,9 +145,10 @@
                 apiService.get(url, null, function (result) {
 
                     console.log(result.data.length);
-                    $scope.title = "12 Tháng gần đây";
+                    $scope.title = "Trong năm nay";
                     for (i = 0; i < result.data.length; i++) {
-                        $scope.label.push(result.data[i].Month);
+                        var month = 'Tháng ' + result.data[i].Month
+                        $scope.label.push(month);
                         $scope.data.push(result.data[i].Revenue);
                     }                   
                 }, function () {
@@ -148,32 +157,67 @@
             }
         };
 
-        $scope.revenues = {
-            labels: $scope.label,
-            data: $scope.data,
-            color: ["#4f8bcc"]
-        };
+        function formatRevenuesData(data) {
+            var a = data.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+            return a;
+        }
 
-        var ctx = document.getElementById("dvCanvas").getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                datasets: [{
-                    data: $scope.revenues.data,
-                    backgroundColor: $scope.revenues.color,
-                    label: "Doanh thu",
-                }],
-                labels: $scope.revenues.labels,
-            },
-            options: {
-                responsive: true,
-                title: {
-                    display: true,
-                    text: 'Doanh thu trong 12 tháng',
-                    position: 'bottom',
+        function getRevenuesInYear() {
+            fdate = new Date();
+            tDate = new Date(fdate);
+            //fdate.setMonth(tDate.getMonth() - 12);
+
+            var fromDate = fdate.getFullYear() + "-" + 01 + "-" + 01;
+            var toDate = tDate.getFullYear() + "-" + (tDate.getMonth() + 1) + "-" + tDate.getDate();
+            var url = "/api/bill/getrevenuebymonth?fromDate=" + fromDate + "&toDate=" + toDate;
+
+            apiService.get(url, null, function (result) {
+
+                $scope.title = "Trong năm nay";
+                var k = 0;
+                for (i = 0; i < result.data.length; i++) {
+                    var month = 'Tháng ' + result.data[i].Month
+                    $scope.label.push(month);
+                    $scope.data.push(result.data[i].Revenue);
+                    $scope.colors.push($scope.libColor[k]);
+                    k++;
+                    if (k == 9) {
+                        k = 0;
+                    }
+                }
+                drawChart();
+
+            }, function () {
+                notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
+            });
+        }
+        getRevenuesInYear();
+
+        function drawChart() {
+            
+            var ctx = document.getElementById("dvCanvas").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        data: $scope.revenues.data,
+                        backgroundColor: $scope.revenues.color,
+                        label: "Doanh thu",
+                    }],
+                    labels: $scope.revenues.labels,
                 },
-                showDatasetLabels: false
-            }
-        });
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Doanh thu trong năm nay',
+                        position: 'bottom',
+                    },
+                    showDatasetLabels: false,
+                }
+            });
+
+        }
+      
     };
 })(angular.module('SmartOrder'));

@@ -60,7 +60,6 @@
 
                     getListToday();
                     notificationService.displaySuccess('Tổng cộng có: ' + $scope.histories.length + ' hoạt động');
-                    $scope.countHistory = $scope.histories.length;
 
                 } else if ($scope.userOption === 2) {
 
