@@ -13,10 +13,10 @@ namespace Data.Migrations
                    fromDate = p.DateTime(),
                    toDate = p.DateTime()
                },
-           @"select b.CreatedDate as  Date, sum(b.Total) as Revenue
-    from Bill b 
-    where b.CreatedDate >=@fromDate and b.CreatedDate <=@toDate
-   group by b.CreatedDate"
+           @"select cast(b.CreatedDate as Date) as Date,Sum(b.Total) as Revenue from Bill b
+where cast(b.CreatedDate as Date) >= @fromDate and cast(b.CreatedDate as Date) <= @toDate
+
+group by cast(b.CreatedDate as Date)"
 
                );
         }
