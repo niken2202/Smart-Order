@@ -113,7 +113,6 @@ namespace SmartOrder.api
                 {
                     Cart cart = cartService.Delete(id);
                     cartService.SaveChanges();
-                    SaveHistory("Add new Dish with ID: " + cart.ID);
                     response = request.CreateResponse(HttpStatusCode.OK, cart);
                 }
                 return response;
