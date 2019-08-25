@@ -42,6 +42,7 @@ namespace Data.Repositories
                 {
                     DbContext.CartDetail.Add(c);
                 }
+               
             }
         }
         public Cart GetCartByTable(int tableID)

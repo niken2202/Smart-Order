@@ -1,7 +1,6 @@
 ﻿using Data.Infrastructure;
 using Model.Models;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace Data.Repositories
@@ -28,10 +27,8 @@ namespace Data.Repositories
 
         public IEnumerable<Table> GetVariableTable()
         {
-            var query = from t in DbContext.Tables
-                        where t.DeviceID.Trim().Length == 0
-                        select t;
-            return query;
+            var listTable = DbContext.Tables.Where(x => x.DeviceID == null || x.DeviceID.Trim().Length == 0);
+            return listTable;
         }
 
         public Table SaveIMEI(int tableID, string imei)
