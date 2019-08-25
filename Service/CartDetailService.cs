@@ -12,7 +12,8 @@ namespace Service
         void Update(CartDetail cartDetail);
         IEnumerable<CartDetailViewModel> GetAll();
         void DeleteMulti(int cartID);
-       
+
+        CartDetail Delete(int id);
         void SaveChanges();
     }
     public class CartDetailService : ICartDetailService
@@ -29,6 +30,11 @@ namespace Service
         public CartDetail Add(CartDetail cartDetail)
         {
             return cartDetailRepository.Add(cartDetail);
+        }
+
+        public CartDetail Delete(int id)
+        {
+            return cartDetailRepository.Delete(id);
         }
 
         public void DeleteMulti(int cartID)
