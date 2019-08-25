@@ -141,6 +141,27 @@ namespace SmartOrder.api
                 return response;
             });
         }
+
+        [Route("disable"),HttpPut]
+
+        public HttpResponseMessage Disable(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listDish = dishService.DisableDish(id);
+                    response = request.CreateResponse(HttpStatusCode.OK, listDish);
+                }
+                return response;
+            });
+        }
         [Route("update"), Authorize]
         public HttpResponseMessage Put(HttpRequestMessage request, Dish dish)
         {

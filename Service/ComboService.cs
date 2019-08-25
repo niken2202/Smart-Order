@@ -13,6 +13,7 @@ namespace Service
         IEnumerable<Combo> GetAll();
 
         Combo GetById(int id);
+        Combo DisableCombo(int id);
 
         Combo Delete(int id);
 
@@ -41,6 +42,11 @@ namespace Service
         public Combo Delete(int id)
         {
             return comboRepository.Delete(id);
+        }
+
+        public Combo DisableCombo(int id)
+        {
+            return comboRepository.DisableCombo(id);
         }
 
         public IEnumerable<object> GetAll()
