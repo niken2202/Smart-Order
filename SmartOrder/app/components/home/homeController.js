@@ -64,7 +64,7 @@
                     $scope.hotDishes = result.data.tophot;
                 }
             }, function () {
-                console.log('Load history failed.');
+                //Load history failed
             });
         }
         getTopHotDish();
@@ -124,11 +124,10 @@
                     if ($scope.bills.length === 0) {
                         //notificationService.displayWarning('Danh sách trống !');
                     } else {
-                        //notificationService.displaySuccess('Tổng cộng có: ' + $scope.bills.length + ' hóa đơn');
-                        //$scope.countBill = $scope.bills.length;
+
                     }
                 }, function () {
-                    notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
+                    //notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
                 });
             } else if ($scope.userOption === 3) {
                 fdate = new Date();
@@ -168,7 +167,7 @@
             //fdate.setMonth(tDate.getMonth() - 12);
 
             var fromDate = fdate.getFullYear() + "-" + 01 + "-" + 01;
-            var toDate = tDate.getFullYear() + "-" + (tDate.getMonth() + 1) + "-" + tDate.getDate();
+            var toDate = tDate.getFullYear() + "-" + (tDate.getMonth() + 2) + "-" + tDate.getDate();
             var url = "/api/bill/getrevenuebymonth?fromDate=" + fromDate + "&toDate=" + toDate;
 
             apiService.get(url, null, function (result) {

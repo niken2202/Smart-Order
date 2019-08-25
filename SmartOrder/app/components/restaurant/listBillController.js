@@ -13,7 +13,7 @@
 
         //generate index number in table
         $scope.serial = 1;
-        $scope.itemPerPage = 20
+        $scope.itemPerPage = 50
         $scope.indexCount = function (newPageNumber) {
 
             $scope.serial = newPageNumber * $scope.itemPerPage - ($scope.itemPerPage - 1);

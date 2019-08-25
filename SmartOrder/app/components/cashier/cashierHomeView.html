@@ -106,14 +106,14 @@
 
                     <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:18" pagination-id="dishes">
-                            <div ng-if="DishItem.Status == 1"
+                            <div ng-if="DishItem.Status == 1 && DishItem.Amount > 0"
                                  ng-click="addDish(DishItem)" class="crashier-btn-dish pointer">
                                 <img class="crashier-img" src="{{DishItem.Image}}" />
                                 <div style="color:#1ebb1e" class="crashier-btn-title">
                                     {{DishItem.Name}}
                                 </div>
                             </div>
-                            <div ng-if="DishItem.Status == 0" style="opacity:0.7"
+                            <div ng-if="DishItem.Status == 0 || DishItem.Amount < 1" style="opacity:0.7"
                                  class="crashier-btn-dish-not-avaiable">
                                 <img class="crashier-img" src="{{DishItem.Image}}" />
                                 <div style="color:red" class="crashier-btn-title customize-font-bold">
@@ -155,14 +155,14 @@
 
                     <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:18" pagination-id="combos">
-                            <div ng-if="comboItem.Status == true"
+                            <div ng-if="comboItem.Status == true && comboItem.Amount > 0"
                                  ng-click="addCombo(comboItem)" class="crashier-btn-dish pointer">
                                 <img class="crashier-img" src="{{comboItem.Image}}" />
                                 <div style="color:#1ebb1e" class="crashier-btn-title">
                                     {{comboItem.Name}}
                                 </div>
                             </div>
-                            <div ng-if="comboItem.Status == false" style="opacity:0.7"
+                            <div ng-if="comboItem.Status == false || comboItem.Amount < 1" style="opacity:0.7"
                                  class="crashier-btn-dish-not-avaiable">
                                 <img class="crashier-img" src="{{comboItem.Image}}" />
                                 <div style="color:red" class="crashier-btn-title customize-font-bold">
@@ -203,7 +203,7 @@
                     <table class="mb-0 table mb-0 table table-hover">
                         <thead>
                             <tr>
-                                <th style="width:10%" class="customize-font-green-color">STT</th>
+                                <th style="width:10%" class="customize-font-green-color"><i class="fas fa-sort-down"></i></th>
                                 <th style="width:25%" class="customize-font-green-color">Mặt hàng</th>
                                 <th style="width:20%" class="customize-font-green-color">Số lượng</th>
                                 <th style="width:20%" class="customize-font-green-color">Đơn giá</th>
@@ -217,16 +217,25 @@
                                 <td>{{ $index + serial}}</td>
                                 <td>{{cartItem.Name}}</td>
                                 <td>
-                                    <input class="crashier-cart-quantity" type="number"
+                                    <input ng-if="cartItem.Status == 1"
+                                           class="crashier-cart-quantity" type="number"
                                            ng-change="quantityChange(cartItem)" ng-model="cartItem.Quantity"
                                            min="0" oninput="this.value = Math.abs(this.value)">
+                                    <div ng-if="cartItem.Status == 2">{{cartItem.Quantity}}</div>
+                                    <div ng-if="cartItem.Status == 3">{{cartItem.Quantity}}</div>
                                 </td>
                                 <td>{{cartItem.Price | currency : "" : 0}}</td>
                                 <td>{{cartItem.Quantity*cartItem.Price | currency : "" : 0}}</td>
-                                <td>
+                                <td ng-if="cartItem.Status == 1">
                                     <button class="btn delete-icon" ng-click="dishDel(cartItem)">
                                         <i class="fas fa-trash f1f8 customize-delete-icon"></i>
                                     </button>
+                                </td>
+                                <td ng-if="cartItem.Status == 2">
+                                    <i class="fas fa-hourglass-start"></i>
+                                </td>
+                                <td ng-if="cartItem.Status == 3">
+                                    <i class="fas fa-check-circle"></i>
                                 </td>
                             </tr>
                         </tbody>
@@ -240,10 +249,10 @@
                 <div class="div-footer-billdetail">
                     <div class="row1" style="display:flex; margin:2px;">
                         <label style="text-align:left; width:25%" class="customize-font-green-color">
-                            Tạo bởi: &nbsp;
+                            Nội dung: &nbsp;
                         </label>
-                        <input style="text-align:right; width:30%" class="customeize-input" type="text"
-                               ng-model="CrashierName">
+                        <input style="text-align:right; width:15%" class="customeize-input" type="text"
+                               ng-model="ContentBill">
                         <label style="text-align:left; width:45%" class="customize-font-green-color">
                             &nbsp; Tổng tiền : {{totalPrice | currency : "" : 0}} VNĐ
                         </label>
@@ -252,7 +261,7 @@
                         <label style="text-align:left; width:25%" class="customize-font-green-color">
                             Mã giảm giá: &nbsp;
                         </label>
-                        <input style="text-align:right; width:30%" class="customeize-input" type="text"
+                        <input style="text-align:right; width:15%" class="customeize-input" type="text"
                                ng-model="CustomerPromotions" ng-change="promotionEvt()">
                         <label style="text-align:left; width:40%" class="customize-font-green-color">
                             &nbsp; Giảm giá : {{Promotions.Discount | percentFilter}}
@@ -263,22 +272,22 @@
                         <label style="text-align:left; width:25%" class="customize-font-green-color">
                             Khách hàng: &nbsp;
                         </label>
-                        <input style="text-align:right; width:30%" class="customeize-input" type="text"
+                        <input style="text-align:right; width:15%" class="customeize-input" type="text"
                                ng-model="CustomerName">
                         <label style="text-align:left; width:45%" class="customize-font-green-color">
                             &nbsp; Thanh toán : {{paymentPrice | currency : "" : 0}} VNĐ
                         </label>
                     </div>
-                    <div class="row4" style="display:flex; margin:2px;">
+                    <!--<div class="row4" style="display:flex; margin:2px;">
                         <label style="text-align:left; width:25%" class="customize-font-green-color">
-                            Nội dung : &nbsp;
+                            Tiền khách trả: &nbsp;
                         </label>
-                        <input style="text-align:right; width:30%" class="customeize-input" type="text"
-                               ng-model="ContentBill">
+                        <input style="text-align:right; width:15%" class="customeize-input" type="text"
+                               ng-model="cusPaymentPrice" format="currency" >
                         <label style="text-align:left; width:45%" class="customize-font-green-color">
-                            &nbsp; Số tiền thừa :
+                            &nbsp; Số tiền thừa : {{(cusPaymentPrice - paymentPrice ) | currency : "₫ " : 0}}
                         </label>
-                    </div>
+                    </div>-->
                 </div>
             </div>
 
@@ -293,9 +302,9 @@
                 <div class="crashier-billDetail-action-changeTB">
                     <button class="mb-2 mr-2 btn btn-success" type="button" ng-click="changeTableEvt()">Chuyển bàn</button>
                 </div>
-                <div class="crashier-billDetail-action-order">
+                <!--<div class="crashier-billDetail-action-order">
                     <button class="mb-2 mr-2 btn btn-success" style="margin-left:15px" type="button" ng-click="Order()">Đặt món</button>
-                </div>
+                </div>-->
                 <div class="crashier-billDetail-action-payment">
                     <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" type="button" ng-click="Payment()">Thanh toán</button>
                 </div>
