@@ -218,7 +218,8 @@
                                 <td>{{cartItem.Name}}</td>
                                 <td>
                                     <input class="crashier-cart-quantity" type="number"
-                                           ng-change="quantityChange(cartItem)" ng-model="cartItem.Quantity">
+                                           ng-change="quantityChange(cartItem)" ng-model="cartItem.Quantity"
+                                           min="0" oninput="this.value = Math.abs(this.value)">
                                 </td>
                                 <td>{{cartItem.Price | currency : "" : 0}}</td>
                                 <td>{{cartItem.Quantity*cartItem.Price | currency : "" : 0}}</td>

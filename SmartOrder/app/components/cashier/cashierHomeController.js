@@ -26,8 +26,11 @@
             apiService.get('/api/table/getall', null, function (result) {
                 $scope.tables = result.data;
                 getListTableAvaiable();
+                if ($scope.tables.length == 0 || result.data == null) {
+                    notificationService.displayInfo('Vui lòng tạo bàn cho nhà hàng!');
+                }
             }, function () {
-                notificationService.displayError('Tải danh sách mã bàn không thành công');
+                //notificationService.displayError('Tải danh sách mã bàn không thành công');
             });
         }
         getListTable();
@@ -164,13 +167,23 @@
                     CartPrice: $scope.paymentPrice
                 }
                 $scope.checkCart = false;
-                //Order();                
+                Order();                
             } else {
                 //add dish by update quantity of dish in cart details
                 for (i = 0; i < $scope.curCart.CartDetails.length; i++) {
                     if ($scope.curCart.CartDetails[i].Type == 1 && item.ID == $scope.curCart.CartDetails[i].ProID) {
                         $scope.curCart.CartDetails[i].Quantity += 1;
                         condition = false;
+                        var az = $scope.curCart.CartDetails[i];
+                        apiService.put('api/cartdetail/update', az , function (result) {
+                            notificationService.displaySuccess('Món đã được cập nhật !');
+                            //$scope.curCart.ID = result.data.ID;
+                            console.log($scope.curCart);
+                            changeTableStatusOff($scope.curTable);
+                        }, function () {
+                            //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                        });
+
                         //$scope.checkCart = true;
                         //Order();
                         break;
@@ -190,6 +203,9 @@
                         Type: 1
                     };
                     $scope.curCart.CartDetails.push($scope.dishCart);
+
+                   
+
                     //$scope.checkCart = true;
                     //Order();
                     countTotalPrice();
@@ -303,20 +319,22 @@
                 //create new cart
                 if ($scope.checkCart == false) {
                     apiService.post('/api/cart/add', $scope.curCart, function (result) {
-                        //notificationService.displaySuccess('Ok !' + result.data.ID);
+                        notificationService.displaySuccess('Ok !' + result.data.ID);
                         $scope.curCart = result.data;
                         changeTableStatusOff($scope.curTable);
                     }, function () {
-                        notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                        //notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
                     });
                 } else { //update current cart
-                    //apiService.put('/api/cart/update', $scope.curCart, function (result) {
-                    //    notificationService.displaySuccess('Món đã được cập nhật !' );
-                    //    $scope.curCart.ID = result.data.ID;
-                    //    changeTableStatusOff($scope.curTable);
-                    //}, function () {
+                    console.log('update cart : ' + $scope.curCart);
+                    apiService.put('api/cart/update', $scope.curCart, function (result) {
+                        notificationService.displaySuccess('Món đã được cập nhật !' );
+                        //$scope.curCart.ID = result.data.ID;
+                        console.log($scope.curCart);
+                        changeTableStatusOff($scope.curTable);
+                    }, function () {
                     //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
-                    //});
+                    });
 
                 }
             }
@@ -429,12 +447,24 @@
             }
             if (num < 1 == true || num > 25 == true) {
                 item.Quantity = 1;
+                apiService.put('api/cartdetail/update', item, function (result) {
+                    //notificationService.displaySuccess('Món đã được cập nhật !');
+                }, function () {
+                    //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                });
                 bol = false;
-            } else {
-                bol = true;
+            } else {               
+
+                apiService.put('api/cartdetail/update', item, function (result) {
+                    //notificationService.displaySuccess('Món đã được cập nhật !');
+                    bol = true;
+                }, function () {
+                    //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                });
+
             }
             if (bol === false) {
-                notificationService.displayError('Dữ liệu nhập vào không hợp lệ');
+                //notificationService.displayError('Dữ liệu nhập vào không hợp lệ');
             }
             countTotalPrice();
         };
