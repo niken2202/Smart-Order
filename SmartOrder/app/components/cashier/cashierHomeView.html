@@ -105,7 +105,7 @@
                 <div class="crashier-table-body">
 
                     <div class="crashier-table-row">
-                        <div class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:18" pagination-id="dishes">
+                        <div id="arrDish" class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:18" pagination-id="dishes">
                             <div ng-if="DishItem.Status == 1 && DishItem.Amount > 0"
                                  ng-click="addDish(DishItem)" class="crashier-btn-dish pointer">
                                 <img class="crashier-img" src="{{DishItem.Image}}" />
@@ -154,7 +154,7 @@
                 <div class="crashier-table-body">
 
                     <div class="crashier-table-row">
-                        <div class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:18" pagination-id="combos">
+                        <div id="arrCombo" class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:18" pagination-id="combos">
                             <div ng-if="comboItem.Status == true && comboItem.Amount > 0"
                                  ng-click="addCombo(comboItem)" class="crashier-btn-dish pointer">
                                 <img class="crashier-img" src="{{comboItem.Image}}" />
@@ -204,19 +204,19 @@
                         <thead>
                             <tr>
                                 <th style="width:10%" class="customize-font-green-color"><i class="fas fa-sort-down"></i></th>
-                                <th style="width:25%" class="customize-font-green-color">Mặt hàng</th>
-                                <th style="width:20%" class="customize-font-green-color">Số lượng</th>
-                                <th style="width:20%" class="customize-font-green-color">Đơn giá</th>
-                                <th style="width:20%" class="customize-font-green-color">Thành tiền</th>
+                                <th style="width:25%; text-align:left" class="customize-font-green-color">Mặt hàng</th>
+                                <th style="width:20%; text-align:center" class="customize-font-green-color">Số lượng</th>
+                                <th style="width:20%; text-align:center" class="customize-font-green-color">Đơn giá</th>
+                                <th style="width:20%; text-align:center" class="customize-font-green-color">Thành tiền</th>
                                 <td style="width:10%"></td>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="customize-font-green-color"
+                        <tbody >
+                            <tr class="customize-font-green-color" 
                                 dir-paginate="cartItem in curCart.CartDetails |itemsPerPage:itemPerPage" pagination-id="cartDetail" on-page-change='indexCount(newPageNumber)'>
                                 <td>{{ $index + serial}}</td>
-                                <td>{{cartItem.Name}}</td>
-                                <td>
+                                <td style="text-align:left">{{cartItem.Name}}</td>
+                                <td style="text-align:center">
                                     <input ng-if="cartItem.Status == 1"
                                            class="crashier-cart-quantity" type="number"
                                            ng-change="quantityChange(cartItem)" ng-model="cartItem.Quantity"
@@ -224,8 +224,8 @@
                                     <div ng-if="cartItem.Status == 2">{{cartItem.Quantity}}</div>
                                     <div ng-if="cartItem.Status == 3">{{cartItem.Quantity}}</div>
                                 </td>
-                                <td>{{cartItem.Price | currency : "" : 0}}</td>
-                                <td>{{cartItem.Quantity*cartItem.Price | currency : "" : 0}}</td>
+                                <td style="text-align:center">{{cartItem.Price | currency : "" : 0}}</td>
+                                <td style="text-align:center">{{cartItem.Quantity*cartItem.Price | currency : "" : 0}}</td>
                                 <td ng-if="cartItem.Status == 1">
                                     <button class="btn delete-icon" ng-click="dishDel(cartItem)">
                                         <i class="fas fa-trash f1f8 customize-delete-icon"></i>

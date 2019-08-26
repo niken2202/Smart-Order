@@ -1,0 +1,70 @@
+﻿<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h4 class="card-title customize-font-blue-color">Danh sách tài khoản</h4>
+
+        <div class="nav-table-bar-parent">
+            <div class="box-1">
+                <h4 class="card-title customize-font-blue-color">THANH CÔNG CỤ</h4>
+            </div>
+            <div class="box-2">
+                <form class="search-wrapper active">
+                    <div class="input-holder">
+                        <div class="input-holder">
+                            <input type="text" ng-model="search" class="search-input" placeholder="Tìm kiếm">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="box-3"></div>
+            <div class="box-4"></div>
+            <div class="box-5">
+                <h4 class="card-title customize-font-blue-color" style="float:right">Thêm tài khoản mới  </h4>
+            </div>
+            <div class="box-6">
+                <button type="button" class="btn-shadow p-1 btn btn-primary" ng-click="accountAdd()">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="mb-0 table mb-0 table table-hover">
+                <thead>
+                    <tr>
+                        <th class="cornflowerblue" ng-click="sort('$index')"><i class="fas fa-sort-down"></i></th>
+                        <th class="cornflowerblue" ng-click="sort('Name')">Tên đăng nhập</th>
+                        <th class="cornflowerblue" ng-click="sort('Price')">Nhân viên</th>
+                        <th class="cornflowerblue" ng-click="sort('Amount')">Số điện thoại</th>
+                        <th class="cornflowerblue" ng-click="sort('Unit')">Vai trò</th>
+                        <!--<th class="cornflowerblue" ng-click="sort('')">Ngày khởi tạo</th>-->
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="item in accounts |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:itemPerPage">
+                        <td ng-click="openDialog($event,item)">{{ $index + serial}}</td>
+                        <td ng-click="openDialog($event,item)">{{item.UserName}}</td>
+                        <td ng-click="openDialog($event,item)">{{item.FullName}}</td>
+                        <td ng-click="openDialog($event,item)">{{item.PhoneNumber}}</td>
+                        <td ng-click="openDialog($event,item)">{{item.Roles}}</td>
+                        <!--<td ng-click="openDialog($event,item)">{{item.}}</td>-->
+                        <td>
+                            <button class="btn delete-icon" ng-click="accDel(item)">
+                                <i class="fas fa-trash f1f8 customize-delete-icon"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="customeize-pagination">
+                <dir-pagination-controls max-size="5" on-page-change='indexCount(newPageNumber)'
+                                         direction-links="true"
+                                         boundary-links="true">
+                </dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+
+

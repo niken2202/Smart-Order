@@ -107,7 +107,7 @@
                     Name: $scope.comboEdt.Name,
                     Description: $scope.comboEdt.Description,
                     Price: $scope.comboEdt.Price,
-                    Amount: 1,
+                    Amount: $scope.comboEdt.Amount,
                     Image: $scope.comboEdt.Image,
                     CreatedDate: $scope.comboEdt.CreatedDate,
                     Status: $scope.comboEdt.Status,

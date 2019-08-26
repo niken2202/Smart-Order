@@ -37,10 +37,10 @@
                 <thead>
                     <tr>
                         <th class="cornflowerblue" style="width:5%" ng-click="sort('$index')"><i class="fas fa-sort-down"></i></th>
-                        <th class="cornflowerblue div-text-align-center" style="width:20%">Tên combo</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:15%">Tên combo</th>
                         <th class="cornflowerblue div-text-align-center" style="width:10%" ng-click="sort('Price')">Giá bán</th>
-                        <!--<th class="cornflowerblue div-text-align-center" style="width:10%" ng-click="sort('Amount')">Số lượng</th>-->
-                        <th class="cornflowerblue div-text-align-center" style="width:20%" ng-click="sort('Status')">Trạng thái</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:10%" ng-click="sort('Amount')">Số lượng</th>
+                        <th class="cornflowerblue div-text-align-center" style="width:15%" ng-click="sort('Status')">Trạng thái</th>
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('Description')" style="width:30%;text-align:center">Mô tả</th>
                         <th class="cornflowerblue div-text-align-center" ng-click="sort('CreatedDate')" style="text-align:center">Ngày khởi tạo</th>
                         <th></th>
@@ -50,8 +50,8 @@
                     <tr dir-paginate="item in combos |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:itemPerPage">
                         <td class="pointer" ng-click="comboDetails(item)">{{ $index + serial}}</td>
                         <td class="pointer" ng-click="comboDetails(item)">{{item.Name}}</td>
-                        <td class="div-text-align-center pointer" ng-click="comboDetails(item)">{{item.Price}}</td>
-                        <!--<td class="div-text-align-center pointer" ng-click="comboDetails(item)">{{item.Amount}}</td>-->
+                        <td class="div-text-align-center pointer" ng-click="comboDetails(item)">{{item.Price | currency : "" : 0}}</td>
+                        <td class="div-text-align-center pointer" ng-click="comboDetails(item)">{{item.Amount}}</td>
                         <td ng-click="comboDetails(item)">
                             <span style="width:70%; float:right" ng-class="{'mb-2 mr-2 btn btn-success':item.Status==true,'mb-2 mr-2 btn btn-danger':item.Status==false}">
                                 {{item.Status | avaiableFilter}}

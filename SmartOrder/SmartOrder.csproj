@@ -257,6 +257,13 @@
     <Content Include="app\components\login\loginController.js" />
     <Content Include="app\components\login\registerView.html" />
     <Content Include="app\components\login\loginView.html" />
+    <Content Include="app\components\accounts\listAccountsController.js" />
+    <Content Include="app\components\accounts\listAccountsView.html" />
+    <Content Include="app\components\accounts\addAccountController.js" />
+    <Content Include="app\components\accounts\addAccountView.html" />
+    <Content Include="app\components\accounts\editsAccountController.js" />
+    <Content Include="app\components\accounts\editsAccountView.html" />
+    <Content Include="app\components\accounts\accounts.module.js" />
     <Content Include="app\components\materials\listMaterialController.js" />
     <Content Include="app\components\materials\listMaterialView.html" />
     <Content Include="app\components\materials\materialAddController.js" />
