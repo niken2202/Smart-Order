@@ -9,6 +9,7 @@ namespace Data.Repositories
     public interface IComboRepository : IRepository<Combo>
     {
         ComboViewModel GetComboById(int id);
+        Combo DisableCombo(int id);
     }
 
     public class ComboRepository : RepositoryBase<Combo>, IComboRepository
@@ -30,6 +31,17 @@ namespace Data.Repositories
            
             return c;
         }
+
+        public Combo DisableCombo(int id)
+        {
+            var combo = DbContext.Combos.SingleOrDefault(x => x.ID == id);
+            if (combo != null)
+            {
+                combo.Status = false;
+            }
+            return combo;
+        }
+
         public ComboViewModel GetComboById(int id)
         {
             var combo = (from c in DbContext.Combos
