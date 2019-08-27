@@ -58,13 +58,45 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("update")]
-        // [Authorize(Roles = "Admin")]
-        public HttpResponseMessage Put(HttpRequestMessage request, ApplicationUserViewModel user )
+        [Route("changepassword"), HttpPut]
+        //[Authorize(Roles = "Admin")]
+        public async Task<HttpResponseMessage> ChangePassword(HttpRequestMessage request, ApplicationUserViewModel user)
         {
-            return CreateHttpResponse(request, () =>
+            if (ModelState.IsValid)
             {
-                HttpResponseMessage response = null;
+               
+                try
+                {
+                 //   var result1 = await userManager.PasswordValidator.ValidateAsync(user.NewPassword);
+                    var result = await userManager.ChangePasswordAsync(user.Id, user.CurrentPassword, user.NewPassword);
+
+                    if (result.Succeeded )
+                    {
+                        return request.CreateResponse(HttpStatusCode.OK);
+                    }
+                    else
+                        return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
+                }
+                catch (NameDuplicatedException dex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
+                }
+                catch (Exception ex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
+            else
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+        }
+        [Route("update")]
+        //[Authorize(Roles = "Admin")]
+        public async Task<HttpResponseMessage> Put(HttpRequestMessage request, ApplicationUserViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
                 var newAppUser = new Model.Models.ApplicationUser()
                 {
                     FullName = user.FullName,
@@ -73,14 +105,39 @@ namespace SmartOrder.api
                     Address = user.Address,
                     UserName = user.UserName
                 };
-                userManager.UpdateAsync(newAppUser);
 
-                response = request.CreateResponse(HttpStatusCode.OK, newAppUser);
+                try
+                {
+                    var oldUser = userManager.Users.FirstOrDefault(x => x.Id == user.Id);
+                    oldUser.FullName = user.FullName;
+                    oldUser.PhoneNumber = user.PhoneNumber;
+                    oldUser.BirthDay = user.BirthDay;
+                    oldUser.Address = user.Address;
+                    var result = await userManager.UpdateAsync(oldUser);
 
-                return response;
-            });
+                    if (result.Succeeded)
+                    {
+                        
+
+                        return request.CreateResponse(HttpStatusCode.OK, oldUser);
+                    }
+                    else
+                        return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
+                }
+                catch (NameDuplicatedException dex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
+                }
+                catch (Exception ex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
+            else
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
         }
-
         [HttpPost]
         [Route("add")]
         //[Authorize(Roles = "Admin")]
