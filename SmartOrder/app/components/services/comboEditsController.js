@@ -102,6 +102,15 @@
                 if ($scope.comboEdt.Description == null || $scope.comboEdt.Description.length < 1) {
                     $scope.comboEdt.Description = "Nội dung được tạo tự động";
                 }
+                var listDishMapping = [];
+                var item = null;
+                for (i = 0; i < $scope.comboEdt.dishes.length; i++) {
+                    item = {
+                        DishID: $scope.comboEdt.dishes[i].ID,
+                        Amount: $scope.comboEdt.dishes[i].Amount
+                    }
+                    listDishMapping.push(item);
+                }
                 var updateCombo = {
                     ID: $scope.comboEdt.ID,
                     Name: $scope.comboEdt.Name,
@@ -111,7 +120,7 @@
                     Image: $scope.comboEdt.Image,
                     CreatedDate: $scope.comboEdt.CreatedDate,
                     Status: $scope.comboEdt.Status,
-                    DishComboMappings: $scope.comboEdt.dishes
+                    DishComboMappings: listDishMapping
                 }
                 apiService.put('api/combo/update', updateCombo,
                     function (result) {
