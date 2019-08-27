@@ -58,6 +58,29 @@ namespace SmartOrder.api
             });
         }
 
+        [Route("update")]
+        // [Authorize(Roles = "Admin")]
+        public HttpResponseMessage Put(HttpRequestMessage request, ApplicationUserViewModel user )
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var newAppUser = new Model.Models.ApplicationUser()
+                {
+                    FullName = user.FullName,
+                    PhoneNumber = user.PhoneNumber,
+                    BirthDay = user.BirthDay,
+                    Address = user.Address,
+                    UserName = user.UserName
+                };
+                userManager.UpdateAsync(newAppUser);
+
+                response = request.CreateResponse(HttpStatusCode.OK, newAppUser);
+
+                return response;
+            });
+        }
+
         [HttpPost]
         [Route("add")]
         //[Authorize(Roles = "Admin")]
