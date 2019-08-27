@@ -79,5 +79,25 @@ namespace Data.Repositories
             return cc;
 
         }
+        public override void Update(Combo entity)
+        {
+            var combo = DbContext.Combos.SingleOrDefault(x => x.ID == entity.ID);
+            if (combo != null)
+            {
+                foreach (var dc in entity.DishComboMappings)
+                {
+                    var old = DbContext.DishComboMapping.SingleOrDefault(x => x.DishID == dc.DishID && x.ComboID == entity.ID);
+                    if (old != null)
+                    {
+                        old.Amount = old.Amount + (dc.Amount - old.Amount);
+                    }
+                    else
+                    {
+                        dc.ComboID = entity.ID;
+                        DbContext.DishComboMapping.Add(dc);
+                    }
+                }
+            }
+        }
     }
 }

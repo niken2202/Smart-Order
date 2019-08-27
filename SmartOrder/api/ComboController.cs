@@ -99,7 +99,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("update"), Authorize]
+        [Route("update")]
         public HttpResponseMessage Put(HttpRequestMessage request, Combo combo)
         {
             return CreateHttpResponse(request, () =>
