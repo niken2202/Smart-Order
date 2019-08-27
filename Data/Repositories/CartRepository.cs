@@ -56,7 +56,6 @@ namespace Data.Repositories
             cart.CartPrice = cart.CartDetails.Sum(x => (x.Price * x.Quantity));
             return cart;
         }
-
         public void ChangeTable(Cart cart)
         {
             //check cart exist in table
