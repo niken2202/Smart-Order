@@ -16,7 +16,6 @@
         $scope.ContentBill = "";
         $scope.CustomerPromotions = "";
         $scope.paymentPrice = 0;
-        $scope.cusPaymentPrice = 0;
         $scope.Promotions = {
             Code: "Không",
             Discount: 0
@@ -137,7 +136,8 @@
         function addCartDetails(item) {
             //console.log('addcartdetails ');
             apiService.post('api/cartdetail/add', item, function (result) {
-                notificationService.displaySuccess('Món đã được thêm vào cartdetails !');
+                notificationService.displaySuccess('Đã tiếp nhận yêu cầu!');
+                countTotalPrice();
                 changeTableStatusOff($scope.curTable);
             }, function () {
                 //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
@@ -191,7 +191,7 @@
 
                 apiService.post('/api/cart/add', $scope.curCart, function (result) {
                     notificationService.displaySuccess('Ok !' + result.data.ID);
-                    $scope.curCart = result.data;
+                    //$scope.curCart = result.data;
                     var itemDish = {
                         Id: $scope.dishCart.ProID,
                         Type : 1,
@@ -202,8 +202,6 @@
                 }, function () {
                     //notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
                 });
-
-
             } else {
                 //add dish by update quantity of dish in cart details
                 for (i = 0; i < $scope.curCart.CartDetails.length; i++) {
@@ -213,12 +211,6 @@
                         $scope.curCart.CartDetails[i].Quantity += 1;
                         condition = false;
                         addCartDetails($scope.curCart.CartDetails[i]);
-                        //apiService.put('api/cartdetail/update', $scope.curCart.CartDetails[i], function (result) {
-                        //    //notificationService.displaySuccess('Món đã được cập nhật !');
-                        //    bol = true;
-                        //}, function () {
-                        //    //notificationService.displayError('api/cartdetail/update in add dish !');
-                        //});
                         break;
                     }
                 }
@@ -239,13 +231,6 @@
                     };
                     $scope.curCart.CartDetails.push(obj);
                     addCartDetails(obj);
-                    //apiService.post('api/cartdetail/add', obj, function (result) {
-                    //    notificationService.displaySuccess('Món đã được thêm vào cartdetails !');
-                    //    changeTableStatusOff($scope.curTable);
-                    //}, function () {
-                    //    //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
-                    //});
-                    countTotalPrice();
                 }
             }
         };
@@ -284,7 +269,7 @@
                 }
                 apiService.post('/api/cart/add', $scope.curCart, function (result) {
                     notificationService.displaySuccess('Ok !' + result.data.ID);
-                    $scope.curCart = result.data;
+                    //$scope.curCart = result.data;
                     var itemCombo = {
                         Id: comboCart.ProID,
                         Type : 2,
@@ -305,12 +290,6 @@
                         $scope.curCart.CartDetails[i].Quantity += 1;
                         condition = false;
                         addCartDetails($scope.curCart.CartDetails[i]);
-                        //apiService.put('api/cartdetail/update', $scope.curCart.CartDetails[i], function (result) {
-                        //    //notificationService.displaySuccess('Món đã được cập nhật !');
-                        //    changeTableStatusOff($scope.curTable);
-                        //}, function () {
-                        //        //notificationService.displayError('add dish by update quantity of combo in cart details !');
-                        //});
                         break;
                     }
                 }
@@ -331,13 +310,6 @@
                     };
                     $scope.curCart.CartDetails.push(comboCart);
                     addCartDetails(comboCart);
-                    //apiService.post('api/cartdetail/add', comboCart, function (result) {
-                    //    //notificationService.displaySuccess('Món đã được thêm vào cartdetails !');
-                    //    changeTableStatusOff($scope.curTable);
-                    //}, function () {
-                    //    //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
-                    //});
-                    countTotalPrice();
                 }
             }
         };
@@ -351,30 +323,15 @@
                         $scope.curCart.CartDetails.splice(i, 1);
                         apiService.del('api/cartdetail/delete?id=' + item.ID, null, function (result) {
                             //notificationService.displaySuccess('Món đã được xóa khỏi cartdetails !');
+                            countTotalPrice();
                             if ($scope.curCart.CartDetails.length == 0) {
                                 changeTableStatusOn($scope.curTable);
                                 $scope.curCart = null;
-                            }
-                            var rtAmount = 0 - item.Quantity;
-                            if (item.Type == 1) {
-                                var itemDish = {
-                                    Id: item.ProID,
-                                    Type: 1,
-                                    Amount: rtAmount,
-                                };
-                                reduceDish(itemDish);
-                            } else {
-                                var itemCB = {
-                                    Id: item.ProID,
-                                    Type: 2,
-                                    Amount: rtAmount,
-                                };
-                                reduceDish(itemCB);
-                            }                            
+                            }                        
                         }, function () {
                             //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
                         });
-                        countTotalPrice();
+                       
                     }
                 }
             }
@@ -387,6 +344,7 @@
                 apiService.post('/api/promotioncode/checkvalid?Code=' + $scope.CustomerPromotions, null, function (result) {
                     if (result.data != null) {
                         $scope.Promotions = result.data
+                        countTotalPrice();
                         $scope.avaiablePromotion = true;
                     } else {
                         $scope.avaiablePromotion = false;
@@ -476,6 +434,7 @@
                     Status: true
                 }
                 $scope.listDish = [];
+                //console.log('total after payment : ' + $scope.paymentPrice)
                 apiService.post('/api/bill/add', $scope.addBill, function (result) {
                     $scope.CustomerName = "";
                     $scope.CrashierName = "";
@@ -518,11 +477,11 @@
                     if (updateCombo != null) {
                         //updateCombo.OrderCount += item.Quantity;
                         //updateCombo.Amount -= item.Quantity;
-                        apiService.put('api/combo/update', updateCombo, function (result) {
+                        //apiService.put('api/combo/update', updateCombo, function (result) {
 
-                        }, function () {
-                            //notificationService.displayError('');
-                        });
+                        //}, function () {
+                        //    //notificationService.displayError('');
+                        //});
 
                     }
 
@@ -582,16 +541,6 @@
             }
         }
 
-        //get amount of dish or combo by id
-        function getAmount(ID) {
-            var a;
-            apiService.get('api/dish/getbyid?ID=' + ID, null, function (result) {
-                a = result.data.Amount;
-            }, function () {
-                //notificationService.displayError('');
-            });
-            return a;
-        }
 
         //catch event when user change quality of dish
         $scope.quantityChange = quantityChange;
@@ -599,13 +548,23 @@
             var num = item.Quantity;
             var bol = true;
             if (num != null && num > 0) {
-                item.Quantity = 1;
-                console.log('here: ' + num);
-                //addCartDetails(item);
+                if (item.Type == 1) {
+                    apiService.get('api/dish/getbyid?ID=' + item.ProID, null, function (result) {
+                        if (num - item.Quantity <= result.data.Amount ) {
+                            addCartDetails(item);
+                        } else {
+                            notificationService.displayError('Nhà bếp chỉ còn: ' + result.data.Amount + ' ' + result.data.Name);
+                        }
+                    }, function () {
+                        //notificationService.displayError('');
+                    });
+                    //check amount of combo
+                } else {
+
+                }               
             } else {
               //wroung input
-            }         
-                        
+            }                               
             countTotalPrice();
         };
 
