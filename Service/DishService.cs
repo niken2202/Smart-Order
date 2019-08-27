@@ -20,6 +20,7 @@ namespace Service
         IEnumerable<Dish> GetTopDish();
         int GetDishCount();
         void SaveChanges();
+        Dish DisableDish(int id);
         void IsSold(List<UpdateSoldViewModel> list);
     }
 
@@ -41,6 +42,11 @@ namespace Service
         public Dish Delete(int id)
         {
             return dishRepository.Delete(id);
+        }
+
+        public Dish DisableDish(int id)
+        {
+            return dishRepository.DisableDish(id);
         }
 
         public IEnumerable<DishViewModel> GetAll()

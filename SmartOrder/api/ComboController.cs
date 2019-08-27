@@ -78,6 +78,26 @@ namespace SmartOrder.api
                 return response;
             });
         }
+        [Route("disable"),HttpPut]
+        public HttpResponseMessage Disable(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var combo = comboService.DisableCombo(id);
+                    comboService.SaveChanges();
+                    response = request.CreateResponse(HttpStatusCode.OK, combo);
+                }
+                return response;
+            });
+        }
 
         [Route("update")]
         public HttpResponseMessage Put(HttpRequestMessage request, Combo combo)

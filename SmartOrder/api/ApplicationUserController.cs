@@ -58,6 +58,86 @@ namespace SmartOrder.api
             });
         }
 
+        [Route("changepassword"), HttpPut]
+        //[Authorize(Roles = "Admin")]
+        public async Task<HttpResponseMessage> ChangePassword(HttpRequestMessage request, ApplicationUserViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+               
+                try
+                {
+                 //   var result1 = await userManager.PasswordValidator.ValidateAsync(user.NewPassword);
+                    var result = await userManager.ChangePasswordAsync(user.Id, user.CurrentPassword, user.NewPassword);
+
+                    if (result.Succeeded )
+                    {
+                        return request.CreateResponse(HttpStatusCode.OK);
+                    }
+                    else
+                        return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
+                }
+                catch (NameDuplicatedException dex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
+                }
+                catch (Exception ex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
+            else
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+        }
+        [Route("update")]
+        //[Authorize(Roles = "Admin")]
+        public async Task<HttpResponseMessage> Put(HttpRequestMessage request, ApplicationUserViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                var newAppUser = new Model.Models.ApplicationUser()
+                {
+                    FullName = user.FullName,
+                    PhoneNumber = user.PhoneNumber,
+                    BirthDay = user.BirthDay,
+                    Address = user.Address,
+                    UserName = user.UserName
+                };
+
+                try
+                {
+                    var oldUser = userManager.Users.FirstOrDefault(x => x.Id == user.Id);
+                    oldUser.FullName = user.FullName;
+                    oldUser.PhoneNumber = user.PhoneNumber;
+                    oldUser.BirthDay = user.BirthDay;
+                    oldUser.Address = user.Address;
+                    var result = await userManager.UpdateAsync(oldUser);
+
+                    if (result.Succeeded)
+                    {
+                        
+
+                        return request.CreateResponse(HttpStatusCode.OK, oldUser);
+                    }
+                    else
+                        return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
+                }
+                catch (NameDuplicatedException dex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
+                }
+                catch (Exception ex)
+                {
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+                }
+            }
+            else
+            {
+                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+        }
         [HttpPost]
         [Route("add")]
         //[Authorize(Roles = "Admin")]

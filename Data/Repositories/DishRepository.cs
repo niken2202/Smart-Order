@@ -17,6 +17,7 @@ namespace Data.Repositories
         IEnumerable<Dish> GetTopHot();
 
         void  IsSold(List<UpdateSoldViewModel> list);
+        Dish DisableDish(int id);
 
         int GetDishCount();
     }
@@ -25,6 +26,17 @@ namespace Data.Repositories
     {
         public DishRepository(IDbFactory dbFactory) : base(dbFactory)
         {
+        }
+
+        public Dish DisableDish(int id)
+        {
+            var dish = DbContext.Dishes.SingleOrDefault(x => x.ID == id);
+            if (dish != null)
+            {
+                dish.Status = 0;
+            }
+            return dish;
+            
         }
 
         public IEnumerable<DishViewModel> GetAll()

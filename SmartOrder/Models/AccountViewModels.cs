@@ -26,6 +26,8 @@ namespace SmartOrder.Models
         public string PhoneNumber { set; get; }
         public string PassWord { get; set; }
         public string Address { get; set; }
+        public string CurrentPassword { get; set; }
+        public string NewPassword { get; set; }
         public IEnumerable<string> Roles { get; set; }
     }
 
