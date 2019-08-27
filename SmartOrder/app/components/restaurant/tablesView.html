@@ -51,8 +51,10 @@
                         <td class="div-text-align-center" style="text-align:left"
                             ng-click="vm.openDialog($event,item)">{{item.DeviceID}}</td>
                         <td ng-click="vm.openDialog($event,item)">
-                            <span style="width:70%; float:right" ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1,'mb-2 mr-2 btn btn-danger':item.Status==0}">
-                                {{item.Status | avaiableFilter}}
+                            <span style="width:70%; float:right" 
+                                  ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1,'mb-2 mr-2 btn btn-danger':item.Status==0,
+                                  'mb-2 mr-2 btn btn-warning':item.Status==2}">
+                                {{item.Status | tableFilter}}
                             </span>
                         </td>
                         <td ng-click="vm.openDialog($event,item)" style="text-align:center">{{item.CreatedDate | date:'dd-MM-yyyy'}}</td>

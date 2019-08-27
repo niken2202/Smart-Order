@@ -8,7 +8,7 @@
         //dish binding in dialog add table
         $scope.tableAdd = {
             CreatedDate: new Date,
-            Name: "Bàn số ",
+            Name: "Bàn ",
             Status: 1,
         }
 

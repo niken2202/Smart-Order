@@ -93,7 +93,7 @@
 
         //function get cart details by table id
         function getCartDetails(item) {
-            $scope.listDish = [];
+            var listDishCombo = [];
             $scope.curTable = item;
             var transfer = {
                 params: {
@@ -105,8 +105,15 @@
                     $scope.checkCart = false;//it mean cart is not created
                     $scope.curCart = null;
                 } else {
+                    for (i = 0; i < result.data.CartDetails.length; i++ ) {
+                        if (result.data.CartDetails[i].Status == 0) {
+                            //to remove cancel dish from the display bill
+                        } else {
+                            listDishCombo.push(result.data.CartDetails[i]);
+                        }
+                    }
                     $scope.curCart = {
-                        CartDetails: result.data.CartDetails,
+                        CartDetails: listDishCombo,
                         ID: result.data.ID,
                         TableID: result.data.TableID,
                         CartPrice: result.data.CartPrice
@@ -124,9 +131,9 @@
             var total = 0;
             if ($scope.curCart != null && $scope.curCart.CartDetails.length > 0) {
                 for (var i = 0; i < $scope.curCart.CartDetails.length; i++) {
-                    var product = $scope.curCart.CartDetails[i];
-                    total += (product.Price * product.Quantity);
-                    $scope.curCart.CartDetails.order = i;
+                        var product = $scope.curCart.CartDetails[i];
+                        total += (product.Price * product.Quantity);
+                        $scope.curCart.CartDetails.order = i;                   
                 }
             }
             $scope.totalPrice = total;
@@ -136,7 +143,7 @@
         function addCartDetails(item) {
             //console.log('addcartdetails ');
             apiService.post('api/cartdetail/add', item, function (result) {
-                notificationService.displaySuccess('Đã tiếp nhận yêu cầu!');
+                notificationService.displaySuccess('Đang tiếp nhận yêu cầu!');
                 countTotalPrice();
                 changeTableStatusOff($scope.curTable);
             }, function () {
@@ -403,52 +410,69 @@
             if ($scope.curCart == null) {
                 notificationService.displayWarning("Vui lòng chọn hóa đơn thanh toán!");
             } else {
+                var conditionAddBill = new Boolean(true);
                 $scope.listDish = [];
                 for (i = 0; i < $scope.curCart.CartDetails.length; i++) {
-                    var dish = {
-                        Name: $scope.curCart.CartDetails[i].Name,
-                        Price: $scope.curCart.CartDetails[i].Price,
-                        Amount: $scope.curCart.CartDetails[i].Quantity,
-                        Description: $scope.ContentBill,
-                        Image: $scope.curCart.CartDetails[i].Image
-                    };
-                    $scope.listDish.push(dish);
+                    if ($scope.curCart.CartDetails[i].Status == 0) {
+                        //to continues
+                    } else if ($scope.curCart.CartDetails[i].Status == 1 || $scope.curCart.CartDetails[i].Status == 2) {
+                        conditionAddBill = false;
+                         notificationService.displayError('Vẫn còn món đang xử lý!');
+                        break;
+                    } else {
+                        var dish = {
+                            Name: $scope.curCart.CartDetails[i].Name,
+                            Price: $scope.curCart.CartDetails[i].Price,
+                            Amount: $scope.curCart.CartDetails[i].Quantity,
+                            Description: $scope.ContentBill,
+                            Image: $scope.curCart.CartDetails[i].Image
+                        };
+                        $scope.listDish.push(dish);
+                    }
                 }
-                if ($scope.CustomerName.length < 1 || $scope.CustomerName == null) {
-                    $scope.CustomerName = "Không tên";
-                } if ($scope.CrashierName.length < 1 || $scope.CrashierName == null) {
-                    $scope.CrashierName = "Nhân viên đứng quầy";
-                } if ($scope.ContentBill.length < 1 || $scope.ContentBill == null) {
-                    $scope.ContentBill = "Nội dung được tạo tự động";
-                }
-                $scope.addBill = {
-                    BillDetail: $scope.listDish,
-                    Voucher: $scope.Promotions.Code,
-                    CustomerName: $scope.CustomerName,
-                    Content: $scope.ContentBill,
-                    TableID: $scope.curTable.ID,
-                    CreatedDate: new Date,
-                    CreatedBy: $scope.CrashierName,
-                    Discount: $scope.Promotions.Discount,
-                    Total: $scope.paymentPrice,
-                    Status: true
-                }
-                $scope.listDish = [];
-                //console.log('total after payment : ' + $scope.paymentPrice)
-                apiService.post('/api/bill/add', $scope.addBill, function (result) {
-                    $scope.CustomerName = "";
-                    $scope.CrashierName = "";
-                    $scope.ContentBill = "";
-                    $scope.CustomerPromotions = "";
-                    $scope.cusPaymentPrice = 0;
-                    $scope.Promotions = {
-                        Code: "Không",
-                        Discount: 0
-                    };
-                    deleteCart($scope.curCart.ID);
-                }, function () {
-                    //notificationService.displayError('Thanh toan khong thanh cong!');
-                });
+
+                if (conditionAddBill == true) {
+
+                    if ($scope.CustomerName.length < 1 || $scope.CustomerName == null) {
+                        $scope.CustomerName = "Không tên";
+                    } if ($scope.CrashierName.length < 1 || $scope.CrashierName == null) {
+                        $scope.CrashierName = "Nhân viên đứng quầy";
+                    } if ($scope.ContentBill.length < 1 || $scope.ContentBill == null) {
+                        $scope.ContentBill = "Nội dung được tạo tự động";
+                    }
+                    $scope.addBill = {
+                        BillDetail: $scope.listDish,
+                        Voucher: $scope.Promotions.Code,
+                        CustomerName: $scope.CustomerName,
+                        Content: $scope.ContentBill,
+                        TableID: $scope.curTable.ID,
+                        CreatedDate: new Date,
+                        CreatedBy: $scope.CrashierName,
+                        Discount: $scope.Promotions.Discount,
+                        Total: $scope.paymentPrice,
+                        Status: true
+                    }
+                    $scope.listDish = [];
+                    //console.log('total after payment : ' + $scope.paymentPrice)
+                    apiService.post('/api/bill/add', $scope.addBill, function (result) {
+                        $scope.CustomerName = "";
+                        $scope.CrashierName = "";
+                        $scope.ContentBill = "";
+                        $scope.CustomerPromotions = "";
+                        $scope.cusPaymentPrice = 0;
+                        $scope.Promotions = {
+                            Code: "Không",
+                            Discount: 0
+                        };
+                        deleteCart($scope.curCart.ID);
+                    }, function () {
+                        //notificationService.displayError('Thanh toan khong thanh cong!');
+                    });
+
+                } else {
+
+                }             
+
             }
         }
 
@@ -596,7 +620,7 @@
         //set schedule to auto call update view
         $interval(rellTime, 5000);
         function rellTime() {
-            getListTable();
+            //getListTable();
             autoUpdateCart();
             getPromotion();
             getDish();

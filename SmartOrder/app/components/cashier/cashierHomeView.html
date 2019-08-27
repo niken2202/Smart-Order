@@ -58,18 +58,25 @@
 
                 <div class="crashier-table-body">
                     <div class="crashier-table-row">
-                        <div class="crashier-table-item" dir-paginate="item in tables |filter:search |itemsPerPage:18" pagination-id="tables">
-                            <!--<img class="crashier-img" src="../../../assets/images/demo.jpg" />-->
-                            <!--<img style="height:inherit; width:inherit; padding:2px" src="../../../assets/images/table.jpg" />-->
-                            <img style="width:120px; height:120px" src="../../../assets/images/restaurant-table-and-chairs.svg" />
-                            <div class="crashier-btn-title">
-                                <span class="crashier-btn-choose"
-                                      ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1,
-                                      'mb-2 mr-2 btn btn-danger':item.Status==0,
-                                      'mb-2 mr-2 btn btn-warning':item.Status==2}"
-                                      ng-click="showBill(item)">
+                        <div class="crashier-table-item" dir-paginate="item in tables |filter:search |itemsPerPage:15" pagination-id="tables">
+
+                            <div ng-if="item.Status == 1"
+                                 ng-click="showBill(item)" class="crashier-btn-table pointer">
+                                <div style="background-color:#1ebb1e; color:white" class="crashier-btn-title-table">
                                     {{item.Name}}
-                                </span>
+                                </div>
+                            </div>
+                            <div ng-if="item.Status == 0 "
+                                 ng-click="showBill(item)" class="crashier-btn-table pointer">
+                                <div style="background-color:#d14743; color:white" class="crashier-btn-title-table ">
+                                    {{item.Name}}
+                                </div>
+                            </div>
+                            <div ng-if="item.Status == 2 "
+                                 ng-click="showBill(item)" class="crashier-btn-table pointer">
+                                <div style="background-color:#f7b924; color:white" class="crashier-btn-title-table">
+                                    {{item.Name}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -105,7 +112,7 @@
                 <div class="crashier-table-body">
 
                     <div class="crashier-table-row">
-                        <div id="arrDish" class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:18" pagination-id="dishes">
+                        <div id="arrDish" class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:15" pagination-id="dishes">
                             <div ng-if="DishItem.Status == 1 && DishItem.Amount > 0"
                                  ng-click="addDish(DishItem)" class="crashier-btn-dish pointer">
                                 <img class="crashier-img" src="{{DishItem.Image}}" />
@@ -154,7 +161,7 @@
                 <div class="crashier-table-body">
 
                     <div class="crashier-table-row">
-                        <div id="arrCombo" class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:18" pagination-id="combos">
+                        <div id="arrCombo" class="crashier-table-item" dir-paginate="comboItem in combos |filter:searchCombo |itemsPerPage:15" pagination-id="combos">
                             <div ng-if="comboItem.Status == true && comboItem.Amount > 0"
                                  ng-click="addCombo(comboItem)" class="crashier-btn-dish pointer">
                                 <img class="crashier-img" src="{{comboItem.Image}}" />
@@ -217,9 +224,10 @@
                                 <td>{{ $index + serial}}</td>
                                 <td style="text-align:left">{{cartItem.Name}}</td>
                                 <td style="text-align:center">
+                                    <div ng-if="cartItem.Status == 0">{{cartItem.Quantity}}</div>
                                     <input ng-if="cartItem.Status == 1"
                                            class="crashier-cart-quantity" type="number"
-                                            ng-model="cartItem.Quantity"
+                                           ng-model="cartItem.Quantity"
                                            ng-change="quantityChange(cartItem)"
                                            min="0" oninput="this.value = Math.abs(this.value)">
                                     <div ng-if="cartItem.Status == 2">{{cartItem.Quantity}}</div>
@@ -227,6 +235,9 @@
                                 </td>
                                 <td style="text-align:center">{{cartItem.Price | currency : "" : 0}}</td>
                                 <td style="text-align:center">{{cartItem.Quantity*cartItem.Price | currency : "" : 0}}</td>
+                                <td ng-if="cartItem.Status == 0">
+                                    <i class="fas fa-window-close"></i>
+                                </td>
                                 <td ng-if="cartItem.Status == 1">
                                     <button class="btn delete-icon" ng-click="dishDel(cartItem)">
                                         <i class="fas fa-trash f1f8 customize-delete-icon"></i>
