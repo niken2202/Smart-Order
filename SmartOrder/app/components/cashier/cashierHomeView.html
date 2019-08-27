@@ -219,8 +219,9 @@
                                 <td style="text-align:center">
                                     <input ng-if="cartItem.Status == 1"
                                            class="crashier-cart-quantity" type="number"
-                                           ng-change="quantityChange(cartItem)" ng-model="cartItem.Quantity"
-                                           min="0" oninput="this.value = Math.abs(this.value)">
+                                            ng-model="cartItem.Quantity"
+                                           ng-blur="quantityChange(cartItem)"
+                                           min="0" oninput="this.value = Math.abs(this.value)">{{cartItem.Quantity}}
                                     <div ng-if="cartItem.Status == 2">{{cartItem.Quantity}}</div>
                                     <div ng-if="cartItem.Status == 3">{{cartItem.Quantity}}</div>
                                 </td>

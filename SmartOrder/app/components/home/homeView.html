@@ -68,7 +68,7 @@
                             <tr dir-paginate="item in hotDishes |itemsPerPage:itemPerPage" on-page-change='indexCount(newPageNumber)'>
                                 <td>{{ $index + serial}}</td>
                                 <td>{{item.Name}}</td>
-                                <td class="div-text-align-center">{{item.Price}}</td>
+                                <td class="div-text-align-center">{{item.Price | currency:"" :0}}</td>
                                 <td class="div-text-align-center">{{item.Amount}}</td>
                                 <!--<td>
                                     <span style="width:80%; float:right" ng-class="{'mb-2 mr-2 btn btn-success':item.Status===1,'mb-2 mr-2 btn btn-danger':item.Status===0}">

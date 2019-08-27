@@ -133,6 +133,27 @@
             $scope.totalPrice = total;
             $scope.paymentPrice = $scope.totalPrice - (($scope.totalPrice / 100) * $scope.Promotions.Discount);
         }
+        //use to update or add new dish or combo to dish in cartdetails
+        function addCartDetails(item) {
+            //console.log('addcartdetails ');
+            apiService.post('api/cartdetail/add', item, function (result) {
+                notificationService.displaySuccess('Món đã được thêm vào cartdetails !');
+                changeTableStatusOff($scope.curTable);
+            }, function () {
+                //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+            });
+        }
+
+        //use to reduce amount of dish affter push to cart details
+        function reduceDish(item) {
+            var listIssold = [];
+            listIssold.push(item);
+            apiService.post('api/dish/issold', listIssold, function (result) {                
+                notificationService.displaySuccess('Món đã được trừ số lượng !');
+            }, function () {
+                //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+            });
+        }
 
         //add dish to cart
         $scope.addDish = addDish;
@@ -171,6 +192,12 @@
                 apiService.post('/api/cart/add', $scope.curCart, function (result) {
                     notificationService.displaySuccess('Ok !' + result.data.ID);
                     $scope.curCart = result.data;
+                    var itemDish = {
+                        Id: $scope.dishCart.ProID,
+                        Type : 1,
+                        Amount : 1,
+                    };
+                    reduceDish(itemDish);
                     changeTableStatusOff($scope.curTable);
                 }, function () {
                     //notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
@@ -185,12 +212,13 @@
                     {
                         $scope.curCart.CartDetails[i].Quantity += 1;
                         condition = false;
-                        apiService.put('api/cartdetail/update', $scope.curCart.CartDetails[i], function (result) {
-                            //notificationService.displaySuccess('Món đã được cập nhật !');
-                            bol = true;
-                        }, function () {
-                            //notificationService.displayError('api/cartdetail/update in add dish !');
-                        });
+                        addCartDetails($scope.curCart.CartDetails[i]);
+                        //apiService.put('api/cartdetail/update', $scope.curCart.CartDetails[i], function (result) {
+                        //    //notificationService.displaySuccess('Món đã được cập nhật !');
+                        //    bol = true;
+                        //}, function () {
+                        //    //notificationService.displayError('api/cartdetail/update in add dish !');
+                        //});
                         break;
                     }
                 }
@@ -210,13 +238,13 @@
                         TableID: $scope.curTable.ID
                     };
                     $scope.curCart.CartDetails.push(obj);
-                    apiService.post('api/cartdetail/add', obj, function (result) {
-                        notificationService.displaySuccess('Món đã được thêm vào cartdetails !');
-                        changeTableStatusOff($scope.curTable);
-                    }, function () {
-                        //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
-                    });
-
+                    addCartDetails(obj);
+                    //apiService.post('api/cartdetail/add', obj, function (result) {
+                    //    notificationService.displaySuccess('Món đã được thêm vào cartdetails !');
+                    //    changeTableStatusOff($scope.curTable);
+                    //}, function () {
+                    //    //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                    //});
                     countTotalPrice();
                 }
             }
@@ -257,6 +285,12 @@
                 apiService.post('/api/cart/add', $scope.curCart, function (result) {
                     notificationService.displaySuccess('Ok !' + result.data.ID);
                     $scope.curCart = result.data;
+                    var itemCombo = {
+                        Id: comboCart.ProID,
+                        Type : 2,
+                        Amount : 1,
+                    };
+                    reduceDish(itemCombo);
                     changeTableStatusOff($scope.curTable);
                 }, function () {
                     //notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
@@ -270,12 +304,13 @@
                         $scope.curCart.CartDetails[i].Status != 2 && $scope.curCart.CartDetails[i].Status != 3) {
                         $scope.curCart.CartDetails[i].Quantity += 1;
                         condition = false;
-                        apiService.put('api/cartdetail/update', $scope.curCart.CartDetails[i], function (result) {
-                            //notificationService.displaySuccess('Món đã được cập nhật !');
-                            changeTableStatusOff($scope.curTable);
-                        }, function () {
-                                //notificationService.displayError('add dish by update quantity of combo in cart details !');
-                        });
+                        addCartDetails($scope.curCart.CartDetails[i]);
+                        //apiService.put('api/cartdetail/update', $scope.curCart.CartDetails[i], function (result) {
+                        //    //notificationService.displaySuccess('Món đã được cập nhật !');
+                        //    changeTableStatusOff($scope.curTable);
+                        //}, function () {
+                        //        //notificationService.displayError('add dish by update quantity of combo in cart details !');
+                        //});
                         break;
                     }
                 }
@@ -295,12 +330,13 @@
                         TableID: $scope.curTable.ID
                     };
                     $scope.curCart.CartDetails.push(comboCart);
-                    apiService.post('api/cartdetail/add', comboCart, function (result) {
-                        //notificationService.displaySuccess('Món đã được thêm vào cartdetails !');
-                        changeTableStatusOff($scope.curTable);
-                    }, function () {
-                        //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
-                    });
+                    addCartDetails(comboCart);
+                    //apiService.post('api/cartdetail/add', comboCart, function (result) {
+                    //    //notificationService.displaySuccess('Món đã được thêm vào cartdetails !');
+                    //    changeTableStatusOff($scope.curTable);
+                    //}, function () {
+                    //    //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+                    //});
                     countTotalPrice();
                 }
             }
@@ -315,6 +351,26 @@
                         $scope.curCart.CartDetails.splice(i, 1);
                         apiService.del('api/cartdetail/delete?id=' + item.ID, null, function (result) {
                             //notificationService.displaySuccess('Món đã được xóa khỏi cartdetails !');
+                            if ($scope.curCart.CartDetails.length == 0) {
+                                changeTableStatusOn($scope.curTable);
+                                $scope.curCart = null;
+                            }
+                            var rtAmount = 0 - item.Quantity;
+                            if (item.Type == 1) {
+                                var itemDish = {
+                                    Id: item.ProID,
+                                    Type: 1,
+                                    Amount: rtAmount,
+                                };
+                                reduceDish(itemDish);
+                            } else {
+                                var itemCB = {
+                                    Id: item.ProID,
+                                    Type: 2,
+                                    Amount: rtAmount,
+                                };
+                                reduceDish(itemCB);
+                            }                            
                         }, function () {
                             //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
                         });
@@ -432,7 +488,7 @@
                     };
                     deleteCart($scope.curCart.ID);
                 }, function () {
-                    notificationService.displayError('Thanh toan khong thanh cong!');
+                    //notificationService.displayError('Thanh toan khong thanh cong!');
                 });
             }
         }
@@ -444,7 +500,7 @@
                     var updateDish = result.data;
                     if (updateDish != null) {
                         updateDish.OrderCount += item.Quantity;
-                        updateDish.Amount -= item.Quantity;
+                        //updateDish.Amount -= item.Quantity;
                         apiService.put('api/dish/update', updateDish, function (result) {                           
 
                         }, function () {
@@ -461,7 +517,7 @@
                     var updateCombo = result.data;
                     if (updateCombo != null) {
                         //updateCombo.OrderCount += item.Quantity;
-                        updateCombo.Amount -= item.Quantity;
+                        //updateCombo.Amount -= item.Quantity;
                         apiService.put('api/combo/update', updateCombo, function (result) {
 
                         }, function () {
@@ -542,36 +598,14 @@
         function quantityChange(item) {
             var num = item.Quantity;
             var bol = true;
-            if (num == null) {
+            if (num != null && num > 0) {
                 item.Quantity = 1;
-            }
-            if (num < 1 == true || num > 25 == true) {
-                item.Quantity = 1;
-                apiService.put('api/cartdetail/update', item, function (result) {
-                    //notificationService.displaySuccess('Món đã được cập nhật !');
-                }, function () {
-                        notificationService.displayError('num < 1 == true || num > 25 == true !');
-                });
-                bol = false;
+                console.log('here: ' + num);
+                //addCartDetails(item);
             } else {
-                if (item.Type == 1) {
-                    console.log(getAmount(item.ProID));
-                    apiService.put('api/cartdetail/update', item, function (result) {
-                    //notificationService.displaySuccess('Món đã được cập nhật !');
-                    bol = true;
-                }, function () {
-                        //notificationService.displayError('else !');
-                });
-
-                } else {
-
-                }
-                
-
-            }
-            if (bol === false) {
-                //notificationService.displayError('Dữ liệu nhập vào không hợp lệ');
-            }
+              //wroung input
+            }         
+                        
             countTotalPrice();
         };
 
