@@ -16,7 +16,7 @@ namespace Model.Models
         public string Address { get; set; }
 
         public DateTime? BirthDay { set; get; }
-
+      
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
