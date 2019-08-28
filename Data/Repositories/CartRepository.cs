@@ -54,7 +54,8 @@ namespace Data.Repositories
             cart.CartDetails = (from cd in DbContext.CartDetail
                                 where cd.CartID == cart.ID
                                 select cd).ToList();
-            cart.CartPrice = cart.CartDetails.Sum(x => (x.Price * x.Quantity));
+            
+            cart.CartPrice = cart.CartDetails.Where(x => x.Status != 0).Sum(x => (x.Price * x.Quantity));
             return cart;
         }
         public void ChangeTable(Cart cart)
