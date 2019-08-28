@@ -98,7 +98,7 @@
                     Name: $scope.comboAdd.Name,
                     Description: $scope.comboAdd.Description,
                     Price: $scope.comboAdd.Price,
-                    Amount: 1,
+                    Amount: $scope.comboAdd.Amount,
                     Image: $scope.comboAdd.Image,
                     Status: true,
                     CreatedDate: new Date,                   
