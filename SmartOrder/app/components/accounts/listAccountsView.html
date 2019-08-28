@@ -37,7 +37,7 @@
                         <th class="cornflowerblue">Số điện thoại</th>
                         <th class="cornflowerblue">Địa chỉ</th>
                         <th class="cornflowerblue" ng-click="sort('BirthDay')">Ngày sinh</th>
-                        <th></th>
+                        <!--<th></th>-->
                     </tr>
                 </thead>
                 <tbody>
@@ -48,11 +48,11 @@
                         <td ng-click="accountDetails(item)">{{item.PhoneNumber}}</td>
                         <td ng-click="accountDetails(item)">{{item.Address}}</td>
                         <td ng-click="accountDetails(item)">{{item.BirthDay | date:'dd-MM-yyyy'}}</td>
-                        <td>
+                        <!--<td>
                             <button class="btn delete-icon" ng-click="accDel(item)">
                                 <i class="fas fa-trash f1f8 customize-delete-icon"></i>
                             </button>
-                        </td>
+                        </td>-->
                     </tr>
                 </tbody>
             </table>

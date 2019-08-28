@@ -38,24 +38,39 @@
                      <i class="nav-link-icon fa fa-edit" style="color:#547adc;"></i>
                     Đổi mật khẩu </a>
             </div>
-            <div ng-if="changePswCondition == true">
+            
+            <div id="divChangePassword" style="padding:10px 5% 10px 5%">
+
+                <div class="form-label-group">
+                    <label class="">* Mật khẩu hiện tại</label>
+                    <input type="password" class="form-control" minlength="9" maxlength="25"  ng-model="current">
+                </div><br />
+
                 <div class="form-label-group">
                     <label class="">* Mật khẩu</label>
-                    <input type="password" name="PSW" class="form-control" minlength="9" maxlength="25" required ng-model="psw">
+                    <input type="password" class="form-control" minlength="9" maxlength="25" ng-model="newPsw">
                     <span ng-show="frmEdtAccount.PSW.$invalid" class="had-error">*Yêu cầu mật khẩu tối thiểu là 9 ký tự</span>
                 </div><br />
 
                 <div class="form-label-group">
                     <label for="rePSW">* Nhập lại mật khẩu</label>
-                    <input type="password" name="rePSW" class="form-control" ng-model="rePsw" ng-change="checkPSW()">
+                    <input type="password" class="form-control" ng-change="checkPSW()" ng-model="reNewPsw">
                     <label style="color:red">{{notification}}</label>
                 </div>
+
+                <div class="nav-table-bar-parent" style="padding-left:80%">
+                    <!--<div class="box-2">-->
+                    <button type="submit" class="mb-2 mr-2 btn btn-success" ng-click="updatePsw()">Cập nhật</button>
+                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click="changerPSW()">Hủy</button>
+
+                </div>
+
             </div>
 
-            <div class="position-relative form-group ">
+            <div class="position-relative form-group">
                 <label>Phân quyền</label>
                 <select name="role" class="form-control"
-                        required ng-model="accEdt.role" ng-options="option.Id in option.Name for option in Roles">
+                        required ng-model="accEdt.role" ng-options="option.Id as option.Name for option in Roles">
                     <option selected disabled value="">-- Quyền --</option>
                 </select>
                 <span ng-show="frmEdtAccount.role.$error.required" class="had-error">*Vui lòng chọn quyền</span>
@@ -63,7 +78,7 @@
 
             <div class="nav-table-bar-parent">
                 <!--<div class="box-2">-->
-                <button type="submit" ng-disabled="frmEdtAccount.$invalid || condition" class="mb-2 mr-2 btn btn-primary" ng-click="CreateAcc()">Tạo tài khoản</button>
+                <button type="submit" ng-disabled="frmEdtAccount.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="updateAcc()">Lựu lại</button>
                 <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ui-sref="list_account">Hủy bỏ</button>
                 <!--</div>
                 <div class="box-1">
