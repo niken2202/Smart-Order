@@ -184,8 +184,7 @@ namespace SmartOrder.api
                                 await userManager.AddToRoleAsync(newAppUser.Id, role);
                             }
                         }
-
-                        return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
+                        return request.CreateResponse(HttpStatusCode.OK, newAppUser);
                     }
                     else
                         return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
