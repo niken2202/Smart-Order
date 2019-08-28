@@ -20,6 +20,7 @@ namespace Data.Repositories
         public override Combo Add(Combo entity)
         {
             var c = DbContext.Combos.Add(entity);
+
             if (c != null)
             {
                 foreach(var dc in entity.DishComboMappings)
