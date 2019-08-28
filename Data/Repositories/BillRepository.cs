@@ -141,8 +141,13 @@ namespace Data.Repositories
                 }
                 if (code.Times <= 0) code.Status = false;
             }
+            else
+            {
+                dis = 0;
+            }
             b.Total = b.BillDetail.Sum(x => (x.Amount * x.Price)) ;
-            b.Total = b.Total+  b.Total * dis/100;
+            
+            b.Total = b.Total-  b.Total * dis/100;
             return b;
         }
         public IEnumerable<BillViewModel> GetAll()
