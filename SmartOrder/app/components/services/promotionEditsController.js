@@ -18,7 +18,9 @@
         //update dish
         $scope.updatePromo = updatePromo;
         function updatePromo() {
-
+            if ($scope.edtPromo.Times == 0) {
+                $scope.edtPromo.Status = 0;
+            }
             apiService.put('/api/promotioncode/update', $scope.edtPromo,
                 function (result) {
                     notificationService.displaySuccess($scope.edtPromo.Code + ' đã được cập nhật mới! ');

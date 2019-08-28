@@ -4,10 +4,7 @@
         <form class="" novalidate name="frmEditPromotion" role="form">
 
             <div class="position-relative form-group">
-                <label class="">Tên mã giảm giá </label>
-                <input required name="Code" maxlength="256" type="text" class="form-control" ng-model="edtPromo.Code">
-                <span ng-show="frmEdtPromotion.Code.$invalid" class="had-error">*Hãy nhập tên mã giảm giá</span>
-                <span ng-show="frmEdtPromotion.Code.$error.maxlength.invalid" class="had-error">Tên mã giảm giá quá dài</span>
+                <label class="">Tên mã giảm giá : {{edtPromo.Code}}</label>                
             </div>
 
             <div class="position-relative form-group">
@@ -26,7 +23,7 @@
             <div class="position-relative form-group">
                 <label class="">Giảm giá %</label>
                 <input required name="discount" type="number" class="form-control" ng-model="edtPromo.Discount"
-                       min="0" oninput="this.value = Math.abs(this.value)">
+                      max="100" min="0" oninput="this.value = Math.abs(this.value)">
                 <span ng-show="frmEdtPromotion.discount.$invalid" class="had-error">*Vui lòng nhập % giảm giá</span>
             </div>
 

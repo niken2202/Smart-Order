@@ -37,6 +37,8 @@
         function CreateAcc() {
             if (angular.equals($scope.psw, $scope.rePsw) == true) {
                 //notificationService.displaySuccess('Done');
+                var listRole = [];
+                listRole.push($scope.accAdd.role.Name);
                 var registerData = {
                     FullName: $scope.accAdd.FullName,
                     BirthDay: $scope.accAdd.BirthDay,
@@ -44,7 +46,7 @@
                     PhoneNumber: $scope.accAdd.PhoneNumber,
                     Password: $scope.psw,
                     Address: $scope.accAdd.Address,
-                    Roles: [$scope.accAdd.role.Name]
+                    Roles: listRole
                 }
                 apiService.post('/api/user/add', registerData, function (result) {
                     notificationService.displaySuccess('Thêm mới tài khoản thành công!');
