@@ -18,23 +18,25 @@ namespace SmartOrder.api
     {
         private ApplicationUserManager userManager;
         private IApplicationRoleService appRoleService;
+       
 
         public ApplicationUserController(IApplicationRoleService appRoleService,
-            ApplicationUserManager userManager,
+            ApplicationUserManager userManager, 
             IErrorService errorService,
             IHistoryService _historyService)
             : base(errorService, _historyService)
         {
             this.userManager = userManager;
-            this.appRoleService = appRoleService;
-        }
+            this.appRoleService = appRoleService; 
 
+        }
+    
         [Route("getall")]
         [HttpGet]
         // [Authorize(Roles = "Admin")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
-            return CreateHttpResponse(request, () =>
+            return CreateHttpResponse(request, ()  =>
             {
                 HttpResponseMessage response = null;
                 List<ApplicationUserViewModel> listUser = new List<ApplicationUserViewModel>();
@@ -47,8 +49,8 @@ namespace SmartOrder.api
                         UserName = user.UserName,
                         BirthDay = user.BirthDay,
                         PhoneNumber = user.PhoneNumber,
-                        Address = user.Address
-                        //  Roles = user.Roles
+                        Address = user.Address,
+                       Roles = appRoleService.GetRoleByUserID(user.Id)
                     };
                     listUser.Add(u);
                 }
@@ -68,7 +70,21 @@ namespace SmartOrder.api
             {
                 HttpResponseMessage response = null;
                 var user = userManager.Users.SingleOrDefault(x => x.Id.Equals(id));
-                response = request.CreateResponse(HttpStatusCode.OK, user);
+                ApplicationUserViewModel u = null;
+                if (user != null)
+                {
+                     u = new ApplicationUserViewModel()
+                    {
+                        Id = user.Id,
+                        FullName = user.FullName,
+                        UserName = user.UserName,
+                        BirthDay = user.BirthDay,
+                        PhoneNumber = user.PhoneNumber,
+                        Address = user.Address,
+                        Roles = appRoleService.GetRoleByUserID(user.Id)
+                    };
+                }
+                response = request.CreateResponse(HttpStatusCode.OK, u);
 
                 return response;
             });
