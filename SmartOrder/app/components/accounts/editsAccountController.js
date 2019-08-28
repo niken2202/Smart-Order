@@ -65,15 +65,18 @@
             if (angular.equals($scope.newPsw, $scope.reNewPsw) == true) {
                 var updatePsw = {
                     Id: $scope.accEdt.Id,
-                    CurrentPassword: $scope.newPsw,
-                    NewPassword: $scope.current
+                    CurrentPassword: $scope.current,
+                    NewPassword: $scope.newPsw
                 }
-                apiService.post('/api/user/changepassword', updatePsw, function (result) {
-                    notificationService.displaySuccess('Thêm mới tài khoản thành công!');
+                apiService.put('/api/user/changepassword', updatePsw, function (result) {
+                    console.log(result)
+                    notificationService.displaySuccess('Cập nhật mật khẩu thành công!');
                 }, function () {
-                    notificationService.displayError('Tạo mới tài khoản không thành công !');
+                    notificationService.displayError('Mật khẩu hiện tại không đúng !');
                 });
 
+            } else {
+                notificationService.displayError('Mật khẩu nhập lại không khớp!');
             }
         }
 
