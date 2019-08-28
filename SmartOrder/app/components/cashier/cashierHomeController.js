@@ -197,7 +197,7 @@
                 }
 
                 apiService.post('/api/cart/add', $scope.curCart, function (result) {
-                    notificationService.displaySuccess('Ok !' + result.data.ID);
+                    notificationService.displaySuccess('Thao tác đang được xủ lý');
                     //$scope.curCart = result.data;
                     var itemDish = {
                         Id: $scope.dishCart.ProID,
@@ -275,7 +275,7 @@
                     CartPrice: $scope.paymentPrice
                 }
                 apiService.post('/api/cart/add', $scope.curCart, function (result) {
-                    notificationService.displaySuccess('Ok !' + result.data.ID);
+                    notificationService.displaySuccess('Thao tác đang được xủ lý');
                     //$scope.curCart = result.data;
                     var itemCombo = {
                         Id: comboCart.ProID,
@@ -620,7 +620,7 @@
         //set schedule to auto call update view
         $interval(rellTime, 5000);
         function rellTime() {
-            //getListTable();
+            getListTable();
             autoUpdateCart();
             getPromotion();
             getDish();

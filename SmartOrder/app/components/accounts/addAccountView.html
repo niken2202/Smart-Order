@@ -5,14 +5,14 @@
 
             <div class="position-relative form-group">
                 <label class="">Tên nhân viên</label>
-                <input required name="FullName" type="text" class="form-control" ng-model="accAdd.FullName">
-                <span ng-show="frmAddAccount.FullName.$invalid" class="had-error">*Vui lòng điền họ và tên nhân viên</span>
+                <input required name="fullName" type="text" class="form-control" ng-model="accAdd.FullName">
+                <span ng-show="frmAddAccount.fullName.$invalid" class="had-error">*Vui lòng điền họ và tên nhân viên</span>
             </div>
 
             <div class="position-relative form-group">
                 <label class="">Số điện thoại</label>
-                <input required name="PhoneNumber" type="tel" class="form-control" ng-model="accAdd.PhoneNumber">
-                <span ng-show="frmAddAccount.PhoneNumber.$invalid" class="had-error"></span>
+                <input required name="phoneNumber" type="number" class="form-control" ng-model="accAdd.PhoneNumber">
+                <span ng-show="frmAddAccount.phoneNumber.$invalid" class="had-error"></span>
             </div>
 
             <div class="position-relative form-group">
@@ -23,30 +23,40 @@
 
             <div class="position-relative form-group">
                 <label class="">Ngày sinh:</label>
-                <input required name="BirthDay" type="date" class="form-control" ng-model="accAdd.BirthDay">
-                <span ng-show="frmEdtPromotion.BirthDay.$invalid" class="had-error"></span>
+                <input name="birthDay" type="date" class="form-control"
+                       value="1997-01-01" ng-model="accAdd.BirthDay">
+                <span ng-show="frmAddAccount.birthDay.$invalid" class="had-error"></span>
             </div>
 
             <div class="position-relative form-group">
                 <label class="">Tên đăng nhập </label>
-                <input required name="UserName" minlength="6" maxlength="256" type="text" class="form-control" ng-model="accAdd.UserName">
-                <span ng-show="frmAddAccount.UserName.$invalid" class="had-error">*Tên đăng nhập không hợp lệ (Yêu cầu độ dài trên 6 và không quá 256 ký tự)</span>
+                <input required name="userName" minlength="6" maxlength="256" type="text" class="form-control" ng-model="accAdd.UserName">
+                <span ng-show="frmAddAccount.userName.$invalid" class="had-error">*Tên đăng nhập không hợp lệ (Yêu cầu độ dài trên 6 và không quá 256 ký tự)</span>
             </div>
 
-            <div class="position-relative form-group">
-                <label class="">Mật khẩu</label>
-                <input required name="PassWord" minlength="6" maxlength="25" type="text" class="form-control" ng-model="accAdd.PassWord">
-                <span ng-show="frmAddAccount.PassWord.$invalid" class="had-error">*Mật khẩu không hợp lệ (Yêu cầu độ dài trên 8 và không quá 25 ký tự)</span>
+            <div class="form-label-group">
+                <label class="">* Mật khẩu</label>
+                <input type="password" name="PSW" class="form-control" minlength="9" maxlength="25" required ng-model="psw">
+                <span ng-show="frmAddAccount.PSW.$invalid" class="had-error">*Mật khẩu không hợp lệ (Yêu cầu mật khẩu trên 9 ký tự)</span>
             </div>
 
-            <!--<div class="position-relative form-group">
-                <label class="">Nhập lại mật khẩu </label>
-                <input required name="UserName" minlength="6" maxlength="256" type="text" class="form-control" ng-model="accAdd.UserName">
-            </div>-->
+            <div class="form-label-group">
+                <label for="rePSW">* Nhập lại mật khẩu</label>
+                <input type="password" name="rePSW" class="form-control" minlength="9" maxlength="25" ng-model="rePsw">
+            </div>
+
+            <div class="position-relative form-group ">
+                <label>Phân quyền</label>
+                <select name="role" class="form-control" 
+                        ng-model="accAdd.role" ng-options="option.ID as option.Name for option in Roles">
+                    <option selected disabled value="">-- Quyền --</option>
+                </select>
+                <!--<span ng-show="frmAddAccount.role.$error.required" class="had-error">*Vui lòng chọn quyền</span>-->
+            </div>
 
             <div class="nav-table-bar-parent">
                 <!--<div class="box-2">-->
-                <button type="submit" ng-disabled="frmAddAccount.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="CreateAcc()">Thêm mới</button>
+                <button type="submit" ng-disabled="frmAddAccount.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="CreateAcc()">Tạo tài khoản</button>
                 <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ui-sref="list_account">Hủy bỏ</button>
                 <!--</div>
         <div class="box-1">

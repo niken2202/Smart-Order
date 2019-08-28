@@ -32,11 +32,11 @@
                 <thead>
                     <tr>
                         <th class="cornflowerblue" ng-click="sort('$index')"><i class="fas fa-sort-down"></i></th>
-                        <th class="cornflowerblue" ng-click="sort('Name')">Tên đăng nhập</th>
-                        <th class="cornflowerblue" ng-click="sort('Price')">Nhân viên</th>
-                        <th class="cornflowerblue" ng-click="sort('Amount')">Số điện thoại</th>
-                        <th class="cornflowerblue" ng-click="sort('Unit')">Vai trò</th>
-                        <!--<th class="cornflowerblue" ng-click="sort('')">Ngày khởi tạo</th>-->
+                        <th class="cornflowerblue" ng-click="sort('UserName')">Tên đăng nhập</th>
+                        <th class="cornflowerblue" ng-click="sort('FullName')">Nhân viên</th>
+                        <th class="cornflowerblue">Số điện thoại</th>
+                        <th class="cornflowerblue">Địa chỉ</th>
+                        <th class="cornflowerblue" ng-click="sort('BirthDay')">Ngày sinh</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -46,8 +46,8 @@
                         <td ng-click="openDialog($event,item)">{{item.UserName}}</td>
                         <td ng-click="openDialog($event,item)">{{item.FullName}}</td>
                         <td ng-click="openDialog($event,item)">{{item.PhoneNumber}}</td>
-                        <td ng-click="openDialog($event,item)">{{item.Roles}}</td>
-                        <!--<td ng-click="openDialog($event,item)">{{item.}}</td>-->
+                        <td ng-click="openDialog($event,item)">{{item.Address}}</td>
+                        <td ng-click="openDialog($event,item)">{{item.BirthDay | date:'dd-MM-yyyy'}}</td>
                         <td>
                             <button class="btn delete-icon" ng-click="accDel(item)">
                                 <i class="fas fa-trash f1f8 customize-delete-icon"></i>
