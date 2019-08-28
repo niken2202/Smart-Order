@@ -84,6 +84,12 @@ namespace Data.Repositories
             var combo = DbContext.Combos.SingleOrDefault(x => x.ID == entity.ID);
             if (combo != null)
             {
+                combo.Image = entity.Image;
+                combo.Name = entity.Name;
+                combo.Price = entity.Price;
+                combo.Status = entity.Status;
+                combo.CreatedDate = entity.CreatedDate;
+                combo.Description = entity.Description;
                 foreach (var dc in entity.DishComboMappings)
                 {
                     var old = DbContext.DishComboMapping.SingleOrDefault(x => x.DishID == dc.DishID && x.ComboID == entity.ID);
