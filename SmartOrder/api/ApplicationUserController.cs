@@ -58,6 +58,20 @@ namespace SmartOrder.api
             });
         }
 
+        [Route("getbyid")]
+        [HttpGet]
+        // [Authorize(Roles = "Admin")]
+        public HttpResponseMessage GetByID(HttpRequestMessage request,string id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var user = userManager.Users.SingleOrDefault(x => x.Id.Equals(id));
+                response = request.CreateResponse(HttpStatusCode.OK, user);
+
+                return response;
+            });
+        }
         [Route("changepassword"), HttpPut]
         //[Authorize(Roles = "Admin")]
         public async Task<HttpResponseMessage> ChangePassword(HttpRequestMessage request, ApplicationUserViewModel user)
@@ -170,8 +184,7 @@ namespace SmartOrder.api
                                 await userManager.AddToRoleAsync(newAppUser.Id, role);
                             }
                         }
-
-                        return request.CreateResponse(HttpStatusCode.OK, applicationUserViewModel);
+                        return request.CreateResponse(HttpStatusCode.OK, newAppUser);
                     }
                     else
                         return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
