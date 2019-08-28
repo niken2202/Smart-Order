@@ -1,12 +1,14 @@
 ﻿using Data.Infrastructure;
 using Model.Models;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data.SqlClient;
+
 namespace Data.Repositories
 {
     public interface IApplicationRoleRepository : IRepository<ApplicationRole>
     {
         IEnumerable<string> GetRoleByUserID(string id);
+        IEnumerable<ApplicationRole> GetAllRoles();
     }
 
     public class ApplicationRoleRepository : RepositoryBase<ApplicationRole>, IApplicationRoleRepository
@@ -14,14 +16,17 @@ namespace Data.Repositories
         public ApplicationRoleRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
-
+        public IEnumerable<ApplicationRole> GetAllRoles()
+        {
+            return DbContext.Database.SqlQuery<ApplicationRole>("GetAllRole");
+        }
         public IEnumerable<string> GetRoleByUserID(string id)
         {
-            var Roles = (from ur in DbContext.ApplicationUserRoles
-                        join r in DbContext.ApplicationRoles on ur.RoleId equals r.Id
-                        where ur.UserId == id
-                        select r.Name).ToList();
-            return Roles;
+            var parameters = new object[]
+           {
+                new SqlParameter("@userid",id),
+           };
+            return DbContext.Database.SqlQuery<string>("GetRoleByUserID @userid", parameters);
         }
     }
 }
