@@ -10,6 +10,7 @@ namespace Service
     {
         IEnumerable<ApplicationRole> GetAll();
         ApplicationRole Add(ApplicationRole appRole);
+        IEnumerable<string> GetRoleByUserID(string id);
         void SaveChanges();
     }
 
@@ -38,6 +39,11 @@ namespace Service
             if (applicationRoleRepository.CheckContains(x => x.Name == appRole.Name))
                 throw new NameDuplicatedException("Tên không được trùng");
             return applicationRoleRepository.Add(appRole);
+        }
+
+        public IEnumerable<string> GetRoleByUserID(string id)
+        {
+            return applicationRoleRepository.GetRoleByUserID(id);
         }
     }
 }

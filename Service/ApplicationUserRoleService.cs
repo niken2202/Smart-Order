@@ -7,13 +7,14 @@ namespace Service
     public interface IApplicationUserRoleService
     {
         ApplicationUserRole Add(ApplicationUserRole applicationUserRole);
+
         void SaveChanges();
     }
 
     public class ApplicationUserRoleService : IApplicationUserRoleService
     {
-        IUnitOfWork unitOfWork;
-        IApplicationUserRoleRepository applicationUserRoleRepository;
+        private IUnitOfWork unitOfWork;
+        private IApplicationUserRoleRepository applicationUserRoleRepository;
 
         public ApplicationUserRoleService(IUnitOfWork unitOfWork, IApplicationUserRoleRepository applicationUserRoleRepository)
         {
