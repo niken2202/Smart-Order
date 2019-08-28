@@ -47,6 +47,7 @@ namespace SmartOrder.api
                         UserName = user.UserName,
                         BirthDay = user.BirthDay,
                         PhoneNumber = user.PhoneNumber,
+                        Address = user.Address
                         //  Roles = user.Roles
                     };
                     listUser.Add(u);
