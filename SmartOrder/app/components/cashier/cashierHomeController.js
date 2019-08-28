@@ -528,7 +528,7 @@
                 for (i = 0; i < $scope.curCart.CartDetails.length; i++) {
                     orderCountDish($scope.curCart.CartDetails[i]);
                 }
-                changeTableStatusOn($scope.curTable);
+                changeTableStatusPayment($scope.curTable);
                 $scope.curCart = null;
                 $scope.curTable = null;
                 countTotalPrice();
@@ -605,6 +605,16 @@
         //changer table status avaiable
         function changeTableStatusOn(item) {
             item.Status = 1;
+            apiService.put('api/table/update', item, function (result) {
+                //console.log('update table succes')
+            }, function () {
+                //notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
+            });
+        }
+
+        //changer table status after payment method
+        function changeTableStatusPayment(item) {
+            item.Status = 3;
             apiService.put('api/table/update', item, function (result) {
                 //console.log('update table succes')
             }, function () {

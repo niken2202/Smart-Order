@@ -60,7 +60,7 @@
                     <div class="crashier-table-row">
                         <div class="crashier-table-item" dir-paginate="item in tables |filter:search |itemsPerPage:15" pagination-id="tables">
 
-                            <div ng-if="item.Status == 1"
+                            <div ng-if="item.Status == 1 || item.Status == 3"
                                  ng-click="showBill(item)" class="crashier-btn-table pointer">
                                 <div style="background-color:#1ebb1e; color:white" class="crashier-btn-title-table">
                                     {{item.Name}}
