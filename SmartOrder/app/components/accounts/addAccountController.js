@@ -4,12 +4,11 @@
     addAccountController.$inject = ['$scope', 'ngDialog', 'apiService', 'notificationService'];
 
     function addAccountController($scope, ngDialog, apiService, notificationService) {
-
-        $scope.notificationPSW = "";
-        $scope.notificationRePSW = "";
+        $scope.notification = "";
         $scope.psw = "";
         $scope.rePsw = "";
         $scope.accAdd;
+        $scope.condition = true;
 
         //get list roles to the select box
         $scope.Roles = [];
@@ -22,10 +21,20 @@
         }
         getRoles();
 
+        //check password and rePassword
+        $scope.checkPSW = checkPSW;
+        function checkPSW() {
+            if (angular.equals($scope.psw, $scope.rePsw) == true) {
+                $scope.condition = false;
+                $scope.notification = ""
+            } else {
+                $scope.condition = true;
+                $scope.notification = "Mật khẩu không khớp!"
+            }
+        }
+
         $scope.CreateAcc = CreateAcc;
         function CreateAcc() {
-
-
             if (angular.equals($scope.psw, $scope.rePsw) == true) {
                 //notificationService.displaySuccess('Done');
                 var registerData = {
@@ -33,20 +42,18 @@
                     BirthDay: $scope.accAdd.BirthDay,
                     UserName: $scope.accAdd.UserName,
                     PhoneNumber: $scope.accAdd.PhoneNumber,
-                    PassWord: $scope.psw,
+                    Password: $scope.psw,
                     Address: $scope.accAdd.Address,
-                    Roles: $scope.accAdd.role
+                    Roles: [$scope.accAdd.role.Name]
                 }
                 apiService.post('/api/user/add', registerData, function (result) {
-                    //notificationService.displaySuccess('Ok rồi bạn iê');
+                    notificationService.displaySuccess('Thêm mới tài khoản thành công!');
                 }, function () {
-                    //notificationService.displayError('Tạo mới tài khoản không thành công !');
+                    notificationService.displayError('Tạo mới tài khoản không thành công !');
                 });
-
             } else {
                 notificationService.displayError('Mật khẩu nhập lại không khớp !');
             }
-
         }
 
         $scope.changePSW = changePSW;
@@ -72,8 +79,5 @@
                 }
             }
         }
-
-
-
     }
 })(angular.module('SmartOrder.accounts'));

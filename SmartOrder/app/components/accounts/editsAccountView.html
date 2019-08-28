@@ -1,64 +1,70 @@
 ﻿<div class="main-card mb-3 card" style="border:hidden">
     <div class="card-body">
-        <h4 class="card-title customize-font-blue-color"> Thêm nguyên liệu mới </h4>
-        <form class="" novalidate name="frmEditMaterial" role="form">
+        <h4 class="card-title customize-font-blue-color"> Thêm tài khoản mới </h4>
+        <form class="" novalidate name="frmEdtAccount" role="form">
 
             <div class="position-relative form-group">
-                <label class="">Tên nguyên liệu </label>
-                <input required name="Name" maxlength="256" type="text" class="form-control" ng-model="edtMate.Name">
-                <span ng-show="frmEditMaterial.Name.$invalid" class="had-error">*Hãy nhập tên nguyên liệu</span>
-                <span ng-show="frmEditMaterial.Name.$error.maxlength.invalid" class="had-error">Tên nguyên liệu quá dài</span>
+                <label class="">Tên nhân viên</label>
+                <input required name="fullName" type="text" class="form-control" ng-model="accEdt.FullName">
+                <span ng-show="frmEdtAccount.fullName.$invalid" class="had-error">*Vui lòng điền họ và tên nhân viên</span>
             </div>
 
             <div class="position-relative form-group">
-                <label class="">Giá tiền</label>
-                <span class="customize-font-bold">{{edtMate.Price | currency:"VNĐ ":0}}</span>
-                <input required name="Price" type="number" class="form-control" ng-model="edtMate.Price"
-                       min="0" oninput="this.value = Math.abs(this.value)">
-                <span ng-show="frmEditMaterial.Price.$invalid" class="had-error">*Vui lòng nhấp giá tiền</span>
+                <label class="">Số điện thoại</label>
+                <input required name="phoneNumber" type="tel" class="form-control" ng-model="accEdt.PhoneNumber">
+                <span ng-show="frmEdtAccount.phoneNumber.$invalid" class="had-error">*Vui lòng thêm số điện thoại</span>
             </div>
 
             <div class="position-relative form-group">
-                <label class="">Số lượng</label>
-                <input required name="Amount" type="number" class="form-control" ng-model="edtMate.Amount"
-                        min="0" oninput="this.value = Math.abs(this.value)">
-                <span ng-show="frmEditMaterial.Amount.$invalid" class="had-error"></span>
+                <label class="">Địa chỉ</label>
+                <input name="Address" type="text" class="form-control" ng-model="accEdt.Address">
+                <!--<span ng-show="frmEdtAccount.Address.$invalid" class="had-error">*Vui lòng điền địa chỉ</span>-->
             </div>
 
             <div class="position-relative form-group">
-                <label class="">Đơn vị</label>
-                <input required name="Unit" type="text" class="form-control" ng-model="edtMate.Unit">
-                <span ng-show="frmEditMaterial.Unit.$invalid" class="had-error">*Vui lòng nhập đơn vị</span>
+                <label class="">Ngày sinh:</label>
+                <input name="birthDay" type="date" class="form-control" ng-model="accEdt.BirthDay">
+                <span ng-show="frmEdtAccount.birthDay.$invalid" class="had-error"></span>
             </div>
 
-            <!--<div class="position-relative form-group">
-                <label for="exampleText" class="">Mô tả chi tiết món</label>
-                <textarea name="dishDescription" class="form-control" ng-model="dish.Description">
-            </textarea>
-            </div>-->
-            <!--<fieldset class="position-relative row form-group">
-                <legend class="col-form-label col-sm-2">Trạng thái món</legend>
-                <div class="col-sm-10">
-                    <div class="position-relative form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" ng-model="material.Status" ng-value="1" />Có sẵn
-                        </label>
-                    </div>
-                    <div class="position-relative form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="radio" ng-model="material.Status" ng-value="0" />
-                            Tạm hết
-                        </label>
-                    </div>
+            <div class="position-relative form-group">
+                <label class="">Tên đăng nhập </label>
+                <input required name="userName" minlength="6" maxlength="25" type="text" class="form-control" ng-model="accEdt.UserName">
+                <span ng-show="frmEdtAccount.userName.$invalid" class="had-error">*Tên đăng nhập phải có độ dài trên 6 và không quá 25 ký tự</span>
+            </div>
+
+            <div style="display:inline-flex">
+                 <a ng-click="changerPSW()" class="nav-link pointer" style="color:#547adc;">
+                     <i class="nav-link-icon fa fa-edit" style="color:#547adc;"></i>
+                    Đổi mật khẩu </a>
+            </div>
+            <div ng-if="changePswCondition == true">
+                <div class="form-label-group">
+                    <label class="">* Mật khẩu</label>
+                    <input type="password" name="PSW" class="form-control" minlength="9" maxlength="25" required ng-model="psw">
+                    <span ng-show="frmEdtAccount.PSW.$invalid" class="had-error">*Yêu cầu mật khẩu tối thiểu là 9 ký tự</span>
+                </div><br />
+
+                <div class="form-label-group">
+                    <label for="rePSW">* Nhập lại mật khẩu</label>
+                    <input type="password" name="rePSW" class="form-control" ng-model="rePsw" ng-change="checkPSW()">
+                    <label style="color:red">{{notification}}</label>
                 </div>
-            </fieldset>-->
+            </div>
 
-
+            <div class="position-relative form-group ">
+                <label>Phân quyền</label>
+                <select name="role" class="form-control"
+                        required ng-model="accEdt.role" ng-options="option.Id in option.Name for option in Roles">
+                    <option selected disabled value="">-- Quyền --</option>
+                </select>
+                <span ng-show="frmEdtAccount.role.$error.required" class="had-error">*Vui lòng chọn quyền</span>
+            </div>
 
             <div class="nav-table-bar-parent">
                 <!--<div class="box-2">-->
-                    <button type="submit" ng-disabled="frmEditMaterial.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="updateMate()">Lưu lại</button>
-                    <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ng-click=closeThisDialog(0)>Hủy bỏ</button>
+                <button type="submit" ng-disabled="frmEdtAccount.$invalid || condition" class="mb-2 mr-2 btn btn-primary" ng-click="CreateAcc()">Tạo tài khoản</button>
+                <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ui-sref="list_account">Hủy bỏ</button>
                 <!--</div>
                 <div class="box-1">
                 </div>
@@ -67,7 +73,6 @@
                 <div class="box-4">
                 </div>-->
             </div>
-
         </form>
     </div>
 </div>

@@ -13,7 +13,7 @@
                 templateUrl: "/app/components/accounts/addAccountView.html",
                 controller: "addAccountController"
             }).state('edits_account', {
-                url: "/edits_account",
+                url: "/edits_account/{ID:string}",
                 parent: 'base',
                 templateUrl: "/app/components/accounts/editsAccountView.html",
                 controller: "editsAccountController"

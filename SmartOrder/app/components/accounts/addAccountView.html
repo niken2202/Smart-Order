@@ -11,8 +11,8 @@
 
             <div class="position-relative form-group">
                 <label class="">Số điện thoại</label>
-                <input required name="phoneNumber" type="number" class="form-control" ng-model="accAdd.PhoneNumber">
-                <span ng-show="frmAddAccount.phoneNumber.$invalid" class="had-error"></span>
+                <input required name="phoneNumber" type="tel" class="form-control" ng-model="accAdd.PhoneNumber">
+                <span ng-show="frmAddAccount.phoneNumber.$invalid" class="had-error">*Vui lòng thêm số điện thoại</span>
             </div>
 
             <div class="position-relative form-group">
@@ -23,50 +23,49 @@
 
             <div class="position-relative form-group">
                 <label class="">Ngày sinh:</label>
-                <input name="birthDay" type="date" class="form-control"
-                       value="1997-01-01" ng-model="accAdd.BirthDay">
+                <input name="birthDay" type="date" class="form-control" ng-model="accAdd.BirthDay">
                 <span ng-show="frmAddAccount.birthDay.$invalid" class="had-error"></span>
             </div>
 
             <div class="position-relative form-group">
                 <label class="">Tên đăng nhập </label>
-                <input required name="userName" minlength="6" maxlength="256" type="text" class="form-control" ng-model="accAdd.UserName">
-                <span ng-show="frmAddAccount.userName.$invalid" class="had-error">*Tên đăng nhập không hợp lệ (Yêu cầu độ dài trên 6 và không quá 256 ký tự)</span>
+                <input required name="userName" minlength="6" maxlength="25" type="text" class="form-control" ng-model="accAdd.UserName">
+                <span ng-show="frmAddAccount.userName.$invalid" class="had-error">*Tên đăng nhập phải có độ dài trên 6 và không quá 25 ký tự</span>
             </div>
 
             <div class="form-label-group">
                 <label class="">* Mật khẩu</label>
                 <input type="password" name="PSW" class="form-control" minlength="9" maxlength="25" required ng-model="psw">
-                <span ng-show="frmAddAccount.PSW.$invalid" class="had-error">*Mật khẩu không hợp lệ (Yêu cầu mật khẩu trên 9 ký tự)</span>
-            </div>
+                <span ng-show="frmAddAccount.PSW.$invalid" class="had-error">*Yêu cầu mật khẩu tối thiểu là 9 ký tự</span>
+            </div><br />
 
             <div class="form-label-group">
                 <label for="rePSW">* Nhập lại mật khẩu</label>
-                <input type="password" name="rePSW" class="form-control" minlength="9" maxlength="25" ng-model="rePsw">
+                <input type="password" name="rePSW" class="form-control" ng-model="rePsw" ng-change="checkPSW()">
+                <label style="color:red">{{notification}}</label>
             </div>
 
             <div class="position-relative form-group ">
                 <label>Phân quyền</label>
-                <select name="role" class="form-control" 
-                        ng-model="accAdd.role" ng-options="option.ID as option.Name for option in Roles">
+                <select name="role" class="form-control"
+                        required ng-model="accAdd.role" ng-options="option.Name for option in Roles">
                     <option selected disabled value="">-- Quyền --</option>
                 </select>
-                <!--<span ng-show="frmAddAccount.role.$error.required" class="had-error">*Vui lòng chọn quyền</span>-->
+                <span ng-show="frmAddAccount.role.$error.required" class="had-error">*Vui lòng chọn quyền</span>
             </div>
 
             <div class="nav-table-bar-parent">
                 <!--<div class="box-2">-->
-                <button type="submit" ng-disabled="frmAddAccount.$invalid" class="mb-2 mr-2 btn btn-primary" ng-click="CreateAcc()">Tạo tài khoản</button>
+                <button type="submit" ng-disabled="frmAddAccount.$invalid || condition" class="mb-2 mr-2 btn btn-primary" ng-click="CreateAcc()">Tạo tài khoản</button>
                 <button class="mb-2 mr-2 btn btn-danger" style="margin-left:15px" ui-sref="list_account">Hủy bỏ</button>
                 <!--</div>
-        <div class="box-1">
-        </div>
-        <div class="box-3">
-        </div>
-        <div class="box-4">
-        </div>-->
+                <div class="box-1">
+                </div>
+                <div class="box-3">
+                </div>
+                <div class="box-4">
+                </div>-->
             </div>
-
         </form>
     </div>
 </div>

@@ -42,12 +42,12 @@
                 </thead>
                 <tbody>
                     <tr dir-paginate="item in accounts |filter:search |orderBy:sortKey:reverse|filter:search |itemsPerPage:itemPerPage">
-                        <td ng-click="openDialog($event,item)">{{ $index + serial}}</td>
-                        <td ng-click="openDialog($event,item)">{{item.UserName}}</td>
-                        <td ng-click="openDialog($event,item)">{{item.FullName}}</td>
-                        <td ng-click="openDialog($event,item)">{{item.PhoneNumber}}</td>
-                        <td ng-click="openDialog($event,item)">{{item.Address}}</td>
-                        <td ng-click="openDialog($event,item)">{{item.BirthDay | date:'dd-MM-yyyy'}}</td>
+                        <td ng-click="accountDetails(item)">{{ $index + serial}}</td>
+                        <td ng-click="accountDetails(item)">{{item.UserName}}</td>
+                        <td ng-click="accountDetails(item)">{{item.FullName}}</td>
+                        <td ng-click="accountDetails(item)">{{item.PhoneNumber}}</td>
+                        <td ng-click="accountDetails(item)">{{item.Address}}</td>
+                        <td ng-click="accountDetails(item)">{{item.BirthDay | date:'dd-MM-yyyy'}}</td>
                         <td>
                             <button class="btn delete-icon" ng-click="accDel(item)">
                                 <i class="fas fa-trash f1f8 customize-delete-icon"></i>
@@ -66,5 +66,3 @@
         </div>
     </div>
 </div>
-
-
