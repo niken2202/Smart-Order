@@ -90,6 +90,7 @@ namespace Data.Repositories
                 combo.Status = entity.Status;
                 combo.CreatedDate = entity.CreatedDate;
                 combo.Description = entity.Description;
+                combo.Amount = entity.Amount;
                 foreach (var dc in entity.DishComboMappings)
                 {
                     var old = DbContext.DishComboMapping.SingleOrDefault(x => x.DishID == dc.DishID && x.ComboID == entity.ID);
