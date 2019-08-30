@@ -76,24 +76,25 @@
 
             tDate.setDate(tDate.getDate() - 7);
 
-            console.log(fdate);
-            console.log(tDate);
 
             var config = {
-                params: {
-                    fromDate: fdate,
-                    toDate: tDate
+                params: {                    
+                    fromDate: tDate,
+                    toDate: fdate
                 }
             }
 
-            apiService.get('/api/bill/getrevenuebymonth', config, function (result) {
-                $scope.bills = result.data;
+            apiService.get('/api/bill/getrevenue', config, function (result) {
+
                 $scope.title = "7 ngày gần đây";
-                console.log($scope.bills);
-                if ($scope.bills.length === 0) {
-                    //notificationService.displayWarning('Danh sách trống !');
-                } else {
+                for (i = 0; i < result.data.length; i++) {
+                    var getDate = new Date(result.data[i].Date);
+                    var str = getDate.getDate() + '/' + getDate.getMonth();
+                    $scope.label.push(str);
+                    $scope.data.push(result.data[i].Revenue);
                 }
+                drawChart();
+
             }, function () {
                 //notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
             });
@@ -101,9 +102,9 @@
 
         //catch event user select box change
         $scope.selectEvent = function () {
-            if ($scope.userOption === 1) {
+            if ($scope.userOption == 1) {
                 getRevenue7day();
-            } else if ($scope.userOption === 2) {
+            } else if ($scope.userOption == 2) {
                 fdate = new Date();
                 tDate = new Date(fdate);
 
@@ -130,29 +131,7 @@
                     //notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
                 });
             } else if ($scope.userOption === 3) {
-                fdate = new Date();
-                tDate = new Date(fdate);
-                //fdate.setMonth(tDate.getMonth() - 12);
-
-                var fromDate = fdate.getFullYear() + "-" + 01 + "-" + 01;
-                var toDate = tDate.getFullYear() + "-" + (tDate.getMonth() + 1) + "-" + tDate.getDate() ;
-                var url = "/api/bill/getrevenuebymonth?fromDate=" + fromDate + "&toDate=" + toDate; 
-                console.log(fromDate);
-                console.log(toDate);
-                console.log(url);
-
-                apiService.get(url, null, function (result) {
-
-                    console.log(result.data.length);
-                    $scope.title = "Trong năm nay";
-                    for (i = 0; i < result.data.length; i++) {
-                        var month = 'Tháng ' + result.data[i].Month
-                        $scope.label.push(month);
-                        $scope.data.push(result.data[i].Revenue);
-                    }                   
-                }, function () {
-                    notificationService.displayError('Rất tiếc đã sảy ra lỗi trong quá trình tải danh sách!');
-                });
+                getRevenuesInYear();
             }
         };
 
@@ -178,11 +157,11 @@
                     var month = 'Tháng ' + result.data[i].Month
                     $scope.label.push(month);
                     $scope.data.push(result.data[i].Revenue);
-                    $scope.colors.push($scope.libColor[k]);
-                    k++;
-                    if (k == 9) {
-                        k = 0;
-                    }
+                    //$scope.colors.push($scope.libColor[k]);
+                    //k++;
+                    //if (k == 9) {
+                    //    k = 0;
+                    //}
                 }
                 drawChart();
 
@@ -193,14 +172,14 @@
         getRevenuesInYear();
 
         function drawChart() {
-            
-            var ctx = document.getElementById("dvCanvas").getContext('2d');
+            var ctx = document.getElementById("dvCanvas").getContext('2d');            
+          
             var myChart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     datasets: [{
                         data: $scope.revenues.data,
-                        backgroundColor: $scope.revenues.color,
+                        backgroundColor: '#3e95cd',
                         label: "Doanh thu",
                     }],
                     labels: $scope.revenues.labels,
@@ -209,12 +188,13 @@
                     responsive: true,
                     title: {
                         display: true,
-                        text: 'Doanh thu trong năm nay',
+                        text: $scope.title,
                         position: 'bottom',
                     },
                     showDatasetLabels: false,
                 }
             });
+            myChart.update();
 
         }
       
