@@ -129,6 +129,14 @@
     <Compile Include="Migrations\201908211654098_alter-bill-table.Designer.cs">
       <DependentUpon>201908211654098_alter-bill-table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908281300185_get-Role-proceduce.cs" />
+    <Compile Include="Migrations\201908281300185_get-Role-proceduce.Designer.cs">
+      <DependentUpon>201908281300185_get-Role-proceduce.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908281313458_get-all-roles-storedproceduced.cs" />
+    <Compile Include="Migrations\201908281313458_get-all-roles-storedproceduced.Designer.cs">
+      <DependentUpon>201908281313458_get-all-roles-storedproceduced.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationRoleRepository.cs" />
@@ -215,6 +223,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908211654098_alter-bill-table.resx">
       <DependentUpon>201908211654098_alter-bill-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908281300185_get-Role-proceduce.resx">
+      <DependentUpon>201908281300185_get-Role-proceduce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908281313458_get-all-roles-storedproceduced.resx">
+      <DependentUpon>201908281313458_get-all-roles-storedproceduced.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

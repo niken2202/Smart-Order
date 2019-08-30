@@ -26,7 +26,7 @@ namespace Service
         }
         public IEnumerable<ApplicationRole> GetAll()
         {
-            return applicationRoleRepository.GetAll();
+            return applicationRoleRepository.GetAllRoles();
         }
 
         public void SaveChanges()
