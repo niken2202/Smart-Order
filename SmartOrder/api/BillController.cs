@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/bill")]
+    [RoutePrefix("api/bill"), Authorize]
     public class BillController : ApiControllerBase
     {
         private IBillService billService;
@@ -17,7 +17,7 @@ namespace SmartOrder.api
             this.billService = billService;
         }
 
-        [Route("add")]
+        [Route("add"), Authorize(Roles = "Admin,Cashier")]
         public HttpResponseMessage Create(HttpRequestMessage request, Bill bill)
         {
             return CreateHttpResponse(request, () =>
@@ -38,7 +38,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getall")]
+        [Route("getall"), Authorize(Roles = "Admin")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
@@ -59,7 +59,7 @@ namespace SmartOrder.api
             });
         }
 
-        [HttpGet]
+        [HttpGet, Authorize(Roles = "Admin")]
         [Route("gettimerange")]
         public HttpResponseMessage GetTimeRange(HttpRequestMessage request, DateTime fromDate, DateTime toDate)
         {
@@ -80,7 +80,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getlast7day"), HttpGet]
+        [Route("getlast7day"), HttpGet, Authorize(Roles = "Admin")]
         public HttpResponseMessage GetBillLast7Days(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -100,7 +100,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getlastmonth"), HttpGet]
+        [Route("getlastmonth"), HttpGet, Authorize(Roles = "Admin")]
         public HttpResponseMessage GetLastMonth(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -120,7 +120,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("gettoday"), HttpGet]
+        [Route("gettoday"), HttpGet, Authorize(Roles = "Admin")]
         public HttpResponseMessage GetBillToday(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -140,7 +140,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getbilldetail"), HttpGet]
+        [Route("getbilldetail"), HttpGet, Authorize(Roles = "Admin")]
         public HttpResponseMessage GetBillDetail(HttpRequestMessage request,int id)
         {
             return CreateHttpResponse(request, () =>
@@ -160,7 +160,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getrevenue"), HttpGet, AllowAnonymous]
+        [Route("getrevenue"), HttpGet, Authorize(Roles = "Admin")]
         public HttpResponseMessage GetRevenue(HttpRequestMessage request, DateTime fromDate, DateTime toDate)
         {
             return CreateHttpResponse(request, () =>
@@ -180,7 +180,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getrevenuebymonth"), HttpGet, AllowAnonymous]
+        [Route("getrevenuebymonth"), HttpGet, Authorize(Roles = "Admin")]
         public HttpResponseMessage GetRevenueByMonth(HttpRequestMessage request, DateTime fromDate, DateTime toDate)
         {
             return CreateHttpResponse(request, () =>

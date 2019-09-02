@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/statistic"), Authorize]
+    [RoutePrefix("api/statistic"),Authorize(Roles = "Admin")]
     public class StatisticController : ApiControllerBase
     {
        private IStatisticService statisticService;

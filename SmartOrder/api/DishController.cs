@@ -20,7 +20,7 @@ namespace SmartOrder.api
             this.dishService = dishService;
         }
 
-        [Route("add"),Authorize]
+        [Route("add"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Post(HttpRequestMessage request, Dish dish)
         {
             return CreateHttpResponse(request, () =>
@@ -63,7 +63,7 @@ namespace SmartOrder.api
                 return response;
             });
         }
-        [Route("gettophot")]
+        [Route("gettophot"),Authorize(Roles = "Admin")]
         //[Authorize(Roles = "Guest, Cashier")]
         public HttpResponseMessage GetTopHot(HttpRequestMessage request)
         {

@@ -17,7 +17,7 @@ namespace SmartOrder.api
             this.tableService = tableService;
         }
 
-        [Route("add"), Authorize]
+        [Route("add"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Post(HttpRequestMessage request, Table table)
         {
             return CreateHttpResponse(request, () =>
@@ -122,7 +122,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("delete")]
+        [Route("delete"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
