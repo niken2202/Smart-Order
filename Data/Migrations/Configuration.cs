@@ -32,12 +32,12 @@ namespace Data.Migrations
             //if (!roleManager.Roles.Any())
             //{
             //    roleManager.Create(new IdentityRole { Name = "Admin" });
-            //    roleManager.Create(new IdentityRole { Name = "User" });
+            //    roleManager.Create(new IdentityRole { Name = "Cashier" });
             //}
 
             //var adminUser = manager.FindByName("test");
 
-            //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+            //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "Cashier" });
 
         }
     }
