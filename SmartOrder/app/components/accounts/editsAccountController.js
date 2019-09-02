@@ -43,7 +43,7 @@
         getRoles();
         
         //get account infomation by id
-        function getComboByID() {
+        function getAccountByID() {
             var transfer = {
                 params: {
                     id: $stateParams.ID,
@@ -54,11 +54,13 @@
                 function (result) {
                     $scope.accEdt = result.data;
                     $scope.accEdt.BirthDay = new Date(result.data.BirthDay);
+                    $scope.accEdt.role = $scope.accEdt.Roles[0].Id;
+                    console.log(result.data.Roles[0]);
                 }, function (error) {
-                    notificationService.displayError('Đã xảy ra lỗi trong quá trình tải dữ liệu');
+                    notificationService.displayError('Tải thông tin không thành công!');
                 });
         }
-        getComboByID();
+        getAccountByID();
 
         $scope.updatePsw = updatePsw;
         function updatePsw() {
@@ -72,7 +74,8 @@
                     notificationService.displaySuccess('Cập nhật mật khẩu thành công!');
                     $scope.accEdt.Id = "",
                     $scope.current = "",
-                    $scope.newPsw =""
+                    $scope.newPsw ="",
+                    $scope.reNewPsw = "";
                 }, function () {
                     notificationService.displayError('Mật khẩu hiện tại không đúng !');
                 });
@@ -86,24 +89,25 @@
         //update account
         $scope.updateAcc = updateAcc;
         function updateAcc() {
-            if (angular.equals($scope.psw, $scope.rePsw) == true) {
-                //notificationService.displaySuccess('Done');
+            if ($scope.changePswCondition == false) {
+                var listRole = [];
+                listRole.push($scope.accEdt.role.Name);
                 var registerData = {
                     FullName: $scope.accEdt.FullName,
                     BirthDay: $scope.accEdt.BirthDay,
                     UserName: $scope.accEdt.UserName,
                     PhoneNumber: $scope.accEdt.PhoneNumber,
-                    Password: $scope.psw,
+                    //Password: $scope.psw,
                     Address: $scope.accEdt.Address,
-                    Roles: [$scope.accEdt.role.Name]
+                    Roles: listRole
                 }
-                apiService.post('/api/user/add', registerData, function (result) {
-                    notificationService.displaySuccess('Thêm mới tài khoản thành công!');
+                apiService.put('/api/user/update', registerData, function (result) {
+                    notificationService.displaySuccess('Cập nhật tài khoản thành công!');
                 }, function () {
-                    notificationService.displayError('Tạo mới tài khoản không thành công !');
+                    notificationService.displayError('Cập nhật tài khoản xảy ra lỗi !');
                 });
             } else {
-                notificationService.displayError('Mật khẩu nhập lại không khớp !');
+                notificationService.displayWarning('Vui lòng hoàn thành và đóng phần thay đổi mật khẩu!');
             }
         }
 

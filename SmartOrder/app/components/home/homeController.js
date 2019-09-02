@@ -101,7 +101,7 @@
                 $scope.revenues.data = []
                 for (i = 0; i < result.data.length; i++) {
                     var getDate = new Date(result.data[i].Date);
-                    var str = getDate.getDate() + '/' + getDate.getMonth();
+                    var str = getDate.getDate() + '/' + (getDate.getMonth() + 1);
                     if ($scope.revenues.labels[k] == null) {
                         $scope.revenues.labels.push(str);
                         $scope.revenues.data.push(result.data[i].Revenue);
