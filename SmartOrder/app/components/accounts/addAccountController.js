@@ -1,9 +1,9 @@
 ﻿(function (app) {
     app.controller('addAccountController', addAccountController);
 
-    addAccountController.$inject = ['$scope', 'ngDialog', 'apiService', 'notificationService'];
+    addAccountController.$inject = ['$scope', '$state', 'apiService', 'notificationService'];
 
-    function addAccountController($scope, ngDialog, apiService, notificationService) {
+    function addAccountController($scope, $state, apiService, notificationService) {
         $scope.notification = "";
         $scope.psw = "";
         $scope.rePsw = "";
@@ -50,6 +50,7 @@
                 }
                 apiService.post('/api/user/add', registerData, function (result) {
                     notificationService.displaySuccess('Thêm mới tài khoản thành công!');
+                    $state.go('list_account');
                 }, function () {
                     notificationService.displayError('Tạo mới tài khoản không thành công !');
                 });

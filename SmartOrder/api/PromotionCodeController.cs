@@ -76,7 +76,7 @@ namespace SmartOrder.api
                 return response;
             });
         }
-        [Route("checkvalid"), Authorize(Roles = "Admin,Cashier")]
+        [Route("checkvalid"),Authorize(Roles = "Admin,Cashier")]
         public HttpResponseMessage CheckValid(HttpRequestMessage request, string Code)
         {
             return CreateHttpResponse(request, () =>

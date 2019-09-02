@@ -464,6 +464,7 @@
                             Code: "Không",
                             Discount: 0
                         };
+                        $scope.avaiablePromotion = false;
                         deleteCart($scope.curCart.ID);
                     }, function () {
                         //notificationService.displayError('Thanh toan khong thanh cong!');

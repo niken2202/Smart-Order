@@ -63,7 +63,7 @@ namespace SmartOrder.api
                 return response;
             });
         }
-        [Route("gettophot"),Authorize(Roles = "Admin")]
+        [Route("gettophot"), Authorize(Roles = "Admin")]
         //[Authorize(Roles = "Guest, Cashier")]
         public HttpResponseMessage GetTopHot(HttpRequestMessage request)
         {
@@ -203,7 +203,7 @@ namespace SmartOrder.api
                 return response;
             });
         }
-        [Route("delete"), Authorize]
+        [Route("delete"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>

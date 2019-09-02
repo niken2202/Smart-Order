@@ -16,7 +16,7 @@ namespace SmartOrder.api
         {
             this.billDetailService = billDetailService;
         }
-        [Route("getbybillid")]
+        [Route("getbybillid"),Authorize(Roles = "Admin")]
         public HttpResponseMessage Get(HttpRequestMessage request, int billId)
         {
             return CreateHttpResponse(request, () =>
@@ -36,7 +36,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("add")]
+        [Route("add"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Create(HttpRequestMessage request, BillDetail billdetail)
         {
             return CreateHttpResponse(request, () =>
