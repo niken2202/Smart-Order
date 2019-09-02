@@ -35,7 +35,7 @@ namespace Data.Migrations
             //    roleManager.Create(new IdentityRole { Name = "Cashier" });
             //}
 
-            //var adminUser = manager.FindByName("test");
+            //var adminUser = manager.FindByName("thang");
 
             //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "Cashier" });
 
