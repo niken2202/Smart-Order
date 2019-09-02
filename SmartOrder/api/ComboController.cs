@@ -17,7 +17,7 @@ namespace SmartOrder.api
             this.comboService = comboService;
         }
 
-        [Route("add")]
+        [Route("add"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Post(HttpRequestMessage request, Combo combo)
         {
             return CreateHttpResponse(request, () =>
@@ -120,7 +120,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("delete"), Authorize]
+        [Route("delete"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>

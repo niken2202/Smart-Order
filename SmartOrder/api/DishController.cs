@@ -20,7 +20,7 @@ namespace SmartOrder.api
             this.dishService = dishService;
         }
 
-        [Route("add"),Authorize]
+        [Route("add"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Post(HttpRequestMessage request, Dish dish)
         {
             return CreateHttpResponse(request, () =>
@@ -42,7 +42,7 @@ namespace SmartOrder.api
             });
         }
         
-        [Route("getall")]
+        [Route("getall"), Authorize(Roles = "Admin,Cashier")]
         //[Authorize(Roles = "Guest, Cashier")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {

@@ -13,7 +13,7 @@ using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/user")]
+    [RoutePrefix("api/user"), Authorize(Roles = "Admin")]
     public class ApplicationUserController : ApiControllerBase
     {
         private ApplicationUserManager userManager;
