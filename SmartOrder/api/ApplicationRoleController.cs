@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/role")]
+    [RoutePrefix("api/role"),Authorize(Roles ="Admin")]
     public class ApplicationRoleController : ApiControllerBase
     {
         private IApplicationRoleService appRoleService;
