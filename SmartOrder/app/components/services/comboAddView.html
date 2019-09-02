@@ -115,7 +115,7 @@
             <div class="main-card mb-3 card" style="border:hidden; box-shadow:none;">
 
                 <div class="crashier-table-row">
-                    <div class="crashier-table-item pointer" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:16" pagination-id="dishes">
+                    <div class="crashier-table-item pointer" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:15" pagination-id="dishes">
                         <div ng-if="DishItem.Status == 1"
                              ng-click="addDish(DishItem)" class="btn-dish">
                             <img class="crashier-img" src="{{DishItem.Image}}" />

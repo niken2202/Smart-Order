@@ -114,7 +114,8 @@
                     <div class="crashier-table-row">
                         <div id="arrDish" class="crashier-table-item" dir-paginate="DishItem in dishes |filter:searchDish |itemsPerPage:15" pagination-id="dishes">
                             <div ng-if="DishItem.Status == 1 && DishItem.Amount > 0"
-                                 ng-click="addDish(DishItem)" class="crashier-btn-dish pointer">
+                                 ng-dblclick="return false;" ng-disabled="flag"
+                                 ng-click="addDish(DishItem)"  class="crashier-btn-dish pointer">
                                 <img class="crashier-img" src="{{DishItem.Image}}" />
                                 <div style="color:#1ebb1e" class="crashier-btn-title">
                                     {{DishItem.Name}}

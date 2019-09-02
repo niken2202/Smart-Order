@@ -68,9 +68,11 @@
                     CurrentPassword: $scope.current,
                     NewPassword: $scope.newPsw
                 }
-                apiService.put('/api/user/changepassword', updatePsw, function (result) {
-                    console.log(result)
+                apiService.put('/api/user/changepassword', updatePsw, function (result) {                    
                     notificationService.displaySuccess('Cập nhật mật khẩu thành công!');
+                    $scope.accEdt.Id = "",
+                    $scope.current = "",
+                    $scope.newPsw =""
                 }, function () {
                     notificationService.displayError('Mật khẩu hiện tại không đúng !');
                 });

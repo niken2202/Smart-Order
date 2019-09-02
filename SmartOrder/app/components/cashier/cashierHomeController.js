@@ -156,7 +156,7 @@
             var listIssold = [];
             listIssold.push(item);
             apiService.post('api/dish/issold', listIssold, function (result) {                
-                notificationService.displaySuccess('Món đã được trừ số lượng !');
+                //notificationService.displaySuccess('Món đã được trừ số lượng !');
             }, function () {
                 //    notificationService.displayError('Rất tiếc đã sảy ra lỗi !');
             });
@@ -197,7 +197,7 @@
                 }
 
                 apiService.post('/api/cart/add', $scope.curCart, function (result) {
-                    notificationService.displaySuccess('Thao tác đang được xủ lý');
+                    notificationService.displaySuccess('Thao tác đang được xủ lý!');
                     //$scope.curCart = result.data;
                     var itemDish = {
                         Id: $scope.dishCart.ProID,
@@ -275,7 +275,7 @@
                     CartPrice: $scope.paymentPrice
                 }
                 apiService.post('/api/cart/add', $scope.curCart, function (result) {
-                    notificationService.displaySuccess('Thao tác đang được xủ lý');
+                    notificationService.displaySuccess('Thao tác đang được xủ lý!');
                     //$scope.curCart = result.data;
                     var itemCombo = {
                         Id: comboCart.ProID,
@@ -329,8 +329,8 @@
                     if (item.ProID == $scope.curCart.CartDetails[i].ProID) {
                         $scope.curCart.CartDetails.splice(i, 1);
                         apiService.del('api/cartdetail/delete?id=' + item.ID, null, function (result) {
-                            //notificationService.displaySuccess('Món đã được xóa khỏi cartdetails !');
                             countTotalPrice();
+                            notificationService.displaySuccess('Thao tác đang được xủ lý!');
                             if ($scope.curCart.CartDetails.length == 0) {
                                 changeTableStatusOn($scope.curTable);
                                 $scope.curCart = null;
