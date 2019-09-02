@@ -15,7 +15,7 @@ namespace SmartOrder.api
         {
             this.promotionCodeService = promotionCodeService;
         }
-        [Route("add")]
+        [Route("add"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Create(HttpRequestMessage request, PromotionCode code)
         {
             return CreateHttpResponse(request, () =>
@@ -36,7 +36,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getall")]
+        [Route("getall"), Authorize(Roles = "Admin,Cashier")]
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
@@ -57,7 +57,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("getbycode")]
+        [Route("getbycode"), Authorize(Roles = "Admin,Cashier")]
         public HttpResponseMessage GetByCode(HttpRequestMessage request, string Code)
         {
             return CreateHttpResponse(request, () =>
@@ -76,7 +76,7 @@ namespace SmartOrder.api
                 return response;
             });
         }
-        [Route("checkvalid")]
+        [Route("checkvalid"),Authorize(Roles = "Admin,Cashier")]
         public HttpResponseMessage CheckValid(HttpRequestMessage request, string Code)
         {
             return CreateHttpResponse(request, () =>
@@ -96,7 +96,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("update")]
+        [Route("update"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Put(HttpRequestMessage request, PromotionCode code)
         {
             return CreateHttpResponse(request, () =>

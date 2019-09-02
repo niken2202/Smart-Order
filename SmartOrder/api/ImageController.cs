@@ -11,7 +11,7 @@ using System.Web.Hosting;
 
 namespace SmartOrder.api
 {
-    [RoutePrefix("api/image")]
+    [RoutePrefix("api/image"), Authorize(Roles = "Admin")]
     public class ImageController : ApiControllerBase
     {
         public ImageController(IErrorService errorService, IHistoryService _historyService) : base(errorService, _historyService)
