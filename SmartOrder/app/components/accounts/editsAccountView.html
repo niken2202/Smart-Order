@@ -70,7 +70,7 @@
             <div class="position-relative form-group">
                 <label>Phân quyền</label>
                 <select name="role" class="form-control"
-                        required ng-model="accEdt.role" ng-options="option.Id as option.Name for option in Roles">
+                        required ng-model="accEdt.role" ng-options="option.Name as option.Name for option in Roles">
                     <option selected disabled value="">-- Quyền --</option>
                 </select>
                 <span ng-show="frmEdtAccount.role.$error.required" class="had-error">*Vui lòng chọn quyền</span>

@@ -1,9 +1,9 @@
 ﻿(function (app) {
     app.controller('editsAccountController', editsAccountController);
 
-    editsAccountController.$inject = ['$scope', 'apiService', 'notificationService', '$stateParams'];
+    editsAccountController.$inject = ['$scope', 'apiService', 'notificationService', '$stateParams','$state'];
 
-    function editsAccountController($scope, apiService, notificationService, $stateParams) {
+    function editsAccountController($scope, apiService, notificationService, $stateParams, $state) {
         $scope.notification = "";
         $scope.newPsw = "";
         $scope.reNewPsw = "";
@@ -54,8 +54,8 @@
                 function (result) {
                     $scope.accEdt = result.data;
                     $scope.accEdt.BirthDay = new Date(result.data.BirthDay);
-                    $scope.accEdt.role = $scope.accEdt.Roles[0].Id;
-                    console.log(result.data.Roles[0]);
+                    $scope.accEdt.role = result.data.Roles[0];
+                    //console.log(result.data.Roles[0]);
                 }, function (error) {
                     notificationService.displayError('Tải thông tin không thành công!');
                 });
@@ -76,11 +76,16 @@
                     $scope.current = "",
                     $scope.newPsw ="",
                     $scope.reNewPsw = "";
+                    $scope.changePswCondition = false;
+                    document.getElementById("divChangePassword").style.display = "none";
                 }, function () {
+                    $scope.current = "",
                     notificationService.displayError('Mật khẩu hiện tại không đúng !');
                 });
 
             } else {
+                  $scope.newPsw ="",
+                  $scope.reNewPsw = "";
                 notificationService.displayError('Mật khẩu nhập lại không khớp!');
             }
         }
@@ -93,15 +98,19 @@
                 var listRole = [];
                 listRole.push($scope.accEdt.role.Name);
                 var registerData = {
+                    Id: $scope.accEdt.Id,
                     FullName: $scope.accEdt.FullName,
                     BirthDay: $scope.accEdt.BirthDay,
                     UserName: $scope.accEdt.UserName,
                     PhoneNumber: $scope.accEdt.PhoneNumber,
-                    //Password: $scope.psw,
+                    PassWord: null,
+                    CurrentPassword: null,
+                    NewPassword: null,
                     Address: $scope.accEdt.Address,
                     Roles: listRole
                 }
                 apiService.put('/api/user/update', registerData, function (result) {
+                    $state.go('list_account');
                     notificationService.displaySuccess('Cập nhật tài khoản thành công!');
                 }, function () {
                     notificationService.displayError('Cập nhật tài khoản xảy ra lỗi !');
