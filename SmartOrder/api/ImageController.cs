@@ -18,7 +18,7 @@ namespace SmartOrder.api
         }
 
         [HttpPost]
-        [Route("upload")]
+        [Route("upload"),Authorize(Roles = "Admin")]
         public HttpResponseMessage UploadImage(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>

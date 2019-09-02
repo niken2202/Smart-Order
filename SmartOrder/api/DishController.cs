@@ -42,7 +42,7 @@ namespace SmartOrder.api
             });
         }
         
-        [Route("getall"), Authorize(Roles = "Admin,Cashier")]
+        [Route("getall")]
         //[Authorize(Roles = "Guest, Cashier")]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
@@ -63,7 +63,7 @@ namespace SmartOrder.api
                 return response;
             });
         }
-        [Route("gettophot")]
+        [Route("gettophot"),Authorize(Roles = "Admin")]
         //[Authorize(Roles = "Guest, Cashier")]
         public HttpResponseMessage GetTopHot(HttpRequestMessage request)
         {

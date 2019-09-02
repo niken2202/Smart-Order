@@ -15,7 +15,7 @@ namespace SmartOrder.api
         {
             this.materialService = materialService;
         }
-        [Route("add")]
+        [Route("add"),Authorize(Roles = "Admin")]
         public HttpResponseMessage Post(HttpRequestMessage request, Material material)
         {
             return CreateHttpResponse(request, () =>
@@ -97,7 +97,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("update")]
+        [Route("update"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Put(HttpRequestMessage request, Material material)
         {
             return CreateHttpResponse(request, () =>
@@ -120,7 +120,7 @@ namespace SmartOrder.api
             });
         }
 
-        [Route("delete")]
+        [Route("delete"), Authorize(Roles = "Admin")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
