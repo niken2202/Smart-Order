@@ -21,7 +21,7 @@ namespace Service
         int GetDishCount();
         void SaveChanges();
         Dish DisableDish(int id);
-        void IsSold(List<UpdateSoldViewModel> list);
+        bool IsSold(List<UpdateSoldViewModel> list);
     }
 
     public class DishService : IDishService
@@ -84,9 +84,9 @@ namespace Service
             return dishRepository.GetTopHot();
         }
 
-        public void IsSold(List<UpdateSoldViewModel> list)
+        public bool IsSold(List<UpdateSoldViewModel> list)
         {
-            dishRepository.IsSold(list);
+           return dishRepository.IsSold(list);
         }
 
         public void SaveChanges()
