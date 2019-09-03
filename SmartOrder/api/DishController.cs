@@ -196,9 +196,17 @@ namespace SmartOrder.api
                 }
                 else
                 {
-                    dishService.IsSold(list);
+                    var result = dishService.IsSold(list);
                     dishService.SaveChanges();
-                    response = request.CreateResponse(HttpStatusCode.OK);
+                    if (result)
+                    {
+                        response = request.CreateResponse(HttpStatusCode.OK, new { Message = "OK" });
+                    }
+                    else
+                    {
+                        response = request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Fail" });
+                    }
+
                 }
                 return response;
             });
