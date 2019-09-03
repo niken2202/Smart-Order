@@ -429,13 +429,20 @@
                     } if ($scope.ContentBill.length < 1 || $scope.ContentBill == null) {
                         $scope.ContentBill = "Nội dung được tạo tự động";
                     }
+                    var dt = new Date();
+                    var dtstring = dt.getFullYear()
+                        + '-' + (dt.getMonth() + 1)
+                        + '-' + (dt.getDate())
+                        + ' ' + (dt.getHours())
+                        + ':' + (dt.getMinutes())
+                        + ':' + (dt.getSeconds());
                     $scope.addBill = {
                         BillDetail: $scope.listDish,
                         Voucher: $scope.Promotions.Code,
                         CustomerName: $scope.CustomerName,
                         Content: $scope.ContentBill,
                         TableID: $scope.curTable.ID,
-                        CreatedDate: new Date,
+                        CreatedDate: dtstring,
                         CreatedBy: $scope.CrashierName,
                         Discount: $scope.Promotions.Discount,
                         Total: $scope.paymentPrice,

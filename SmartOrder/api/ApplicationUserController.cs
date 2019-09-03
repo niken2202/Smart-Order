@@ -18,8 +18,6 @@ namespace SmartOrder.api
     {
         private ApplicationUserManager userManager;
         private IApplicationRoleService appRoleService;
-       
-
         public ApplicationUserController(IApplicationRoleService appRoleService,
             ApplicationUserManager userManager, 
             IErrorService errorService,
@@ -148,7 +146,17 @@ namespace SmartOrder.api
 
                     if (result.Succeeded)
                     {
-                        
+                        //add role to user
+                        var listRole = appRoleService.GetAll().Select(x=>x.Name);
+                        await userManager.RemoveFromRolesAsync(user.Id, listRole.ToArray());
+                        foreach (var role in user.Roles)
+                        {
+                            if (listRole.Contains(role))
+                            {
+                                await userManager.RemoveFromRoleAsync(user.Id, role);
+                                await userManager.AddToRoleAsync(user.Id, role);
+                            }
+                        }
 
                         return request.CreateResponse(HttpStatusCode.OK, oldUser);
                     }

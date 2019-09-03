@@ -10,7 +10,7 @@ namespace Data.Migrations
             CreateStoredProcedure("GetAllCartDetail",
                 "select cd.*, t.Name as TableName ,t.ID as TableID  from CartDetail cd " +
                 "inner join Cart c on c.ID = cd.CartID" +
-                " inner join[Table] t on t.ID = c.TableID"
+                " inner join[Table] t on t.ID = c.TableID order by cd.ID asc"
                 );
         }
         
