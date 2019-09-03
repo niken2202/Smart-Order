@@ -55,7 +55,6 @@
                     $scope.accEdt = result.data;
                     $scope.accEdt.BirthDay = new Date(result.data.BirthDay);
                     $scope.accEdt.role = result.data.Roles[0];
-                    //console.log(result.data.Roles[0]);
                 }, function (error) {
                     notificationService.displayError('Tải thông tin không thành công!');
                 });
@@ -96,7 +95,7 @@
         function updateAcc() {
             if ($scope.changePswCondition == false) {
                 var listRole = [];
-                listRole.push($scope.accEdt.role.Name);
+                listRole.push($scope.accEdt.role);
                 var registerData = {
                     Id: $scope.accEdt.Id,
                     FullName: $scope.accEdt.FullName,

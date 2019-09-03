@@ -230,7 +230,7 @@
                                            class="crashier-cart-quantity" type="number"
                                            ng-model="cartItem.Quantity"
                                            ng-change="quantityChange(cartItem)"
-                                           min="0" oninput="this.value = Math.abs(this.value)">
+                                           min="1" oninput="this.value = Math.abs(this.value)">
                                     <div ng-if="cartItem.Status == 2">{{cartItem.Quantity}}</div>
                                     <div ng-if="cartItem.Status == 3">{{cartItem.Quantity}}</div>
                                 </td>

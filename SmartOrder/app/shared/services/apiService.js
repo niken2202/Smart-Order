@@ -19,7 +19,7 @@
             }, function (error) {
                 console.log(error.status)
                 if (error.status === 401) {
-                    notificationService.displayError('Authenticate is required.');
+                    notificationService.displayError('Quyền truy cập không hợp lệ!');
                 }
                 else if (failure != null) {
                     failure(error);
@@ -34,7 +34,7 @@
             }, function (error) {
                 console.log(error.status)
                 if (error.status === 401) {
-                    notificationService.displayError('Authenticate is required.');
+                    notificationService.displayError('Quyền truy cập không hợp lệ!');
                 }
                 else if (failure != null) {
                     failure(error);
@@ -50,7 +50,7 @@
             }, function (error) {
                 console.log(error.status)
                 if (error.status === 401) {
-                    notificationService.displayError('Authenticate is required.');
+                    notificationService.displayError('Quyền truy cập không hợp lệ!');
                 }
                 else if (failure != null) {
                     failure(error);

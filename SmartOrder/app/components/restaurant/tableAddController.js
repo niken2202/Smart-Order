@@ -38,8 +38,8 @@
                         condition = false;
                         notify = "Tên bàn đã tồn tại";
                         break;
-                    }
-                if ($scope.tableAdd.DeviceID == $scope.tables[i].DeviceID && $scope.tableAdd.DeviceID != null) {
+                }
+                if ($scope.tableAdd.DeviceID == $scope.tables[i].DeviceID && $scope.tableAdd.DeviceID.length > 0) {
                         condition = false;
                         notify = "Mã thiết bị đã được đăng ký cho bàn khác";
                         break;
