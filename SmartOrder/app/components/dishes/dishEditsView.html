@@ -37,7 +37,8 @@
 
             <div class="position-relative form-group">              
                 <div class="input-group">
-                    <input class="btn btn-primary col-md-6" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
+                    <input class="btn btn-primary col-md-6" type="file" id="file1" name="file" accept="image/*"
+                           multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
                     <!--<label for="image" class="btn btn-success btn-xs pull-center" name="upload" Value="">Upload Photo</label>-->
                 </div>
                 <br />

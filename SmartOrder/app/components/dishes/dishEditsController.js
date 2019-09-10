@@ -61,17 +61,23 @@
 
         //Upload file
         $scope.uploadFile = function (files) {
-            var fd = new FormData();
-            fd.append('Image', files[0]);
-            $http.post('/api/image/upload', fd, {
-                transformRequest: angular.identity,
-                headers: { 'Content-Type': undefined }
-            })
-                .then(function (result) {
-                    $scope.edtDish.Image = result.data;
+            if (files[0].size > 1050000) {
+                notificationService.displayError('Kích cỡ quá lớn (Ảnh nhỏ hơn 1Mb)');
+            } else if (files.length == 0) {
+                notificationService.displayError('Chưa có ảnh nào được chọn !');
+            } else {
+                var fd = new FormData();
+                fd.append('Image', files[0]);
+                $http.post('/api/image/upload', fd, {
+                    transformRequest: angular.identity,
+                    headers: { 'Content-Type': undefined }
                 })
-                .then(function () {
-                });
+                    .then(function (result) {
+                        $scope.edtDish.Image = result.data;
+                    })
+                    .then(function () {
+                    });
+            }           
         }
 
         //update dish

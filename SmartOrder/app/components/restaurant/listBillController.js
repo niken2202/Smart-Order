@@ -1,6 +1,8 @@
 ﻿(function (app) {
     app.controller('listBillController', listBillController);
 
+
+
     listBillController.$inject = ['$scope', 'ngDialog', 'apiService', 'notificationService'];
 
     function listBillController($scope, ngDialog, apiService, notificationService) {
@@ -85,7 +87,6 @@
                 apiService.get('/api/bill/getlast7day', null, function (result) {
                     $scope.bills = result.data;
                     $scope.title = "7 ngày gần đây";
-                    console.log($scope.bills);
                     if ($scope.bills.length === 0) {
                         notificationService.displayWarning('Danh sách trống !');
                     } else {

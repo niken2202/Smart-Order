@@ -6,7 +6,7 @@
             } else if (input == 0) {
                 return 'Có khách';
             } else {
-                return 'Đang thanh toán';
+                return 'Khả dụng';
             }
         }
     });

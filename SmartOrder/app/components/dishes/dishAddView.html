@@ -36,7 +36,9 @@
             </div>
             <div class="position-relative form-group">                
                 <div class="input-group">
-                    <input class="btn btn-primary btn-xs pull-center col-md-6" type="file" id="file1" name="file" multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
+                    <input class="btn btn-primary btn-xs pull-center col-md-6" type="file" id="file1" name="file" accept="image/*"
+                           title="Chọn ảnh"
+                           multiple onchange="angular.element(this).scope().uploadFile(this.files)" />
                 </div>
                 <br />
                 <img ng-src="{{dishAdd.Image}}" class="admin-img" ng-show="dishAdd.Image" />

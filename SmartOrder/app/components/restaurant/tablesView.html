@@ -52,9 +52,8 @@
                             ng-click="vm.openDialog($event,item)">{{item.DeviceID}}</td>
                         <td ng-click="vm.openDialog($event,item)">
                             <span style="width:70%; float:right" 
-                                  ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1 || item.Status==3,
-                                  'mb-2 mr-2 btn btn-danger':item.Status==0,
-                                  'mb-2 mr-2 btn btn-warning':item.Status==2}">
+                                  ng-class="{'mb-2 mr-2 btn btn-success':item.Status==1 || item.Status==2 || item.Status==3,
+                                  'mb-2 mr-2 btn btn-danger':item.Status==0}">
                                 {{item.Status | tableFilter}}
                             </span>
                         </td>
